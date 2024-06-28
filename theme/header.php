@@ -24,7 +24,7 @@
         <?php wp_head(); ?>
     </head>
 
-    <body>
+    <body <?php body_class(); ?>>
         <?php if ( function_exists( 'wp_body_open' ) ) : ?>
             <?php wp_body_open(); ?>
         <?php endif; ?>

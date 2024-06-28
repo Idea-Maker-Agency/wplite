@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * Disable Gutenberg on the back end.
+ *
+ * @since 1.0.0
+ */
+add_filter( 'use_block_editor_for_post', '__return_false' );
+
+/**
+ * Disable Gutenberg for widgets.
+ *
+ * @since 1.0.0
+ */
+add_filter( 'use_widgets_block_editor', '__return_false' );
+
+/**
  * Register vendor stylesheets.
  *
  * @since 1.0.0

@@ -1,0 +1,28 @@
+.pagination {
+  --bs-pagination-active-bg: #125997;
+  --bs-pagination-active-border-color: #125997;
+  --bs-pagination-hover-color: #12579b;
+  --bs-pagination-focus-color: #11529c;
+  --bs-pagination-padding-x: 2px;
+  --bs-pagination-padding-y: 2px;
+  --bs-pagination-border-width: 0;
+  --bs-pagination-border-radius: 50%;
+  column-gap: 10px;
+}
+
+.pagination .page-link {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--bs-pagination-border-radius);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination .page-link.prev,
+.pagination .page-link.next {
+  width: auto;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 0;
+}

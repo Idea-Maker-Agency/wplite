@@ -70,6 +70,11 @@ function wplite_styles(): void {
       'category' => 'utils',
       'enqueue' => true,
     ],
+    'button' => [
+      'version' => '1.0.0',
+      'category' => 'components',
+      'enqueue' => true,
+    ],
     'card' => [
       'version' => '1.0.0',
       'category' => 'components',

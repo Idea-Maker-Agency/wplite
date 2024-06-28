@@ -1,0 +1,26 @@
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #125997;
+  --bs-primary-rgb: 18, 89, 151;
+
+  --bs-success: #28622c;
+  --bs-success-rgb: 40, 98, 44;
+
+  --bs-info: #42a5f5;
+  --bs-info-rgb: 66, 165, 245;
+
+  --bs-danger: #a71816;
+  --bs-danger-rgb: 167, 24, 22;
+
+  --bs-warning: #fdd835;
+  --bs-warning-rgb: 253, 216, 53;
+
+  --bs-body-color: #211e1e;
+  --bs-body-bg: #fff;
+  --bs-body-font-family: "Poppins", sans-serif;
+  --bs-body-font-size: 15px;
+
+  --bs-link-color: #303f9f;
+  --bs-link-color-rgb: 48, 63, 159;
+  --bs-link-decoration: none;
+}

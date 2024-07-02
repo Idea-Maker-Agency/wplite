@@ -15,9 +15,12 @@
  *    @param string     $tag          The HTML tag to render, allowing for custom components or elements.
  *    @param array      $attrs        The HTML attributes to apply to the button.
  * }
+ *
+ * @return void
  */
 function wplite_button( string $text, array $props ): void {
-  $btn = new IdeaMaker\WPLite\Components\Button();
+  $button = new IdeaMaker\WPLite\Components\Button();
 
-  $btn->output( $text, $props );
+
+  $button->output( $text, $props );
 }

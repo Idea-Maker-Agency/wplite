@@ -61,8 +61,10 @@ class Button extends Component {
    *    @param string     $tag          The HTML tag to render, allowing for custom components or elements.
    *    @param array      $attrs        The HTML attributes to apply to the button.
    * }
+   *
+   * @return void
    */
-  public function output( string $text, array $props = [] ) {
+  public function output( string $text = '', array $props = [] ): void {
     if ( !empty( $props['attrs'] ) )
       $props['attrs'] = wp_parse_args( $this->props['attrs'], $props['attrs'] );
 

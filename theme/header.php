@@ -29,4 +29,4 @@
             <?php wp_body_open(); ?>
         <?php endif; ?>
 
-        <?php get_template_part( 'lib/structure/header' ); ?>
+        <?php get_template_part( 'lib/templates/structure/header' ); ?>

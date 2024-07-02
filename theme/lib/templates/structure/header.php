@@ -4,6 +4,6 @@
        href="<?php echo site_url(); ?>"
       class="navbar-brand">WPLite</a>
 
-    <?php get_template_part( 'lib/structure/header/header', 'navigation' ); ?>
+    <?php get_template_part( 'lib/templates/structure/header/header', 'navigation' ); ?>
   </div>
 </nav>

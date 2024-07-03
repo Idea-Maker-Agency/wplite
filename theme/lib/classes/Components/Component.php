@@ -75,12 +75,14 @@ abstract class Component {
   public final function render( bool $echo = true ) {
     if( !$this->props ) return;
 
-    $component = strtolower( (new \ReflectionClass($this))->getShortName() );
+    $component_name = preg_replace_callback( '/[A-Z]/', function ( array $matches ): string {
+      return '-'. strtolower( reset( $matches ) );
+    }, (new \ReflectionClass($this))->getShortName() );
 
     ob_start();
 
     get_template_part(
-      'lib/templates/components/'. $component,
+      'lib/templates/components/'. preg_replace( '/^./', '', $component_name ),
       'component',
       $this->props
     );

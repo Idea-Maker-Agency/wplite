@@ -1,0 +1,35 @@
+.post-navigation {
+  padding-top: 15px;
+  margin-top: 30px;
+  border-top: 1px solid var(--bs-light);
+}
+
+.post-navigation .nav-links {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.post-navigation .nav-links a {
+  text-decoration: none;
+}
+
+.post-navigation .nav-links .nav-links__label {
+  font-size: 12px;
+  font-family: 400;
+}
+
+.post-navigation .nav-links .nav-links__text {
+  font-weight: 700;
+  display: block;
+}
+
+.post-navigation .nav-links .nav-previous {
+  margin-right: auto;
+  text-align: left;
+}
+
+.post-navigation .nav-links .nav-next {
+  margin-left: auto;
+  text-align: right;
+}

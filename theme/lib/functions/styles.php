@@ -80,6 +80,11 @@ function wplite_styles(): void {
       'category' => 'components',
       'enqueue' => true,
     ],
+    'post-navigation' => [
+      'version' => '1.0.0',
+      'category' => 'components',
+      'enqueue' => true,
+    ],
     'card' => [
       'version' => '1.0.0',
       'category' => 'components',

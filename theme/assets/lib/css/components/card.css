@@ -12,6 +12,11 @@
   font-weight: 700;
 }
 
+.card .card-title .card-title-link,
+.card .card-link {
+  text-decoration: none;
+}
+
 .card .card-meta {
   font-size: 13px;
 }

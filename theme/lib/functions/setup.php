@@ -10,6 +10,7 @@
 add_action( 'after_setup_theme', 'wp_after_setup_theme' );
 function wp_after_setup_theme(): void {
 	add_theme_support( 'post-thumbnails' );
+  add_theme_support( 'widgets' );
 
   add_image_size( 'card-image', 420, 320, [ 'center', 'center' ] );
 }

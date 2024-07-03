@@ -31,6 +31,10 @@
           'class' => '',
         ]);
         ?>
+      <?php else : ?>
+        <p class="mb-0">
+          <?php _e( 'No posts found.', THEME_TEXT_DOMAIN ); ?>
+        </p>
       <?php endif; ?>
     </div>
   </section>

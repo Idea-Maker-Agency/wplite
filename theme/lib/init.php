@@ -19,6 +19,7 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/formatting.php';
   require_once THEME_DIR_PATH . '/lib/functions/pagination.php';
   require_once THEME_DIR_PATH . '/lib/functions/menus.php';
+  require_once THEME_DIR_PATH . '/lib/functions/search.php';
   require_once THEME_DIR_PATH . '/lib/functions/widgets.php';
 }
 

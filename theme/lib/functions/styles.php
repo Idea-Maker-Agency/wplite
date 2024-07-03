@@ -28,7 +28,7 @@ function wplite_vendor_styles(): void {
       'version' => '5.3.3',
       'minified' => true,
       'enqueue' => true,
-    ]
+    ],
   ];
 
   foreach ( $styles as $handle => $args ) :

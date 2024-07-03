@@ -10,11 +10,16 @@
 add_action( 'wp_enqueue_scripts', 'wplite_vendor_scripts', 10 );
 function wplite_vendor_scripts(): void {
   $scripts = [
+    'alpine' => [
+      'version' => '3.14.1',
+      'minified' => true,
+      'enqueue' => false,
+    ],
     'bootstrap' => [
       'version' => '5.3.3',
       'minified' => true,
       'enqueue' => true,
-    ]
+    ],
   ];
 
   foreach ( $scripts as $handle => $args ) :

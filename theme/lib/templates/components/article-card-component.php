@@ -3,7 +3,7 @@
 <?php if ( is_null( $post ) ) return; ?>
 
 <article
-  <?php post_class( 'card' ); ?>
+  <?php post_class( 'card h-100' ); ?>
   id="post-<?php echo get_the_ID(); ?>"
   aria-label="<?php echo get_the_title(); ?>"
   itemtype="https://schema.org/CreativeWork"

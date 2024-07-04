@@ -42,18 +42,9 @@ while ( have_posts() ) :
 
             <div itemprop="text">
               <?php if ( has_post_thumbnail() ) : ?>
-                <picture class="mb-4">
-                  <source
-                    srcset="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'featured-image' ); ?>"
-                    type="image/png">
-                  <img
-                    src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'featured-image' ); ?>"
-                    alt="<?php echo get_the_title(); ?>"
-                    class="img-fluid"
-                    itemprop="image">
-                </picture>
+                <?php echo get_the_post_thumbnail( get_the_ID(), 'featured-image', [ 'class' => 'mb-4 rounded-4' ]); ?>
               <?php else : ?>
-                <svg width="100%" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false" class="mb-4" style="text-anchor: middle;">
+                <svg width="640" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false" class="mb-4 rounded-4" style="text-anchor: middle;">
                   <title>Placeholder</title>
                   <rect width="100%" height="100%" fill="#868e96"></rect>
                   <text x="50%" y="50%" fill="#dee2e6" dy=".3em"><?php echo get_the_title(); ?></text>

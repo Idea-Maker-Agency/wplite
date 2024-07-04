@@ -90,11 +90,16 @@ function wplite_styles(): void {
       'category' => 'components',
       'enqueue' => true,
     ],
+    'comments' => [
+      'version' => '1.0.0',
+      'category' => 'widgets',
+      'enqueue' => true,
+    ],
     'social-links' => [
       'version' => '1.0.0',
       'category' => 'widgets',
       'enqueue' => true,
-    ]
+    ],
   ];
 
   foreach ( $styles as $handle => $args ) :

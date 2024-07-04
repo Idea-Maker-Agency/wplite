@@ -1,0 +1,47 @@
+.comment {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 40px;
+  font-size: 14px;
+  position: relative;
+}
+
+.comment.parent:not(:first-child) {
+  margin-top: 25px;
+}
+
+.comment:last-child {
+  padding-bottom: 0;
+}
+
+.comment .comment-author {
+  margin-bottom: 5px;
+}
+
+.comment .comment-author .avatar {
+  background-color: #fff;
+  margin-right: 5px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  z-index: 5;
+}
+
+.comment .comment-meta {
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.comment .reply + .comment {
+  margin-top: 20px;
+}
+
+.comment-respond .comment-reply-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-respond .comment-reply-title a {
+  font-size: 14px;
+  text-decoration: none;
+}

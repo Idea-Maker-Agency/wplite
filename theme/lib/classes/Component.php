@@ -11,26 +11,13 @@ defined( 'ABSPATH' ) || die( 'Access denied.' );
 
 class Component {
   /**
-   * The component name.
+   * The components array.
    *
    * @since 1.0.0
    *
-   * @var string
+   * @var array
    */
-  private static $name;
-
-  /**
-   * Gets the component's template path.
-   *
-   * @since 1.0.0
-   *
-   * @return string
-   */
-  protected static function get_path(): string {
-    if ( empty( self::$name ) ) return '';
-
-    return 'components/'. self::$name .'/'. self::$name;
-  }
+  public static $components = [];
 
   /**
    * Enqueues the component scripts and styles if they exists.
@@ -40,24 +27,28 @@ class Component {
    * @return void
    */
   public static function enqueue_assets(): void {
-    if ( file_exists( THEME_DIR_PATH .'/'. self::get_path() . '.css' ) ) :
-      wp_enqueue_style(
-        'wplite-'. self::$name,
-        THEME_DIR_URI .'/'. self::get_path() .'.css',
-        [],
-        '1.0.0',
-        false
-      );
-    endif;
+    if ( 0 < count( self::$components ) ) :
+      foreach( self::$components as $component ) :
+        if ( file_exists( THEME_DIR_PATH .'/components/'. $component .'/'. $component .'.css' ) ) :
+          wp_enqueue_style(
+            'wplite-'. $component,
+            THEME_DIR_URI .'/components/'. $component .'/'. $component .'.css',
+            [],
+            '1.0.0',
+            false
+          );
+        endif;
 
-    if ( file_exists( THEME_DIR_PATH .'/'. self::get_path() . '.js' ) ) :
-      wp_enqueue_script(
-        'wplite-'. self::$name,
-        THEME_DIR_URI .'/'. self::get_path() .'.js',
-        [],
-        '1.0.0',
-        true
-      );
+        if ( file_exists( THEME_DIR_PATH .'/components/'. $component .'/'. $component .'.js' ) ) :
+          wp_enqueue_script(
+            'wplite-'. $component,
+            THEME_DIR_URI .'/components/'. $component .'/'. $component .'.js',
+            [],
+            '1.0.0',
+            true
+          );
+        endif;
+      endforeach;
     endif;
   }
 
@@ -72,13 +63,22 @@ class Component {
    * @return void
    */
   public static function render( string $component, mixed ...$args ): void {
-    self::$name = $component;
-
     get_template_part(
-      self::get_path(),
+      '/components/'. $component .'/'. $component,
       null,
       $args
     );
+  }
+
+  /**
+   * Adds new component to register.
+   *
+   * @param string    $component      The component name.
+   *
+   * @return void
+   */
+  public static function add( string $component ): void {
+    self::$components[] = $component;
   }
 
   /**
@@ -86,13 +86,9 @@ class Component {
    *
    * @since 1.0.0
    *
-   * @param string    $component      The component name.
-   *
    * @return void
    */
-  public static function register( string $component ): void {
-    self::$name = $component;
-
+  public static function register(): void {
     add_action(
       'wp_enqueue_scripts',
       [ static::class, 'enqueue_assets' ],

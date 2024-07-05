@@ -2,8 +2,10 @@
 
 use IdeaMaker\WPLite\Component;
 
-Component::register( 'button' );
-Component::register( 'link' );
+Component::add( 'button' );
+Component::add( 'link' );
+
+Component::register();
 
 /**
  * Fires after the theme is loaded.

@@ -4,6 +4,7 @@ use IdeaMaker\WPLite\Component;
 
 Component::add( 'button' );
 Component::add( 'link' );
+Component::add( 'article-card' );
 
 Component::register();
 

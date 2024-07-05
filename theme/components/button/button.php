@@ -5,7 +5,7 @@ $text = !empty( $args[0] ) ? $args[0] : '';
 
 // Classes
 $classes = wp_parse_args(
-  !empty( $args[2]['class'] ) ? $args[2]['class'] : [],
+  !empty( $args[1]['class'] ) ? $args[1]['class'] : [],
   []
 );
 

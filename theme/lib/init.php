@@ -11,7 +11,6 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/classes/Component.php';
 
   require_once THEME_DIR_PATH . '/lib/classes/Components/Component.php';
-  require_once THEME_DIR_PATH . '/lib/classes/Components/Button.php';
   require_once THEME_DIR_PATH . '/lib/classes/Components/ArticleCard.php';
 
   require_once THEME_DIR_PATH . '/lib/functions/setup.php';

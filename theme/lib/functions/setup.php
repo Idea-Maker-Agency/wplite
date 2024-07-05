@@ -1,5 +1,9 @@
 <?php
 
+use IdeaMaker\WPLite\Component;
+
+Component::register( 'button' );
+
 /**
  * Fires after the theme is loaded.
  *

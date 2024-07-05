@@ -14,7 +14,7 @@ get_header();
 <section class="py-5">
   <div class="container">
     <h1 class="mb-5 fw-bold text-center">
-      <?php echo single_cat_title( '<span class="mb-2 fs-6 fw-normal text-uppercase d-block">Tag</span>' ) ?>
+      <?php the_archive_title() ?>
     </h1>
 
     <?php if ( have_posts() ) : ?>

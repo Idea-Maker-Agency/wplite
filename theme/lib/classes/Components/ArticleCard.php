@@ -6,8 +6,6 @@
  */
 namespace IdeaMaker\WPLite\Components;
 
-defined( 'ABSPATH' ) || die( 'Access denied.' );
-
 class ArticleCard extends Component {
   /**
    * Register default parameters.

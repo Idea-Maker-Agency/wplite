@@ -7,8 +7,6 @@
  */
 namespace IdeaMaker\WPLite;
 
-defined( 'ABSPATH' ) || die( 'Access denied.' );
-
 class Component {
   /**
    * The components array.

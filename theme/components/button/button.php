@@ -1,6 +1,4 @@
 <?php
-defined( 'ABSPATH' ) || die( 'Access denied.' );
-
 $text = !empty( $args[0] ) ? $args[0] : '';
 
 // Classes

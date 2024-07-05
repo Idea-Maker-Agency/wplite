@@ -7,8 +7,6 @@
  */
 namespace IdeaMaker\WPLite\Components;
 
-defined( 'ABSPATH' ) || die( 'Access denied.' );
-
 abstract class Component {
   /**
    * The component parameters.

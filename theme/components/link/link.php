@@ -1,6 +1,4 @@
 <?php
-defined( 'ABSPATH' ) || die( 'Access denied.' );
-
 $text = !empty( $args[0] ) ? $args[0] : '';
 $link = !empty( $args[1] ) ? $args[1] : '';
 $type = !empty( $args[2]['type'] ) ? $args[2]['type'] : 'a';

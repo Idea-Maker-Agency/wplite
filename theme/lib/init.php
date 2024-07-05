@@ -23,6 +23,10 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/menus.php';
   require_once THEME_DIR_PATH . '/lib/functions/search.php';
   require_once THEME_DIR_PATH . '/lib/functions/widgets.php';
+
+  if ( class_exists( 'WPCF7' ) ) :
+    require_once THEME_DIR_PATH . '/lib/functions/cf7.php';
+  endif;
 }
 
 wplite_init();

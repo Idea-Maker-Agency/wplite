@@ -31,16 +31,16 @@ $props = [
   'title' => esc_html( $title ),
 ];
 
-if ( !empty( $args['id'] ) ) :
-  $props['id'] = esc_html( $args['id'] );
+if ( !empty( $args[1]['id'] ) ) :
+  $props['id'] = esc_html( $args[1]['id'] );
 endif;
 
-if ( !empty( $args['type'] ) ) :
-  $props['type'] = esc_html( $args['type'] );
+if ( !empty( $args[1]['type'] ) ) :
+  $props['type'] = esc_html( $args[1]['type'] );
 endif;
 
-if ( !empty( $args['title'] ) ) :
-  $props['title'] = $args['title'];
+if ( !empty( $args[1]['title'] ) ) :
+  $props['title'] = $args[1]['title'];
 endif;
 
 $props['class'] = array_reduce( $classes, function ( string $carry, string $item ): string {

@@ -9,7 +9,7 @@ $classes = wp_parse_args(
   []
 );
 
-if ( !empty( $args['is-button'] ) ) :
+if ( !empty( $args[2]['is-button'] ) ) :
   $classes[] = 'btn';
 
   if ( !empty( $args[2]['variant'] ) ) :
@@ -42,20 +42,20 @@ $props = [
   'rel' => 'nofollow',
 ];
 
-if ( !empty( $args['id'] ) ) :
-  $props['id'] = esc_html( $args['id'] );
+if ( !empty( $args[2]['id'] ) ) :
+  $props['id'] = esc_html( $args[2]['id'] );
 endif;
 
-if ( !empty( $args['is-button'] ) ) :
+if ( !empty( $args[2]['is-button'] ) ) :
   $props['role'] = 'button';
 endif;
 
-if ( !empty( $args['alt'] ) ) :
-  $props['alt'] = $args['alt'];
+if ( !empty( $args[2]['alt'] ) ) :
+  $props['alt'] = $args[2]['alt'];
 endif;
 
-if ( !empty( $args['target'] ) ) :
-  $props['target'] = $args['target'];
+if ( !empty( $args[2]['target'] ) ) :
+  $props['target'] = $args[2]['target'];
 endif;
 
 $props['class'] = array_reduce( $classes, function ( string $carry, string $item ): string {

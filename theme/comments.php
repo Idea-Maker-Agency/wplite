@@ -1,4 +1,15 @@
-<?php if ( have_comments() ) : ?>
+<?php
+/**
+ * The template for displaying comments.
+ *
+ * @package    WPLite
+ * @subpackage Templates
+ * @author     Idea Maker
+ * @since      1.0.0
+ */
+
+if ( have_comments() ) :
+?>
   <div
     id="comments"
     class="mt-4 mt-lg-5">
@@ -10,13 +21,14 @@
         'style' => 'div',
         'short_ping' => true,
         'avatar_size' => 32,
-      ] );
+      ] )
       ?>
     </div>
   </div>
 <?php endif; ?>
 
-<?php comment_form( [
+<?php
+comment_form( [
   'title_reply_before' => '<h4 id="reply-title" class="comment-reply-title mb-3 fw-bold">',
   'title_reply_after' => '</h4>',
   'comment_field' => sprintf(
@@ -30,4 +42,5 @@
   ),
   'class_container' => 'comment-respond pt-4 mt-4 border-top border-top-light',
   'class_submit' => 'btn btn-secondary',
-] ); ?>
+] )
+?>

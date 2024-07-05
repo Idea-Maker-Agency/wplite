@@ -1,11 +1,15 @@
 <?php
 /**
- * Template: Archive
+ * The template for displaying archive pages.
  *
- * @since 1.0.0
+ * @package    WPLite
+ * @subpackage Templates
+ * @author     Idea Maker
+ * @since      1.0.0
  */
+
+get_header();
 ?>
 
-<?php get_header(); ?>
-
-<?php get_footer(); ?>
+<?php
+get_footer();

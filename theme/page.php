@@ -1,10 +1,15 @@
 <?php
 /**
- * Template: Page
+ * The template for displaying all pages.
  *
- * @since 1.0.0
+ * @package    WPLite
+ * @subpackage Templates
+ * @author     Idea Maker
+ * @since      1.0.0
  */
-?>
-<?php get_header(); ?>
 
-<?php get_footer(); ?>
+get_header();
+?>
+
+<?php
+get_footer();

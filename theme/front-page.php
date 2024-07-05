@@ -1,16 +1,20 @@
 <?php
 /**
- * Template: Front-page
+ * The template for displaying front-page.
  *
- * @since 1.0.0
+ * @package    WPLite
+ * @subpackage Templates
+ * @author     Idea Maker
+ * @since      1.0.0
  */
 
 use IdeaMaker\WPLite\Component;
+
+get_header();
 ?>
 
-<?php get_header(); ?>
+<?php Component::render( 'button', 'test', [ 'class' => [ 'test' ] ] ) ?>
+<?php Component::render( 'link', 'test', 'https://google.com' ) ?>
 
-<?php Component::render( 'button', 'test', [ 'class' => [ 'test' ] ] ); ?>
-<?php Component::render( 'link', 'test', 'https://google.com' ); ?>
-
-<?php get_footer(); ?>
+<?php
+get_footer();

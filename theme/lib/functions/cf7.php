@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * Unauto-p CF7 form elements.
+ *
+ * @since 1.0.0
+ */
+add_filter( 'wpcf7_autop_or_not', '__return_false' );
+
+/**
  * Filters CF7 form tags.
  *
  * @since 1.0.0

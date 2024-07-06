@@ -85,6 +85,11 @@ function wplite_styles(): void {
       'category' => 'components',
       'enqueue' => true,
     ],
+    'cf7' => [
+      'version' => '1.0.0',
+      'category' => 'widgets',
+      'enqueue' => true,
+    ],
     'comments' => [
       'version' => '1.0.0',
       'category' => 'widgets',

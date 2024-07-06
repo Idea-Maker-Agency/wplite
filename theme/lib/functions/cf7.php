@@ -84,7 +84,7 @@ function wplite_cf7_default_template( mixed $template, string $prop ): mixed {
 
       __( "Submit", THEME_TEXT_DOMAIN ),
 
-      "form-label mb-0",
+      "form-label mb-0 small",
       "mb-3"
     );
 

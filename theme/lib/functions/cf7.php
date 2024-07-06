@@ -93,3 +93,33 @@ function wplite_cf7_default_template( mixed $template, string $prop ): mixed {
 
   return $template;
 }
+
+/**
+ * Filters CF7 form response output.
+ *
+ * @param string            $output       Form response output HTML.
+ * @param string            $class        Form response CSS class.
+ * @param string            $content      Form response content.
+ * @param WPCF7_ContactForm $wpcf7        The WPCF7_ContactForm object.
+ * @param string            $status       Form response status.
+ *
+ * @return string
+ */
+add_filter( 'wpcf7_form_response_output', 'wplite_cf7_form_response_output', 10, 5 );
+function wplite_cf7_form_response_output ( string $output, string $class, string $content, WPCF7_ContactForm $wpcf7, string $status ): string {
+  $classes = wp_parse_args(
+    [ 'alert', 'alert-warning', 'py-2', 'px-3', 'mx-0', 'border-0', ],
+    [ $class, ]
+  );
+
+  $atts = [
+    'class' => implode( ' ', $classes ),
+    'aria-hidden' => 'true'
+  ];
+
+  return sprintf(
+    '<div %1$s>%2$s</div>',
+    wpcf7_format_atts( $atts ),
+    esc_html( $content )
+  );
+}

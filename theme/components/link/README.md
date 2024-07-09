@@ -23,3 +23,14 @@ Renders the link component.
 ### Return
 
 `void` on success, `false` if the template does not exist
+
+### Example Usage
+
+```php
+wplite_button( 'Button link', 'primary', 'sm', true, false, true, [
+  'id' => 'button-link',
+  'class' => [ 'button-link--primary' ],
+  'target' => '_blank',
+  'alt' => 'Button link alt',
+] )
+```

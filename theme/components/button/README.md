@@ -22,3 +22,14 @@ Renders the button component.
 ### Return
 
 `void` on success, `false` if the template does not exist
+
+### Example Usage
+
+```php
+wplite_button( 'Click me', 'primary', 'sm', true, false, [
+  'id' => 'click-me-btn',
+  'class' => [ 'click-me-btn--primary' ],
+  'type' => 'button',
+  'title' => 'Click me title',
+] )
+```

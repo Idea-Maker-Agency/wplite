@@ -1,69 +1,51 @@
 <?php
-$text = !empty( $args[0] ) ? $args[0] : '';
-$link = !empty( $args[1] ) ? $args[1] : '';
-$type = !empty( $args[2]['type'] ) ? $args[2]['type'] : 'a';
+$default_args = [
+  'variant' => 'primary',
+];
+
+extract( wp_parse_args( $args, $default_args ) );
 
 // Classes
 $classes = wp_parse_args(
-  !empty( $args[2]['class'] ) ? $args[2]['class'] : [],
+  !empty( $class ) ? $class : [],
   []
 );
 
-if ( !empty( $args[2]['is-button'] ) ) :
+if ( !empty( $as_button ) ) :
   $classes[] = 'btn';
 
-  if ( !empty( $args[2]['variant'] ) ) :
-    if ( !empty( $args[2]['outlined'] ) ) :
-      $classes[] = 'btn-outline-'. $args[2]['variant'];
-    else :
-      $classes[] = 'btn-'. $args[2]['variant'];
-    endif;
+  $classes[] = !empty( $size ) ? 'btn-'. esc_html( $size ) : null;
+  $classes[] = !empty( $block ) ? 'w-100' : null;
+
+  if ( !empty( $variant ) ) :
+    $classes[] = !empty( $outlined ) ? 'btn-outline-'. esc_html( $variant ) : 'btn-'. esc_html( $variant );
   else :
     $classes[] = 'btn-primary';
   endif;
-
-  if ( !empty( $args[2]['size'] ) ) :
-    $classes[] = 'btn-'. $args[2]['size'];
-  endif;
-
-  if ( !empty( $args[2]['block'] ) ) :
-    $classes[] = 'w-100';
-  endif;
 else :
-  if ( !empty( $args[2]['variant'] ) ) :
-    $classes[] = 'text-'. $args[2]['variant'];
-  endif;
+  $classes[] = !empty( $variant ) ? 'text-'. esc_html( $variant ) : null;
 endif;
+
+$classes = array_filter( $classes, fn ( string|null $class ): bool => !is_null( $class ) );
 
 // Props
 $props = [
-  'href' => esc_url( $link ),
-  'alt' => esc_html( $text ),
+  'href' => esc_url( $url ),
   'rel' => 'nofollow',
 ];
 
-if ( !empty( $args[2]['id'] ) ) :
-  $props['id'] = esc_html( $args[2]['id'] );
-endif;
-
-if ( !empty( $args[2]['is-button'] ) ) :
-  $props['role'] = 'button';
-endif;
-
-if ( !empty( $args[2]['alt'] ) ) :
-  $props['alt'] = $args[2]['alt'];
-endif;
-
-if ( !empty( $args[2]['target'] ) ) :
-  $props['target'] = $args[2]['target'];
-endif;
-
+$props['id'] = !empty( $id ) ? esc_html( $id ) : null;
+$props['alt'] = !empty( $alt ) ? esc_html( $alt ) : esc_html( $text );
+$props['target'] = !empty( $target ) ? esc_html( $target ) : null;
+$props['role'] = !empty( $as_button ) ? 'button' : null;
 $props['class'] = array_reduce( $classes, function ( string $carry, string $item ): string {
   if ( !empty( $item ) )
     $carry .= " {$item}";
 
   return $carry;
 }, '' );
+
+$props = array_filter( $props, fn ( string|null $value ): bool => !empty( $value ) );
 
 // Attributes
 $attributes = array_reduce( $props, function ( string $carry, string $item ) use ( $props ): string {
@@ -75,5 +57,4 @@ $attributes = array_reduce( $props, function ( string $carry, string $item ) use
 }, '' );
 ?>
 
-<a
-  <?php echo $attributes ?>><?php _e( $text, THEME_TEXT_DOMAIN ) ?></a>
+<a <?php echo $attributes ?>><?php _e( $text, THEME_TEXT_DOMAIN ) ?></a>

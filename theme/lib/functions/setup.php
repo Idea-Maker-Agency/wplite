@@ -2,7 +2,6 @@
 
 use IdeaMaker\WPLite\Component;
 
-Component::add( 'link' );
 Component::add( 'article-card' );
 
 Component::register();

@@ -1,7 +1,7 @@
 # Article card
 
 ```php
-wplite_article_card( WP_Post $post, array $attrs = [] ): void
+wplite_article_card( WP_Post $post ): void
 ```
 
 ### Description
@@ -17,3 +17,9 @@ Renders the article card component.
 ### Return
 
 `void` on success, `false` if the template does not exist
+
+### Example Usage
+
+```php
+wplite_article_card( $post )
+```

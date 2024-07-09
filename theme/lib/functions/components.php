@@ -1,21 +1,6 @@
 <?php
 
 /**
- * Functional article card component renderer.
- *
- * @since 1.0.0
- *
- * @param \WP_Post    $post       The WP post object.
- *
- * @return void
- */
-function wplite_article_card( \WP_Post $post ): void {
-  $article_card = new IdeaMaker\WPLite\Components\ArticleCard();
-
-  $article_card->output( $post );
-}
-
-/**
  * Register the components assets.
  *
  * @since 1.0.0
@@ -120,6 +105,31 @@ function wplite_link( string $text, string $url, string $variant = 'primary', st
 
   get_template_part(
     '/components/link/link',
+    null,
+    $args
+  );
+}
+
+/**
+ * Article card component.
+ *
+ * @param WP_Post   $post       The WP post object.
+ * @param array     $attrs {
+ *    @param string   $id       If set, the link will have an id HTML attribute.
+ *    @param array    $class    If set, the link will have class HTML attribute.
+ *    @param string   $target   If set, the link will have a target HTML attribute.
+ *    @param string   $alt      If set, the link will have a alt HTML attribute. Defaults to the link text.
+ * }
+ *
+ * @return void
+ */
+function wplite_article_card( WP_Post $post, array $attrs = [] ): void {
+  $args = wp_parse_args( [
+    'post' => $post,
+  ], $attrs );
+
+  get_template_part(
+    '/components/article-card/article-card',
     null,
     $args
   );

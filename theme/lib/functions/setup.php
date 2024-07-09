@@ -1,11 +1,5 @@
 <?php
 
-use IdeaMaker\WPLite\Component;
-
-Component::add( 'article-card' );
-
-Component::register();
-
 /**
  * Fires after the theme is loaded.
  *

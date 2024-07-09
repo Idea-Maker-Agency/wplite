@@ -1,36 +1,24 @@
 # Button
 
+```php
+wplite_button( string $text, string $variant = 'primary', string $size = null, bool $outlined = false, bool $block = false, array $attrs = [] ): void
+```
+
+### Description
+
+Renders the button component.
+
 ### Parameters
 
-### Props
+| Property    | Type     | Default     | Description                                                                                                              |
+| ----------- | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `$text`     | `string` | —           | The button text. _( Required )_                                                                                          |
+| `$variant`  | `string` | `"primary"` | The style variant of the button. Accepts `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, `dark` |
+| `$size`     | `string` | —           | The size variant of the button. Accepts `sm`, `lg`                                                                       |
+| `$outlined` | `bool`   | —           | If `true`, the button will have an outlined style.                                                                       |
+| `$block`    | `bool`   | —           | If `true`, the button will expand to the full width of its parent.                                                       |
+| `$attrs`    | `array`  | —           | An array of button attributes. Accepts `id`, `class`, `type` and `title` attributes.                                     |
 
-| Property   | Type        | Default       | Description                                                                                                              |
-| ---------- | ----------- | ------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `variant`  | `BSVariant` | `"secondary"` | The style variant of the button. Accepts `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, `dark` |
-| `size`     | `BSSize`    | —             | The size variant of the button. Accepts `sm`, `lg`                                                                       |
-| `outlined` | `Boolean`   | —             | If `true`, the button will have an outlined style.                                                                       |
-| `block`    | `Boolean`   | —             | If `true`, the button will expand to the full width of its parent.                                                       |
-| `loading`  | `Boolean`   | —             | If `true`, the button will display a loading spinner.                                                                    |
-| `type`     | `Boolean`   | `"button"`    | Specifies the type of button. Accepts `button`, `submit`, `reset`                                                        |
-| `tag`      | `String`    | `"button"`    | The HTML tag to render, allowing for custom components or elements. Accepts `a`, `button`, `input`                       |
+### Return
 
-### Usage
-
-```php
-<?php
-
-Component::render(
-  'button',
-  '{{ Lorem ipsum }}',
-  [
-    'id' => '{{ id }}',
-    'class' => [ '{{ class-1 }}', '{{ class-2 }}'],
-    'variant' => 'primary',
-    'size' => 'sm',
-    'outlined' => false,
-    'block' => false,
-    'type' => 'button',
-    'title' => '{{ title }}',
-  ]
-);
-```
+`void` on success, `false` if the template does not exist

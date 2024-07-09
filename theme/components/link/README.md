@@ -6,19 +6,19 @@ wplite_link( string $text, string $url, string $variant = 'primary', string $siz
 
 ### Description
 
-Renders the button component.
+Renders the link component.
 
 ### Parameters
 
-| Property     | Type     | Default     | Description                                                                                                              |
-| ------------ | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `$text`      | `string` | —           | The button text. _( Required )_                                                                                          |
-| `$variant`   | `string` | `"primary"` | The style variant of the button. Accepts `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, `dark` |
-| `$size`      | `string` | —           | The size variant of the button. Accepts `sm`, `lg`                                                                       |
-| `$outlined`  | `bool`   | —           | If `true`, the button will have an outlined style.                                                                       |
-| `$block`     | `bool`   | —           | If `true`, the button will expand to the full width of its parent.                                                       |
-| `$as_button` | `bool`   | —           | If `true`, the link will render as a link.                                                                               |
-| `$attrs`     | `array`  | —           | An array of button attributes. Accepts `id`, `class`, `target` and `alt` attributes.                                     |
+| Property     | Type     | Default     | Description                                                                                                            |
+| ------------ | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `$text`      | `string` | —           | The link text. _( Required )_                                                                                          |
+| `$variant`   | `string` | `"primary"` | The style variant of the link. Accepts `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, `dark` |
+| `$size`      | `string` | —           | The size variant of the link. Accepts `sm`, `lg`                                                                       |
+| `$outlined`  | `bool`   | —           | If `true`, the link will have an outlined style.                                                                       |
+| `$block`     | `bool`   | —           | If `true`, the link will expand to the full width of its parent.                                                       |
+| `$as_button` | `bool`   | —           | If `true`, the link will render as a link.                                                                             |
+| `$attrs`     | `array`  | —           | An array of link attributes. Accepts `id`, `class`, `target` and `alt` attributes.                                     |
 
 ### Return
 

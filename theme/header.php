@@ -18,6 +18,12 @@
           name="viewport"
           content="width=device-width, initial-scale=1">
 
+        <?php if ( is_single() ) : ?>
+          <meta
+            name="description"
+            content="<?php echo wp_strip_all_tags( get_the_excerpt() , true ) ?>" />
+        <?php endif; ?>
+
         <title>
           <?php wp_title( ' | ', true, 'right' ) ?> <?php echo bloginfo( 'name' ) ?>
         </title>

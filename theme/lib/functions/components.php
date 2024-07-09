@@ -110,6 +110,39 @@ function wplite_link( string $text, string $url, string $variant = 'primary', st
   );
 }
 
+
+/**
+ * Image component.
+ *
+ * @param string    $src        The image src.
+ * @param array     $sizes {
+ *    @param string   $xl       If set, the image will have a 1200w srcset item.
+ *    @param array    $lg       If set, the image will have a 1024w srcset item.
+ *    @param string   $md       If set, the image will have a 992w srcset item.
+ *    @param string   $sm       If set, the image will have a 768w srcset item.
+ *    @param string   $xs       If set, the image will have a 320w srcset item.
+ * }
+ * @param array     $attrs {
+ *    @param string   $id       If set, the image will have an id HTML attribute.
+ *    @param array    $class    If set, the image will have class HTML attribute.
+ *    @param string   $alt      If set, the image will have a alt HTML attribute.
+ * }
+ *
+ * @return void
+ */
+function wplite_image( string $src, array $sizes = [], array $attrs = [] ): void {
+  $args = wp_parse_args( [
+    'src' => $src,
+    'sizes' => $sizes,
+  ], $attrs );
+
+  get_template_part(
+    '/components/image/image',
+    null,
+    $args
+  );
+}
+
 /**
  * Article card component.
  *

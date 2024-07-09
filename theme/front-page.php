@@ -8,13 +8,15 @@
  * @since      1.0.0
  */
 
-use IdeaMaker\WPLite\Component;
-
 get_header();
 ?>
 
-<?php Component::render( 'button', 'test', [ 'class' => [ 'test' ] ] ) ?>
-<?php Component::render( 'link', 'test', 'https://google.com' ) ?>
+<section class="py-5">
+  <div class="container">
+    <?php wplite_button( 'Test Button', 'success', 'sm', false, false, [ 'id' => 'test' ] ) ?>
+    <?php wplite_link( 'test link', 'https://google.com', 'success', 'sm', true, false, false, [ 'id' => 'test' ] ) ?>
+  </div>
+</section>
 
 <?php
 get_footer();

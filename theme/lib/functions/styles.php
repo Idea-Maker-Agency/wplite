@@ -85,7 +85,7 @@ function wplite_styles(): void {
       'category' => 'components',
       'enqueue' => true,
     ],
-    'cf7' => [
+    'contact-form-7' => [
       'version' => '1.0.0',
       'category' => 'widgets',
       'enqueue' => true,

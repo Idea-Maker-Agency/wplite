@@ -7,8 +7,12 @@
       "\tsrc=\"https://${1}\" ",
       "\twidth=\"${2:640}\" ",
       "\theight=\"${3:480}\" ",
-      "\tsrcset=\"https://${4} 1024w, https://${5} 640w, https://${6} 320w\" ",
+      "\tsrcset=\"",
+      "\t\thttps://${4} 1024w, ",
+      "\t\thttps://${5} 640w, ",
+      "\t\thttps://${6} 320w\" ",
       "\tsizes=\"(min-width: 960px) 1024px, 100vw\" ",
+      "\talt=\"${7}\" ",
       "\tloading=\"lazy\" ",
       "\tdecoding=\"async\" ",
       "\tclass=\"img-fluid ${0}\" />"

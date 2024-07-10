@@ -1,0 +1,18 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:img",
+    "body": [
+      "<img ",
+      "\tsrc=\"https://${1}\" ",
+      "\twidth=\"${2:640}\" ",
+      "\theight=\"${3:480}\" ",
+      "\tsrcset=\"https://${4} 1024w, https://${5} 640w, https://${6} 320w\" ",
+      "\tsizes=\"(min-width: 960px) 1024px, 100vw\" ",
+      "\tloading=\"lazy\" ",
+      "\tdecoding=\"async\" ",
+      "\tclass=\"img-fluid ${0}\" />"
+    ],
+    "description": "A simple responsive image component."
+  }
+}

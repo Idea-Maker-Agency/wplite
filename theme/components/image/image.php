@@ -13,7 +13,12 @@ $srcsets[320] = !empty( $sizes['xs'] ) ? esc_url( $sizes['xs'] ) : null;
 $srcsets = array_filter( $srcsets, fn ( string|null $srcset ): bool => !is_null( $srcset ) );
 
 // Props
-$props = [];
+$props = [
+  'width' => intval( $width ),
+  'height' => intval( $height ),
+  'loading' => 'lazy',
+  'decoding' => 'async',
+];
 
 $props['src'] = esc_url( $src );
 $props['srcset'] = array_reduce( $srcsets, function ( string $carry, string $item ) use ( $srcsets ): string {

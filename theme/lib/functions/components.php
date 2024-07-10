@@ -117,6 +117,8 @@ function wplite_link( string $text, string $url, string $variant = 'primary', st
  * Image component.
  *
  * @param string    $src        The image src.
+ * @param int       $width      The image width.
+ * @param int       $height     The image height.
  * @param array     $sizes {
  *    @param string   $xl       If set, the image will have a 1200w srcset item.
  *    @param array    $lg       If set, the image will have a 1024w srcset item.
@@ -132,10 +134,12 @@ function wplite_link( string $text, string $url, string $variant = 'primary', st
  *
  * @return void
  */
-function wplite_image( string $src, array $sizes = [], array $attrs = [] ): void {
+function wplite_image( string $src, int $width, int $height, array $sizes = [], array $attrs = [] ): void {
   $args = wp_parse_args( [
     'src' => $src,
     'sizes' => $sizes,
+    'width' => $width,
+    'height' => $height,
   ], $attrs );
 
   get_template_part(

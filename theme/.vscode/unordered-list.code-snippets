@@ -2,6 +2,16 @@
   "WPLite": {
     "scope": "html,php",
     "prefix": "wplite:ul",
-    "body": "<ul class=\"list-unstyled d-grid row-gap-2\">\n\t<li>\n\t\t<a \n\t\t\thref=\"${1}\">${2}</a>\n\t</li>\n\t<li>\n\t\t<a \n\t\t\thref=\"${3}\">${4}</a>\n\t</li>\n</ul>",
+    "body": [
+      "<ul class=\"list-unstyled d-grid row-gap-2\">",
+      "\t<li>",
+      "\t\t<a href=\"${1}\">${2}</a>",
+      "\t</li>",
+      "\t<li>",
+      "\t\t<a href=\"${3}\">${4}</a>",
+      "\t</li>",
+      "</ul>"
+    ],
+    "description": "A simple unordered list component."
   }
 }

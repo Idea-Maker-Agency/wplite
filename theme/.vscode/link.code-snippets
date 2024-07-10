@@ -2,6 +2,16 @@
   "WPLite": {
     "scope": "html,php",
     "prefix": "wplite:a",
-    "body": "<a \n\thref=\"https://${1}\" \n\tclass=\"text-${2|primary,secondary,success,warning,info,danger,light,dark|}\" \n\ttarget=\"${3:_blank}\" \n\trel=\"${4:nofollow noopener noreferrer}\" \n\talt=\"${0}\">${0}</a>",
-  }
+    "body": [
+      "<a ",
+      "\thref=\"https://${1}\" ",
+      "\tclass=\"text-${2|primary,secondary,success,warning,info,danger,light,dark|}\" ",
+      "\ttarget=\"${3:_blank}\" ",
+      "\trel=\"${4:nofollow noopener noreferrer}\" ",
+      "\talt=\"${0:Go to link}\">",
+      "\t${0:Go to link}",
+      "</a>"
+    ],
+    "description": "A simple link component."
+  },
 }

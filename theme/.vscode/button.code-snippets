@@ -1,0 +1,7 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:button",
+    "body": "<${1|a,button|} \n\tclass=\"btn btn-${2|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}${3| , btn-sm , btn-lg |}${4:w-100}\" \n\ttype=\"${5|button,submit,reset|}\" \n\ttitle=\"${0}\">${0}</${1|a,button|}>",
+  }
+}

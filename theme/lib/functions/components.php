@@ -88,6 +88,8 @@ function wplite_button( string $text, string $variant = 'primary', string $size 
  *    @param array    $class    If set, the link will have class HTML attribute.
  *    @param string   $target   If set, the link will have a target HTML attribute.
  *    @param string   $alt      If set, the link will have a alt HTML attribute. Defaults to the link text.
+ *    @param string   $icon     If set, the link will prepend/append icon.
+ *    @param string   $icon_pos Whether to display the icon before or after the link text. Accepts 'start' or 'end'.
  * }
  *
  * @return void

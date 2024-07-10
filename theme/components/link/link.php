@@ -57,4 +57,8 @@ $attributes = array_reduce( $props, function ( string $carry, string $item ) use
 }, '' );
 ?>
 
-<a <?php echo $attributes ?>><?php _e( $text, THEME_TEXT_DOMAIN ) ?></a>
+<a <?php echo $attributes ?>>
+  <?php echo !empty( $icon ) && ('end' !== $icon_pos) ? $icon : '' ?>
+  <?php _e( $text, THEME_TEXT_DOMAIN ) ?>
+  <?php echo !empty( $icon ) && ('end' === $icon_pos) ? $icon : '' ?>
+</a>

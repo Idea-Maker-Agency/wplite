@@ -14,11 +14,13 @@ function wplite_vendor_scripts(): void {
       'version' => '3.14.1',
       'minified' => true,
       'enqueue' => false,
+      'strategy' => 'defer',
     ],
     'bootstrap' => [
       'version' => '5.3.3',
       'minified' => true,
       'enqueue' => true,
+      'strategy' => 'defer',
     ],
   ];
 

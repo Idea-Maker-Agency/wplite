@@ -65,6 +65,11 @@ function wplite_vendor_styles(): void {
 add_action( 'wp_enqueue_scripts', 'wplite_styles', 10 );
 function wplite_styles(): void {
   $styles = [
+    'typography' => [
+      'version' => '1.0.0',
+      'category' => 'utils',
+      'enqueue' => true,
+    ],
     'variables' => [
       'version' => '1.0.0',
       'category' => 'utils',

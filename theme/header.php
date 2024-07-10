@@ -40,15 +40,17 @@
         <?php endif; ?>
 
         <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com">
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
+          href="<?php echo THEME_DIR_URI ?>/assets/lib/fonts/Poppins Regular.woff2"
+          rel="preload"
+          as="font"
+          type="font/woff2"
           crossorigin>
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-          rel="stylesheet">
+          href="<?php echo THEME_DIR_URI ?>/assets/lib/fonts/Poppins Bold.woff2"
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          crossorigin>
 
         <link
           rel="stylesheet"

@@ -18,16 +18,11 @@ if ( is_null( $post ) ) return;
     href="<?php echo get_permalink( $post ) ?>"
     class="card-img-top">
     <?php if ( has_post_thumbnail( $post ) ) : ?>
-      <picture>
-        <source
-          srcset="<?php echo get_the_post_thumbnail_url( $post->ID, 'card-image' ) ?>"
-          type="image/png">
-        <img
-          src="<?php echo get_the_post_thumbnail_url( $post->ID, 'card-image' ) ?>"
-          alt="<?php echo get_the_title( $post ) ?>"
-          class="img-fluid"
-          itemprop="image">
-      </picture>
+      <?php
+      wplite_image( get_the_post_thumbnail_url( $post->ID, 'card-image' ), [], [
+        'alt' => $post->post_title,
+      ] )
+      ?>
     <?php else : ?>
       <svg width="100%" height="320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false" style="text-anchor: middle;">
         <title>Placeholder</title>

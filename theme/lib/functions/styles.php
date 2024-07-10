@@ -102,7 +102,8 @@ function wplite_styles(): void {
     ],
   ];
 
-  foreach ( $styles as $handle => $args ) :
+  foreach ( $styles as $name => $args ) :
+    $handle = 'wplite-'. $name;
     $version = isset( $args['version'] ) && $args['version'] ? $args['version'] : '1.0.0';
     $dependencies = isset( $args['dependencies'] ) && $args['dependencies'] ? $args['dependencies'] : [];
     $media = isset( $args['media'] ) && $args['media'] ? $args['media'] : 'all';
@@ -110,7 +111,7 @@ function wplite_styles(): void {
 
     $category = isset( $args['category'] ) && $args['category'] ? $args['category'] : '';
 
-    $src = THEME_DIR_URI . "/assets/lib/css/{$category}/{$handle}.css";
+    $src = THEME_DIR_URI . "/assets/lib/css/{$category}/{$name}.css";
 
     wp_register_style(
       $handle,

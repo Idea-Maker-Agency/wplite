@@ -22,7 +22,8 @@ function wplite_vendor_scripts(): void {
     ],
   ];
 
-  foreach ( $scripts as $handle => $args ) :
+  foreach ( $scripts as $name => $args ) :
+    $handle = 'wplite-'. $name;
     $version = isset( $args['version'] ) && $args['version'] ? $args['version'] : '1.0.0';
     $dependencies = isset( $args['dependencies'] ) && $args['dependencies'] ? $args['dependencies'] : [];
     $media = isset( $args['media'] ) && $args['media'] ? $args['media'] : 'all';
@@ -32,7 +33,7 @@ function wplite_vendor_scripts(): void {
     $enqueue = isset( $args['enqueue'] ) && $args['enqueue'] ? $args['enqueue'] : false;
 
     $suffix = $minified ? '.min' : '';
-    $src = THEME_DIR_URI . "/assets/vendor/{$handle}/js/{$handle}{$suffix}.js";
+    $src = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
 
     wp_register_script(
       $handle,

@@ -8,8 +8,9 @@
       "\tclass=\"text-${2|primary,secondary,success,warning,info,danger,light,dark|}\" ",
       "\ttarget=\"${3:_blank}\" ",
       "\trel=\"${4:nofollow noopener noreferrer}\" ",
-      "\talt=\"${0:Go to link}\">",
-      "\t${0:Go to link}",
+      "\talt=\"${0:Read more}\" ",
+      "\taria-label=\"${5:Read more about this}\" >",
+      "\t${0:Read more}",
       "</a>"
     ],
     "description": "A simple link component."

@@ -1,7 +1,7 @@
 {
   "WPLite": {
     "scope": "html,php",
-    "prefix": "wplite:img",
+    "prefix": "wplite:image",
     "body": [
       "<img ",
       "\tsrc=\"https://${1}\" ",

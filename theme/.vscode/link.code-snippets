@@ -1,7 +1,7 @@
 {
   "WPLite": {
     "scope": "html,php",
-    "prefix": "wplite:a",
+    "prefix": "wplite:link",
     "body": [
       "<a ",
       "\thref=\"https://${1}\" ",

@@ -18,7 +18,7 @@ get_header();
     </h1>
 
     <?php if ( have_posts() ) : ?>
-      <div class="row mb-4">
+      <div class="row mb-4 justify-content-center justify-content-sm-start">
         <?php while ( have_posts() ) : the_post(); ?>
           <div class="col-12 col-sm-6 col-lg-4">
             <?php wplite_article_card( $post ) ?>

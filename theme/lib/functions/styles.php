@@ -15,6 +15,24 @@ add_filter( 'use_block_editor_for_post', '__return_false' );
 add_filter( 'use_widgets_block_editor', '__return_false' );
 
 /**
+ * Dequeue WP blocks styles.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+add_action( 'wp_print_styles', 'wplite_print_styles', 100 );
+function wplite_print_styles(): void {
+  wp_dequeue_style( 'global-styles' );
+
+  wp_dequeue_style( 'wp-block-library' );
+  wp_dequeue_style( 'wp-block-library-theme' );
+  wp_dequeue_style( 'wc-block-style' );
+
+  wp_dequeue_style( 'storefront-gutenberg-blocks' );
+}
+
+/**
  * Register vendor stylesheets.
  *
  * @since 1.0.0

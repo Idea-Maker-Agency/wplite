@@ -1,0 +1,7 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:ul",
+    "body": "<ul class=\"list-unstyled d-grid row-gap-2\">\n\t<li>\n\t\t<a \n\t\t\thref=\"${1}\">${2}</a>\n\t</li>\n\t<li>\n\t\t<a \n\t\t\thref=\"${3}\">${4}</a>\n\t</li>\n</ul>",
+  }
+}

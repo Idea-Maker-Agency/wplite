@@ -19,7 +19,7 @@ if ( is_null( $post ) ) return;
     class="card-img-top">
     <?php if ( has_post_thumbnail( $post ) ) : ?>
       <?php
-      wplite_image( get_the_post_thumbnail_url( $post->ID, 'card-image' ), [], [
+      wplite_image( get_the_post_thumbnail_url( $post->ID, 'card-image' ), 420, 320, [], [
         'alt' => $post->post_title,
       ] )
       ?>

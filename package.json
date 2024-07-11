@@ -5,6 +5,9 @@
     "compile:sass": "sass theme/assets/lib/scss/main.scss theme/assets/lib/css/main.css",
     "watch:sass": "sass --watch --poll theme/assets/lib/scss/main.scss theme/assets/lib/css/main.css"
   },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
   "devDependencies": {
     "sass": "^1.77.7"
   }

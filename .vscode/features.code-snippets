@@ -27,7 +27,7 @@
       // Feature 1: Call to action
       "\t\t<a ",
       "\t\t\thref=\"https://${5}\" ",
-      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\tclass=\"feature__link text-decoration-none\" ",
       "\t\t\trel=\"noopener noreferrer\" ",
       "\t\t\talt=\"${7:Read more}\" ",
       "\t\t\taria-label=\"${6:${7} about ${3}}\" >",
@@ -59,7 +59,7 @@
       // Feature 2: Call to action
       "\t\t<a ",
       "\t\t\thref=\"https://${12}\" ",
-      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\tclass=\"feature__link text-decoration-none\" ",
       "\t\t\trel=\"noopener noreferrer\" ",
       "\t\t\talt=\"${14:Read more}\" ",
       "\t\t\taria-label=\"${13:${14} about ${10}}\" >",
@@ -91,7 +91,7 @@
       // Feature 3: Call to action
       "\t\t<a ",
       "\t\t\thref=\"https://${19}\" ",
-      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\tclass=\"feature__link text-decoration-none\" ",
       "\t\t\trel=\"noopener noreferrer\" ",
       "\t\t\talt=\"${21:Read more}\" ",
       "\t\t\taria-label=\"${20:${21} about ${17}}\" >",

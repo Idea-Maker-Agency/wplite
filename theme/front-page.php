@@ -93,7 +93,7 @@ get_header();
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a
           href="https://"
-          class="feature__link"
+          class="feature__link text-decoration-none"
           rel="noopener noreferrer"
           alt="Read more"
           aria-label="Read more about Lorem ipsum" >
@@ -114,7 +114,7 @@ get_header();
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a
           href="https://"
-          class="feature__link"
+          class="feature__link text-decoration-none"
           rel="noopener noreferrer"
           alt="Read more"
           aria-label="Read more about Lorem ipsum" >
@@ -135,7 +135,7 @@ get_header();
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a
           href="https://"
-          class="feature__link"
+          class="feature__link text-decoration-none"
           rel="noopener noreferrer"
           alt="Read more"
           aria-label="Read more about Lorem ipsum" >

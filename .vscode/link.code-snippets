@@ -9,7 +9,7 @@
       "\ttarget=\"${3:_blank}\" ",
       "\trel=\"${4:nofollow noopener noreferrer}\" ",
       "\talt=\"${0:Read more}\" ",
-      "\taria-label=\"${5:Read more about this}\" >",
+      "\taria-label=\"${5:${0} about this}\" >",
       "\t${0:Read more}",
       "</a>"
     ],

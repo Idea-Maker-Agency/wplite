@@ -1,0 +1,20 @@
+.card {
+  overflow: hidden;
+  box-shadow: $card-box-shadow;
+}
+
+.card-title {
+  font-weight: 700;
+
+  &-link {
+    text-decoration: none;
+  }
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-meta {
+  font-size: 13px;
+}

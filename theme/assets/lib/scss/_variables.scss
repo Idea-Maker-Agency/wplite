@@ -1,0 +1,43 @@
+// Color system
+
+$primary: #125997;
+$success: #28622c;
+$info: #42a5f5;
+$warning: #fdd835;
+$danger: #a71816;
+
+// Body
+
+$body-color: #211e1e;
+$body-bg: #ffffff;
+
+// Typography
+
+$font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI",
+  Georgia, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$font-size-base: 0.938rem;
+
+// Links
+
+$link-color: #303f9f;
+$link-decoration: none;
+
+// Cards
+
+$card-title-spacer-y: 5px;
+$card-border-width: 0;
+$card-box-shadow: 4px 16px 24px rgba(0, 0, 0, 0.05);
+$card-cap-padding-y: 0.5rem;
+$card-cap-padding-x: 1rem;
+
+// Pagination
+
+$pagination-padding-y: 2px;
+$pagination-padding-x: 2px;
+
+$pagination-border-radius: 50%;
+$pagination-border-width: 0;
+
+$pagination-link-size: 32px !default;

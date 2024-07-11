@@ -83,32 +83,7 @@ function wplite_vendor_styles(): void {
 add_action( 'wp_enqueue_scripts', 'wplite_styles', 10 );
 function wplite_styles(): void {
   $styles = [
-    'typography' => [
-      'version' => '1.0.0',
-      'category' => 'utils',
-      'enqueue' => true,
-    ],
-    'variables' => [
-      'version' => '1.0.0',
-      'category' => 'utils',
-      'enqueue' => true,
-    ],
-    'pagination' => [
-      'version' => '1.0.0',
-      'category' => 'components',
-      'enqueue' => true,
-    ],
     'post-navigation' => [
-      'version' => '1.0.0',
-      'category' => 'components',
-      'enqueue' => true,
-    ],
-    'buttons' => [
-      'version' => '1.0.0',
-      'category' => 'components',
-      'enqueue' => true,
-    ],
-    'card' => [
       'version' => '1.0.0',
       'category' => 'components',
       'enqueue' => true,
@@ -158,4 +133,12 @@ function wplite_styles(): void {
       wp_enqueue_style( $handle );
     endif;
   endforeach;
+
+  wp_enqueue_style(
+    'wplite-main',
+    THEME_DIR_URI . "/assets/lib/css/main.css",
+    [],
+    THEME_VERSION,
+    'all'
+  );
 }

@@ -1,0 +1,24 @@
+// Configuration
+
+$wpcf7-spinner-size: 16px !default;
+$wpcf7-spinner-circle-size: 4px !default;
+
+.wpcf7-form {
+  text-align: left;
+}
+
+.wpcf7-spinner {
+  width: $wpcf7-spinner-size;
+  height: $wpcf7-spinner-size;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 10px;
+  transform: translateY(-50%);
+
+  &::before {
+    width: $wpcf7-spinner-circle-size;
+    height: $wpcf7-spinner-circle-size;
+    transform-origin: $wpcf7-spinner-circle-size $wpcf7-spinner-circle-size;
+  }
+}

@@ -46,6 +46,8 @@ get_header();
             https://placehold.co/640x480 640w,
             https://placehold.co/320x240 320w"
           sizes="(min-width: 960px) 640px, 100vw"
+          width="640"
+          height="480"
           alt="Alt text"
           loading="lazy"
           decoding="async"
@@ -58,8 +60,9 @@ get_header();
         <a
           class="btn btn-primary mt-3"
             role="button"
-            title="Click here">
-            Click here
+            alt="Read more"
+            aria-label="Read more about this">
+            Read more
           </a>
         </div>
       </div>

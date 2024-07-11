@@ -15,7 +15,7 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/styles.php';
   require_once THEME_DIR_PATH . '/lib/functions/scripts.php';
   require_once THEME_DIR_PATH . '/lib/functions/formatting.php';
-  require_once THEME_DIR_PATH . '/lib/functions/menus.php';
+  require_once THEME_DIR_PATH . '/lib/functions/nav-menu.php';
   require_once THEME_DIR_PATH . '/lib/functions/widgets.php';
 
   if ( class_exists( 'WPCF7' ) ) :

@@ -24,6 +24,14 @@ services:
       - PMA_HOST=mysql
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
 
+  sass:
+    image: node:14
+    container_name: wplite-sass
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: sh -c "npm install && npm run watch:sass"
+
   wordpress:
     depends_on:
       - mysql

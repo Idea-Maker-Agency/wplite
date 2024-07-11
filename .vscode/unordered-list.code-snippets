@@ -4,12 +4,17 @@
     "prefix": "wplite:ul",
     "body": [
       "<ul class=\"list-unstyled d-grid row-gap-2\">",
+
+      // List item 1
       "\t<li>",
       "\t\t<a href=\"${1}\">${2}</a>",
       "\t</li>",
+
+      // List item 2
       "\t<li>",
       "\t\t<a href=\"${3}\">${4}</a>",
       "\t</li>",
+
       "</ul>"
     ],
     "description": "A simple unordered list component."

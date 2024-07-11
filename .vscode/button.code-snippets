@@ -10,6 +10,6 @@
       "\t${0:Click here}",
       "</${1|a,button|}>"
     ],
-    "description": "A simple button component. It applies Bootstrap v5.3 classes."
+    "description": "A simple button component. Based on Bootstrap v5.3."
   }
 }

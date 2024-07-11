@@ -7,7 +7,7 @@
       "\t<div class=\"container py-lg-5 px-4\">",
 
       // Heading
-      "\t\t<h1 class=\"hero-banner__heading fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",
+      "\t\t<h1 class=\"hero-banner__heading mb-4 fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",
 
       "\t\t<div class=\"col-10 col-sm-9 col-lg-6 mx-auto\">",
 

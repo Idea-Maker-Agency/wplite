@@ -123,6 +123,11 @@ function wplite_styles(): void {
       'category' => 'widgets',
       'enqueue' => true,
     ],
+    'hero-banner' => [
+      'version' => '1.0.0',
+      'category' => 'widgets',
+      'enqueue' => true,
+    ],
     'social-links' => [
       'version' => '1.0.0',
       'category' => 'widgets',

@@ -4,7 +4,7 @@
     "prefix": "wplite:hero-banner",
     "body": [
       "<section class=\"hero-banner py-5 text-center d-flex align-items-center\">",
-      "\t<div class=\"container py-lg-5 px-4\">",
+      "\t<div class=\"container py-lg-5 px-lg-4\">",
 
       // Heading
       "\t\t<h1 class=\"hero-banner__heading mb-4 fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",

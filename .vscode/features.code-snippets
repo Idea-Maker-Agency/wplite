@@ -1,0 +1,108 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:features",
+    "body": [
+      "<div class=\"row row-cols-1 row-cols-lg-3 g-4\">",
+
+      // Feature 1
+      "\t<div class=\"feature col\">",
+
+      // Feature 1: Icon
+      "\t\t<img ",
+      "\t\t\tsrc=\"${1:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\twidth=\"75\"",
+      "\t\t\theight=\"75\"",
+      "\t\t\talt=\"${2:Alt text}\" ",
+      "\t\t\tloading=\"lazy\" ",
+      "\t\t\tdecoding=\"async\" ",
+      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+
+      // Feature 1: Title
+      "\t\t<h3 class=\"feature__heading fw-bold\">${3:Lorem ipsum}</h3>",
+
+      // Feature 1: Description
+      "\t\t<p>${4:Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?}</p>",
+
+      // Feature 1: Call to action
+      "\t\t<a ",
+      "\t\t\thref=\"https://${5}\" ",
+      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\trel=\"noopener noreferrer\" ",
+      "\t\t\talt=\"${7:Read more}\" ",
+      "\t\t\taria-label=\"${6:${7} about ${3}}\" >",
+      "\t\t\t${7:Read more}",
+      "\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" fill=\"currentColor\" class=\"ms-2\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\"/></svg>",
+      "\t\t</a>",
+
+      "\t</div>",
+
+      // Feature 2
+      "\t<div class=\"feature col\">",
+
+      // Feature 2: Icon
+      "\t\t<img ",
+      "\t\t\tsrc=\"${8:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\twidth=\"75\"",
+      "\t\t\theight=\"75\"",
+      "\t\t\talt=\"${9:Alt text}\" ",
+      "\t\t\tloading=\"lazy\" ",
+      "\t\t\tdecoding=\"async\" ",
+      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+
+      // Feature 2: Title
+      "\t\t<h3 class=\"feature__heading fw-bold\">${10:Lorem ipsum}</h3>",
+
+      // Feature 2: Description
+      "\t\t<p>${11:Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?}</p>",
+
+      // Feature 2: Call to action
+      "\t\t<a ",
+      "\t\t\thref=\"https://${12}\" ",
+      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\trel=\"noopener noreferrer\" ",
+      "\t\t\talt=\"${14:Read more}\" ",
+      "\t\t\taria-label=\"${13:${14} about ${10}}\" >",
+      "\t\t\t${14:Read more}",
+      "\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" fill=\"currentColor\" class=\"ms-2\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\"/></svg>",
+      "\t\t</a>",
+
+      "\t</div>",
+
+      // Feature 3
+      "\t<div class=\"feature col\">",
+
+      // Feature 3: Icon
+      "\t\t<img ",
+      "\t\t\tsrc=\"${15:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\twidth=\"75\"",
+      "\t\t\theight=\"75\"",
+      "\t\t\talt=\"${16:Alt text}\" ",
+      "\t\t\tloading=\"lazy\" ",
+      "\t\t\tdecoding=\"async\" ",
+      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+
+      // Feature 3: Title
+      "\t\t<h3 class=\"feature__heading fw-bold\">${17:Lorem ipsum}</h3>",
+
+      // Feature 3: Description
+      "\t\t<p>${18:Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?}</p>",
+
+      // Feature 3: Call to action
+      "\t\t<a ",
+      "\t\t\thref=\"https://${19}\" ",
+      "\t\t\tclass=\"feature__link\" ",
+      "\t\t\trel=\"noopener noreferrer\" ",
+      "\t\t\talt=\"${21:Read more}\" ",
+      "\t\t\taria-label=\"${20:${21} about ${17}}\" >",
+      "\t\t\t${21:Read more}",
+      "\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\" fill=\"currentColor\" class=\"ms-2\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\"/></svg>",
+      "\t\t</a>",
+
+      "\t</div>",
+
+      "</div>"
+    ],
+    "description": "A simple features component."
+  }
+}

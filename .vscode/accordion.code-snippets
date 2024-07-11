@@ -1,0 +1,72 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:accordion",
+    "body": [
+      "<div class=\"accordion\">",
+
+      // Accordion item 1
+      "\t<div class=\"accordion-item\">",
+      "\t\t<div class=\"accordion-header\">",
+      "\t\t\t<button ",
+      "\t\t\t\tdata-bs-toggle=\"collapse\" ",
+      "\t\t\t\tdata-bs-target=\"#${1:accordion-item-1}\" ",
+      "\t\t\t\taria-expanded=\"false\" ",
+      "\t\t\t\taria-controls=\"${1}\" ",
+      "\t\t\t\ttype=\"button\" ",
+      "\t\t\t\tclass=\"accordion-button collapsed\">${2:Lorem ipsum dolor sit amet}</button>",
+      "\t\t</div>",
+      "\t\t<div ",
+      "\t\t\tid=\"${1}\" ",
+      "\t\t\tclass=\"accordion-collapse collapse\">",
+      "\t\t\t<div class=\"accordion-body\">",
+      "\t\t\t\t<p>${3:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+      "\t</div>",
+
+      // Accordion item 2
+      "\t<div class=\"accordion-item\">",
+      "\t\t<div class=\"accordion-header\">",
+      "\t\t\t<button ",
+      "\t\t\t\tdata-bs-toggle=\"collapse\" ",
+      "\t\t\t\tdata-bs-target=\"#${4:accordion-item-2}\" ",
+      "\t\t\t\taria-expanded=\"false\" ",
+      "\t\t\t\taria-controls=\"${4}\" ",
+      "\t\t\t\ttype=\"button\" ",
+      "\t\t\t\tclass=\"accordion-button collapsed\">${5:Lorem ipsum dolor sit amet}</button>",
+      "\t\t</div>",
+      "\t\t<div ",
+      "\t\t\tid=\"${4}\" ",
+      "\t\t\tclass=\"accordion-collapse collapse\">",
+      "\t\t\t<div class=\"accordion-body\">",
+      "\t\t\t\t<p>${6:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+      "\t</div>",
+
+      // Accordion item 3
+      "\t<div class=\"accordion-item\">",
+      "\t\t<div class=\"accordion-header\">",
+      "\t\t\t<button ",
+      "\t\t\t\tdata-bs-toggle=\"collapse\" ",
+      "\t\t\t\tdata-bs-target=\"#${7:accordion-item-3}\" ",
+      "\t\t\t\taria-expanded=\"false\" ",
+      "\t\t\t\taria-controls=\"${7}\" ",
+      "\t\t\t\ttype=\"button\" ",
+      "\t\t\t\tclass=\"accordion-button collapsed\">${8:Lorem ipsum dolor sit amet}</button>",
+      "\t\t</div>",
+      "\t\t<div ",
+      "\t\t\tid=\"${7}\" ",
+      "\t\t\tclass=\"accordion-collapse collapse\">",
+      "\t\t\t<div class=\"accordion-body\">",
+      "\t\t\t\t<p>${9:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+      "\t</div>",
+
+      "</div>"
+    ],
+    "description": "A simple accordion component. Based on Bootstrap v5.3."
+  }
+}

@@ -147,5 +147,77 @@ get_header();
   </div>
 </section>
 
+<section
+  id=""
+  class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="mb-5 text-center">
+          <h2 class="display-5 fw-bold">FAQs</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button
+                data-bs-toggle="collapse"
+                data-bs-target="#accordion-item-1"
+                aria-expanded="false"
+                aria-controls="accordion-item-1"
+                type="button"
+                class="accordion-button collapsed">Lorem ipsum dolor sit amet</button>
+            </div>
+            <div
+              id="accordion-item-1"
+              class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button
+                data-bs-toggle="collapse"
+                data-bs-target="#accordion-item-2"
+                aria-expanded="false"
+                aria-controls="accordion-item-2"
+                type="button"
+                class="accordion-button collapsed">Lorem ipsum dolor sit amet</button>
+            </div>
+            <div
+              id="accordion-item-2"
+              class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <button
+                data-bs-toggle="collapse"
+                data-bs-target="#accordion-item-3"
+                aria-expanded="false"
+                aria-controls="accordion-item-3"
+                type="button"
+                class="accordion-button collapsed">Lorem ipsum dolor sit amet</button>
+            </div>
+            <div
+              id="accordion-item-3"
+              class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <?php
 get_footer();

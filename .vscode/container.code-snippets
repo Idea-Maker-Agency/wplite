@@ -7,28 +7,41 @@
       "\tid=\"${1}\" ",
       "\tclass=\"py-5\">",
       "\t<div class=\"container\">",
-      "\t\t<div class=\"row${2| , flex-lg-row-reverse|}\">",
+      "\t\t<div class=\"row align-items-center${2| , flex-lg-row-reverse|}\">",
 
       "\t\t\t<div class=\"col-12 col-lg-6 mb-4 mb-lg-0\">",
-      "\t\t\t\t${0}",
+
+      "\t\t\t\t<img ",
+      "\t\t\t\t\tsrc=\"${7:https://placehold.co/640x480}\" ",
+      "\t\t\t\t\tsrcset=\"",
+      "\t\t\t\t\t\t${8:https://placehold.co/640x480} 640w, ",
+      "\t\t\t\t\t\t${9:https://placehold.co/320x240} 320w\" ",
+      "\t\t\t\t\tsizes=\"(min-width: 960px) 640px, 100vw\" ",
+      "\t\t\t\t\talt=\"${10:Alt text}\" ",
+      "\t\t\t\t\tloading=\"lazy\" ",
+      "\t\t\t\t\tdecoding=\"async\" ",
+      "\t\t\t\t\tclass=\"img-fluid${11: rounded-4}\" />",
+
       "\t\t\t</div>",
 
       "\t\t\t<div class=\"col-12 col-lg-6\">",
+      "\t\t\t\t<div class=\"col-lg-10 mx-auto\">",
 
       // Title
-      "\t\t\t\t<h2 class=\"fw-bold\">${3:Lorem ipsum}</h2>",
+      "\t\t\t\t\t<h2 class=\"mb-3 display-6 fw-bold\">${3:Lorem ipsum}</h2>",
 
       // Description
-      "\t\t\t\t<p>${4:dolor sit amet, consectetur adipis}</p>",
+      "\t\t\t\t<p>${4:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
 
       // Call to action
       "\t\t\t\t<a",
       "\t\t\t\t\tclass=\"btn btn-${5|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-3\" ",
-      "\t\t\t\t\trole=\"button\" ",
-      "\t\t\t\t\ttitle=\"${6:Click here}\">",
-      "\t\t\t\t\t${6:Click here}",
-      "\t\t\t\t</a>",
+      "\t\t\t\t\t\trole=\"button\" ",
+      "\t\t\t\t\t\ttitle=\"${6:Click here}\">",
+      "\t\t\t\t\t\t${6:Click here}",
+      "\t\t\t\t\t</a>",
 
+      "\t\t\t\t</div>",
       "\t\t\t</div>",
 
       "\t\t</div>",

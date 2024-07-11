@@ -84,7 +84,7 @@ add_action( 'wp_enqueue_scripts', 'wplite_styles', 10 );
 function wplite_styles(): void {
   wp_enqueue_style(
     'wplite-main',
-    THEME_DIR_URI . "/assets/lib/css/main.css",
+    THEME_DIR_URI . "/assets/lib/css/main.min.css",
     [],
     THEME_VERSION,
     'all'

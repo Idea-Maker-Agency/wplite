@@ -1,4 +1,4 @@
-<h5 class="mb-3 fw-bold">Quick Links</h5>
+<p class="mb-3 h5 fw-bold">Quick Links</p>
 
 <ul class="list-unstyled d-grid row-gap-2">
   <li>

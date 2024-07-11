@@ -11,20 +11,20 @@
 get_header();
 ?>
 
-<section class="hero-banner py-5 text-center d-flex align-items-center">
-  <div class="container py-lg-5 px-4">
+<section class="hero-banner text-light bg-primary py-5 text-center d-flex align-items-center">
+  <div class="container py-lg-5 px-lg-4">
     <h1 class="hero-banner__heading mb-4 fw-bold">Lorem ipsum dolor sit amet</h1>
     <div class="col-10 col-sm-9 col-lg-6 mx-auto">
       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
       <div class="hero-banner__actions mt-4 mt-lg-5 d-grid gap-2 d-sm-flex justify-content-sm-center">
       <a
-        class="btn btn-primary"
+        class="btn btn-light"
         role="button"
         title="Get Started">
         Get Started
       </a>
       <a
-        class="btn btn-outline-primary"
+        class="btn btn-outline-light"
         role="button"
         title="Learn More">
         Learn More

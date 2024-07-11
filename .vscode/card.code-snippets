@@ -1,0 +1,21 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:card",
+    "body": [
+      "<div class=\"card\">",
+      "\t<div class=\"card-body\">",
+      "\t\t<h3 class=\"card-title\">${1:Lorem ipsum dolor}</h3>",
+      "\t\t<p>${0:Omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
+      "\t\t<a",
+      "\t\t\tclass=\"btn btn-${2|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
+      "\t\t\trole=\"button\" ",
+      "\t\t\ttitle=\"${3:Click here}\">",
+      "\t\t\t${3:Click here}",
+      "\t\t</a>",
+      "\t</div>",
+      "</div>"
+    ],
+    "description": ""
+  }
+}

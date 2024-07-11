@@ -1,0 +1,21 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:hero-banner",
+    "body": [
+      "<section class=\"vh-100 text-center d-flex align-items-center\">",
+      "\t<div class=\"container\">",
+      "\t\t<h1 class=\"fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",
+      "\t\t<p>${2:Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
+      "\t\t<a",
+      "\t\t\tclass=\"btn btn-${3|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-4\" ",
+      "\t\t\trole=\"button\" ",
+      "\t\t\ttitle=\"${4:Get Started}\">",
+      "\t\t\t${4:Get Started}",
+      "\t\t</a>",
+      "\t</div>",
+      "</section>",
+    ],
+    "description": "A simple button component. It applies Bootstrap v5.3 classes."
+  }
+}

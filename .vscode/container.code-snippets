@@ -17,10 +17,12 @@
       "\t\t\t\t\t\t${9:https://placehold.co/640x480} 640w, ",
       "\t\t\t\t\t\t${10:https://placehold.co/320x240} 320w\" ",
       "\t\t\t\t\tsizes=\"(min-width: 960px) 640px, 100vw\" ",
-      "\t\t\t\t\talt=\"${11:Alt text}\" ",
+      "\t\t\t\t\twidth=\"${11:640}\" ",
+      "\t\t\t\t\theight=\"${12:480}\" ",
+      "\t\t\t\t\talt=\"${13:Alt text}\" ",
       "\t\t\t\t\tloading=\"lazy\" ",
       "\t\t\t\t\tdecoding=\"async\" ",
-      "\t\t\t\t\tclass=\"img-fluid${12: rounded-4}\" />",
+      "\t\t\t\t\tclass=\"img-fluid${14: rounded-4}\" />",
 
       "\t\t\t</div>",
 

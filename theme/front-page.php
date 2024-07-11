@@ -70,5 +70,82 @@ get_header();
   </div>
 </section>
 
+<section
+  id=""
+  class="bg-light py-5">
+  <div class="container">
+    <div class="mb-5 text-center">
+      <h2 class="display-5 fw-bold">Features</h2>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-lg-3 g-4">
+      <div class="feature col">
+        <img
+          src="https://placehold.co/75x75/125997/ffffff/svg"
+          width="75"
+          height="75"
+          alt="Alt text"
+          loading="lazy"
+          decoding="async"
+          class="feature__icon img-fluid mb-4 rounded-circle" />
+        <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+        <a
+          href="https://"
+          class="feature__link"
+          rel="noopener noreferrer"
+          alt="Read more"
+          aria-label="Read more about Lorem ipsum" >
+          Read more
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="ms-2" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <img
+          src="https://placehold.co/75x75/125997/ffffff/svg"
+          width="75"
+          height="75"
+          alt="Alt text"
+          loading="lazy"
+          decoding="async"
+          class="feature__icon img-fluid mb-4 rounded-circle" />
+        <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+        <a
+          href="https://"
+          class="feature__link"
+          rel="noopener noreferrer"
+          alt="Read more"
+          aria-label="Read more about Lorem ipsum" >
+          Read more
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="ms-2" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <img
+          src="https://placehold.co/75x75/125997/ffffff/svg"
+          width="75"
+          height="75"
+          alt="Alt text"
+          loading="lazy"
+          decoding="async"
+          class="feature__icon img-fluid mb-4 rounded-circle" />
+        <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+        <a
+          href="https://"
+          class="feature__link"
+          rel="noopener noreferrer"
+          alt="Read more"
+          aria-label="Read more about Lorem ipsum" >
+          Read more
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="ms-2" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <?php
 get_footer();

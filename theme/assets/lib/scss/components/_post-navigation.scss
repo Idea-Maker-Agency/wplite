@@ -8,6 +8,10 @@
     align-items: start;
     justify-content: space-between;
 
+    a {
+      text-decoration: none;
+    }
+
     &__label {
       font-size: 12px;
       font-family: 400;

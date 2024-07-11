@@ -42,11 +42,11 @@ function wplite_print_styles(): void {
 add_action( 'wp_enqueue_scripts', 'wplite_vendor_styles', 10 );
 function wplite_vendor_styles(): void {
   $styles = [
-    'bootstrap' => [
-      'version' => '5.3.3',
-      'minified' => true,
-      'enqueue' => true,
-    ],
+    // '{{vendor-name}}' => [
+    //   'version' => '{{vendor-version}}',
+    //   'minified' => true,
+    //   'enqueue' => true,
+    // ],
   ];
 
   foreach ( $styles as $handle => $args ) :

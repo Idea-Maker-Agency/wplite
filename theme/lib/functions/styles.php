@@ -82,38 +82,6 @@ function wplite_vendor_styles(): void {
  */
 add_action( 'wp_enqueue_scripts', 'wplite_styles', 10 );
 function wplite_styles(): void {
-  $styles = [
-    'comments' => [
-      'version' => '1.0.0',
-      'category' => 'widgets',
-      'enqueue' => true,
-    ],
-  ];
-
-  foreach ( $styles as $name => $args ) :
-    $handle = 'wplite-'. $name;
-    $version = isset( $args['version'] ) && $args['version'] ? $args['version'] : '1.0.0';
-    $dependencies = isset( $args['dependencies'] ) && $args['dependencies'] ? $args['dependencies'] : [];
-    $media = isset( $args['media'] ) && $args['media'] ? $args['media'] : 'all';
-    $enqueue = isset( $args['enqueue'] ) && $args['enqueue'] ? $args['enqueue'] : false;
-
-    $category = isset( $args['category'] ) && $args['category'] ? $args['category'] : '';
-
-    $src = THEME_DIR_URI . "/assets/lib/css/{$category}/{$name}.css";
-
-    wp_register_style(
-      $handle,
-      $src,
-      $dependencies,
-      $version,
-      $media
-    );
-
-    if ( $enqueue ) :
-      wp_enqueue_style( $handle );
-    endif;
-  endforeach;
-
   wp_enqueue_style(
     'wplite-main',
     THEME_DIR_URI . "/assets/lib/css/main.css",

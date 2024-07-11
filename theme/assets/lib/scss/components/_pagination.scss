@@ -3,12 +3,11 @@
 }
 
 .page-link {
+  @include center-content;
+
   width: $pagination-link-size;
   height: $pagination-link-size;
   border-radius: $pagination-border-radius;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
 
   &.prev,
   &.next {

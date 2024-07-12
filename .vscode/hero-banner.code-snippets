@@ -16,20 +16,24 @@
 
       // Call to actions
       "\t\t\t<div class=\"hero-banner__actions mt-4 mt-lg-5 d-grid gap-2 d-sm-flex justify-content-sm-center\">",
-      "\t\t\t<a",
-      "\t\t\t\tclass=\"btn btn-${3|primary,secondary,success,warning,info,danger,light,dark|}\" ",
-      "\t\t\t\trole=\"button\" ",
-      "\t\t\t\ttitle=\"${4:Get Started}\">",
-      "\t\t\t\t${4:Get Started}",
+
+      "\t\t\t<a ",
+      "\t\t\t\thref=\"https://${3}\" ",
+      "\t\t\t\tclass=\"btn btn-${4|primary,secondary,success,warning,info,danger,light,dark|}\" ",
+      "\t\t\t\trel=\"${5:nofollow noopener noreferrer}\" ",
+      "\t\t\t\talt=\"${6:Get Started}\" ",
+      "\t\t\t\taria-label=\"${6}\" >",
+      "\t\t\t\t${6}",
       "\t\t\t</a>",
 
-      "\t\t\t<a",
-      "\t\t\t\tclass=\"btn btn-${5|outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
-      "\t\t\t\trole=\"button\" ",
-      "\t\t\t\ttitle=\"${6:Learn More}\">",
-      "\t\t\t\t${6:Learn More}",
+      "\t\t\t<a ",
+      "\t\t\t\thref=\"https://${7}\" ",
+      "\t\t\t\tclass=\"btn btn-${8|outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
+      "\t\t\t\trel=\"${9:nofollow noopener noreferrer}\" ",
+      "\t\t\t\talt=\"${10:Learn More}\" ",
+      "\t\t\t\taria-label=\"${10}\" >",
+      "\t\t\t\t${10}",
       "\t\t\t</a>",
-      "\t\t\t</div>",
 
       "\t\t</div>",
 

@@ -1,0 +1,51 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:media-block",
+    "body": [
+      "<div class=\"row align-items-center${1| , flex-lg-row-reverse|}\">",
+
+      "\t<div class=\"col-12 col-lg-6 mb-4 mb-lg-0\">",
+
+      "\t\t<img ",
+      "\t\t\tsrc=\"<?php echo wplite_get_webp_url( '${8:placeholder}', '', [ ${9:640}, ${10:480} ] ) ?>\" ",
+      "\t\t\tsrcset=\"",
+      "\t\t\t\t${11:<?php echo wplite_get_webp_url( '${8}', '', [ ${9}, ${10} ] ) ?> ${9}w}, ",
+      "\t\t\t\t${12:<?php echo wplite_get_webp_url( '${8}', '', [ 320, 240 ] ) ?> 320w}\" ",
+      "\t\t\tsizes=\"(min-width: 960px) ${9}px, 100vw\" ",
+      "\t\t\twidth=\"${9}\" ",
+      "\t\t\theight=\"${10}\" ",
+      "\t\t\talt=\"${13:Alt text}\" ",
+      "\t\t\tloading=\"lazy\" ",
+      "\t\t\tdecoding=\"async\" ",
+      "\t\t\tclass=\"img-fluid${14: rounded-4}\" />",
+
+      "\t</div>",
+
+      "\t<div class=\"col-12 col-lg-6\">",
+      "\t\t<div class=\"col-lg-10 mx-auto\">",
+
+      // Title
+      "\t\t\t<h2 class=\"mb-3 display-6 fw-bold\">${2:Lorem ipsum}</h2>",
+
+      // Description
+      "\t\t<p>${3:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
+
+      // Call to action
+      "\t\t<a",
+      "\t\t\thref=\"https://${4}\" ",
+      "\t\t\tclass=\"btn btn-${5|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-3\" ",
+      "\t\t\t\trole=\"button\" ",
+      "\t\t\t\talt=\"${7:Read more}\" ",
+      "\t\t\t\taria-label=\"${6:${7} about this}\">",
+      "\t\t\t\t${7}",
+      "\t\t\t</a>",
+
+      "\t\t</div>",
+      "\t</div>",
+
+      "</div>"
+    ],
+    "description": "A simple container component."
+  }
+}

@@ -113,6 +113,7 @@ The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to e
 - `wplite:hero-banner`
 - [`wplite:image`](/docs/components/image/README.md)
 - `wplite:link`
+- `wplite:media-block`
 - `wplite:unordered-list`
 
 **[⬆ back to top](#table-of-contents)**

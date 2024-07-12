@@ -18,18 +18,21 @@ get_header();
       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
       <div class="hero-banner__actions mt-4 mt-lg-5 d-grid gap-2 d-sm-flex justify-content-sm-center">
       <a
+        href="https://"
         class="btn btn-light"
-        role="button"
-        title="Get Started">
+        rel="nofollow noopener noreferrer"
+        alt="Get Started"
+        aria-label="Get Started" >
         Get Started
       </a>
       <a
+        href="https://"
         class="btn btn-outline-light"
-        role="button"
-        title="Learn More">
+        rel="nofollow noopener noreferrer"
+        alt="Learn More"
+        aria-label="Learn More" >
         Learn More
       </a>
-      </div>
     </div>
   </div>
 </section>
@@ -57,6 +60,7 @@ get_header();
           <h2 class="mb-3 display-6 fw-bold">Lorem ipsum</h2>
         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
         <a
+          href="https://"
           class="btn btn-primary mt-3"
             role="button"
             alt="Read more"

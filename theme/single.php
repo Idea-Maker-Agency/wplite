@@ -99,7 +99,7 @@ get_header();
       <div class="container">
         <h2 class="mb-4 fw-bold">Related Posts</h2>
 
-        <?php get_template_part( 'lib/templates/widgets/related', 'posts' ) ?>
+        <?php get_template_part( 'lib/templates/post/related', 'posts' ) ?>
       </div>
     </section>
   <?php endwhile; ?>

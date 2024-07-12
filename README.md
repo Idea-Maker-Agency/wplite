@@ -106,7 +106,7 @@ project
 The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to enhance your development workflow by providing quick access to commonly used code patterns and templates, improving productivity and efficiency. Here are the following reusable vscode snippets:
 
 - `wplite:accordion`
-- `wplite:button`
+- [`wplite:button`](/docs/components/button/README.md)
 - `wplite:card`
 - `wplite:container`
 - `wplite:features`

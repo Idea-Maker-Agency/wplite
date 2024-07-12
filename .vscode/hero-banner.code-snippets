@@ -3,40 +3,41 @@
     "scope": "html,php",
     "prefix": "wplite:hero-banner",
     "body": [
-      "<section class=\"hero-banner py-5 text-center d-flex align-items-center\">",
-      "\t<div class=\"container py-lg-5 px-lg-4\">",
+      "<section class=\"hero-banner py-5 text-center d-flex align-items-center position-relative\">",
+      "\t<div class=\"container py-lg-5 px-lg-4 position-relative z-1\">",
+
+      "\t\t<div class=\"row\">",
+      "\t\t\t<div class=\"col-10 col-sm-9 col-lg-6 mx-auto\">",
 
       // Heading
-      "\t\t<h1 class=\"hero-banner__heading mb-4 fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",
-
-      "\t\t<div class=\"col-10 col-sm-9 col-lg-6 mx-auto\">",
+      "\t\t\t\t<h1 class=\"hero-banner__heading mb-4 fw-bold\">${1:Lorem ipsum dolor sit amet}</h1>",
 
       // Sub-heading
-      "\t\t\t<p>${2:Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
+      "\t\t\t\t<p>${2:Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
 
       // Call to actions
-      "\t\t\t<div class=\"hero-banner__actions mt-4 mt-lg-5 d-grid gap-2 d-sm-flex justify-content-sm-center\">",
+      "\t\t\t\t<div class=\"hero-banner__actions mt-4 mt-lg-5 d-grid gap-2 d-sm-flex justify-content-sm-center\">",
+      "\t\t\t\t\t<a ",
+      "\t\t\t\t\t\thref=\"https://${3}\" ",
+      "\t\t\t\t\t\tclass=\"btn btn-${4|primary,secondary,success,warning,info,danger,light,dark|}\" ",
+      "\t\t\t\t\t\trel=\"${5:nofollow noopener noreferrer}\" ",
+      "\t\t\t\t\t\talt=\"${6:Get Started}\" ",
+      "\t\t\t\t\t\taria-label=\"${6}\" >",
+      "\t\t\t\t\t\t${6}",
+      "\t\t\t\t\t</a>",
 
-      "\t\t\t<a ",
-      "\t\t\t\thref=\"https://${3}\" ",
-      "\t\t\t\tclass=\"btn btn-${4|primary,secondary,success,warning,info,danger,light,dark|}\" ",
-      "\t\t\t\trel=\"${5:nofollow noopener noreferrer}\" ",
-      "\t\t\t\talt=\"${6:Get Started}\" ",
-      "\t\t\t\taria-label=\"${6}\" >",
-      "\t\t\t\t${6}",
-      "\t\t\t</a>",
+      "\t\t\t\t\t<a ",
+      "\t\t\t\t\t\thref=\"https://${7}\" ",
+      "\t\t\t\t\t\tclass=\"btn btn-${8|outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
+      "\t\t\t\t\t\trel=\"${9:nofollow noopener noreferrer}\" ",
+      "\t\t\t\t\t\talt=\"${10:Learn More}\" ",
+      "\t\t\t\t\t\taria-label=\"${10}\" >",
+      "\t\t\t\t\t\t${10}",
+      "\t\t\t\t\t</a>",
+      "\t\t\t\t</div>",
 
-      "\t\t\t<a ",
-      "\t\t\t\thref=\"https://${7}\" ",
-      "\t\t\t\tclass=\"btn btn-${8|outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
-      "\t\t\t\trel=\"${9:nofollow noopener noreferrer}\" ",
-      "\t\t\t\talt=\"${10:Learn More}\" ",
-      "\t\t\t\taria-label=\"${10}\" >",
-      "\t\t\t\t${10}",
-      "\t\t\t</a>",
-
+      "\t\t\t</div>",
       "\t\t</div>",
-
       "\t</div>",
       "</section>",
     ],

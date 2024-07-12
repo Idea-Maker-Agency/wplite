@@ -1,10 +1,10 @@
 # Link
 
-A generic HTML link element.
+A reusable HTML link component to standardize link rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 
-Use the `wplite:image` VSCode snippet to quickly insert optimized image tags with responsive attributes in your code.
+Use the `wplite:link` VSCode snippet to quickly insert optimized link tags with accessibility attributes in your code.
 
 ## Example
 
@@ -15,7 +15,11 @@ Use the `wplite:image` VSCode snippet to quickly insert optimized image tags wit
   target="_blank"
   rel="nofollow noopener noreferrer"
   alt="Read more"
-  aria-label=" about this" >
+  aria-label="Read more about this" >
   Read more
 </a>
 ```
+
+## Useful Links:
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) > [Anchor](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)

@@ -13,8 +13,9 @@ Use the `wplite:image` VSCode snippet to quickly insert optimized image tags wit
   src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
   srcset="
     <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
-    <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 240 ] ) ?> 320w"
-  sizes="(min-width: 960px) 640px, 100vw"
+    <?php echo wplite_get_webp_url( 'placeholder', '', [ 540, 360 ] ) ?> 540w,
+    <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 230 ] ) ?> 320w"
+  sizes="(min-width: 640px) 640px, (min-width: 540px) 540px, 100vw"
   width="640"
   height="480"
   alt="Alt text"

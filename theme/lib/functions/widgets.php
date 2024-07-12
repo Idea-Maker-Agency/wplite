@@ -8,7 +8,7 @@
  * @return void
  */
 add_action( 'widgets_init', 'wplite_register_sidebars' );
-function wplite_register_sidebars(): void{
+function wplite_register_sidebars(): void {
 	register_sidebar( [
 		'id' => 'primary-sidebar',
     'name' => __( 'Primary Sidebar', THEME_TEXT_DOMAIN ),

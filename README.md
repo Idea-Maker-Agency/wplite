@@ -25,7 +25,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Installation
 
-Install project dependencies:
+Download and install Docker Desktop from [Docker's official website](https://www.docker.com/) based on your operating system (Windows, macOS, or Linux). Then run it after the installation.
 
 Copy the `.env-template` file to `.env` and modify it as needed:
 

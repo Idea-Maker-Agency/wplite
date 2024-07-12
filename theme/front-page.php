@@ -82,13 +82,13 @@ get_header();
     <div class="row row-cols-1 row-cols-lg-3 g-4">
       <div class="feature col">
         <img
-          src="https://placehold.co/75x75/125997/ffffff/svg"
+          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
           width="75"
           height="75"
           alt="Alt text"
           loading="lazy"
           decoding="async"
-          class="feature__icon img-fluid mb-4 rounded-circle" />
+          class="feature__icon img-fluid mb-2" />
         <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a
@@ -103,13 +103,13 @@ get_header();
       </div>
       <div class="feature col">
         <img
-          src="https://placehold.co/75x75/125997/ffffff/svg"
+          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
           width="75"
           height="75"
           alt="Alt text"
           loading="lazy"
           decoding="async"
-          class="feature__icon img-fluid mb-4 rounded-circle" />
+          class="feature__icon img-fluid mb-2" />
         <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a
@@ -124,13 +124,13 @@ get_header();
       </div>
       <div class="feature col">
         <img
-          src="https://placehold.co/75x75/125997/ffffff/svg"
+          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
           width="75"
           height="75"
           alt="Alt text"
           loading="lazy"
           decoding="async"
-          class="feature__icon img-fluid mb-4 rounded-circle" />
+          class="feature__icon img-fluid mb-2" />
         <h3 class="feature__heading fw-bold">Lorem ipsum</h3>
         <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
         <a

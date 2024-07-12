@@ -10,13 +10,13 @@
 
       // Feature 1: Icon
       "\t\t<img ",
-      "\t\t\tsrc=\"${1:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\tsrc=\"${1:<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>}\" ",
       "\t\t\twidth=\"75\"",
       "\t\t\theight=\"75\"",
       "\t\t\talt=\"${2:Alt text}\" ",
       "\t\t\tloading=\"lazy\" ",
       "\t\t\tdecoding=\"async\" ",
-      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+      "\t\t\tclass=\"feature__icon img-fluid mb-2\" />",
 
       // Feature 1: Title
       "\t\t<h3 class=\"feature__heading fw-bold\">${3:Lorem ipsum}</h3>",
@@ -42,13 +42,13 @@
 
       // Feature 2: Icon
       "\t\t<img ",
-      "\t\t\tsrc=\"${8:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\tsrc=\"${8:<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>}\" ",
       "\t\t\twidth=\"75\"",
       "\t\t\theight=\"75\"",
       "\t\t\talt=\"${9:Alt text}\" ",
       "\t\t\tloading=\"lazy\" ",
       "\t\t\tdecoding=\"async\" ",
-      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+      "\t\t\tclass=\"feature__icon img-fluid mb-2\" />",
 
       // Feature 2: Title
       "\t\t<h3 class=\"feature__heading fw-bold\">${10:Lorem ipsum}</h3>",
@@ -74,13 +74,13 @@
 
       // Feature 3: Icon
       "\t\t<img ",
-      "\t\t\tsrc=\"${15:https://placehold.co/75x75/125997/ffffff/svg}\" ",
+      "\t\t\tsrc=\"${15:<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>}\" ",
       "\t\t\twidth=\"75\"",
       "\t\t\theight=\"75\"",
       "\t\t\talt=\"${16:Alt text}\" ",
       "\t\t\tloading=\"lazy\" ",
       "\t\t\tdecoding=\"async\" ",
-      "\t\t\tclass=\"feature__icon img-fluid mb-4 rounded-circle\" />",
+      "\t\t\tclass=\"feature__icon img-fluid mb-2\" />",
 
       // Feature 3: Title
       "\t\t<h3 class=\"feature__heading fw-bold\">${17:Lorem ipsum}</h3>",

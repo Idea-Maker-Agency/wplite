@@ -114,6 +114,7 @@ The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to e
 - [`wplite:image`](/docs/components/image/README.md)
 - `wplite:link`
 - `wplite:media-block`
+- `wplite:page-content`
 - `wplite:unordered-list`
 
 **[⬆ back to top](#table-of-contents)**
@@ -128,7 +129,7 @@ If an HTML element has multiple attributes, put every attributes into new line.
 
 > Why? It enables you to read and organize attributes better.
 
-```php
+```phtml
 <a
   class="btn btn-light"
   role="button"

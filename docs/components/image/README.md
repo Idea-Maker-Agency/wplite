@@ -33,4 +33,5 @@ Don't lazy load images that appear "above the fold", just use a standard `<img>`
 ## Useful Links:
 
 - [TinyPNG](https://tinypng.com/): Used for optimizing and generate webp version of the image.
+- [Bootstrap](https://getbootstrap.com/) > [Images](https://getbootstrap.com/docs/5.3/content/images/)
 - [MDN Web Docs](https://developer.mozilla.org/en-US/) > [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)

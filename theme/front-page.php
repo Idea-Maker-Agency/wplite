@@ -41,10 +41,10 @@ get_header();
     <div class="row align-items-center ">
       <div class="col-12 col-lg-6 mb-4 mb-lg-0">
         <img
-          src="https://placehold.co/640x480"
+          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
           srcset="
-            https://placehold.co/640x480 640w,
-            https://placehold.co/320x240 320w"
+            <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
+            <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 240 ] ) ?> 320w"
           sizes="(min-width: 960px) 640px, 100vw"
           width="640"
           height="480"

@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * Enqueues component styles & scripts if they are registered and not yet enqueued.
+ *
+ * @param string    $handle       The style/script handle.
+ *
+ * @return void
+ */
+function wplite_maybe_enqueue_component_scripts( string $handle ): void {
+  $handle = 'wplite-'. $handle;
+
+  if ( wp_style_is( $handle, 'registered' ) && !wp_style_is( $handle ) ) :
+    wp_enqueue_style( $handle );
+  endif;
+
+  if ( wp_script_is( $handle, 'registered' ) && ! wp_script_is( $handle ) ) :
+    wp_enqueue_script( $handle );
+  endif;
+}
+
+/**
  * Register the components assets.
  *
  * @since 1.0.0
@@ -19,7 +38,7 @@ function wplite_component_assets(): void {
     $version = '1.0.0';
 
     if ( file_exists( THEME_DIR_PATH . $path .'.css' ) ) :
-      wp_enqueue_style(
+      wp_register_style(
         $handle,
         THEME_DIR_URI . $path .'.css',
         [],
@@ -29,7 +48,7 @@ function wplite_component_assets(): void {
     endif;
 
     if ( file_exists( THEME_DIR_PATH . $path .'.js' ) ) :
-      wp_enqueue_script(
+      wp_regsiter_script(
         $handle,
         THEME_DIR_URI . $path .'.js',
         [],
@@ -48,6 +67,8 @@ function wplite_component_assets(): void {
  * @return void
  */
 function wplite_article_card( WP_Post $post ): void {
+  wplite_maybe_enqueue_component_scripts( 'article-card' );
+
   get_template_part(
     '/components/article-card/article',
     'card',

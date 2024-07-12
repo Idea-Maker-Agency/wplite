@@ -49,7 +49,6 @@ get_header();
     width="1920"
     height="1080"
     alt="Hero image"
-    loading="lazy"
     decoding="async"
     class="w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-n1" />
 </section>

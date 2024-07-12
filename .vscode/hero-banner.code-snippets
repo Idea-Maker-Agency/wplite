@@ -52,7 +52,6 @@
       "\t\twidth=\"${12}\" ",
       "\t\theight=\"${13}\" ",
       "\t\talt=\"${17:Hero image}\" ",
-      "\t\tloading=\"lazy\" ",
       "\t\tdecoding=\"async\" ",
       "\t\tclass=\"w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-n1\" />",
 

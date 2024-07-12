@@ -49,7 +49,6 @@ get_header();
           width="640"
           height="480"
           alt="Alt text"
-          loading="lazy"
           decoding="async"
           class="img-fluid rounded-4" />
       </div>

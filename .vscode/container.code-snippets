@@ -7,48 +7,7 @@
       "\tid=\"${1}\" ",
       "\tclass=\"py-5\">",
       "\t<div class=\"container\">",
-      "\t\t<div class=\"row align-items-center${2| , flex-lg-row-reverse|}\">",
-
-      "\t\t\t<div class=\"col-12 col-lg-6 mb-4 mb-lg-0\">",
-
-      "\t\t\t\t<img ",
-      "\t\t\t\t\tsrc=\"<?php echo wplite_get_webp_url( '${9:placeholder}', '', [ ${10:640}, ${11:480} ] ) ?>\" ",
-      "\t\t\t\t\tsrcset=\"",
-      "\t\t\t\t\t\t${12:<?php echo wplite_get_webp_url( '${9}', '', [ ${10}, ${11} ] ) ?> ${10}w}, ",
-      "\t\t\t\t\t\t${13:<?php echo wplite_get_webp_url( '${9}', '', [ 320, 240 ] ) ?> 320w}\" ",
-      "\t\t\t\t\tsizes=\"(min-width: 960px) ${10}px, 100vw\" ",
-      "\t\t\t\t\twidth=\"${10}\" ",
-      "\t\t\t\t\theight=\"${11}\" ",
-      "\t\t\t\t\talt=\"${14:Alt text}\" ",
-      "\t\t\t\t\tloading=\"lazy\" ",
-      "\t\t\t\t\tdecoding=\"async\" ",
-      "\t\t\t\t\tclass=\"img-fluid${15: rounded-4}\" />",
-
-      "\t\t\t</div>",
-
-      "\t\t\t<div class=\"col-12 col-lg-6\">",
-      "\t\t\t\t<div class=\"col-lg-10 mx-auto\">",
-
-      // Title
-      "\t\t\t\t\t<h2 class=\"mb-3 display-6 fw-bold\">${3:Lorem ipsum}</h2>",
-
-      // Description
-      "\t\t\t\t<p>${4:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
-
-      // Call to action
-      "\t\t\t\t<a",
-      "\t\t\t\t\thref=\"https://${5}\" ",
-      "\t\t\t\t\tclass=\"btn btn-${6|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-3\" ",
-      "\t\t\t\t\t\trole=\"button\" ",
-      "\t\t\t\t\t\talt=\"${8:Read more}\" ",
-      "\t\t\t\t\t\taria-label=\"${7:${8} about this}\">",
-      "\t\t\t\t\t\t${8:Read more}",
-      "\t\t\t\t\t</a>",
-
-      "\t\t\t\t</div>",
-      "\t\t\t</div>",
-
-      "\t\t</div>",
+      "\t\t${0}",
       "\t</div>",
       "</section>"
     ],

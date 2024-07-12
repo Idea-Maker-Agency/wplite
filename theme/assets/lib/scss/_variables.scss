@@ -1,3 +1,14 @@
+// Grid breakpoints
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1025px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
 // Color system
 
 $primary: #125997;

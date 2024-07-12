@@ -3,7 +3,7 @@
     "scope": "html,php",
     "prefix": "wplite:hero-banner",
     "body": [
-      "<section class=\"hero-banner py-5 text-center d-flex align-items-center position-relative\">",
+      "<section class=\"hero-banner text-white py-5 text-center d-flex align-items-center position-relative\">",
       "\t<div class=\"container py-lg-5 px-lg-4 position-relative z-1\">",
 
       "\t\t<div class=\"row\">",
@@ -39,6 +39,23 @@
       "\t\t\t</div>",
       "\t\t</div>",
       "\t</div>",
+
+      "\t<div class=\"w-100 h-100 bg-dark bg-opacity-50 position-absolute top-0 start-0 z-n2\"></div>",
+
+      "\t<img ",
+      "\t\tsrc=\"<?php echo wplite_get_webp_url( '${11:hero}', '', [ ${12:1920}, ${13:1080} ] ) ?>\" ",
+      "\t\tsrcset=\"",
+      "\t\t\t${14:<?php echo wplite_get_webp_url( '${11}', '', [ ${12}, ${13} ] ) ?> ${12}w}, ",
+      "\t\t\t${15:<?php echo wplite_get_webp_url( '${11}', '', [ 1024, 768 ] ) ?> 1024w}, ",
+      "\t\t\t${16:<?php echo wplite_get_webp_url( '${11}', '', [ 320, 500 ] ) ?> 320w}\" ",
+      "\t\tsizes=\"(min-width: ${12}px) ${12}px, (min-width: 1024px) 1024px, 100vw\" ",
+      "\t\twidth=\"${12}\" ",
+      "\t\theight=\"${13}\" ",
+      "\t\talt=\"${17:Hero image}\" ",
+      "\t\tloading=\"lazy\" ",
+      "\t\tdecoding=\"async\" ",
+      "\t\tclass=\"w-100 h-100 object-fit-cover position-absolute top-0 start-0 z-n1\" />",
+
       "</section>",
     ],
     "description": "A hero banner component."

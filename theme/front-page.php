@@ -47,8 +47,9 @@ get_header();
           src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
           srcset="
             <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
+            <?php echo wplite_get_webp_url( 'placeholder', '', [ 540, 390 ] ) ?> 540w,
             <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 240 ] ) ?> 320w"
-          sizes="(min-width: 960px) 640px, 100vw"
+          sizes="(min-width: 1200px) 640px, (min-width: 576px) 540px, 100vw"
           width="640"
           height="480"
           alt="Alt text"

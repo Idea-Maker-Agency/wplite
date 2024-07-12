@@ -14,12 +14,13 @@
 
       // Call to action
       "\t\t<a",
-      "\t\t\tclass=\"btn btn-${2|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
+      "\thref=\"https://${2}\" ",
+      "\t\t\tclass=\"btn btn-${3|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
       "\t\t\trole=\"button\" ",
       "\t\t\trel=\"noopener noreferrer\" ",
-      "\t\t\talt=\"${4:Read more}\" ",
-      "\t\t\taria-label=\"${3:${4} about ${1}}\">",
-      "\t\t\t${4:Read more}",
+      "\t\t\talt=\"${5:Read more}\" ",
+      "\t\t\taria-label=\"${4:${5} about ${1}}\">",
+      "\t\t\t${5}",
       "\t\t</a>",
 
       "\t</div>",

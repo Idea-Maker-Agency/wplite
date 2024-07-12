@@ -148,7 +148,7 @@ function wplite_some_hook() {
 }
 ```
 
-Indetify the type of data for function parameters and return values. Also add header comment to the functions to indicate its purpose.
+Identify the types for function parameters and return values. Also add header comment to the functions to indicate its purpose.
 
 > Why? Identifying PHP function parameter and return types enhances code readability, reduces bugs, and enables better code completion and static analysis by clearly specifying the expected data types for function inputs and outputs.
 

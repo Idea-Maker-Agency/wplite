@@ -10,11 +10,11 @@
       "\t\t<h3 class=\"card-title\">${1:Lorem ipsum dolor}</h3>",
 
       // Description
-      "\t\t<p>${0:Omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
+      "\t\t<p class=\"card-text\">${0:Omnis iste natus error sit voluptatem accusantium doloremque laudantium}</p>",
 
       // Call to action
       "\t\t<a",
-      "\thref=\"https://${2}\" ",
+      "\t\t\thref=\"https://${2}\" ",
       "\t\t\tclass=\"btn btn-${3|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|}\" ",
       "\t\t\trole=\"button\" ",
       "\t\t\trel=\"noopener noreferrer\" ",

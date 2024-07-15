@@ -117,6 +117,7 @@ The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to e
 - [`wplite:link`](/docs/components/link/README.md)
 - [`wplite:media-block`](/docs/components/media-block/README.md)
 - [`wplite:page-content`](/docs/components/page-content/README.md)
+- [`wplite:testimonial-carousel`](/docs/components/testimonial-carousel/README.md)
 - [`wplite:unordered-list`](/docs/components/unordered-list/README.md)
 
 **[⬆ back to top](#table-of-contents)**

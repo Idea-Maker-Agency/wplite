@@ -1,0 +1,124 @@
+{
+  "WPLite": {
+    "scope": "html,php",
+    "prefix": "wplite:testimonial-carousel",
+    "body": [
+      "<div ",
+      "\tid=\"testimonial-carousel\" ",
+      "\tclass=\"testimonial-carousel carousel slide\" ",
+      "\tdata-bs-ride=\"carousel\">",
+
+      "\t<div class=\"carousel-inner\">",
+
+      // Testimonial 1
+      "\t\t<div class=\"testimonial-carousel__item carousel-item active\">",
+      "\t\t\t<div class=\"testimonial-carousel__card\">",
+      "\t\t\t\t<div class=\"testimonial-carousel__body\">",
+
+      // Testimonial 1: Avatar
+      "\t\t\t\t\t<img ",
+      "\t\t\t\t\t\tsrc=\"${1:<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\twidth=\"75\"",
+      "\t\t\t\t\t\theight=\"75\"",
+      "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",
+      "\t\t\t\t\t\tloading=\"lazy\" ",
+      "\t\t\t\t\t\tdecoding=\"async\" ",
+      "\t\t\t\t\t\tclass=\"testimonial-carousel__avatar img-fluid\" />",
+
+      // Testimonial 1: Title
+      "\t\t\t\t\t<h3 class=\"testimonial-carousel__title\">Person's Name</h3>",
+
+      // Testimonial 1: Sub-title
+      "\t\t\t\t\t<p class=\"testimonial-carousel__subtitle\">Person's Name</p>",
+
+      // Testimonial 1: Content
+      "\t\t\t\t\t<p class=\"testimonial-carousel__text\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+
+      "\t\t\t\t</div>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+
+      // Testimonial 2
+      "\t\t<div class=\"testimonial-carousel__item carousel-item\">",
+      "\t\t\t<div class=\"testimonial-carousel__card\">",
+      "\t\t\t\t<div class=\"testimonial-carousel__body\">",
+
+      // Testimonial 2: Avatar
+      "\t\t\t\t\t<img ",
+      "\t\t\t\t\t\tsrc=\"${1:<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\twidth=\"75\"",
+      "\t\t\t\t\t\theight=\"75\"",
+      "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",
+      "\t\t\t\t\t\tloading=\"lazy\" ",
+      "\t\t\t\t\t\tdecoding=\"async\" ",
+      "\t\t\t\t\t\tclass=\"testimonial-carousel__avatar img-fluid\" />",
+
+      // Testimonial 2: Title
+      "\t\t\t\t\t<h3 class=\"testimonial-carousel__title\">Person's Name</h3>",
+
+      // Testimonial 2: Sub-title
+      "\t\t\t\t\t<p class=\"testimonial-carousel__subtitle\">Person's Name</p>",
+
+      // Testimonial 2: Content
+      "\t\t\t\t\t<p class=\"testimonial-carousel__text\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+
+      "\t\t\t\t</div>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+
+      // Testimonial 3
+      "\t\t<div class=\"testimonial-carousel__item carousel-item\">",
+      "\t\t\t<div class=\"testimonial-carousel__card\">",
+      "\t\t\t\t<div class=\"testimonial-carousel__body\">",
+
+      // Testimonial 3: Avatar
+      "\t\t\t\t\t<img ",
+      "\t\t\t\t\t\tsrc=\"${1:<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\twidth=\"75\"",
+      "\t\t\t\t\t\theight=\"75\"",
+      "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",
+      "\t\t\t\t\t\tloading=\"lazy\" ",
+      "\t\t\t\t\t\tdecoding=\"async\" ",
+      "\t\t\t\t\t\tclass=\"testimonial-carousel__avatar img-fluid\" />",
+
+      // Testimonial 3: Title
+      "\t\t\t\t\t<h3 class=\"testimonial-carousel__title\">Person's Name</h3>",
+
+      // Testimonial 3: Sub-title
+      "\t\t\t\t\t<p class=\"testimonial-carousel__subtitle\">Person's Name</p>",
+
+      // Testimonial 3: Content
+      "\t\t\t\t\t<p class=\"testimonial-carousel__text\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+
+      "\t\t\t\t</div>",
+      "\t\t\t</div>",
+      "\t\t</div>",
+
+      "\t</div>",
+
+      // Testimonial Arrows
+      "\t<button ",
+      "\t\tclass=\"carousel-control-prev\" ",
+      "\t\ttype=\"button\" ",
+      "\t\tdata-bs-target=\"#testimonial-carousel\" ",
+      "\t\tdata-bs-slide=\"prev\">",
+      "\t\t<span ",
+      "\t\t\tclass=\"carousel-control-prev-icon\" ",
+      "\t\t\taria-hidden=\"true\"></span>",
+      "\t\t<span class=\"visually-hidden\">Previous</span>",
+      "\t</button>",
+
+      "\t<button ",
+      "\t\tclass=\"carousel-control-next\" ",
+      "\t\ttype=\"button\" ",
+      "\t\tdata-bs-target=\"#testimonial-carousel\" ",
+      "\t\tdata-bs-slide=\"next\">",
+      "\t\t<span ",
+      "\t\t\tclass=\"carousel-control-next-icon\" ",
+      "\t\t\taria-hidden=\"true\"></span>",
+      "\t\t<span class=\"visually-hidden\">Next</span>",
+      "\t</button>",
+      "</div>",
+    ]
+  }
+}

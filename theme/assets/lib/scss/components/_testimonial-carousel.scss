@@ -1,0 +1,47 @@
+.testimonial-carousel {
+  &__card {
+    @extend .card;
+
+    max-width: 480px;
+    padding-top: 35px;
+    margin: 45px auto 15px;
+    font-size: 14px;
+    text-align: center;
+    overflow: visible;
+    position: relative;
+  }
+
+  &__body {
+    @extend .card-body;
+  }
+
+  &__avatar {
+    margin: 0 auto;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &__title {
+    @extend .card-title;
+
+    font-size: 20px;
+  }
+
+  &__subtitle {
+    @extend .card-subtitle;
+
+    font-size: 16px;
+  }
+
+  &__text {
+    @extend .card-text;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

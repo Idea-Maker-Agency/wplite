@@ -22,3 +22,8 @@ $wpcf7-spinner-circle-size: 4px !default;
     transform-origin: $wpcf7-spinner-circle-size $wpcf7-spinner-circle-size;
   }
 }
+
+.wpcf7-not-valid-tip {
+  margin-top: 5px;
+  font-size: 12px;
+}

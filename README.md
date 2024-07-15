@@ -13,6 +13,8 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Style Guide](#style-guide)
   - [HTML elements](#html-elements)
   - [PHP functions](#php-functions)
+- [Templating Guide](#templating-guide)
+  - [Additional Scripts](#additional-scripts)
 - [Conclusion](#conclusion)
 
 ## Prerequisites
@@ -74,6 +76,7 @@ project
 
 ### Key Files and Directories
 
+- `docs/`: Contains the docs for the application.
 - `theme/`: Contains the main source code for the application.
   - `assets/`: Contains static assets like css, js, images and fonts.
   - `components/`: Contains custom php components.
@@ -169,6 +172,16 @@ function wplite_some_function( string $name, int $age ): string {
   return $name .' is '. $age .'yrs old.';
 }
 ```
+
+**[⬆ back to top](#table-of-contents)**
+
+## Templating Guide
+
+### Additional Scripts
+
+When adding 1st or 3rd party scripts, make sure to enqueue them only for specific templates by using the wordpress [conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/).
+
+> Why? This ensures we only load them into templates where they are needed.
 
 **[⬆ back to top](#table-of-contents)**
 

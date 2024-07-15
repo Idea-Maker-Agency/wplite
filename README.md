@@ -15,6 +15,7 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [PHP functions](#php-functions)
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
+- [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
 ## Prerequisites
@@ -182,6 +183,13 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 > Why? This ensures we only load them into templates where they are needed.
 
 **[⬆ back to top](#table-of-contents)**
+
+## Reference Links
+
+- [Bootstrap](https://getbootstrap.com/)
+- [Wordpress Codex](https://codex.wordpress.org/)
+- [MDN Web Docs](https://developer.mozilla.org/en-US) > [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [MDN Web Docs](https://developer.mozilla.org/en-US) > [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
 
 ## Conclusion
 

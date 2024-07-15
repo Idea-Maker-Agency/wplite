@@ -48,6 +48,8 @@ OR compile the theme:
 npm run compile:theme
 ```
 
+The compile command will generate a `wplite` folder which we can zip and upload to development, staging or live server.
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Folder Structure

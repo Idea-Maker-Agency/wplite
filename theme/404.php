@@ -8,8 +8,6 @@
  * @since      1.0.0
  */
 
-use IdeaMaker\WPLite\Component;
-
 get_header();
 ?>
 
@@ -25,7 +23,14 @@ get_header();
           <?php _e( 'Page not found', THEME_TEXT_DOMAIN ) ?>
         </p>
 
-        <?php Component::render( 'link', 'Return Home', site_url(), [ 'is-button' => true ] ) ?>
+        <a
+          href="<?php echo site_url() ?>"
+          class="btn btn-outline-primary mt-3"
+          role="button"
+          alt="Return Home"
+          aria-label="Return Home">
+          Return Home
+        </a>
       </div>
     </div>
   </div>

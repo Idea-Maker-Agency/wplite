@@ -55,4 +55,6 @@ Use the `wplite:hero-banner` VSCode snippet to quickly insert hero banner HTML m
 ## Useful Links:
 
 - [Bootstrap](https://getbootstrap.com/) > [Containers](https://getbootstrap.com/docs/5.3/layout/containers/)
+- [Bootstrap](https://getbootstrap.com/) > [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+- [Bootstrap](https://getbootstrap.com/) > [Images](https://getbootstrap.com/docs/5.3/content/images/)
 - [MDN Web Docs](https://developer.mozilla.org/en-US/) > [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)

@@ -29,3 +29,4 @@ Use the `wplite:card` VSCode snippet to quickly insert card HTML markup.
 ## Useful Links:
 
 - [Bootstrap](https://getbootstrap.com/) > [Card](https://getbootstrap.com/docs/5.3/components/card/)
+- [Bootstrap](https://getbootstrap.com/) > [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)

@@ -79,3 +79,5 @@ Use the `wplite:features` VSCode snippet to quickly insert features grid HTML ma
 ## Useful Links:
 
 - [Bootstrap](https://getbootstrap.com/) > [Grid](https://getbootstrap.com/docs/5.3/layout/grid/)
+- [Bootstrap](https://getbootstrap.com/) > [Images](https://getbootstrap.com/docs/5.3/content/images/)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) > [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)

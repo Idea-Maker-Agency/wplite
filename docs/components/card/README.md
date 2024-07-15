@@ -1,6 +1,6 @@
 # Card
 
-A reusable HTML card component to standardize card rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML card component to standardize rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

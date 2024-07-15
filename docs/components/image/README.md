@@ -1,6 +1,6 @@
 # Image
 
-A reusable HTML image component to standardize image rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML image component to standardize rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

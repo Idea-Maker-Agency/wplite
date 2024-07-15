@@ -1,6 +1,6 @@
 # Unordered List
 
-A reusable HTML unordered list component to standardize list rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML unordered list component to standardize rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

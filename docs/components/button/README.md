@@ -1,6 +1,6 @@
 # Button
 
-A reusable HTML button component to standardize button rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML button component to standardize rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

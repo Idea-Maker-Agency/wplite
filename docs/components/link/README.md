@@ -1,6 +1,6 @@
 # Link
 
-A reusable HTML link component to standardize link rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML link component to standardize rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

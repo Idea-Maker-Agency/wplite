@@ -34,7 +34,7 @@ function wplite_component_assets(): void {
 
   foreach( $components as $component ) :
     $handle = 'wplite-'. $component;
-    $path = '/components/'. $component .'/'. $component;
+    $path = '/lib/components/'. $component .'/'. $component;
     $version = '1.0.0';
 
     if ( file_exists( THEME_DIR_PATH . $path .'.css' ) ) :
@@ -70,7 +70,7 @@ function wplite_article_card( WP_Post $post ): void {
   wplite_maybe_enqueue_component_scripts( 'article-card' );
 
   get_template_part(
-    '/components/article-card/article',
+    '/lib/components/article-card/article',
     'card',
     [
       'post' => $post,

@@ -49,7 +49,6 @@ docker-compose up
 project
 ├── theme
 |   ├── assets
-|   ├── components
 |   ├── lib
 |   ├── templates
 |   ├── 404.php
@@ -79,8 +78,7 @@ project
 - `docs/`: Contains the docs for the application.
 - `theme/`: Contains the main source code for the application.
   - `assets/`: Contains static assets like css, js, images and fonts.
-  - `components/`: Contains custom php components.
-  - `lib/`: Contains php classes, functions, structure related templates and custom widgets.
+  - `lib/`: Contains php classes, functions, structure related templates, custom components and widgets.
   - `404.php`: The template for displaying 404 page.
   - `archive.php`: The template for displaying archive pages.
   - `category.php`: The template for displaying category pages.

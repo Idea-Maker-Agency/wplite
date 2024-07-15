@@ -22,7 +22,7 @@ Use the `wplite:accordion` VSCode snippet to quickly insert accordion HTML marku
     </div>
     <div
       id="accordion-item-1"
-      class="accordion-collapse collapse">
+      class="accordion-collapse collapse  show">
       <div class="accordion-body">
         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
       </div>

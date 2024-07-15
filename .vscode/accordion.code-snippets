@@ -18,7 +18,7 @@
       "\t\t</div>",
       "\t\t<div ",
       "\t\t\tid=\"${1}\" ",
-      "\t\t\tclass=\"accordion-collapse collapse\">",
+      "\t\t\tclass=\"accordion-collapse collapse show\">",
       "\t\t\t<div class=\"accordion-body\">",
       "\t\t\t\t<p>${3:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
       "\t\t\t</div>",

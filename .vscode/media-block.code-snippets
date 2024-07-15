@@ -30,12 +30,12 @@
       "\t\t\t<h2 class=\"mb-3 display-6 fw-bold\">${2:Lorem ipsum}</h2>",
 
       // Description
-      "\t\t<p>${3:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
+      "\t\t\t<p>${3:At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident}</p>",
 
       // Call to action
-      "\t\t<a",
-      "\t\t\thref=\"https://${4}\" ",
-      "\t\t\tclass=\"btn btn-${5|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-3\" ",
+      "\t\t\t<a",
+      "\t\t\t\thref=\"https://${4}\" ",
+      "\t\t\t\tclass=\"btn btn-${5|primary,secondary,success,warning,info,danger,light,dark,outline-primary,outline-secondary,outline-success,outline-warning,outline-info,outline-danger,outline-light,outline-dark|} mt-3\" ",
       "\t\t\t\trole=\"button\" ",
       "\t\t\t\talt=\"${7:Read more}\" ",
       "\t\t\t\taria-label=\"${6:${7} about this}\">",

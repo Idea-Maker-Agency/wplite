@@ -105,17 +105,17 @@ project
 
 The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to enhance your development workflow by providing quick access to commonly used code patterns and templates, improving productivity and efficiency. Here are the following reusable vscode snippets:
 
-- `wplite:accordion`
+- [`wplite:accordion`](/docs/components/accordion/README.md)
 - [`wplite:button`](/docs/components/button/README.md)
-- `wplite:card`
-- `wplite:container`
+- [`wplite:card`](/docs/components/card/README.md)
+- [`wplite:container`](/docs/components/container/README.md)
 - `wplite:features`
 - `wplite:hero-banner`
 - [`wplite:image`](/docs/components/image/README.md)
 - [`wplite:link`](/docs/components/link/README.md)
 - `wplite:media-block`
 - `wplite:page-content`
-- `wplite:unordered-list`
+- [`wplite:unordered-list`](/docs/components/unordered-list/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

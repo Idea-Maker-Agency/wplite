@@ -1,6 +1,6 @@
 # Accordion
 
-A reusable HTML accordion component to standardize list rendering, improve maintainability, and ensure consistent styling and functionality across the project.
+A reusable HTML accordion component to standardize container rendering, improve maintainability, and ensure consistent styling and functionality across the project.
 
 ## Usage
 

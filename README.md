@@ -42,6 +42,12 @@ Run the development server:
 docker-compose up
 ```
 
+OR compile the theme:
+
+```bash
+npm run compile:theme
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Folder Structure

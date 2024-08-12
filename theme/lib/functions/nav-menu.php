@@ -75,16 +75,16 @@ function wplite_nav_menu_link_attributes (
     $atts['class'] = 'dropdown-item';
   else :
     $atts['class'] = 'nav-link';
+  endif;
 
-    if ( in_array( 'menu-item-has-children', $menu_item->classes ) ) :
-      $atts['class'] .= ' dropdown-toggle';
+  if ( in_array( 'menu-item-has-children', $menu_item->classes ) ) :
+    $atts['class'] .= ' dropdown-toggle';
 
-      $atts['aria-expanded'] = 'false';
-      $atts['data-bs-toggle'] = 'dropdown';
-      $atts['role'] = 'button';
+    $atts['aria-expanded'] = 'false';
+    $atts['data-bs-toggle'] = 'dropdown';
+    $atts['role'] = 'button';
 
-      unset( $atts['href'] );
-    endif;
+    unset( $atts['href'] );
   endif;
 
   if ( $menu_item->current ) :

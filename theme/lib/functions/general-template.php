@@ -62,3 +62,27 @@ function wplite_paginate_links_output( string $output, array $args ): string {
 
   return $output;
 }
+
+/**
+ * Fires before an attempt is made to locate and load a template part.
+ *
+ * @since 1.0.0
+ *
+ * @param string    $slug         The slug name for the generic template.
+ * @param string    $name         The name of the specialized template or an empty string if there is none.
+ * @param string[]  $templates    Array of template files to search for, in order.
+ * @param array     $args         Additional arguments passed to the template.
+ */
+add_action( 'get_template_part', 'wplite_get_template_part', 10, 4 );
+function wplite_get_template_part( string $slug, string $name, array $templates, array $args ): void {
+  if ( 0 < count( $templates ) ) :
+    foreach( $templates as $template ) :
+      $template = substr( $template, strrpos( $template, '/' ) + 1 );
+      $template = str_replace( '.php', '', $template );
+
+      if ( wp_style_is( $template, 'registered' ) && !wp_style_is( $template, 'enqueued' ) ) :
+        wp_enqueue_style( $template );
+      endif;
+    endforeach;
+  endif;
+}

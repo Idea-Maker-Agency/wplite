@@ -42,3 +42,48 @@ function wplite_theme_page_templates( array $page_templates, WP_Theme $theme, WP
 
   return $page_templates;
 }
+
+/**
+ * Enqueue page template resources.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+add_action( 'wp_enqueue_scripts', 'wplite_theme_page_templates_resources', 10 );
+function wplite_theme_page_templates_resources(): void {
+  $page_templates = wp_get_theme()->get_page_templates();
+
+  $page_templates = array_filter( $page_templates, function ( string $value, string $key ) {
+    return is_page_template( $key );
+  }, ARRAY_FILTER_USE_BOTH );
+
+  if ( 0 < count( $page_templates ) ) :
+    foreach ( $page_templates as $key => $value ) :
+      $page_template_handle = strtolower( str_replace( ' ', '-', $value ) );
+
+      $page_template_css = str_replace( '.php', '.css', $key );
+      $page_template_js = str_replace( '.php', '.js', $key );
+
+      if ( file_exists( get_theme_file_path( $page_template_css ) ) ) :
+        wp_enqueue_style(
+          'wplite-'. $page_template_handle,
+          get_theme_file_uri( $page_template_css ),
+          [],
+          THEME_VERSION,
+          'all'
+        );
+      endif;
+
+      if ( file_exists( get_theme_file_path( $page_template_js ) ) ) :
+        wp_enqueue_script(
+          'wplite-'. $page_template_handle,
+          get_theme_file_uri( $page_template_js ),
+          [],
+          THEME_VERSION,
+          true
+        );
+      endif;
+    endforeach;
+  endif;
+}

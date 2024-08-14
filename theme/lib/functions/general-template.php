@@ -64,6 +64,46 @@ function wplite_paginate_links_output( string $output, array $args ): string {
 }
 
 /**
+ * Register template parts resources.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+add_action( 'wp_enqueue_scripts', 'wplite_register_template_parts_resources', 10 );
+function wplite_register_template_parts_resources(): void {
+  $template_parts = scandir( get_theme_file_path( '/template-parts' ) );
+
+  if ( $template_parts ) :
+    $template_parts = array_filter( $template_parts, function ( string $template_part ) use ( $template_parts_path ) {
+      if ( in_array( $template_part, [ '.', '..' ] ) ) return false;
+
+      $template_part_path = get_theme_file_path( '/template-parts/'. $template_part );
+
+      if ( !is_dir( $template_part_path ) ) return false;
+
+      $template_part_css_path = get_theme_file_path( '/template-parts/'. $template_part .'/'. $template_part .'.css' );
+
+      if ( !file_exists( $template_part_css_path ) ) return false;
+
+      return true;
+    } );
+
+    if ( 0 < count( $template_parts ) ) :
+      foreach ( $template_parts as $template_part ) :
+        wp_register_style(
+          'wplite-'. $template_part,
+          get_theme_file_uri( '/template-parts/'. $template_part .'/'. $template_part .'.css' ),
+          [],
+          '1.0.0',
+          'all'
+        );
+      endforeach;
+    endif;
+  endif;
+}
+
+/**
  * Fires before an attempt is made to locate and load a template part.
  *
  * @since 1.0.0
@@ -77,11 +117,12 @@ add_action( 'get_template_part', 'wplite_get_template_part', 10, 4 );
 function wplite_get_template_part( string $slug, string $name, array $templates, array $args ): void {
   if ( 0 < count( $templates ) ) :
     foreach( $templates as $template ) :
-      $template = substr( $template, strrpos( $template, '/' ) + 1 );
-      $template = str_replace( '.php', '', $template );
+      $handle = substr( $template, strrpos( $template, '/' ) + 1 );
+      $handle = str_replace( '.php', '', $handle );
+      $handle = 'wplite-'. $handle;
 
-      if ( wp_style_is( $template, 'registered' ) && !wp_style_is( $template, 'enqueued' ) ) :
-        wp_enqueue_style( $template );
+      if ( wp_style_is( $handle, 'registered' ) && !wp_style_is( $handle, 'enqueued' ) ) :
+        wp_enqueue_style( $handle );
       endif;
     endforeach;
   endif;

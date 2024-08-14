@@ -12,6 +12,7 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/settings.php';
   require_once THEME_DIR_PATH . '/lib/functions/admin.php';
   require_once THEME_DIR_PATH . '/lib/functions/general-template.php';
+  require_once THEME_DIR_PATH . '/lib/functions/page-template.php';
   require_once THEME_DIR_PATH . '/lib/functions/comment-template.php';
   require_once THEME_DIR_PATH . '/lib/functions/components.php';
   require_once THEME_DIR_PATH . '/lib/functions/styles.php';

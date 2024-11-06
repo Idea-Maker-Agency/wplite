@@ -1,5 +1,43 @@
 <?php
 
+use WPLite\CustomFields;
+
+/**
+ * Admin init.
+ *
+ * @return void
+ */
+add_action('admin_init', 'wplite_init_page_templates_custom_fields');
+function wplite_init_page_templates_custom_fields()
+{
+  $post_id = $_GET['post'] ?? null;
+  $action = $_POST['action'] ?? null;
+
+  if (empty($post_id) && 'editpost' === $action) {
+    $post_id = $_POST['post_ID'] ?? null;
+  }
+
+  if (empty($post_id)) return;
+
+  $page_template = get_post_meta($post_id, '_wp_page_template', true);
+
+  if (! empty($page_template)) {
+    $page_template_path = THEME_DIR_PATH . '/' . $page_template;
+    $custom_fields_path = str_replace('.php', '.fields.yaml', $page_template_path);
+
+    if (! file_exists($custom_fields_path)) return;
+
+    $loaded_custom_fields = Spyc::YAMLLoad($custom_fields_path);
+
+    if (empty($loaded_custom_fields)) return;
+
+    $custom_fields = new CustomFields();
+
+    $custom_fields->setFields($loaded_custom_fields);
+    $custom_fields->init();
+  }
+}
+
 /**
  * Filters list of page templates.
  *

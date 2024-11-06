@@ -15,6 +15,9 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [PHP functions](#php-functions)
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
+- [Features](#features)
+  - [Organized page templates](#organized-page-templates)
+  - [Organized template parts](#organized-template-parts)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -59,7 +62,9 @@ project
 ├── theme
 |   ├── assets
 |   ├── lib
+|   ├── template-parts
 |   ├── templates
+|   ├── vendor
 |   ├── 404.php
 |   ├── archive.php
 |   ├── category.php
@@ -88,6 +93,9 @@ project
 - `theme/`: Contains the main source code for the application.
   - `assets/`: Contains static assets like css, js, images and fonts.
   - `lib/`: Contains php classes, functions, structure related templates, custom components and widgets.
+  - `template-parts/`: Custom template parts.
+  - `templates/`: Custom page templates.
+  - `vendor/`: Vendor php modules.
   - `404.php`: The template for displaying 404 page.
   - `archive.php`: The template for displaying archive pages.
   - `category.php`: The template for displaying category pages.
@@ -190,6 +198,18 @@ function wplite_some_function( string $name, int $age ): string {
 When adding 1st or 3rd party scripts, make sure to enqueue them only for specific templates by using the wordpress [conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/).
 
 > Why? This ensures we only load them into templates where they are needed.
+
+**[⬆ back to top](#table-of-contents)**
+
+## Features
+
+### Organized page templates
+
+Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.fields.yaml).
+
+### Organized template parts
+
+Cusom template parts can be organized into folders, and any CSS or JS files named identically to the corresponding template part PHP file will automatically be enqueued.
 
 **[⬆ back to top](#table-of-contents)**
 

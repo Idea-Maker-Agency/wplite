@@ -12,14 +12,18 @@
  *
  * @return string
  */
-function wplite_get_webp_url( string $name, string $path = '', array $size = [] ): string {
-  if ( !empty( $size ) ) :
-    [ $width, $height ] = $size;
+function wplite_get_webp_url(
+  string $name,
+  string $path = '',
+  array $size = []
+): string {
+  if (! empty($size)) {
+    [$width, $height] = $size;
 
-    $filename = $name .'-'. $width .'x'. $height .'.webp';
-  else :
-    $filename = $name .'.webp';
-  endif;
+    $filename = $name . '-' . $width . 'x' . $height . '.webp';
+  } else {
+    $filename = $name . '.webp';
+  }
 
-  return THEME_DIR_URI .'/assets/lib/img'. $path .'/'. $filename;
+  return THEME_DIR_URI . '/assets/lib/img' . $path . '/' . $filename;
 }

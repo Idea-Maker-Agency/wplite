@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-4">
-        <?php get_template_part( 'lib/templates/structure/footer/footer', 'widget-1' ); ?>
+        <?php get_template_part('lib/templates/structure/footer/footer', 'widget-1') ?>
       </div>
 
       <div class="col-12 col-lg-4">
-        <?php get_template_part( 'lib/templates/structure/footer/footer', 'widget-2' ); ?>
+        <?php get_template_part('lib/templates/structure/footer/footer', 'widget-2') ?>
       </div>
 
       <div class="col-12 col-lg-4">
-        <?php get_template_part( 'lib/templates/structure/footer/footer', 'widget-3' ); ?>
+        <?php get_template_part('lib/templates/structure/footer/footer', 'widget-3') ?>
       </div>
     </div>
   </div>

@@ -12,12 +12,10 @@
 <div
   id="header-menu"
   class="collapse navbar-collapse">
-  <?php
-    wp_nav_menu( [
-      'menu' => 'header-menu',
-      'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
-      'container' => '',
-      'fallback_cb' => false,
-    ]);
-  ?>
+  <?php wp_nav_menu([
+    'menu' => 'header-menu',
+    'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
+    'container' => '',
+    'fallback_cb' => false,
+  ]) ?>
 </div>

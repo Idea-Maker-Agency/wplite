@@ -40,11 +40,11 @@ get_header();
   </div>
   <div class="w-100 h-100 bg-dark bg-opacity-50 position-absolute top-0 start-0 z-n2"></div>
   <img
-    src="<?php echo wplite_get_webp_url( 'hero', '', [ 1920, 1080 ] ) ?>"
+    src="<?php echo wplite_get_webp_url('hero', '', [1920, 1080]) ?>"
     srcset="
-      <?php echo wplite_get_webp_url( 'hero', '', [ 1920, 1080 ] ) ?> 1920w,
-      <?php echo wplite_get_webp_url( 'hero', '', [ 1024, 768 ] ) ?> 1024w,
-      <?php echo wplite_get_webp_url( 'hero', '', [ 320, 500 ] ) ?> 320w"
+      <?php echo wplite_get_webp_url('hero', '', [1920, 1080]) ?> 1920w,
+      <?php echo wplite_get_webp_url('hero', '', [1024, 768]) ?> 1024w,
+      <?php echo wplite_get_webp_url('hero', '', [320, 500]) ?> 320w"
     sizes="(min-width: 1920px) 1920px, (min-width: 1024px) 1024px, 100vw"
     width="1920"
     height="1080"
@@ -60,11 +60,11 @@ get_header();
     <div class="row align-items-center ">
       <div class="col-12 col-lg-6 mb-4 mb-lg-0">
         <img
-          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
+          src="<?php echo wplite_get_webp_url('placeholder', '', [640, 480]) ?>"
           srcset="
-            <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
-            <?php echo wplite_get_webp_url( 'placeholder', '', [ 540, 360 ] ) ?> 540w,
-            <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 230 ] ) ?> 320w"
+            <?php echo wplite_get_webp_url('placeholder', '', [640, 480]) ?> 640w,
+            <?php echo wplite_get_webp_url('placeholder', '', [540, 360]) ?> 540w,
+            <?php echo wplite_get_webp_url('placeholder', '', [320, 230]) ?> 320w"
           sizes="(min-width: 640px) 640px, (min-width: 540px) 540px, 100vw"
           width="640"
           height="480"
@@ -102,7 +102,7 @@ get_header();
     <div class="row row-cols-1 row-cols-lg-3 g-4">
       <div class="feature col">
         <img
-          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+          src="<?php echo wplite_get_webp_url('placeholder', '', [75, 75]) ?>"
           width="75"
           height="75"
           alt="Alt text"
@@ -122,7 +122,7 @@ get_header();
       </div>
       <div class="feature col">
         <img
-          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+          src="<?php echo wplite_get_webp_url('placeholder', '', [75, 75]) ?>"
           width="75"
           height="75"
           alt="Alt text"
@@ -143,7 +143,7 @@ get_header();
       </div>
       <div class="feature col">
         <img
-          src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+          src="<?php echo wplite_get_webp_url('placeholder', '', [75, 75]) ?>"
           width="75"
           height="75"
           alt="Alt text"
@@ -253,7 +253,7 @@ get_header();
           <div class="testimonial-carousel__card">
             <div class="testimonial-carousel__body">
               <img
-                src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+                src="<?php echo wplite_get_webp_url('avatar', '', [75, 75]) ?>"
                 width="75"
                 height="75"
                 alt="Person's Avatar"
@@ -270,7 +270,7 @@ get_header();
           <div class="testimonial-carousel__card">
             <div class="testimonial-carousel__body">
               <img
-                src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+                src="<?php echo wplite_get_webp_url('avatar', '', [75, 75]) ?>"
                 width="75"
                 height="75"
                 alt="Person's Avatar"
@@ -287,7 +287,7 @@ get_header();
           <div class="testimonial-carousel__card">
             <div class="testimonial-carousel__body">
               <img
-                src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+                src="<?php echo wplite_get_webp_url('avatar', '', [75, 75]) ?>"
                 width="75"
                 height="75"
                 alt="Person's Avatar"

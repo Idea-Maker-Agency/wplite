@@ -20,9 +20,9 @@ class CustomFields
    */
   public function init()
   {
-    add_action('add_meta_boxes', [&$this, 'addMetaBoxes']);
-    add_action('save_post', [&$this, 'handleSave'], 10, 2);
-    add_action('admin_enqueue_scripts', [&$this, 'enqueueAssets']);
+    add_action('add_meta_boxes', [$this, 'addMetaBoxes']);
+    add_action('save_post', [$this, 'handleSave'], 10, 2);
+    add_action('admin_enqueue_scripts', [$this, 'enqueueAssets']);
   }
 
   /**
@@ -280,7 +280,7 @@ class CustomFields
 
     if (wp_is_post_revision($post_id)) return;
 
-    if (! count($this->fields)) return;
+    if (empty($this->fields)) return;
 
     foreach ($this->fields as $group) {
       if (! empty($group['fields'])) {

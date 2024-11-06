@@ -5,12 +5,12 @@
  *
  * @since 1.0.0
  *
- * @param int    $length       The maximum number of words.
- *
+ * @param int $length The maximum number of words.
  * @return int
  */
-add_filter( 'excerpt_length', 'wplite_excerpt_length', 999 );
-function wplite_excerpt_length( int $length ): int {
+add_filter('excerpt_length', 'wplite_excerpt_length', 999);
+function wplite_excerpt_length(int $length): int
+{
   return 14;
 }
 
@@ -19,11 +19,11 @@ function wplite_excerpt_length( int $length ): int {
  *
  * @since 1.0.0
  *
- * @param string    $more       The string shown within the more link.
- *
+ * @param string $more The string shown within the more link.
  * @return string
  */
-add_filter( 'excerpt_more', 'wplite_excerpt_more', 999 );
-function wplite_excerpt_more( string $more ): string {
+add_filter('excerpt_more', 'wplite_excerpt_more', 999);
+function wplite_excerpt_more(string $more): string
+{
   return '...';
 }

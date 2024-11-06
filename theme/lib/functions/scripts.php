@@ -4,11 +4,10 @@
  * Register vendor scripts.
  *
  * @since 1.0.0
- *
- * @return void
  */
-add_action( 'wp_enqueue_scripts', 'wplite_vendor_scripts', 10 );
-function wplite_vendor_scripts(): void {
+add_action('wp_enqueue_scripts', 'wplite_vendor_scripts', 10);
+function wplite_vendor_scripts()
+{
   $scripts = [
     'bootstrap' => [
       'version' => '5.3.3',
@@ -18,32 +17,26 @@ function wplite_vendor_scripts(): void {
     ],
   ];
 
-  foreach ( $scripts as $name => $args ) :
-    $handle = 'wplite-'. $name;
-    $version = isset( $args['version'] ) && $args['version'] ? $args['version'] : '1.0.0';
-    $dependencies = isset( $args['dependencies'] ) && $args['dependencies'] ? $args['dependencies'] : [];
-    $media = isset( $args['media'] ) && $args['media'] ? $args['media'] : 'all';
-    $minified = isset( $args['minified'] ) && $args['minified'] ? $args['minified'] : false;
-    $strategy = isset( $args['strategy'] ) && $args['strategy'] ? $args['strategy'] : '';
-    $in_footer = isset( $args['in_footer'] ) && $args['in_footer'] ? $args['in_footer'] : true;
-    $enqueue = isset( $args['enqueue'] ) && $args['enqueue'] ? $args['enqueue'] : false;
+  if (! empty($scripts)) {
+    foreach ($scripts as $name => $args) {
+      $handle = 'wplite-' . $name;
+      $version = $args['version'] ?? '1.0.0';
+      $dependencies = $args['dependencies'] ?? [];
+      $minified = $args['minified'] ?? false;
+      $enqueue = $args['enqueue'] ?? false;
 
-    $suffix = $minified ? '.min' : '';
-    $src = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
+      $suffix = $minified ? '.min' : '';
+      $src = THEME_DIR_URI . '/assets/vendor/' . $name . '/js/' . $name . $suffix .'.js';
+      $args = [
+        'strategy' => $args['strategy'] ?? '',
+        'in_footer' => $args['in_footer'] ?? true,
+      ];
 
-    wp_register_script(
-      $handle,
-      $src,
-      $dependencies,
-      $version,
-      [
-        'strategy' => $strategy,
-        'in_footer' => $in_footer,
-      ]
-    );
+      wp_register_script($handle, $src, $dependencies, $version, $args);
 
-    if ( $enqueue ) :
-      wp_enqueue_script( $handle );
-    endif;
-  endforeach;
+      if ($enqueue) {
+        wp_enqueue_script($handle);
+      }
+    }
+  }
 }

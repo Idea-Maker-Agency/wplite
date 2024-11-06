@@ -16,11 +16,11 @@ get_header();
     <div class="row justify-content-center text-center">
       <div class="col-12 col-md-8 col-lg-6">
         <h1 class="fw-bold lh-1 display-1">
-          <?php _e( '404', THEME_TEXT_DOMAIN ) ?>
+          <?php _e('404', THEME_TEXT_DOMAIN) ?>
         </h1>
 
         <p>
-          <?php _e( 'Page not found', THEME_TEXT_DOMAIN ) ?>
+          <?php _e('Page not found', THEME_TEXT_DOMAIN) ?>
         </p>
 
         <a

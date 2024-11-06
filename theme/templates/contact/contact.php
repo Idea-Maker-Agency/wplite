@@ -10,7 +10,7 @@
 
 get_header();
 
-$admin_email = get_option( 'admin_email' );
+$admin_email = get_option('admin_email');
 ?>
 
 <section class="py-5">
@@ -23,11 +23,11 @@ $admin_email = get_option( 'admin_email' );
           Either fill out the form or email us at <a href="mailto:<?php echo $admin_email ?>"><?php echo $admin_email ?></a>
         </p>
 
-        <?php if ( class_exists( 'WPCF7' ) ) : ?>
-          <?php if ( $form = wpcf7_get_contact_form_by_title( 'Contact Us' ) ) : ?>
-            <?php echo do_shortcode( '[contact-form-7 id="'. $form->id() .'"]' ) ?>
-          <?php endif; ?>
-        <?php endif; ?>
+        <?php if (class_exists('WPCF7')) { ?>
+          <?php if ($form = wpcf7_get_contact_form_by_title('Contact Us')) { ?>
+            <?php echo do_shortcode('[contact-form-7 id="' . $form->id() . '"]') ?>
+          <?php } ?>
+        <?php } ?>
       </div>
     </div>
   </div>

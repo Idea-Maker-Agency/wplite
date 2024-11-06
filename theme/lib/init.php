@@ -25,9 +25,9 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/nav-menu.php';
   require_once THEME_DIR_PATH . '/lib/functions/widgets.php';
 
-  if ( class_exists( 'WPCF7' ) ) :
+  if (class_exists('WPCF7')) {
     require_once THEME_DIR_PATH . '/lib/functions/contact-form-7.php';
-  endif;
+  }
 }
 
 wplite_init();

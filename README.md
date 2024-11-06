@@ -11,8 +11,8 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [Key Files and Directories](#key-files-and-directories)
 - [Components](#components)
 - [Style Guide](#style-guide)
-  - [HTML elements](#html-elements)
-  - [PHP functions](#php-functions)
+  - [HTML](#html)
+  - [PHP](#php)
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
@@ -142,7 +142,7 @@ The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to e
 
 A well-defined style guide is essential for maintaining consistency, readability, and quality across your project's codebase. Here are some of our recommended style guide for the scaffold:
 
-#### HTML elements
+#### HTML
 
 If an HTML element has multiple attributes, put every attributes into new line.
 
@@ -157,15 +157,19 @@ If an HTML element has multiple attributes, put every attributes into new line.
 </a>
 ```
 
-#### PHP functions
+#### PHP
+
+We adhere to the [PHP-FIG's PER Coding Style 2.0](https://www.php-fig.org/per/coding-style/) for PHP development, in line with widely recognized best practices and industry standards.
 
 Prefix php functions, hooks or filters.
 
 > Why? Prefixing PHP functions helps avoid naming conflicts, improves code organization, and makes it easier to identify which functions belong to your custom code or specific libraries.
 
 ```php
-add_action( 'some_hook', 'wplite_some_hook' );
-function wplite_some_hook() {
+add_action('some_hook', 'wplite_some_hook');
+function wplite_some_hook()
+{
+  //...
 }
 ```
 
@@ -179,12 +183,12 @@ Identify the types for function parameters and return values. Also add header co
  *
  * @since 1.0.0
  *
- * @param string    $name       The person's name.
- * @param int       $age        The person's age.
- *
+ * @param string $name The person's name.
+ * @param int $age The person's age.
  * @return string
  */
-function wplite_some_function( string $name, int $age ): string {
+function wplite_some_function(string $name, int $age): string
+{
   return $name .' is '. $age .'yrs old.';
 }
 ```

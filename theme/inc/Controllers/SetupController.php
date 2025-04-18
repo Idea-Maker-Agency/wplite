@@ -20,6 +20,8 @@ class SetupController
     add_action('after_setup_theme', [self::class, 'setup']);
     add_action('after_switch_theme', [self::class, 'generate_initial_pages']);
 
+    add_action('widgets_init', [self::class, 'register_sidebars']);
+
     add_filter('excerpt_length', [self::class, 'excerpt_length'], 999);
     add_filter('excerpt_more', [self::class, 'excerpt_more'], 999);
   }
@@ -115,6 +117,24 @@ class SetupController
     }
 
     update_option('show_on_front', 'page');
+  }
+
+  /**
+   * Register custom sidebars.
+   *
+   * @return void
+   */
+  public static function register_sidebars(): void
+  {
+    register_sidebar([
+      'id' => 'primary-sidebar',
+      'name' => __('Primary Sidebar', THEME_TEXT_DOMAIN),
+      'description' => __('Widgets in this area will be shown on posts sidebar.', THEME_TEXT_DOMAIN),
+      'before_widget' => '<div id="%1$s" class="card mb-3 mb-lg-4 %2$s"><div class="card-body">',
+      'after_widget' => '</div></div>',
+      'before_title' => '<h2 class="card-title mb-3 fs-4">',
+      'after_title' => '</h2>',
+    ]);
   }
 
   /**

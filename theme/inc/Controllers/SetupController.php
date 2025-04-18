@@ -17,7 +17,54 @@ class SetupController
    */
   public static function init(): void
   {
+    add_action('after_setup_theme', [self::class, 'setup']);
     add_action('after_switch_theme', [self::class, 'generate_initial_pages']);
+
+    add_filter('excerpt_length', [self::class, 'excerpt_length'], 999);
+    add_filter('excerpt_more', [self::class, 'excerpt_more'], 999);
+  }
+
+  /**
+   * Setup.
+   *
+   * @return void
+   */
+  public static function setup(): void
+  {
+    add_theme_support('post-thumbnails');
+    add_theme_support('widgets');
+
+    add_image_size(
+      'thumbnail',
+      get_option('thumbnail_size_w', 320),
+      get_option('thumbnail_size_h', 240),
+      true
+    );
+    add_image_size(
+      'medium',
+      get_option('medium_size_w', 640),
+      get_option('medium_size_h', 480),
+      true
+    );
+    add_image_size(
+      'large',
+      get_option('large_size_w', 1024),
+      get_option('large_size_h', 768),
+      true
+    );
+
+    add_image_size(
+      'card-image',
+      420,
+      320,
+      ['center', 'center']
+    );
+    add_image_size(
+      'featured-image',
+      640,
+      320,
+      ['center', 'center']
+    );
   }
 
   /**
@@ -68,5 +115,29 @@ class SetupController
     }
 
     update_option('show_on_front', 'page');
+  }
+
+  /**
+   * Filters the maximum number of words in a post excerpt.
+   *
+   * @param int     $length   The maximum number of words.
+   *
+   * @return int
+   */
+  public static function excerpt_length(int $length): int
+  {
+    return 14;
+  }
+
+  /**
+   * Filters the string in the “more” link displayed after a trimmed excerpt.
+   *
+   * @param string    $more   The string shown within the more link.
+   *
+   * @return string
+   */
+  function excerpt_more(string $more): string
+  {
+    return '...';
   }
 }

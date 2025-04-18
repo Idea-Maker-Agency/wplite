@@ -90,6 +90,8 @@ class TemplateController
 
     $custom_fields->set_fields($load_fields);
     $custom_fields->init();
+
+    remove_post_type_support('page', 'editor');
   }
 
   /**

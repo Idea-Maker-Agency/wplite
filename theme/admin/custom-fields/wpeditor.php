@@ -1,0 +1,20 @@
+<?php
+global $post;
+
+$name = $args['field']['name'] ?? '';
+
+if (! empty($args['parent_name'])) {
+  $name = "{$args['parent_name']}_{$name}";
+}
+
+wp_editor(
+  html_entity_decode($post->__get($name)),
+  "id_field_{$name}",
+  [
+    'media_buttons' => false,
+    'textarea_name' => $name,
+    'textarea_rows' => 10,
+    'teeny' => true,
+  ]
+);
+?>

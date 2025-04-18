@@ -1,0 +1,12 @@
+{
+  "name": "ideamaker/wplite",
+  "type": "wordpress-theme",
+  "autoload": {
+    "psr-4": {
+      "WPLite\\": "inc/"
+    }
+  },
+  "require": {
+    "mustangostang/spyc": "^0.6.3"
+  }
+}

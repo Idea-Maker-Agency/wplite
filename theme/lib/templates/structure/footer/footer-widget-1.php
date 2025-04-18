@@ -1,5 +1,5 @@
 <a
-  href="<?php echo site_url() ?>"
+  href="<?= site_url() ?>"
   class="footer-logo fs-2 mb-4 d-block">
   WPLite
 </a>

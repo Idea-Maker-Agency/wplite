@@ -10,24 +10,24 @@ if (is_null($post)) return;
 
 <article
   <?php post_class('article-card card h-100', $post) ?>
-  id="post-<?php echo $post->ID ?>"
-  aria-label="<?php echo get_the_title($post) ?>"
+  id="post-<?= $post->ID ?>"
+  aria-label="<?= get_the_title($post) ?>"
   itemtype="https://schema.org/CreativeWork"
   itemscope>
   <a
-    href="<?php echo get_permalink($post) ?>"
+    href="<?= get_permalink($post) ?>"
     class="card-img-top">
     <?php if (has_post_thumbnail($post)) { ?>
       <img
-        src="<?php echo get_the_post_thumbnail_url($post->ID, 'card-image') ?>"
+        src="<?= get_the_post_thumbnail_url($post->ID, 'card-image') ?>"
         width="420"
         height="320"
         srcset="
-          <?php echo get_the_post_thumbnail_url($post->ID, 'card-image') ?> 1024w,
-          <?php echo get_the_post_thumbnail_url($post->ID, 'thumbnail') ?> 320w
+          <?= get_the_post_thumbnail_url($post->ID, 'card-image') ?> 1024w,
+          <?= get_the_post_thumbnail_url($post->ID, 'thumbnail') ?> 320w
         "
         sizes="(min-width: 420px) 420px, 100vw"
-        alt="<?php echo $post->post_title ?>"
+        alt="<?= $post->post_title ?>"
         loading="lazy"
         decoding="async"
         class="img-fluid" />
@@ -51,7 +51,7 @@ if (is_null($post)) return;
           y="50%"
           fill="#dee2e6"
           dy=".3em">
-          <?php echo get_the_title($post) ?>
+          <?= get_the_title($post) ?>
         </text>
       </svg>
     <?php } ?>
@@ -64,26 +64,26 @@ if (is_null($post)) return;
       class="card-title"
       itemprop="headline">
       <a
-        href="<?php echo get_permalink($post) ?>"
+        href="<?= get_permalink($post) ?>"
         class="card-title-link"
         rel="bookmark">
-        <?php echo get_the_title($post) ?>
+        <?= get_the_title($post) ?>
       </a>
     </h3>
 
     <p class="card-meta">
-      <time datetime="<?php echo get_the_date('Y-m-d h:i', $post) ?>">
-        Posted on <?php echo get_the_date('', $post) ?>
+      <time datetime="<?= get_the_date('Y-m-d h:i', $post) ?>">
+        Posted on <?= get_the_date('', $post) ?>
       </time>
     </p>
 
-    <?php echo wpautop(get_the_excerpt($post)) ?>
+    <?= wpautop(get_the_excerpt($post)) ?>
 
     <a
-      href="<?php echo get_permalink($post) ?>"
+      href="<?= get_permalink($post) ?>"
       class="card-link"
       rel="noopener noreferrer"
-      alt="Read more about <?php echo get_the_title($post) ?>">
+      alt="Read more about <?= get_the_title($post) ?>">
       Read More
       <svg
         xmlns="http://www.w3.org/2000/svg"

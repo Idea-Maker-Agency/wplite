@@ -14,7 +14,7 @@ get_header();
 <section class="py-5">
   <div class="container">
     <h1 class="mb-5 fw-bold text-center">
-      <?php echo get_the_title(get_option('page_for_posts', true)) ?>
+      <?= get_the_title(get_option('page_for_posts', true)) ?>
     </h1>
 
     <?php if (have_posts()) { ?>

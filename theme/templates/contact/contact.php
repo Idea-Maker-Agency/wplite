@@ -20,12 +20,12 @@ $admin_email = get_option('admin_email');
         <h1 class="fw-bold">Contact Us</h1>
         <p class="mb-4 mb-lg-5">
           Need to get in touch with us? <br/>
-          Either fill out the form or email us at <a href="mailto:<?php echo $admin_email ?>"><?php echo $admin_email ?></a>
+          Either fill out the form or email us at <a href="mailto:<?= $admin_email ?>"><?= $admin_email ?></a>
         </p>
 
         <?php if (class_exists('WPCF7')) { ?>
           <?php if ($form = wpcf7_get_contact_form_by_title('Contact Us')) { ?>
-            <?php echo do_shortcode('[contact-form-7 id="' . $form->id() . '"]') ?>
+            <?= do_shortcode('[contact-form-7 id="' . $form->id() . '"]') ?>
           <?php } ?>
         <?php } ?>
       </div>

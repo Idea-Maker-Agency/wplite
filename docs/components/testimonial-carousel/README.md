@@ -18,7 +18,7 @@ Use the `wplite:testimonial-carousel` VSCode snippet to quickly insert testimoni
       <div class="testimonial-carousel__card">
         <div class="testimonial-carousel__body">
           <img
-            src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+            src="<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
             width="75"
             height="75"
             alt="Person's Avatar"
@@ -35,7 +35,7 @@ Use the `wplite:testimonial-carousel` VSCode snippet to quickly insert testimoni
       <div class="testimonial-carousel__card">
         <div class="testimonial-carousel__body">
           <img
-            src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+            src="<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
             width="75"
             height="75"
             alt="Person's Avatar"
@@ -52,7 +52,7 @@ Use the `wplite:testimonial-carousel` VSCode snippet to quickly insert testimoni
       <div class="testimonial-carousel__card">
         <div class="testimonial-carousel__body">
           <img
-            src="<?php echo wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
+            src="<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>"
             width="75"
             height="75"
             alt="Person's Avatar"

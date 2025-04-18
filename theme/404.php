@@ -24,7 +24,7 @@ get_header();
         </p>
 
         <a
-          href="<?php echo site_url() ?>"
+          href="<?= site_url() ?>"
           class="btn btn-outline-primary mt-3"
           role="button"
           alt="Return Home"

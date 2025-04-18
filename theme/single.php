@@ -18,15 +18,15 @@ get_header();
         <div class="row">
           <main class="col-12 col-lg-9 pe-lg-4 pe-xl-5 mb-5 mb-lg-0">
             <article
-              id="post-<?php echo get_the_ID() ?>"
-              aria-label="<?php echo get_the_title() ?>"
+              id="post-<?= get_the_ID() ?>"
+              aria-label="<?= get_the_title() ?>"
               itemtype="https://schema.org/CreativeWork"
               itemscope>
               <header class="mb-4">
                 <h1
                   class="fw-bold"
                   itemprop="headline">
-                  <?php echo get_the_title() ?>
+                  <?= get_the_title() ?>
                 </h1>
 
                 <dl class="mb-0 d-flex align-items-center">
@@ -34,8 +34,8 @@ get_header();
                   <dd class="ms-1 mb-0">
                     <time
                       itemprop="datePublished"
-                      datetime="<?php echo get_the_date('Y-m-d') ?>">
-                      <?php echo get_the_date() ?>
+                      datetime="<?= get_the_date('Y-m-d') ?>">
+                      <?= get_the_date() ?>
                     </time>
                   </dd>
                 </dl>
@@ -43,7 +43,7 @@ get_header();
 
               <div itemprop="text">
                 <?php if (has_post_thumbnail()) { ?>
-                  <?php echo get_the_post_thumbnail(get_the_ID(), 'featured-image', ['class' => 'mb-4 rounded-4']) ?>
+                  <?= get_the_post_thumbnail(get_the_ID(), 'featured-image', ['class' => 'mb-4 rounded-4']) ?>
                 <?php } else { ?>
                   <svg
                     width="640"
@@ -64,23 +64,23 @@ get_header();
                       x="50%"
                       y="50%"
                       fill="#dee2e6"
-                      dy=".3em"><?php echo get_the_title() ?></text>
+                      dy=".3em"><?= get_the_title() ?></text>
                   </svg>
                 <?php } ?>
 
-                <?php echo wpautop(get_the_content()) ?>
+                <?= wpautop(get_the_content()) ?>
               </div>
 
               <footer class="mt-4">
                 <div class="d-flex align-items-center column-gap-2 small">
-                  <?php echo get_avatar(get_the_author_meta('ID'), 48, '', '', ['class' => 'rounded-circle']) ?>
+                  <?= get_avatar(get_the_author_meta('ID'), 48, '', '', ['class' => 'rounded-circle']) ?>
 
                   <dl class="mb-0">
                     <dt>Posted by</dt>
                     <dd
                       class="mb-0"
                       itemprop="author">
-                      <?php echo get_the_author() ?>
+                      <?= get_the_author() ?>
                     </dd>
                   </dl>
                 </div>

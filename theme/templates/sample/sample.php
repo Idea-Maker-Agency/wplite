@@ -19,24 +19,24 @@ $admin_email = get_option('admin_email');
       <div class="col-12 col-md-8 col-lg-6">
         <?php if ($sample_text = get_post_meta($post->ID, 'sample_text', true)) { ?>
           <h1 class="fw-bold">
-            <?php echo $sample_text ?>
+            <?= $sample_text ?>
           </h1>
         <?php } ?>
 
         <?php if ($sample_select = get_post_meta($post->ID, 'sample_select', true)) { ?>
-          <p>Sample selected option: <?php echo $sample_select ?></p>
+          <p>Sample selected option: <?= $sample_select ?></p>
         <?php } ?>
 
         <?php if ($sample_checkbox = get_post_meta($post->ID, 'sample_checkbox', true)) { ?>
-          <p>Sample checked: <?php echo $sample_checkbox ?></p>
+          <p>Sample checked: <?= $sample_checkbox ?></p>
         <?php } ?>
 
         <?php if ($sample_wpeditor = get_post_meta($post->ID, 'sample_wpeditor', true)) { ?>
-          <?php echo wpautop($sample_wpeditor) ?>
+          <?= wpautop($sample_wpeditor) ?>
         <?php } ?>
 
         <?php if ($sample_image = get_post_meta($post->ID, 'sample_image', true)) { ?>
-          <?php echo wp_get_attachment_image($sample_image, 'thumbnail') ?>
+          <?= wp_get_attachment_image($sample_image, 'thumbnail') ?>
         <?php } ?>
       </div>
     </div>

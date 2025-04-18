@@ -17,7 +17,7 @@ class Router
   {
     if ('home' === $path) {
       return get_home_url();
-    } else if ('forgot-password' === $path) {
+    } elseif ('forgot-password' === $path) {
       return wp_lostpassword_url();
     } else {
       $page = get_page_by_path($path);

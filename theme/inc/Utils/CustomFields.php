@@ -51,7 +51,7 @@ class CustomFields
   /**
    * Set the custom fields.
    *
-   * @param array $fields Array of custom fields.
+   * @param array     $fields       The array of custom fields.
    *
    * @since 1.0.0
    */
@@ -119,7 +119,7 @@ class CustomFields
               <?php $this->render_fields($post, $fields, $name) ?>
             </div>
           </div>
-        <?php } else if ('select' === $type) { ?>
+        <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('admin/custom-fields/select', null, [
             'field' => $field,
             'parent_name' => $parent_name,
@@ -159,8 +159,8 @@ class CustomFields
   /**
    * Render the meta box fields.
    *
-   * @param WP_Post $post The post object.
-   * @param array $args The array of meta box arguments.
+   * @param WP_Post   $post     The post object.
+   * @param array     $args     The array of meta box arguments.
    *
    * @since 1.0.0
    */
@@ -180,10 +180,33 @@ class CustomFields
   }
 
   /**
+   * Get field value.
+   *
+   * @param string  $name           The field name.
+   * @param string  $fallback_value The fallback value.
+   * @param WP_Post $wp_post        The post object.
+   *
+   * @return mixed
+   */
+  public static function get_field(
+    string $name,
+    mixed $fallback_value = null,
+    WP_Post $wp_post = null
+  ): mixed {
+    global $post;
+
+    if (! $wp_post) {
+      $wp_post = $post;
+    }
+
+    return $wp_post->__get($name) ?: $fallback_value;
+  }
+
+  /**
    * Save field values.
    *
-   * @param int     $post_id  The post ID.
-   * @param array   $fields   The array of fields.
+   * @param int     $post_id        The post ID.
+   * @param array   $fields         The array of fields.
    *
    * @return void
    */
@@ -217,8 +240,8 @@ class CustomFields
   /**
    * Handle meta box fields saving.
    *
-   * @param int $post_id The post ID.
-   * @param WP_Post $post The post object.
+   * @param int     $post_id      The post ID.
+   * @param WP_Post $post         The post object.
    *
    * @since 1.0.0
    */

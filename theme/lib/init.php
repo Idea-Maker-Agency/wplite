@@ -24,6 +24,7 @@ function wplite_init(): void {
     require_once THEME_DIR_PATH . '/lib/functions/contact-form-7.php';
   }
 
+  WPLite\Controllers\SetupController::init();
   WPLite\Controllers\TemplateController::init();
 }
 

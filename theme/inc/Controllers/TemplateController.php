@@ -27,6 +27,8 @@ class TemplateController
     add_filter('single_template', [self::class, 'load_single_template'], 10, 3);
     add_filter('singular_template', [self::class, 'load_single_template'], 10, 1);
 
+    add_filter('archive_template', [self::class, 'load_archive_template'], 10, 1);
+
     add_action('admin_init', [self::class, 'init_custom_fields']);
     add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
 
@@ -74,24 +76,39 @@ class TemplateController
    *
    * @return string
    */
-  public static function load_single_template(string $template, string $type): string
+  public static function load_single_template(string $template): string
   {
     global $post;
 
     if ('post' === $post->post_type) {
       $view_template = locate_template("templates/blog-post/blog-post.php");
-    } else {
-      $check_dir = is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}");
+    } elseif (is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}")) {
+      // E.g. `templates/single-<post_type>/<slug>.php`
+      $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
 
-      if ($check_dir) {
-        // E.g. `templates/single-<post_type>/<slug>.php`
-        $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
-
-        if (! $view_template) {
-          // E.g. `templates/single-<post_type>/single-<post_type>.php`
-          $view_template = locate_template("templates/single-{$post->post_type}/single-{$post->post_type}.php");
-        }
+      if (! $view_template) {
+        // E.g. `templates/single-<post_type>/single-<post_type>.php`
+        $view_template = locate_template("templates/single-{$post->post_type}/single-{$post->post_type}.php");
       }
+    }
+
+    return $view_template ?: $template;
+  }
+
+  /**
+   * Loads custom archive templates file.
+   *
+   * @param string    $template   Path to the template.
+   *
+   * @return string
+   */
+  public static function load_archive_template(string $template): string
+  {
+    $post_type = get_queried_object()->name ?? '';
+
+    if (is_dir(THEME_DIR_PATH . "/templates/{$post_type}")) {
+      // E.g. `templates/<post_type>/<post_type>.php`
+      $view_template = locate_template("templates/{$post_type}/{$post_type}.php");
     }
 
     return $view_template ?: $template;

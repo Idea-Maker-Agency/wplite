@@ -20,7 +20,10 @@ class TemplateController
     add_filter('page_template', [self::class, 'load_template'], 10, 3);
     add_action('admin_init', [self::class, 'init_custom_fields']);
     add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
-    add_action('wp_enqueue_scripts', [self::class, 'page_template_resources'], 10);
+
+    add_filter('get_the_archive_title', [self::class, 'archive_title_output'], 10, 3);
+    add_filter('get_search_form', [self::class, 'search_form_output'], 10, 2);
+    add_filter('paginate_links_output', [self::class, 'paginate_links_output'], 10, 2);
   }
 
   /**
@@ -143,32 +146,67 @@ class TemplateController
   }
 
   /**
-   * Enqueue page template resources.
+   * Filters the archive title.
    *
    * @since 1.0.0
+   *
+   * @param string $title Archive title to be displayed.
+   * @param string $orig_title Archive title without prefix.
+   * @param string $prefix Archive title prefix.
+   *
+   * @return string
    */
-  public static function page_template_resources()
-  {
-    $templates = wp_get_theme()->get_page_templates();
-    $templates = array_filter($templates, function(string $value, string $key) {
-      return is_page_template($key);
-    }, ARRAY_FILTER_USE_BOTH);
-
-    if (! empty($templates)) {
-      foreach ($templates as $key => $value) {
-        $handle = 'wplite-' . strtolower(str_replace(' ', '-', $value));
-
-        $page_template_css = str_replace('.php', '.css', $key);
-        $page_template_js = str_replace('.php', '.js', $key);
-
-        if (file_exists(get_theme_file_path($page_template_css))) {
-          wp_enqueue_style($handle, get_theme_file_uri($page_template_css), [], THEME_VERSION, 'all');
-        }
-
-        if (file_exists(get_theme_file_path($page_template_js))) {
-          wp_enqueue_script($handle, get_theme_file_uri($page_template_js), [], THEME_VERSION, true);
-        }
-      }
+  function archive_title_output(
+    string $title,
+    string $orig_title,
+    string $prefix
+  ): string {
+    if (! empty($prefix)) {
+      return sprintf(
+        _x('%1$s %2$s', 'archive title'),
+        '<span class="mb-2 fs-6 fw-normal text-uppercase d-block">' . preg_replace('/:$/', '', $prefix) . '</span>',
+        $orig_title
+      );
     }
+
+    return $orig_title;
+  }
+
+  /**
+   * Filters the HTML output of the search form.
+   *
+   * @param string $form The search form HTML output.
+   * @param array $args The array of arguments for building the search form.
+   *
+   * @return string
+   */
+  public static function search_form_output(string $form, array $args): string
+  {
+    $form = str_replace('type="text"', 'type="text" class="form-control"', $form);
+    $form = str_replace('type="submit"', 'type="submit" class="btn btn-secondary mt-2"', $form);
+
+    return $form;
+  }
+
+  /**
+   * Filters the HTML output of paginated links for archives.
+   *
+   * @since 1.0.0
+   *
+   * @param string    $output   HTML output.
+   * @param array     $args     An array of arguments. See `paginate_links()` for information on accepted arguments.
+   *
+   * @return string
+   */
+  public static function paginate_links_output(string $output, array $args): string
+  {
+    if ('list' === $args['type']) {
+      $output = str_replace("<ul class='page-numbers'", "<ul class='pagination mb-0 justify-content-center'", $output);
+      $output = str_replace("<li", "<li class='page-item'", $output);
+      $output = str_replace("page-numbers", "page-link", $output);
+      $output = str_replace("current", "active", $output);
+    }
+
+    return $output;
   }
 }

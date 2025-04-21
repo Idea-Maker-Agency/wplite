@@ -1,0 +1,41 @@
+- group: "Hero Banner"
+  fields:
+    - name: "hero_banner_bg"
+      type: "image"
+      label: "Background image"
+
+    - name: "hero_banner_title"
+      type: "text"
+      label: "Title"
+
+    - name: "hero_banner_content"
+      type: "wpeditor"
+      label: "Content"
+
+    - name: "hero_banner_cta_primary"
+      type: "group"
+      label: "Primary CTA"
+      fields:
+        - name: "text"
+          type: "text"
+          label: "Text"
+          width: 50
+
+        - name: "url"
+          type: "url"
+          label: "URL"
+          width: 50
+
+    - name: "hero_banner_cta_secondary"
+      type: "group"
+      label: "Secondary CTA"
+      fields:
+        - name: "text"
+          type: "text"
+          label: "Text"
+          width: 50
+
+        - name: "url"
+          type: "url"
+          label: "URL"
+          width: 50

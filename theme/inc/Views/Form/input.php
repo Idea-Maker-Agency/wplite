@@ -14,6 +14,10 @@ $form_value = $args['form_value'] ?? '';
     for="id_<?= $name ?>"
     class="form-label">
     <?= $label ?>
+
+    <?php if ($required) { ?>
+      <span class="text-danger">*</span>
+    <?php } ?>
   </label>
 <?php } ?>
 

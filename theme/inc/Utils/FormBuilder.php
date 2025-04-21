@@ -100,7 +100,7 @@ class FormBuilder extends Form
         <fieldset>
           <?php
           foreach ($this->fields as $name => $field) {
-            $args = array_merge($field['attrs'] ?? [], [
+            $args = array_merge($field['args'] ?? [], [
               'name' => $name,
               'label' => $field['label'],
               'type' => $field['type'],
@@ -138,6 +138,7 @@ class FormBuilder extends Form
     </form>
   <?php
 
+    $this->clear_values();
     $this->clear_errors();
   }
 }

@@ -20,6 +20,8 @@ function wplite_init(): void {
   if (class_exists('WPCF7')) {
     WPLite\Controllers\ContactForm7Controller::init();
   }
+
+  WPLite\Controllers\Form\LoginFormController::init();
 }
 
 wplite_init();

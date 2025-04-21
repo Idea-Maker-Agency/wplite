@@ -103,6 +103,10 @@ class SetupController
         'title' => 'Login',
         'slug'  => 'login'
       ],
+      [
+        'title' => 'Sign Up',
+        'slug'  => 'sign-up'
+      ],
     ];
 
     foreach ($pages as $page) {

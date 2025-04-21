@@ -22,6 +22,7 @@ function wplite_init(): void {
   }
 
   WPLite\Controllers\Form\LoginFormController::init();
+  WPLite\Controllers\Form\SignUpFormController::init();
 }
 
 wplite_init();

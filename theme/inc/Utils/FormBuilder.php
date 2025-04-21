@@ -77,6 +77,14 @@ class FormBuilder extends Form
   public function render(): void
   {
   ?>
+    <?php if ($non_field_error = $this->get_error('non_field')) { ?>
+      <div
+        class="alert alert-danger"
+        role="alert">
+        <?= $non_field_error ?>
+      </div>
+    <?php } ?>
+
     <form
       action="<?= $this->action ?>"
       name="<?= $this->name ?>"
@@ -124,7 +132,9 @@ class FormBuilder extends Form
 
       <button
         type="submit"
-        class="btn btn-primary"><?= __('Submit', THEME_TEXT_DOMAIN) ?></button>
+        class="btn btn-primary">
+        <?= __('Submit', THEME_TEXT_DOMAIN) ?>
+      </button>
     </form>
   <?php
 

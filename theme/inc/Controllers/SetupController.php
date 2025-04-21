@@ -156,7 +156,7 @@ class SetupController
    *
    * @return string
    */
-  function excerpt_more(string $more): string
+  public static function excerpt_more(string $more): string
   {
     return '...';
   }

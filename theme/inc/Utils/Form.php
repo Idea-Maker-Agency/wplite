@@ -21,6 +21,13 @@ class Form
   protected array $values = [];
 
   /**
+   * Form messages array.
+   *
+   * @access protected
+   */
+  protected array $messages = [];
+
+  /**
    * Form errors array.
    *
    * @access protected
@@ -89,6 +96,73 @@ class Form
   }
 
   /**
+   * Add form message.
+   *
+   * @param string    $message  The message message.
+   * @param string    $field    The form field name. (Optional)
+   *
+   * @return void
+   */
+  public function add_message(string $message, string $field = ''): void
+  {
+    if ($field) {
+      $this->messages[$field] = __($message, THEME_TEXT_DOMAIN);
+    } else {
+      $this->messages[] = __($message, THEME_TEXT_DOMAIN);
+    }
+
+    $_SESSION["form_{$this->name}"]['messages'] = $this->messages;
+  }
+
+  /**
+   * Check if form has messages.
+   *
+   * @return bool
+   */
+  public function has_messages(): bool
+  {
+    return ! empty($this->messages);
+  }
+
+  /**
+   * Get form field message.
+   *
+   * @param string    $field    The form field name.
+   *
+   * @return mixed
+   */
+  public function get_message(string $field): mixed
+  {
+    $value = $_SESSION["form_{$this->name}"]['messages'][$field] ?? '';
+
+    return $value;
+  }
+
+  /**
+   * Get form messages.
+   *
+   * @return array
+   */
+  public function get_messages(): array
+  {
+    $messages = $_SESSION["form_{$this->name}"]['messages'] ?? [];
+
+    return $messages;
+  }
+
+  /**
+   * Clear form messages.
+   *
+   * @return void
+   */
+  public function clear_messages(): void
+  {
+    $this->messages = [];
+
+    unset($_SESSION["form_{$this->name}"]['messages']);
+  }
+
+  /**
    * Add form error.
    *
    * @param string    $message  The error message.
@@ -96,7 +170,7 @@ class Form
    *
    * @return void
    */
-  protected function add_error(string $message, string $field = ''): void
+  public function add_error(string $message, string $field = ''): void
   {
     if ($field) {
       $this->errors[$field] = __($message, THEME_TEXT_DOMAIN);
@@ -148,7 +222,7 @@ class Form
    *
    * @return void
    */
-  protected function clear_errors(): void
+  public function clear_errors(): void
   {
     $this->errors = [];
 

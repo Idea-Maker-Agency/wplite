@@ -77,6 +77,14 @@ class FormBuilder extends Form
   public function render(): void
   {
   ?>
+    <?php if ($non_field_message = $this->get_message('non_field')) { ?>
+      <div
+        class="alert alert-success"
+        role="alert">
+        <?= $non_field_message ?>
+      </div>
+    <?php } ?>
+
     <?php if ($non_field_error = $this->get_error('non_field')) { ?>
       <div
         class="alert alert-danger"
@@ -139,6 +147,7 @@ class FormBuilder extends Form
   <?php
 
     $this->clear_values();
+    $this->clear_messages();
     $this->clear_errors();
   }
 }

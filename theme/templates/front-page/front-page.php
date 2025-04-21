@@ -11,7 +11,7 @@
 get_header();
 ?>
 
-<?php get_template_part('pages/front-page/components/hero', 'banner') ?>
+<?php get_template_part('templates/front-page/components/hero', 'banner') ?>
 
 <section
   id=""

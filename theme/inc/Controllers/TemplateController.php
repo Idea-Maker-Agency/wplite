@@ -24,6 +24,9 @@ class TemplateController
     add_filter('search_template', [self::class, 'load_page_template'], 10, 3);
     add_filter('404_template', [self::class, 'load_page_template'], 10, 3);
 
+    add_filter('single_template', [self::class, 'load_single_template'], 10, 3);
+    add_filter('singular_template', [self::class, 'load_single_template'], 10, 1);
+
     add_action('admin_init', [self::class, 'init_custom_fields']);
     add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
 
@@ -33,27 +36,57 @@ class TemplateController
   }
 
   /**
-   * Fires after a user is logged out.
+   * Loads custom page templates file.
    *
-   * @return mixed
+   * @param string    $template   Path to the template.
+   * @param string    $type       Sanitized filename without extension.
+   * @param array     $templates  A list of template candidates, in descending order of priority.
+   *
+   * @return string
    */
   public static function load_page_template(
     string $template,
     string $type,
     array $templates
-  ): mixed {
+  ): string {
     global $post;
 
     if (is_front_page()) {
-      $view_template = locate_template("pages/front-page/front-page.php");
+      $view_template = locate_template("templates/front-page/front-page.php");
     } elseif (is_home()) {
-      $view_template = locate_template("pages/blog/blog.php");
+      $view_template = locate_template("templates/blog/blog.php");
     } elseif (is_search()) {
-      $view_template = locate_template("pages/search/search.php");
+      $view_template = locate_template("templates/search/search.php");
     } elseif (is_404()) {
-      $view_template = locate_template("pages/404/404.php");
+      $view_template = locate_template("templates/404/404.php");
     } else {
-      $view_template = locate_template("pages/{$post->post_name}/{$post->post_name}.php");
+      // E.g. `templates/<slug>/<slug>.php`
+      $view_template = locate_template("templates/{$post->post_name}/{$post->post_name}.php");
+    }
+
+    return $view_template ?: $template;
+  }
+
+  /**
+   * Loads custom single templates file.
+   *
+   * @param string    $template   Path to the template.
+   *
+   * @return string
+   */
+  public static function load_single_template(string $template, string $type): string
+  {
+    global $post;
+
+    if ('post' === $post->post_type) {
+      $view_template = locate_template("templates/blog-post/blog-post.php");
+    } else {
+      // E.g. `templates/single-<post_type>/<slug>.php`
+      $check_dir = is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}");
+
+      if ($check_dir) {
+        $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
+      }
     }
 
     return $view_template ?: $template;
@@ -80,12 +113,12 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $fields = locate_template("pages/front-page/front-page.yaml");
+      $fields = locate_template("templates/front-page/front-page.yaml");
     } else {
       $slug = get_post_field('post_name', $id);
 
       if ('default' === $page_template) {
-        $page_template = locate_template("pages/{$slug}/{$slug}.php");
+        $page_template = locate_template("templates/{$slug}/{$slug}.php");
 
         if (! $page_template) {
           $page_template = locate_template("page-{$slug}.php");

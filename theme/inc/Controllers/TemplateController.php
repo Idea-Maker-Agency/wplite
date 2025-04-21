@@ -30,7 +30,8 @@ class TemplateController
     add_filter('archive_template', [self::class, 'load_archive_template'], 10, 1);
 
     add_filter('category_template', [self::class, 'load_category_template'], 10, 3);
-    add_filter('tag_template', [self::class, 'load_category_template'], 10, 3);
+
+    add_filter('tag_template', [self::class, 'load_tag_template'], 10, 3);
 
     add_action('admin_init', [self::class, 'init_custom_fields']);
     add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
@@ -121,8 +122,6 @@ class TemplateController
    * Loads custom category templates file.
    *
    * @param string    $template   Path to the template.
-   * @param string    $type       Sanitized filename without extension.
-   * @param array     $templates  A list of template candidates, in descending order of priority.
    *
    * @return string
    */
@@ -136,6 +135,28 @@ class TemplateController
     if (! $view_template) {
       // E.g. `templates/blog-category/blog-category.php`
       $view_template = locate_template("templates/blog-category/blog-category.php");
+    }
+
+    return $view_template ?: $template;
+  }
+
+  /**
+   * Loads custom tag templates file.
+   *
+   * @param string    $template   Path to the template.
+   *
+   * @return string
+   */
+  public static function load_tag_template(string $template): string
+  {
+    $slug = get_queried_object()->slug ?? '';
+
+    // E.g. `templates/blog-tag/<slug>.php`
+    $view_template = locate_template("templates/blog-tag/{$slug}.php");
+
+    if (! $view_template) {
+      // E.g. `templates/blog-tag/blog-tag.php`
+      $view_template = locate_template("templates/blog-tag/blog-tag.php");
     }
 
     return $view_template ?: $template;

@@ -81,11 +81,16 @@ class TemplateController
     if ('post' === $post->post_type) {
       $view_template = locate_template("templates/blog-post/blog-post.php");
     } else {
-      // E.g. `templates/single-<post_type>/<slug>.php`
       $check_dir = is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}");
 
       if ($check_dir) {
+        // E.g. `templates/single-<post_type>/<slug>.php`
         $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
+
+        if (! $view_template) {
+          // E.g. `templates/single-<post_type>/single-<post_type>.php`
+          $view_template = locate_template("templates/single-{$post->post_type}/single-{$post->post_type}.php");
+        }
       }
     }
 

@@ -197,6 +197,19 @@ function wplite_some_function(string $name, int $age): string
 
 ## Templating Guide
 
+Templates lives in a custom folder called `templates` and are organized by folder names. Below is the folder/file structure for creating page templates.
+
+```
+templates
+├── 404/404.php
+├── blog/blog.php                                 // Blog template
+├── blog-post/blog-post.php                       // Single blog post template
+├── front-page/front-page.php                     // Front-page template
+├── search/search.php                             // Search template
+├── single-<post_type>/single-<post_type>.php     // Custom post type's singular template
+    single-<post_type>/<slug>.php                 // Custom post type's singular template by slug
+```
+
 ### Additional Scripts
 
 When adding 1st or 3rd party scripts, make sure to enqueue them only for specific templates by using the wordpress [conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/).

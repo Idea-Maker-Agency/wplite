@@ -17,7 +17,13 @@ class TemplateController
    */
   public static function init(): void
   {
-    add_filter('page_template', [self::class, 'load_template'], 10, 3);
+    add_filter('frontpage_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('home_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('page_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('privacypolicy_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('search_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('404_template', [self::class, 'load_page_template'], 10, 3);
+
     add_action('admin_init', [self::class, 'init_custom_fields']);
     add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
 
@@ -31,7 +37,7 @@ class TemplateController
    *
    * @return mixed
    */
-  public static function load_template(
+  public static function load_page_template(
     string $template,
     string $type,
     array $templates
@@ -40,6 +46,12 @@ class TemplateController
 
     if (is_front_page()) {
       $view_template = locate_template("pages/front-page/front-page.php");
+    } elseif (is_home()) {
+      $view_template = locate_template("pages/blog/blog.php");
+    } elseif (is_search()) {
+      $view_template = locate_template("pages/search/search.php");
+    } elseif (is_404()) {
+      $view_template = locate_template("pages/404/404.php");
     } else {
       $view_template = locate_template("pages/{$post->post_name}/{$post->post_name}.php");
     }

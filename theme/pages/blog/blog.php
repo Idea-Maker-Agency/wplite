@@ -28,7 +28,7 @@ get_header();
         <?php } ?>
 
         <?php wp_reset_postdata() ?>
-      </div>
+      </div>\
 
       <?php the_posts_pagination( [
         'mid_size' => 2,

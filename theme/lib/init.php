@@ -12,6 +12,7 @@ function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/components.php';
 
   WPLite\Controllers\SetupController::init();
+  WPLite\Controllers\AuthController::init();
   WPLite\Controllers\AssetController::init();
   WPLite\Controllers\NavMenuController::init();
   WPLite\Controllers\TemplateController::init();

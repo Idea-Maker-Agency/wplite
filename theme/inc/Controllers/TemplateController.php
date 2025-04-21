@@ -206,7 +206,7 @@ class TemplateController
    *
    * @return string
    */
-  function archive_title_output(
+  public static function archive_title_output(
     string $title,
     string $orig_title,
     string $prefix

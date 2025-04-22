@@ -80,7 +80,9 @@ class CustomFields
   /**
    * Render fields.
    *
-   * @param array     $fields   The array of fields.
+   * @param WP_Post   $post         The WP post object.
+   * @param array     $fields       The array of fields.
+   * @param string    $parent_name  The parent field name.
    *
    * @return void
    */
@@ -121,31 +123,37 @@ class CustomFields
           </div>
         <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/select', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('wpeditor' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/wpeditor', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('image' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/image', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('checkbox' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/checkbox', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('radio' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/radio', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } else { ?>
           <?php get_template_part('inc/Views/CustomFields/input', null, [
+            'post_id' => $post->ID,
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
@@ -236,7 +244,11 @@ class CustomFields
 
           $this->save_fields($post_id, $sub_fields, $name);
         } else {
-          update_post_meta($post_id, $name, $value);
+          update_post_meta(
+            $post_id,
+            $name,
+            $value
+          );
         }
       }
     }

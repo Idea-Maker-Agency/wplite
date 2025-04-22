@@ -1,6 +1,5 @@
 <?php
-global $post;
-
+$post_id = intval($args['post_id'] ?? null);
 $name = $args['field']['name'] ?? '';
 $required = $args['field']['required'] ?? false;
 $options = $args['field']['options'] ?? [];
@@ -8,6 +7,8 @@ $options = $args['field']['options'] ?? [];
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
 }
+
+$post = get_post($post_id);
 ?>
 
 <select

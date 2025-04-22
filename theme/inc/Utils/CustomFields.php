@@ -120,27 +120,27 @@ class CustomFields
             </div>
           </div>
         <?php } elseif ('select' === $type) { ?>
-          <?php get_template_part('admin/custom-fields/select', null, [
+          <?php get_template_part('inc/Views/CustomFields/select', null, [
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('wpeditor' === $type) { ?>
-          <?php get_template_part('admin/custom-fields/wpeditor', null, [
+          <?php get_template_part('inc/Views/CustomFields/wpeditor', null, [
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('image' === $type) { ?>
-          <?php get_template_part('admin/custom-fields/image', null, [
+          <?php get_template_part('inc/Views/CustomFields/image', null, [
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('checkbox' === $type) { ?>
-          <?php get_template_part('admin/custom-fields/checkbox', null, [
+          <?php get_template_part('inc/Views/CustomFields/checkbox', null, [
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } else { ?>
-          <?php get_template_part('admin/custom-fields/input', null, [
+          <?php get_template_part('inc/Views/CustomFields/input', null, [
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>

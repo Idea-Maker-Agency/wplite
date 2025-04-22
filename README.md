@@ -18,6 +18,7 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Features](#features)
   - [Organized page templates](#organized-page-templates)
   - [Organized template parts](#organized-template-parts)
+  - [Built-in custom fields registration](#built-in-custom-fields-registration)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -228,6 +229,17 @@ Custom page templates can be organized into folders, and any CSS or JS files nam
 ### Organized template parts
 
 Cusom template parts can be organized into folders, and any CSS or JS files named identically to the corresponding template part PHP file will automatically be enqueued.
+
+### Built-in custom fields registration
+
+The project includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
+
+- [`text` | `url` | `email` | `password`](/docs/custom-fields/input/README.md)
+- [`select`](/docs/custom-fields/select/README.md)
+- [`wpeditor`](/docs/custom-fields/wpeditor/README.md)
+- [`image`](/docs/custom-fields/image/README.md) ( stores the wp media attachment id )
+- [`checkbox`](/docs/custom-fields/checkbox/README.md)
+- [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 
 **[⬆ back to top](#table-of-contents)**
 

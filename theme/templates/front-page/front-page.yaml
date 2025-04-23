@@ -14,7 +14,7 @@
 
     - name: "hero_banner_cta_primary"
       type: "group"
-      label: "Primary CTA"
+      label: "Primary CTA Button"
       fields:
         - name: "text"
           type: "text"
@@ -28,7 +28,35 @@
 
     - name: "hero_banner_cta_secondary"
       type: "group"
-      label: "Secondary CTA"
+      label: "Secondary CTA Button"
+      fields:
+        - name: "text"
+          type: "text"
+          label: "Text"
+          width: 50
+
+        - name: "url"
+          type: "url"
+          label: "URL"
+          width: 50
+
+- group: "Intro"
+  fields:
+    - name: "intro_featured_image"
+      type: "image"
+      label: "Featured image"
+
+    - name: "intro_title"
+      type: "text"
+      label: "Title"
+
+    - name: "intro_content"
+      type: "wpeditor"
+      label: "Content"
+
+    - name: "intro_cta"
+      type: "group"
+      label: "CTA Button"
       fields:
         - name: "text"
           type: "text"

@@ -12,43 +12,7 @@ get_header();
 ?>
 
 <?php get_template_part('templates/front-page/components/hero', 'banner') ?>
-
-<section
-  id=""
-  class="py-5">
-  <div class="container">
-    <div class="row align-items-center ">
-      <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-        <img
-          src="<?= wplite_get_webp_url('placeholder', '', [640, 480]) ?>"
-          srcset="
-            <?= wplite_get_webp_url('placeholder', '', [640, 480]) ?> 640w,
-            <?= wplite_get_webp_url('placeholder', '', [540, 360]) ?> 540w,
-            <?= wplite_get_webp_url('placeholder', '', [320, 230]) ?> 320w"
-          sizes="(min-width: 640px) 640px, (min-width: 540px) 540px, 100vw"
-          width="640"
-          height="480"
-          alt="Alt text"
-          decoding="async"
-          class="img-fluid rounded-4" />
-      </div>
-      <div class="col-12 col-lg-6">
-        <div class="col-lg-10 mx-auto">
-          <h2 class="mb-3 display-6 fw-bold">Lorem ipsum</h2>
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-        <a
-          href="https://"
-          class="btn btn-primary mt-3"
-            role="button"
-            alt="Read more"
-            aria-label="Read more about this">
-            Read more
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<?php get_template_part('templates/front-page/components/intro') ?>
 
 <section
   id=""

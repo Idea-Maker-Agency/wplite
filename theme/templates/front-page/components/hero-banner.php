@@ -3,14 +3,8 @@ use WPLite\Utils\CustomFields;
 
 $bg_image_id = CustomFields::get_field('hero_banner_bg');
 
-$title = CustomFields::get_field(
-  'hero_banner_title',
-  'Lorem ipsum dolor sit amet'
-);
-$content = CustomFields::get_field(
-  'hero_banner_content',
-  'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiumo'
-);
+$title = CustomFields::get_field('hero_banner_title', 'Lorem ipsum dolor sit amet');
+$content = CustomFields::get_field('hero_banner_content', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantiumo');
 
 $cta_primary_text = CustomFields::get_field('hero_banner_cta_primary_text');
 $cta_primary_url = CustomFields::get_field('hero_banner_cta_primary_url');

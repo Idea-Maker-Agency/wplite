@@ -67,3 +67,33 @@
           type: "url"
           label: "URL"
           width: 50
+
+- group: "Features"
+  fields:
+    - name: "features_title"
+      type: "text"
+      label: "Title"
+
+    - name: "features_intro"
+      type: "text"
+      label: "Intro"
+
+    - name: "features_items"
+      type: "repeater"
+      label: "Features"
+      fields:
+        - name: "featured_image"
+          type: "image"
+          label: "Featured image"
+
+        - name: "title"
+          type: "text"
+          label: "Title"
+
+        - name: "content"
+          type: "wpeditor"
+          label: "Content"
+
+        - name: "url"
+          type: "url"
+          label: "Url"

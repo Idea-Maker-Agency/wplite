@@ -129,6 +129,12 @@ class CustomFields
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
+        <?php } elseif ('repeater' === $type) { ?>
+          <?php get_template_part('inc/Views/CustomFields/repeater', null, [
+            'post_id' => $post->ID,
+            'field' => $field,
+            'parent_name' => $parent_name,
+          ]) ?>
         <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/select', null, [
             'post_id' => $post->ID,
@@ -220,7 +226,33 @@ class CustomFields
       $wp_post = $post;
     }
 
-    return $wp_post->__get($name) ?: $fallback_value;
+    // Check if the field is a repeater
+    if ($keys = $wp_post->__get("{$name}_keys")) {
+      usort($keys, function ($a, $b) use ($wp_post) {
+        $a_index = $wp_post->__get("{$a}_index");
+        $b_index = $wp_post->__get("{$b}_index");
+
+        return $a_index - $b_index;
+      });
+
+      $fields = $wp_post->__get("{$name}_fields");
+
+      $values = array_map(function ($key) use ($wp_post, $fields) {
+        $values = array_map(function ($field) use ($wp_post, $key) {
+          return [
+            $field => $wp_post->__get("{$key}_{$field}"),
+          ];
+        }, $fields);
+
+        return array_reduce($values, function ($carry, $item) {
+          return array_merge($item, $carry);
+        }, []);
+      }, $keys);
+
+      return $values;
+    } else {
+      return $wp_post->__get($name) ?: $fallback_value;
+    }
   }
 
   /**
@@ -248,15 +280,35 @@ class CustomFields
         $value = $_POST[$name] ?? '';
 
         if ('group' === $type) {
-          $sub_fields = $field['fields'];
+          $this->save_fields($post_id, $field['fields'], $name);
+        } elseif ('repeater' === $type) {
+          $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true);
 
-          $this->save_fields($post_id, $sub_fields, $name);
+          if (! empty($keys)) {
+            $fields = array_map(function ($item) {
+              return $item['name'];
+            }, $field['fields']);
+
+            foreach ($keys as $key) {
+              $this->save_fields($post_id, $field['fields'], $key);
+
+              // Save field index for sorting
+              $index = $_POST["{$key}_index"] ?? 0;
+
+              update_post_meta($post_id, "{$key}_index", $index);
+            }
+
+            update_post_meta($post_id, "{$name}_keys", $keys);
+            update_post_meta($post_id, "{$name}_fields", $fields);
+          } else {
+            delete_post_meta($post_id, "{$name}_keys"); // IMPORTANT: Prevent saving empty keys to optimize DB
+          }
         } else {
-          update_post_meta(
-            $post_id,
-            $name,
-            $value
-          );
+          if (! empty($value) && 'false' !== $value) {
+            update_post_meta($post_id, $name, $value);
+          } else {
+            delete_post_meta($post_id, $name); // IMPORTANT: Prevent saving falsy value to optimize DB
+          }
         }
       }
     }

@@ -240,6 +240,7 @@ The project includes built-in custom fields registration system for templates an
 - [`image`](/docs/custom-fields/image/README.md) ( stores the wp media attachment id )
 - [`checkbox`](/docs/custom-fields/checkbox/README.md)
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
+- [`repeater`](/docs/custom-fields/repeater/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

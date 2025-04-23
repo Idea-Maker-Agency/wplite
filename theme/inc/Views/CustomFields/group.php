@@ -20,7 +20,7 @@ $custom_fields = new CustomFields();
     style="margin-bottom: 0;">
     <div
       class="inside"
-      style="margin-top: 0; display: flex; flex-wrap: wrap; gap: 0.8rem;">
+      style="margin: 0 -12px; display: flex; flex-wrap: wrap;">
       <?php $custom_fields->render_fields($post, $fields, $name) ?>
     </div>
   </div>

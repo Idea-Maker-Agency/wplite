@@ -26,7 +26,7 @@ $custom_fields = new CustomFields();
   </div>
 
   <div style="clear: both;">
-    <div style="padding: 0 12px 12px; display: flex; flex-wrap: wrap; gap: 0.8rem;">
+    <div style="padding: 0 12px 12px; margin: 0 -12px; display: flex; flex-wrap: wrap;">
       <?php $custom_fields->render_fields($post, $fields, $key) ?>
     </div>
   </div>

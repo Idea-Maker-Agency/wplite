@@ -122,7 +122,7 @@ class CustomFields
         $name = "{$parent_name}_{$name}";
       }
     ?>
-      <div style="width: calc(<?= $width ?>% - 0.4rem);">
+      <div style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;">
         <?php if ($label) { ?>
           <p class="post-attributes-label-wrapper page-template-label-wrapper">
             <label
@@ -306,6 +306,7 @@ class CustomFields
             update_post_meta($post_id, "{$name}_fields", $fields);
           } else {
             delete_post_meta($post_id, "{$name}_keys"); // IMPORTANT: Prevent saving empty keys to optimize DB
+            delete_post_meta($post_id, "{$name}_fields"); // IMPORTANT: Prevent saving empty keys to optimize DB
           }
         } else {
           if (! empty($value) && 'false' !== $value) {

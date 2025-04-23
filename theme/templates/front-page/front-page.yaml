@@ -121,3 +121,32 @@
           type: "textarea"
           label: "Description"
           width: 60
+
+- group: "Testimonials"
+  fields:
+    - name: "testimonials_title"
+      type: "text"
+      label: "Title"
+
+    - name: "testimonials_items"
+      type: "repeater"
+      label: "Testimonials"
+      fields:
+        - name: "avatar"
+          type: "image"
+          label: "Avatar"
+          width: 30
+
+        - name: "full_name"
+          type: "text"
+          label: "Full Name"
+          width: 35
+
+        - name: "job_title"
+          type: "text"
+          label: "Job Title"
+          width: 35
+
+        - name: "testimonial"
+          type: "textarea"
+          label: "Testimonial"

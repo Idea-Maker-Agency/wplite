@@ -37,6 +37,16 @@ class CustomFields
   public function enqueue_assets()
   {
     wp_enqueue_script(
+      'alpine-ajax',
+      THEME_DIR_URI . '/assets/vendor/alpine-ajax/js/alpine-ajax.min.js',
+      [],
+      '0.12.1',
+      [
+        'strategy' => 'defer',
+        'in_footer' => false,
+      ]
+    );
+    wp_enqueue_script(
       'alpinejs',
       THEME_DIR_URI . '/assets/vendor/alpinejs/js/alpinejs.min.js',
       [],

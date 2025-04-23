@@ -16,14 +16,17 @@ $custom_fields = new CustomFields();
   x-data
   id="repeater-field-<?= $key ?>"
   class="stuffbox"
-  style="margin-top: 14px; clear: both;"
-  x-merge="replace">
+  style="padding-left: 24px; margin-top: 14px; clear: both; position: relative;"
+  x-merge="replace"
+  x-sort:item="'<?= $key ?>'">
+  <div
+    x-sort:handle
+    style="width: 24px; height: 100%; background-color: #c3c4c7; display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 0; left: 0; cursor: move;">
+    <?= $index ?>
+  </div>
+
   <div style="clear: both;">
     <div style="padding: 0 12px 12px; display: flex; flex-wrap: wrap; gap: 0.8rem;">
-      <input
-        name="<?= $key ?>_index"
-        type="hidden"
-        value="<?= $index ?>">
       <?php $custom_fields->render_fields($post, $fields, $key) ?>
     </div>
   </div>

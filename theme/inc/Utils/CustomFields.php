@@ -47,6 +47,16 @@ class CustomFields
       ]
     );
     wp_enqueue_script(
+      'alpinejs-sort',
+      THEME_DIR_URI . '/assets/vendor/alpinejs/js/alpinejs-sort.min.js',
+      [],
+      '3.14.9',
+      [
+        'strategy' => 'defer',
+        'in_footer' => false,
+      ]
+    );
+    wp_enqueue_script(
       'alpinejs',
       THEME_DIR_URI . '/assets/vendor/alpinejs/js/alpinejs.min.js',
       [],
@@ -228,13 +238,6 @@ class CustomFields
 
     // Check if the field is a repeater
     if ($keys = $wp_post->__get("{$name}_keys")) {
-      usort($keys, function ($a, $b) use ($wp_post) {
-        $a_index = $wp_post->__get("{$a}_index");
-        $b_index = $wp_post->__get("{$b}_index");
-
-        return $a_index - $b_index;
-      });
-
       $fields = $wp_post->__get("{$name}_fields");
 
       $values = array_map(function ($key) use ($wp_post, $fields) {
@@ -291,11 +294,6 @@ class CustomFields
 
             foreach ($keys as $key) {
               $this->save_fields($post_id, $field['fields'], $key);
-
-              // Save field index for sorting
-              $index = $_POST["{$key}_index"] ?? 0;
-
-              update_post_meta($post_id, "{$key}_index", $index);
             }
 
             update_post_meta($post_id, "{$name}_keys", $keys);

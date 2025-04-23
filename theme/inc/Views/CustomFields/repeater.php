@@ -8,24 +8,26 @@ if (! empty($args['parent_name'])) {
 }
 
 $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
-
-$items = array_map(function ($key) use ($post_id) {
-  $index = get_post_meta($post_id, "{$key}_index", true);
-
-  return [
-    'index' => $index,
-    'key' => $key,
-  ];
-}, array_values($keys));
-
-usort($items, function ($a, $b) {
-  return $a['index'] - $b['index'];
-});
 ?>
 
 <div
   x-data='{
     keys: <?= json_encode($keys) ?>,
+
+    get nextIndex() {
+      const sortedKeys = this.keys.map((key) => {
+        return parseInt(key.replace("<?= $name ?>_", ""))
+      }).sort()
+
+      return sortedKeys[sortedKeys.length - 1] + 1
+    },
+
+    onSort: (key, position) => {
+      const index = $data.keys.indexOf(key)
+
+      $data.keys.splice(index, 1)
+      $data.keys.splice(position, 0, key)
+    }
   }'
   class="postbox"
   style="margin-bottom: 0;"
@@ -44,13 +46,14 @@ usort($items, function ($a, $b) {
 
     <div
       id="repeater-fields-<?= $name ?>"
-      x-merge="append">
-      <?php foreach ($items as $item) { ?>
+      x-merge="append"
+      x-sort.ghost="onSort">
+      <?php foreach ($keys as $index => $key) { ?>
         <?php get_template_part('inc/Views/CustomFields/repeater', 'field', [
-          'index' => $item['index'],
+          'index' => $index,
           'post_id' => $post_id,
           'name' => $name,
-          'key' => $item['key'],
+          'key' => $key,
           'fields' => $fields,
         ]) ?>
       <?php } ?>
@@ -68,17 +71,13 @@ usort($items, function ($a, $b) {
           action: "custom_fields__repeater_add",
           post_id: <?= $post_id ?>,
           name: "<?= $name ?>",
+          index: keys.length,
           fields: <?= json_encode($fields) ?>,
           keys,
         },
         target: "repeater-fields-<?= $name ?>"
       })'
-      @ajax:before="() => {
-        const key = keys[keys.length - 1]
-        const index = parseInt(key.slice(key.lastIndexOf('_') + 1))
-
-        keys.push(`<?= $name ?>_${index + 1}`)
-      }">
+      @ajax:before="keys.push(`<?= $name ?>_${nextIndex}`)">
       <?= __('Add New', THEME_TEXT_DOMAIN) ?>
     </button>
   </div>

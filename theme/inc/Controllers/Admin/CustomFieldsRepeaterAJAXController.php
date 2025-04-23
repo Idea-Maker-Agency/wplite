@@ -28,6 +28,7 @@ class CustomFieldsRepeaterAJAXController
   {
     $post_id = intval($_POST['post_id'] ?: null);
     $name = $_POST['name'] ?? '';
+    $index = $_POST['index'] ?? 0;
     $fields = json_decode(stripslashes($_POST['fields'] ?? ''), true);
     $keys = json_decode(stripslashes($_POST['keys'] ?? ''), true);
 
@@ -37,6 +38,7 @@ class CustomFieldsRepeaterAJAXController
       <?php get_template_part('inc/Views/CustomFields/repeater', 'field', [
         'post_id' => $post_id,
         'name' => $name,
+        'index' => $index,
         'key' => $key,
         'fields' => $fields,
       ]) ?>

@@ -19,6 +19,7 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [Organized page templates](#organized-page-templates)
   - [Organized template parts](#organized-template-parts)
   - [Built-in custom fields registration](#built-in-custom-fields-registration)
+  - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -232,7 +233,7 @@ Cusom template parts can be organized into folders, and any CSS or JS files name
 
 ### Built-in custom fields registration
 
-The project includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
+The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
 
 - [`text` | `url` | `email` | `password`](/docs/custom-fields/input/README.md)
 - [`select`](/docs/custom-fields/select/README.md)
@@ -241,6 +242,10 @@ The project includes built-in custom fields registration system for templates an
 - [`checkbox`](/docs/custom-fields/checkbox/README.md)
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
+
+### Form Builder
+
+This theme includes lightweight and extensible utility for building and handling front-end forms, [read docs](/docs/form-builder/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

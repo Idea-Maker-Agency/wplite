@@ -97,3 +97,27 @@
         - name: "url"
           type: "url"
           label: "Url"
+
+- group: "FAQs"
+  fields:
+    - name: "faqs_title"
+      type: "text"
+      label: "Title"
+
+    - name: "faqs_intro"
+      type: "text"
+      label: "Intro"
+
+    - name: "faqs_items"
+      type: "repeater"
+      label: "FAQs"
+      fields:
+        - name: "title"
+          type: "text"
+          label: "Title"
+          width: 40
+
+        - name: "description"
+          type: "textarea"
+          label: "Description"
+          width: 60

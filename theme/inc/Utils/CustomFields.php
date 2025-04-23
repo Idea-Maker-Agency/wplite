@@ -175,6 +175,12 @@ class CustomFields
             'field' => $field,
             'parent_name' => $parent_name,
           ]) ?>
+        <?php } elseif ('textarea' === $type) { ?>
+          <?php get_template_part('inc/Views/CustomFields/textarea', null, [
+            'post_id' => $post->ID,
+            'field' => $field,
+            'parent_name' => $parent_name,
+          ]) ?>
         <?php } else { ?>
           <?php get_template_part('inc/Views/CustomFields/input', null, [
             'post_id' => $post->ID,

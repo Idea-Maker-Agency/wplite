@@ -240,6 +240,8 @@ The theme includes built-in custom fields registration system for templates and 
 - [`wpeditor`](/docs/custom-fields/wpeditor/README.md)
 - [`image`](/docs/custom-fields/image/README.md) ( stores the wp media attachment id )
 - [`checkbox`](/docs/custom-fields/checkbox/README.md)
+- [`radio`](/docs/custom-fields/radio/README.md)
+- [`textarea`](/docs/custom-fields/textarea/README.md)
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
 

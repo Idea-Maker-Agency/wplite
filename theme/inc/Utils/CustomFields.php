@@ -291,13 +291,24 @@ class CustomFields
         if ('group' === $type) {
           $this->save_fields($post_id, $field['fields'], $name);
         } elseif ('repeater' === $type) {
+          $fields = array_map(function ($item) {
+            return $item['name'];
+          }, $field['fields']);
+
+          // Filter keys with non-empty fields
           $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true);
 
-          if (! empty($keys)) {
-            $fields = array_map(function ($item) {
-              return $item['name'];
-            }, $field['fields']);
+          $keys = array_filter($keys, function ($key) use ($fields) {
+            $valid_fields = array_filter($fields, function ($field) use ($key) {
+              $value = $_POST["{$key}_{$field}"];
 
+              return ! empty($value) && "false" !== $value;
+            });
+
+            return ! empty($valid_fields);
+          });
+
+          if (! empty($keys)) {
             foreach ($keys as $key) {
               $this->save_fields($post_id, $field['fields'], $key);
             }

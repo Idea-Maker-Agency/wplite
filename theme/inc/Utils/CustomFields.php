@@ -114,13 +114,11 @@ class CustomFields
         <?php } ?>
 
         <?php if ('group' === $type) { ?>
-          <?php $fields = $field['fields'] ?>
-
-          <div class="postbox" style="margin-bottom: 0;">
-            <div class="inside" style="margin-top: 0; display: flex; flex-wrap: wrap; gap: 0.8rem;">
-              <?php $this->render_fields($post, $fields, $name) ?>
-            </div>
-          </div>
+          <?php get_template_part('inc/Views/CustomFields/group', null, [
+            'post_id' => $post->ID,
+            'field' => $field,
+            'parent_name' => $parent_name,
+          ]) ?>
         <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/select', null, [
             'post_id' => $post->ID,

@@ -7,9 +7,9 @@ Registers an input custom field.
 ```yaml
 - group: "Section 1"
   fields:
-    - name: "hero_banner_bg"
-      type: "image"
-      label: "Background image"
+    - name: "section_1_title"
+      type: "text"
+      label: "Title"
       helpText: "Lorem ipsum dolor sit amet"
       required: true
       width: 100

@@ -8,6 +8,8 @@
  * @since      1.0.0
  */
 
+use WPLite\Utils\Components;
+
 get_header();
 ?>
   <?php while (have_posts()) { ?>
@@ -112,7 +114,7 @@ get_header();
       <div class="container">
         <h2 class="mb-4 fw-bold">Related Posts</h2>
 
-        <?php get_template_part('lib/templates/post/related', 'posts') ?>
+        <?php Components::render('related-posts') ?>
       </div>
     </section>
   <?php } ?>

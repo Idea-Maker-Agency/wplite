@@ -29,6 +29,7 @@ function wplite_init(): void {
 
   // Register custom components
   WPLite\Utils\Components::register('article-card');
+  WPLite\Utils\Components::register('related-posts');
 }
 
 wplite_init();

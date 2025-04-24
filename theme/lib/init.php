@@ -10,8 +10,6 @@
 function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/helpers.php';
 
-  WPLite\Utils\Components::register('article-card');
-
   WPLite\Controllers\SetupController::init();
   WPLite\Controllers\AuthController::init();
   WPLite\Controllers\AssetController::init();
@@ -25,8 +23,12 @@ function wplite_init(): void {
 
   WPLite\Controllers\Admin\CustomFieldsRepeaterAJAXController::init();
 
+  // Initialize front-end form controllers
   WPLite\Controllers\Form\LoginFormController::init();
   WPLite\Controllers\Form\SignUpFormController::init();
+
+  // Register custom components
+  WPLite\Utils\Components::register('article-card');
 }
 
 wplite_init();

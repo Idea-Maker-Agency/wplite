@@ -17,7 +17,7 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
   - [Organized page templates](#organized-page-templates)
-  - [Organized template parts](#organized-template-parts)
+  - [Organized components](#organized-components)
   - [Built-in custom fields registration](#built-in-custom-fields-registration)
   - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
@@ -227,9 +227,9 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 
 Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.fields.yaml).
 
-### Organized template parts
+### Organized components
 
-Cusom template parts can be organized into folders, and any CSS or JS files named identically to the corresponding template part PHP file will automatically be enqueued.
+Custom components can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/components/README.md)
 
 ### Built-in custom fields registration
 

@@ -16,6 +16,7 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
+  - [Dynamic theme customizer](#dynamic-theme-customizer)
   - [Organized page templates](#organized-page-templates)
   - [Organized components](#organized-components)
   - [Built-in custom fields registration](#built-in-custom-fields-registration)
@@ -222,6 +223,10 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 **[⬆ back to top](#table-of-contents)**
 
 ## Features
+
+### Dynamic theme customizer
+
+Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight YAML parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.yaml` configuration file.
 
 ### Organized page templates
 

@@ -16,23 +16,9 @@ class NavMenuController
    */
   public static function init(): void
   {
-    add_action('init', [self::class, 'register_locations']);
     add_filter('nav_menu_item_attributes', [self::class, 'nav_menu_item_attributes'], 10, 4);
     add_filter('nav_menu_link_attributes', [self::class, 'nav_menu_link_attributes'], 10, 4);
     add_filter('nav_menu_submenu_css_class', [self::class, 'nav_menu_submenu_css_class'], 10, 3);
-  }
-
-  /**
-   * Register nav menus.
-   *
-   * @return void
-   */
-  public static function register_locations(): void
-  {
-    register_nav_menu(
-      'header-menu',
-      __('Header Menu', THEME_TEXT_DOMAIN)
-    );
   }
 
   /**

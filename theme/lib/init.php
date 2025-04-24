@@ -30,6 +30,7 @@ function wplite_init(): void {
 
   // Register custom components
   WPLite\Utils\Components::register('logo');
+  WPLite\Utils\Components::register('social-links');
   WPLite\Utils\Components::register('article-card');
   WPLite\Utils\Components::register('related-posts');
 }

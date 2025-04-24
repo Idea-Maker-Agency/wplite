@@ -21,6 +21,7 @@ function wplite_init(): void {
     WPLite\Controllers\ContactForm7Controller::init();
   }
 
+  WPLite\Controllers\Admin\ThemeCustomizerController::init();
   WPLite\Controllers\Admin\CustomFieldsRepeaterAJAXController::init();
 
   // Initialize front-end form controllers

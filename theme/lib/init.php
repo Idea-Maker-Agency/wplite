@@ -29,6 +29,7 @@ function wplite_init(): void {
   WPLite\Controllers\Form\SignUpFormController::init();
 
   // Register custom components
+  WPLite\Utils\Components::register('logo');
   WPLite\Utils\Components::register('article-card');
   WPLite\Utils\Components::register('related-posts');
 }

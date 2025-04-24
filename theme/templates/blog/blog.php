@@ -8,6 +8,8 @@
  * @since      1.0.0
  */
 
+use WPLite\Utils\Components;
+
 get_header();
 ?>
 
@@ -23,12 +25,14 @@ get_header();
           <?php the_post() ?>
 
           <div class="col-12 col-sm-6 col-lg-4">
-            <?php wplite_article_card($post) ?>
+            <?php Components::render('article-card', [
+              'post' => $post,
+            ]) ?>
           </div>
         <?php } ?>
 
         <?php wp_reset_postdata() ?>
-      </div>\
+      </div>
 
       <?php the_posts_pagination( [
         'mid_size' => 2,

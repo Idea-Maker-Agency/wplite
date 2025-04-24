@@ -9,7 +9,8 @@
  */
 function wplite_init(): void {
   require_once THEME_DIR_PATH . '/lib/functions/helpers.php';
-  require_once THEME_DIR_PATH . '/lib/functions/components.php';
+
+  WPLite\Utils\Components::register('article-card');
 
   WPLite\Controllers\SetupController::init();
   WPLite\Controllers\AuthController::init();

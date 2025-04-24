@@ -26,7 +26,8 @@ class AssetController
     add_action('get_template_part', [self::class, 'register_template_part_assets'], 10, 2);
     add_action('wp_footer', [self::class, 'enqueue_template_part_assets'], 1);
 
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_assets'], 10);
+    add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_styles'], 10);
+    add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_scripts'], 10);
   }
 
   /**
@@ -220,41 +221,61 @@ class AssetController
   }
 
   /**
-   * Enqueue page template assets.
+   * Enqueue page template styles.
    *
    * @since 1.0.0
    */
-  public static function enqueue_page_template_assets()
+  public static function enqueue_page_template_styles(): void
   {
     $templates = wp_get_theme()->get_page_templates();
-    $templates = array_filter($templates, function(string $value, string $key) {
-      return is_page_template($key);
+
+    $templates = array_filter($templates, function(string $title, string $base_path) {
+      return is_page_template($base_path);
     }, ARRAY_FILTER_USE_BOTH);
 
     if (! empty($templates)) {
-      foreach ($templates as $key => $value) {
-        $base_handle = 'wplite-' . strtolower(str_replace(' ', '-', $value));
-        $base_path = str_replace('.php', '', $key);
+      foreach ($templates as $base_path => $title) {
+        $path = get_theme_file_path(str_replace('.php', '.css', $base_path));
+        $uri = get_theme_file_uri(str_replace('.php', '.css', $base_path));
 
-        if (locate_template("{$base_path}.css")) {
-          wp_enqueue_style(
-            $base_handle,
-            get_theme_file_uri("{$base_path}.css"),
-            [],
-            filemtime("{$base_path}.css"),
-            'all'
-          );
+        if (! file_exists($path)) {
+          continue;
         }
 
-        if (locate_template("{$base_path}.js")) {
-          wp_enqueue_script(
-            $base_handle,
-            get_theme_file_uri("{$base_path}.js"),
-            [],
-            filemtime("{$base_path}.js"),
-            true
-          );
+        $handle = 'wplite-' . strtolower(str_replace(' ', '-', $title));
+        $version = filemtime($path);
+
+        wp_enqueue_style($handle, $uri, [], $version, 'all');
+      }
+    }
+  }
+
+  /**
+   * Enqueue page template scripts.
+   *
+   * @since 1.0.0
+   */
+  public static function enqueue_page_template_scripts(): void
+  {
+    $templates = wp_get_theme()->get_page_templates();
+
+    $templates = array_filter($templates, function(string $title, string $base_path) {
+      return is_page_template($base_path);
+    }, ARRAY_FILTER_USE_BOTH);
+
+    if (! empty($templates)) {
+      foreach ($templates as $base_path => $title) {
+        $path = get_theme_file_path(str_replace('.php', '.js', $base_path));
+        $uri = get_theme_file_uri(str_replace('.php', '.js', $base_path));
+
+        if (! file_exists($path)) {
+          continue;
         }
+
+        $handle = 'wplite-' . strtolower(str_replace(' ', '-', $title));
+        $version = filemtime($path);
+
+        wp_enqueue_script($handle, $uri, [], $version, true);
       }
     }
   }

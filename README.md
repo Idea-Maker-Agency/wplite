@@ -9,7 +9,7 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
   - [Key Files and Directories](#key-files-and-directories)
-- [Components](#components)
+- [VSCode Components](#vscode-components)
 - [Style Guide](#style-guide)
   - [HTML](#html)
   - [PHP](#php)
@@ -121,22 +121,22 @@ project
 
 **[⬆ back to top](#table-of-contents)**
 
-## Components
+## VSCode Components
 
 The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to enhance your development workflow by providing quick access to commonly used code patterns and templates, improving productivity and efficiency. Here are the following reusable vscode snippets:
 
-- [`wplite:accordion`](/docs/components/accordion/README.md)
-- [`wplite:button`](/docs/components/button/README.md)
-- [`wplite:card`](/docs/components/card/README.md)
-- [`wplite:container`](/docs/components/container/README.md)
-- [`wplite:features`](/docs/components/features/README.md)
-- [`wplite:hero-banner`](/docs/components/hero-banner/README.md)
-- [`wplite:image`](/docs/components/image/README.md)
-- [`wplite:link`](/docs/components/link/README.md)
-- [`wplite:media-block`](/docs/components/media-block/README.md)
-- [`wplite:page-content`](/docs/components/page-content/README.md)
-- [`wplite:testimonial-carousel`](/docs/components/testimonial-carousel/README.md)
-- [`wplite:unordered-list`](/docs/components/unordered-list/README.md)
+- [`wplite:accordion`](/docs/vscode-components/accordion/README.md)
+- [`wplite:button`](/docs/vscode-components/button/README.md)
+- [`wplite:card`](/docs/vscode-components/card/README.md)
+- [`wplite:container`](/docs/vscode-components/container/README.md)
+- [`wplite:features`](/docs/vscode-components/features/README.md)
+- [`wplite:hero-banner`](/docs/vscode-components/hero-banner/README.md)
+- [`wplite:image`](/docs/vscode-components/image/README.md)
+- [`wplite:link`](/docs/vscode-components/link/README.md)
+- [`wplite:media-block`](/docs/vscode-components/media-block/README.md)
+- [`wplite:page-content`](/docs/vscode-components/page-content/README.md)
+- [`wplite:testimonial-carousel`](/docs/vscode-components/testimonial-carousel/README.md)
+- [`wplite:unordered-list`](/docs/vscode-components/unordered-list/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

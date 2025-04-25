@@ -1,5 +1,24 @@
 <?php
 
+use WPLite\Controllers\{
+  SetupController,
+  AuthController,
+  AssetController,
+  NavMenuController,
+  TemplateController,
+  CommentController,
+  ContactForm7Controller
+};
+use WPLite\Controllers\Admin\{
+  ThemeCustomizerController,
+  CustomFieldsRepeaterAJAXController
+};
+use WPLite\Controllers\Form\{
+  LoginFormController,
+  SignUpFormController
+};
+use WPLite\Utils\Components;
+
 /**
  * Init.
  *
@@ -7,32 +26,29 @@
  *
  * @return void
  */
+add_action('after_setup_theme', 'wplite_init');
 function wplite_init(): void {
-  require_once THEME_DIR_PATH . '/lib/functions/helpers.php';
-
-  WPLite\Controllers\SetupController::init();
-  WPLite\Controllers\AuthController::init();
-  WPLite\Controllers\AssetController::init();
-  WPLite\Controllers\NavMenuController::init();
-  WPLite\Controllers\TemplateController::init();
-  WPLite\Controllers\CommentController::init();
+  SetupController::init();
+  AuthController::init();
+  AssetController::init();
+  NavMenuController::init();
+  TemplateController::init();
+  CommentController::init();
 
   if (class_exists('WPCF7')) {
-    WPLite\Controllers\ContactForm7Controller::init();
+    ContactForm7Controller::init();
   }
 
-  WPLite\Controllers\Admin\ThemeCustomizerController::init();
-  WPLite\Controllers\Admin\CustomFieldsRepeaterAJAXController::init();
+  ThemeCustomizerController::init();
+  CustomFieldsRepeaterAJAXController::init();
 
   // Initialize front-end form controllers
-  WPLite\Controllers\Form\LoginFormController::init();
-  WPLite\Controllers\Form\SignUpFormController::init();
+  LoginFormController::init();
+  SignUpFormController::init();
 
   // Register custom components
-  WPLite\Utils\Components::register('logo');
-  WPLite\Utils\Components::register('social-links');
-  WPLite\Utils\Components::register('article-card');
-  WPLite\Utils\Components::register('related-posts');
+  Components::register('logo');
+  Components::register('social-links');
+  Components::register('article-card');
+  Components::register('related-posts');
 }
-
-wplite_init();

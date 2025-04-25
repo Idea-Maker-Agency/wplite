@@ -12,11 +12,11 @@ Use the `wplite:media-block` VSCode snippet to quickly insert media block HTML m
 <div class="row align-items-center ">
   <div class="col-12 col-lg-6 mb-4 mb-lg-0">
     <img
-      src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
+      src="<?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 640, 480 ]) ?>"
       srcset="
-        <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
-        <?php echo wplite_get_webp_url( 'placeholder', '', [ 540, 360 ] ) ?> 540w,
-        <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 230 ] ) ?> 320w"
+        <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 640, 480 ]) ?> 640w,
+        <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 540, 360 ]) ?> 540w,
+        <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 320, 230 ]) ?> 320w"
       sizes="(min-width: 640px) 640px, (min-width: 540px) 540px, 100vw"
       width="640"
       height="480"

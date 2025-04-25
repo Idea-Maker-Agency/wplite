@@ -3,7 +3,7 @@
   "type": "wordpress-theme",
   "autoload": {
     "psr-4": {
-      "WPLite\\": "inc/"
+      "WPLite\\": "classes/"
     }
   },
   "require": {

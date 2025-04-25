@@ -26,8 +26,8 @@ class Components
       $exts = ['css', 'js'];
 
       foreach ($exts as $ext) {
-        $path = get_theme_file_path("/inc/Views/Components/{$name}/{$name}.{$ext}");
-        $uri = get_theme_file_uri("/inc/Views/Components/{$name}/{$name}.{$ext}");
+        $path = get_theme_file_path("/classes/Views/Components/{$name}/{$name}.{$ext}");
+        $uri = get_theme_file_uri("/classes/Views/Components/{$name}/{$name}.{$ext}");
 
         if (! file_exists($path)) {
           continue;

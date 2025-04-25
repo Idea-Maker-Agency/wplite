@@ -12,7 +12,7 @@ Use the `wplite:features` VSCode snippet to quickly insert features grid HTML ma
 <div class="row row-cols-1 row-cols-lg-3 g-4">
   <div class="feature col">
     <img
-      src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+      src="<?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 75, 75 ]) ?>"
       width="75"
       height="75"
       alt="Alt text"
@@ -33,7 +33,7 @@ Use the `wplite:features` VSCode snippet to quickly insert features grid HTML ma
   </div>
   <div class="feature col">
     <img
-      src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+      src="<?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 75, 75 ]) ?>"
       width="75"
       height="75"
       alt="Alt text"
@@ -54,7 +54,7 @@ Use the `wplite:features` VSCode snippet to quickly insert features grid HTML ma
   </div>
   <div class="feature col">
     <img
-      src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 75, 75 ] ) ?>"
+      src="<?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 75, 75 ]) ?>"
       width="75"
       height="75"
       alt="Alt text"

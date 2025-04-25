@@ -10,11 +10,11 @@ Use the `wplite:image` VSCode snippet to quickly insert optimized image tags wit
 
 ```phtml
 <img
-  src="<?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?>"
+  src="<?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 640, 480 ]) ?>"
   srcset="
-    <?php echo wplite_get_webp_url( 'placeholder', '', [ 640, 480 ] ) ?> 640w,
-    <?php echo wplite_get_webp_url( 'placeholder', '', [ 540, 360 ] ) ?> 540w,
-    <?php echo wplite_get_webp_url( 'placeholder', '', [ 320, 230 ] ) ?> 320w"
+    <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 640, 480 ]) ?> 640w,
+    <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 540, 360 ]) ?> 540w,
+    <?php echo WPLite\\Utils\\Helpers::get_webp_asset_url('placeholder', '', [ 320, 230 ]) ?> 320w"
   sizes="(min-width: 640px) 640px, (min-width: 540px) 540px, 100vw"
   width="640"
   height="480"

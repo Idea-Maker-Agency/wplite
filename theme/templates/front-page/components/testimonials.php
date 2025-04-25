@@ -1,5 +1,8 @@
 <?php
-use WPLite\Utils\CustomFields;
+use WPLite\Utils\{
+  CustomFields,
+  Helpers
+};
 
 $title = CustomFields::get_field('testimonials_title', 'Testimonials');
 $items = CustomFields::get_field('testimonials_items');
@@ -25,7 +28,7 @@ $items = CustomFields::get_field('testimonials_items');
                     src="<?=
                       $item['avatar']
                       ? wp_get_attachment_image_url($item['avatar'], [75, 75])
-                      : wplite_get_webp_url('avatar', '', [75, 75]) ?>"
+                      : Helpers::get_webp_asset_url('avatar', [75, 75]) ?>"
                     width="75"
                     height="75"
                     alt="<?= $item['full_name'] ?>'s Avatar"

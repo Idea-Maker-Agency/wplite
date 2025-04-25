@@ -28,7 +28,7 @@ class ThemeCustomizerController
    */
   public static function register(WP_Customize_Manager $manager): void
   {
-    $panels = Spyc::YAMLLoad(get_theme_file_path('/lib/config/customizer.yaml'));
+    $panels = Spyc::YAMLLoad(get_theme_file_path('/config/customizer.yaml'));
 
     if (! empty($panels)) {
       foreach ($panels as $panel_key => $panel) {

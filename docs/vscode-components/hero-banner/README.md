@@ -38,11 +38,11 @@ Use the `wplite:hero-banner` VSCode snippet to quickly insert hero banner HTML m
   </div>
   <div class="w-100 h-100 bg-dark bg-opacity-50 position-absolute top-0 start-0 z-n2"></div>
   <img
-    src="<?= wplite_get_webp_url( 'hero', '', [ 1920, 1080 ] ) ?>"
+    src="<?= WPLite\\Utils\\Helpers::get_webp_asset_url('hero', '', [ 1920, 1080 ]) ?>"
     srcset="
-      <?= wplite_get_webp_url( 'hero', '', [ 1920, 1080 ] ) ?> 1920w,
-      <?= wplite_get_webp_url( 'hero', '', [ 1024, 768 ] ) ?> 1024w,
-      <?= wplite_get_webp_url( 'hero', '', [ 320, 500 ] ) ?> 320w"
+      <?= WPLite\\Utils\\Helpers::get_webp_asset_url('hero', '', [ 1920, 1080 ]) ?> 1920w,
+      <?= WPLite\\Utils\\Helpers::get_webp_asset_url('hero', '', [ 1024, 768 ]) ?> 1024w,
+      <?= WPLite\\Utils\\Helpers::get_webp_asset_url('hero', '', [ 320, 500 ]) ?> 320w"
     sizes="(min-width: 1920px) 1920px, (min-width: 1024px) 1024px, 100vw"
     width="1920"
     height="1080"

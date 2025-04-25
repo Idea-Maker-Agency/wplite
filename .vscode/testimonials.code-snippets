@@ -17,7 +17,7 @@
 
       // Testimonial 1: Avatar
       "\t\t\t\t\t<img ",
-      "\t\t\t\t\t\tsrc=\"${1:<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\tsrc=\"${1:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('avatar', '', [ 75, 75 ]) ?>}\" ",
       "\t\t\t\t\t\twidth=\"75\"",
       "\t\t\t\t\t\theight=\"75\"",
       "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",
@@ -45,7 +45,7 @@
 
       // Testimonial 2: Avatar
       "\t\t\t\t\t<img ",
-      "\t\t\t\t\t\tsrc=\"${1:<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\tsrc=\"${1:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('avatar', '', [ 75, 75 ]) ?>}\" ",
       "\t\t\t\t\t\twidth=\"75\"",
       "\t\t\t\t\t\theight=\"75\"",
       "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",
@@ -73,7 +73,7 @@
 
       // Testimonial 3: Avatar
       "\t\t\t\t\t<img ",
-      "\t\t\t\t\t\tsrc=\"${1:<?= wplite_get_webp_url( 'avatar', '', [ 75, 75 ] ) ?>}\" ",
+      "\t\t\t\t\t\tsrc=\"${1:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('avatar', '', [ 75, 75 ]) ?>}\" ",
       "\t\t\t\t\t\twidth=\"75\"",
       "\t\t\t\t\t\theight=\"75\"",
       "\t\t\t\t\t\talt=\"${2:Person's Avatar}\" ",

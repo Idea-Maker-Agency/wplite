@@ -1,0 +1,61 @@
+wplite:
+  title: "WPLite"
+  description: "WPLite Theme Options"
+  priority: 10
+  sections:
+    branding:
+      title: "Branding"
+      settings:
+        logo:
+          type: image
+          label: "Logo"
+
+    navigation:
+      title: "Navigation"
+      settings:
+        menu:
+          type: select
+          label: "Menu"
+          choices: wp-nav-menus
+
+    footer:
+      title: "Footer"
+      settings:
+        intro:
+          type: textarea
+          label: "Intro"
+
+        quick_links_heading:
+          type: text
+          label: "Quick Links: Heading"
+
+        quick_links_menu:
+          type: select
+          label: "Quick Links: Links"
+          choices: wp-nav-menus
+
+        get_in_touch_heading:
+          type: text
+          label: "Get In Touch: Heading"
+
+    copyright:
+      title: "Copyright"
+      settings:
+        text:
+          type: text
+          label: "Text"
+
+    social_links:
+      title: "Social Links"
+      settings:
+        facebook_url:
+          type: url
+          label: "Facebook URL"
+
+        instagram_url:
+          type: url
+          label: "Instagram URL"
+
+        x_url:
+          type: url
+          label: "X URL"

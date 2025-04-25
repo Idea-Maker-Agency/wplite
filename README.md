@@ -9,15 +9,18 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
   - [Key Files and Directories](#key-files-and-directories)
-- [Components](#components)
+- [VSCode Components](#vscode-components)
 - [Style Guide](#style-guide)
   - [HTML](#html)
   - [PHP](#php)
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
+  - [Dynamic theme customizer](#dynamic-theme-customizer)
   - [Organized page templates](#organized-page-templates)
-  - [Organized template parts](#organized-template-parts)
+  - [Organized components](#organized-components)
+  - [Built-in custom fields registration](#built-in-custom-fields-registration)
+  - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -119,22 +122,22 @@ project
 
 **[⬆ back to top](#table-of-contents)**
 
-## Components
+## VSCode Components
 
 The project includes custom VSCode code snippets, based on Bootstrap 5.3.3, to enhance your development workflow by providing quick access to commonly used code patterns and templates, improving productivity and efficiency. Here are the following reusable vscode snippets:
 
-- [`wplite:accordion`](/docs/components/accordion/README.md)
-- [`wplite:button`](/docs/components/button/README.md)
-- [`wplite:card`](/docs/components/card/README.md)
-- [`wplite:container`](/docs/components/container/README.md)
-- [`wplite:features`](/docs/components/features/README.md)
-- [`wplite:hero-banner`](/docs/components/hero-banner/README.md)
-- [`wplite:image`](/docs/components/image/README.md)
-- [`wplite:link`](/docs/components/link/README.md)
-- [`wplite:media-block`](/docs/components/media-block/README.md)
-- [`wplite:page-content`](/docs/components/page-content/README.md)
-- [`wplite:testimonial-carousel`](/docs/components/testimonial-carousel/README.md)
-- [`wplite:unordered-list`](/docs/components/unordered-list/README.md)
+- [`wplite:accordion`](/docs/vscode-components/accordion/README.md)
+- [`wplite:button`](/docs/vscode-components/button/README.md)
+- [`wplite:card`](/docs/vscode-components/card/README.md)
+- [`wplite:container`](/docs/vscode-components/container/README.md)
+- [`wplite:features`](/docs/vscode-components/features/README.md)
+- [`wplite:hero-banner`](/docs/vscode-components/hero-banner/README.md)
+- [`wplite:image`](/docs/vscode-components/image/README.md)
+- [`wplite:link`](/docs/vscode-components/link/README.md)
+- [`wplite:media-block`](/docs/vscode-components/media-block/README.md)
+- [`wplite:page-content`](/docs/vscode-components/page-content/README.md)
+- [`wplite:testimonial-carousel`](/docs/vscode-components/testimonial-carousel/README.md)
+- [`wplite:unordered-list`](/docs/vscode-components/unordered-list/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -197,6 +200,20 @@ function wplite_some_function(string $name, int $age): string
 
 ## Templating Guide
 
+Templates lives in a custom folder called `templates` and are organized by folder names. Below is the folder/file structure for creating page templates.
+
+```
+templates
+├── 404/404.php
+├── blog/blog.php                                 // Blog template
+├── blog-post/blog-post.php                       // Single blog post template
+├── front-page/front-page.php                     // Front-page template
+├── search/search.php                             // Search template
+├── <post_type>/<post_type.php>                   // Custom post type's archive template (e.g. templates/movies/movies.php)
+├── single-<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single-movies/single-movies.php)
+    single-<post_type>/<slug>.php                 // Custom post type's singular template by slug (e.g. templates/single-movies/back-to-the-future.php)
+```
+
 ### Additional Scripts
 
 When adding 1st or 3rd party scripts, make sure to enqueue them only for specific templates by using the wordpress [conditional tags](https://developer.wordpress.org/themes/basics/conditional-tags/).
@@ -207,13 +224,35 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 
 ## Features
 
+### Dynamic theme customizer
+
+Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight YAML parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.yaml` configuration file.
+
 ### Organized page templates
 
 Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.fields.yaml).
 
-### Organized template parts
+### Organized components
 
-Cusom template parts can be organized into folders, and any CSS or JS files named identically to the corresponding template part PHP file will automatically be enqueued.
+Custom components can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/components/README.md)
+
+### Built-in custom fields registration
+
+The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
+
+- [`text` | `url` | `email` | `password`](/docs/custom-fields/input/README.md)
+- [`select`](/docs/custom-fields/select/README.md)
+- [`wpeditor`](/docs/custom-fields/wpeditor/README.md)
+- [`image`](/docs/custom-fields/image/README.md) ( stores the wp media attachment id )
+- [`checkbox`](/docs/custom-fields/checkbox/README.md)
+- [`radio`](/docs/custom-fields/radio/README.md)
+- [`textarea`](/docs/custom-fields/textarea/README.md)
+- [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
+- [`repeater`](/docs/custom-fields/repeater/README.md)
+
+### Form Builder
+
+This theme includes lightweight and extensible utility for building and handling front-end forms, [read docs](/docs/form-builder/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

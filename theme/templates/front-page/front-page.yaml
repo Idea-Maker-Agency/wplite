@@ -1,0 +1,157 @@
+hero_banner:
+  group: "Hero Banner"
+  fields:
+    hero_banner_bg:
+      type: image
+      label: "Background image"
+
+    hero_banner_title:
+      type: text
+      label: "Title"
+
+    hero_banner_content:
+      type: wpeditor
+      label: "Content"
+
+    hero_banner_cta_primary:
+      type: group
+      label: "Primary CTA Button"
+      fields:
+        text:
+          type: text
+          label: "Text"
+          width: 50
+
+        url:
+          type: url
+          label: "URL"
+          width: 50
+
+    hero_banner_cta_secondary:
+      type: group
+      label: "Secondary CTA Button"
+      fields:
+        text:
+          type: text
+          label: "Text"
+          width: 50
+
+        url:
+          type: url
+          label: "URL"
+          width: 50
+
+intro:
+  group: "Intro"
+  fields:
+    intro_featured_image:
+      type: "image"
+      label: "Featured image"
+
+    intro_title:
+      type: "text"
+      label: "Title"
+
+    intro_content:
+      type: "wpeditor"
+      label: "Content"
+
+    intro_cta:
+      type: group
+      label: "CTA Button"
+      fields:
+        text:
+          type: text
+          label: "Text"
+          width: 50
+
+        url:
+          type: url
+          label: "URL"
+          width: 50
+
+features:
+  group: "Features"
+  fields:
+    features_title:
+      type: text
+      label: "Title"
+
+    features_intro:
+      type: text
+      label: "Intro"
+
+    features_items:
+      type: repeater
+      label: "Features"
+      fields:
+        featured_image:
+          type: image
+          label: "Featured image"
+
+        title:
+          type: text
+          label: "Title"
+
+        content:
+          type: wpeditor
+          label: "Content"
+
+        url:
+          type: url
+          label: "Url"
+
+faqs:
+  group: "FAQs"
+  fields:
+    faqs_title:
+      type: text
+      label: "Title"
+
+    faqs_intro:
+      type: text
+      label: "Intro"
+
+    faqs_items:
+      type: repeater
+      label: "FAQs"
+      fields:
+        title:
+          type: text
+          label: "Title"
+          width: 40
+
+        description:
+          type: textarea
+          label: "Description"
+          width: 60
+
+testimonials:
+  group: "Testimonials"
+  fields:
+    testimonials_title:
+      type: text
+      label: "Title"
+
+    testimonials_items:
+      type: repeater
+      label: "Testimonials"
+      fields:
+        avatar:
+          type: image
+          label: "Avatar"
+          width: 30
+
+        full_name:
+          type: text
+          label: "Full Name"
+          width: 35
+
+        job_title:
+          type: text
+          label: "Job Title"
+          width: 35
+
+        testimonial:
+          type: textarea
+          label: "Testimonial"

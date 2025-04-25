@@ -4,6 +4,9 @@
 # Nodejs
 node_modules
 
+# Vendor
+theme/vendor
+
 # Theme
 wplite
 wplite.zip

@@ -1,5 +1,24 @@
 <?php
 
+use WPLite\Controllers\{
+  SetupController,
+  AuthController,
+  AssetController,
+  NavMenuController,
+  TemplateController,
+  CommentController,
+  ContactForm7Controller
+};
+use WPLite\Controllers\Admin\{
+  ThemeCustomizerController,
+  CustomFieldsRepeaterAJAXController
+};
+use WPLite\Controllers\Form\{
+  LoginFormController,
+  SignUpFormController
+};
+use WPLite\Utils\Components;
+
 /**
  * Init.
  *
@@ -7,27 +26,29 @@
  *
  * @return void
  */
+add_action('after_setup_theme', 'wplite_init');
 function wplite_init(): void {
-  require_once THEME_DIR_PATH . '/vendor/spyc/Spyc.php';
-
-  require_once THEME_DIR_PATH . '/lib/classes/CustomFields.php';
-
-  require_once THEME_DIR_PATH . '/lib/functions/helpers.php';
-  require_once THEME_DIR_PATH . '/lib/functions/settings.php';
-  require_once THEME_DIR_PATH . '/lib/functions/admin.php';
-  require_once THEME_DIR_PATH . '/lib/functions/general-template.php';
-  require_once THEME_DIR_PATH . '/lib/functions/page-template.php';
-  require_once THEME_DIR_PATH . '/lib/functions/comment-template.php';
-  require_once THEME_DIR_PATH . '/lib/functions/components.php';
-  require_once THEME_DIR_PATH . '/lib/functions/styles.php';
-  require_once THEME_DIR_PATH . '/lib/functions/scripts.php';
-  require_once THEME_DIR_PATH . '/lib/functions/formatting.php';
-  require_once THEME_DIR_PATH . '/lib/functions/nav-menu.php';
-  require_once THEME_DIR_PATH . '/lib/functions/widgets.php';
+  SetupController::init();
+  AuthController::init();
+  AssetController::init();
+  NavMenuController::init();
+  TemplateController::init();
+  CommentController::init();
 
   if (class_exists('WPCF7')) {
-    require_once THEME_DIR_PATH . '/lib/functions/contact-form-7.php';
+    ContactForm7Controller::init();
   }
-}
 
-wplite_init();
+  ThemeCustomizerController::init();
+  CustomFieldsRepeaterAJAXController::init();
+
+  // Initialize front-end form controllers
+  LoginFormController::init();
+  SignUpFormController::init();
+
+  // Register custom components
+  Components::register('logo');
+  Components::register('social-links');
+  Components::register('article-card');
+  Components::register('related-posts');
+}

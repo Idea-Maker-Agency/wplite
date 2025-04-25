@@ -20,13 +20,13 @@ my-component
 Ensure your component is registered by adding the following line in `lib/init.php` within the `wplite_init()` function:
 
 ```php
-WPLite\Utils\Components::register('my-component');
+Components::register('my-component');
 ```
 
 To display the component in your templates, include the following snippet:
 
 ```php
-WPLite\Utils\Components::render('my-component', [
+Components::render('my-component', [
   'arg_1' => 'Lorem ipsum',
 ]);
 ```

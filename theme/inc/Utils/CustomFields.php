@@ -89,8 +89,7 @@ class CustomFields
   {
     if (empty($this->fields)) return;
 
-    foreach ($this->fields as $field) {
-      $id = strtolower('id_' . $field['group']);
+    foreach ($this->fields as $id => $field) {
       $title = $field['group'];
 
       add_meta_box($id, $title, [&$this, 'render_meta_boxes'], 'page');
@@ -111,16 +110,15 @@ class CustomFields
     array $fields = [],
     string $parent_name = ''
   ): void {
-    foreach ($fields as $field) {
+    foreach ($fields as $name => $field) {
       $type = $field['type'] ?? 'text';
-      $name = $field['name'] ?? '';
       $label = $field['label'] ?? '';
-      $help_text = $field['helpText'] ?? '';
+      $helper_text = $field['helper_text'] ?? '';
       $width = $field['width'] ?? 100;
 
-      if ($parent_name) {
-        $name = "{$parent_name}_{$name}";
-      }
+      // if ($parent_name) {
+      //   $name = "{$parent_name}_{$name}";
+      // }
     ?>
       <div style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;">
         <?php if ($label) { ?>
@@ -137,61 +135,70 @@ class CustomFields
           <?php get_template_part('inc/Views/CustomFields/group', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('repeater' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/repeater', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/select', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('wpeditor' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/wpeditor', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('image' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/image', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('checkbox' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/checkbox', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('radio' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/radio', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('textarea' === $type) { ?>
           <?php get_template_part('inc/Views/CustomFields/textarea', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } else { ?>
           <?php get_template_part('inc/Views/CustomFields/input', null, [
             'post_id' => $post->ID,
             'field' => $field,
+            'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } ?>
 
-        <?php if ($help_text) { ?>
+        <?php if ($helper_text) { ?>
           <p class="post-attributes-help-text">
-            <?= $help_text ?>
+            <?= $helper_text ?>
           </p>
         <?php } ?>
       </div>
@@ -209,12 +216,7 @@ class CustomFields
    */
   public function render_meta_boxes(WP_Post $post, array $args)
   {
-    $title = $args['title'];
-
-    $columns = array_column($this->fields, 'group');
-    $index = array_search($title, $columns);
-
-    $field = $this->fields[$index];
+    $field = $this->fields[$args['id']];
     $fields = $field['fields'] ?? [];
 
     if (empty($fields)) return;
@@ -278,9 +280,8 @@ class CustomFields
     string $parent_name = ''
   ): void {
     if (! empty($fields)) {
-      foreach ($fields as $field) {
+      foreach ($fields as $name => $field) {
         $type = $field['type'] ?? 'text';
-        $name = $field['name'] ?? '';
 
         if ($parent_name) {
           $name = "{$parent_name}_{$name}";
@@ -291,16 +292,14 @@ class CustomFields
         if ('group' === $type) {
           $this->save_fields($post_id, $field['fields'], $name);
         } elseif ('repeater' === $type) {
-          $fields = array_map(function ($item) {
-            return $item['name'];
-          }, $field['fields']);
+          $sub_fields = array_keys($field['fields']);
 
           // Filter keys with non-empty fields
           $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true);
 
-          $keys = array_filter($keys, function ($key) use ($fields) {
-            $valid_fields = array_filter($fields, function ($field) use ($key) {
-              $value = $_POST["{$key}_{$field}"];
+          $keys = array_filter($keys, function ($key) use ($sub_fields) {
+            $valid_fields = array_filter($sub_fields, function ($sub_field) use ($key) {
+              $value = $_POST["{$key}_{$sub_field}"];
 
               return ! empty($value) && "false" !== $value;
             });
@@ -314,7 +313,7 @@ class CustomFields
             }
 
             update_post_meta($post_id, "{$name}_keys", $keys);
-            update_post_meta($post_id, "{$name}_fields", $fields);
+            update_post_meta($post_id, "{$name}_fields", $sub_fields);
           } else {
             delete_post_meta($post_id, "{$name}_keys"); // IMPORTANT: Prevent saving empty keys to optimize DB
             delete_post_meta($post_id, "{$name}_fields"); // IMPORTANT: Prevent saving empty keys to optimize DB
@@ -348,8 +347,8 @@ class CustomFields
 
     if (empty($this->fields)) return;
 
-    foreach ($this->fields as $group) {
-      $fields = $group['fields'] ?? [];
+    foreach ($this->fields as $field) {
+      $fields = $field['fields'] ?? [];
 
       $this->save_fields($post_id, $fields);
     }

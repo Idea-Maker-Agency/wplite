@@ -1,6 +1,6 @@
 <?php
 $post_id = intval($args['post_id'] ?? null);
-$name = $args['field']['name'] ?? '';
+$name = $args['name'] ?? '';
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";

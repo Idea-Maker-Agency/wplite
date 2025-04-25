@@ -2,7 +2,7 @@
 use WPLite\Utils\CustomFields;
 
 $post_id = intval($args['post_id'] ?? null);
-$name = $args['field']['name'] ?? '';
+$name = $args['name'] ?? '';
 $fields = $args['field']['fields'] ?? [];
 
 if (! empty($args['parent_name'])) {

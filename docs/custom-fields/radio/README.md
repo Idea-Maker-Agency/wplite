@@ -5,10 +5,11 @@ Registers a radio buttons custom field.
 ## Register field
 
 ```yaml
-- group: "Section 1"
+my_page:
+  group: "Section 1"
   fields:
-    - name: "section_1_theme"
-      type: "radio"
+    section_1_theme:
+      type: radio
       label: "Theme"
       options:
         - label: "Light"

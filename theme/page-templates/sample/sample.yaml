@@ -1,29 +1,31 @@
-- group: "Sample page template custom fields"
+sample_page:
+  group: "Sample page template custom fields"
   fields:
-    - name: "sample_text"
-      type: "text"
+    sample_text:
+      type: text
       label: "Sample text field"
-      helpText: "Lorem ipsum dolor sit amet, consectet"
+      helper_text: "Lorem ipsum dolor sit amet, consectet"
       required: true
 
-    - name: "sample_select"
-      type: "select"
+    sample_select:
+      type: select
       label: "Sample select field"
       required: true
       options:
         - label: "Option 1"
           value: "option1"
+
         - label: "Option 2"
           value: "option2"
 
-    - name: "sample_wpeditor"
-      type: "wpeditor"
+    sample_wpeditor:
+      type: wpeditor
       label: "Sample WP editor field"
 
-    - name: "sample_checkbox"
-      type: "checkbox"
+    sample_checkbox:
+      type: checkbox
       label: "Sample checkbox field"
 
-    - name: "sample_image"
-      type: "image"
+    sample_image:
+      type: image
       label: "Sample image field"

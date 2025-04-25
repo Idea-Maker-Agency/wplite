@@ -5,10 +5,11 @@ Registers an select dropdown custom field.
 ## Register field
 
 ```yaml
-- group: "Section 1"
+my_page:
+  group: "Section 1"
   fields:
-    - name: "section_1_status"
-      type: "select"
+    section_1_status:
+      type: select
       label: "Status"
       options:
         - label: "Active"
@@ -16,7 +17,7 @@ Registers an select dropdown custom field.
 
         - label: "Inactive"
           value: "inactive"
-      helpText: "Lorem ipsum dolor sit amet"
+      helper_text: "Lorem ipsum dolor sit amet"
       required: true
       width: 50
 ```

@@ -5,29 +5,30 @@ Registers a repeater custom field.
 ## Register field
 
 ```yaml
-- group: "Section 1"
+my_page:
+  group: "Section 1"
   fields:
-    - name: "section_1_repeater"
-      type: "repeater"
+    section_1_repeater:
+      type: repeater
       label: "Repeater"
       fields:
-        - name: "image"
-          type: "image"
+        image:
+          type: image
           label: "Featured Image"
           width: 100
 
-        - name: "text"
-          type: "text"
+        text:
+          type: text
           label: "Text"
           width: 50
 
-        - name: "url"
-          type: "url"
+        url:
+          type: url
           label: "URL"
           width: 50
 
-        - name: "content"
-          type: "wpeditor"
+        content:
+          type: wpeditor
           label: "Content"
           width: 100
 ```

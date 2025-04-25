@@ -1,152 +1,157 @@
-- group: "Hero Banner"
+hero_banner:
+  group: "Hero Banner"
   fields:
-    - name: "hero_banner_bg"
-      type: "image"
+    hero_banner_bg:
+      type: image
       label: "Background image"
 
-    - name: "hero_banner_title"
-      type: "text"
+    hero_banner_title:
+      type: text
       label: "Title"
 
-    - name: "hero_banner_content"
-      type: "wpeditor"
+    hero_banner_content:
+      type: wpeditor
       label: "Content"
 
-    - name: "hero_banner_cta_primary"
-      type: "group"
+    hero_banner_cta_primary:
+      type: group
       label: "Primary CTA Button"
       fields:
-        - name: "text"
-          type: "text"
+        text:
+          type: text
           label: "Text"
           width: 50
 
-        - name: "url"
-          type: "url"
+        url:
+          type: url
           label: "URL"
           width: 50
 
-    - name: "hero_banner_cta_secondary"
-      type: "group"
+    hero_banner_cta_secondary:
+      type: group
       label: "Secondary CTA Button"
       fields:
-        - name: "text"
-          type: "text"
+        text:
+          type: text
           label: "Text"
           width: 50
 
-        - name: "url"
-          type: "url"
+        url:
+          type: url
           label: "URL"
           width: 50
 
-- group: "Intro"
+intro:
+  group: "Intro"
   fields:
-    - name: "intro_featured_image"
+    intro_featured_image:
       type: "image"
       label: "Featured image"
 
-    - name: "intro_title"
+    intro_title:
       type: "text"
       label: "Title"
 
-    - name: "intro_content"
+    intro_content:
       type: "wpeditor"
       label: "Content"
 
-    - name: "intro_cta"
-      type: "group"
+    intro_cta:
+      type: group
       label: "CTA Button"
       fields:
-        - name: "text"
-          type: "text"
+        text:
+          type: text
           label: "Text"
           width: 50
 
-        - name: "url"
-          type: "url"
+        url:
+          type: url
           label: "URL"
           width: 50
 
-- group: "Features"
+features:
+  group: "Features"
   fields:
-    - name: "features_title"
-      type: "text"
+    features_title:
+      type: text
       label: "Title"
 
-    - name: "features_intro"
-      type: "text"
+    features_intro:
+      type: text
       label: "Intro"
 
-    - name: "features_items"
-      type: "repeater"
+    features_items:
+      type: repeater
       label: "Features"
       fields:
-        - name: "featured_image"
-          type: "image"
+        featured_image:
+          type: image
           label: "Featured image"
 
-        - name: "title"
-          type: "text"
+        title:
+          type: text
           label: "Title"
 
-        - name: "content"
-          type: "wpeditor"
+        content:
+          type: wpeditor
           label: "Content"
 
-        - name: "url"
-          type: "url"
+        url:
+          type: url
           label: "Url"
 
-- group: "FAQs"
+faqs:
+  group: "FAQs"
   fields:
-    - name: "faqs_title"
-      type: "text"
+    faqs_title:
+      type: text
       label: "Title"
 
-    - name: "faqs_intro"
-      type: "text"
+    faqs_intro:
+      type: text
       label: "Intro"
 
-    - name: "faqs_items"
-      type: "repeater"
+    faqs_items:
+      type: repeater
       label: "FAQs"
       fields:
-        - name: "title"
-          type: "text"
+        title:
+          type: text
           label: "Title"
           width: 40
 
-        - name: "description"
-          type: "textarea"
+        description:
+          type: textarea
           label: "Description"
           width: 60
 
-- group: "Testimonials"
+testimonials:
+  group: "Testimonials"
   fields:
-    - name: "testimonials_title"
-      type: "text"
+    testimonials_title:
+      type: text
       label: "Title"
 
-    - name: "testimonials_items"
-      type: "repeater"
+    testimonials_items:
+      type: repeater
       label: "Testimonials"
       fields:
-        - name: "avatar"
-          type: "image"
+        avatar:
+          type: image
           label: "Avatar"
           width: 30
 
-        - name: "full_name"
-          type: "text"
+        full_name:
+          type: text
           label: "Full Name"
           width: 35
 
-        - name: "job_title"
-          type: "text"
+        job_title:
+          type: text
           label: "Job Title"
           width: 35
 
-        - name: "testimonial"
-          type: "textarea"
+        testimonial:
+          type: textarea
           label: "Testimonial"

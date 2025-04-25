@@ -5,12 +5,13 @@ Registers a single image picker custom field.
 ## Register field
 
 ```yaml
-- group: "Section 1"
+my_page:
+  group: "Section 1"
   fields:
-    - name: "section_1_bg"
-      type: "image"
+    section_1_bg:
+      type: image
       label: "Background image"
-      helpText: "Lorem ipsum dolor sit amet"
+      helper_text: "Lorem ipsum dolor sit amet"
       width: 100
 ```
 

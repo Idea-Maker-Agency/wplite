@@ -5,10 +5,11 @@ Registers a wysiwyg custom field.
 ## Register field
 
 ```yaml
-- group: "Section 1"
+my_page:
+  group: "Section 1"
   fields:
-    - name: "section_1_content"
-      type: "wpeditor"
+    section_1_content:
+      type: wpeditor
       label: "Content"
       helpText: "Lorem ipsum dolor sit amet"
       width: 100

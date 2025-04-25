@@ -17,6 +17,6 @@ $post = get_post($post_id);
   name="<?= $name ?>"
   type="<?= $type ?>"
   placeholder="<?= $placeholder ?>"
-  value="<?= $post->__get($name) ?>"
+  value="<?= htmlspecialchars($post->__get($name)) ?>"
   style="width: 100%;"
   <?= $required ? 'required' : '' ?>>

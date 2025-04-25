@@ -18,4 +18,4 @@ $post = get_post($post_id);
   type="<?= $type ?>"
   placeholder="<?= $placeholder ?>"
   style="width: 100%;"
-  <?= $required ? 'required' : '' ?>><?= $post->__get($name) ?></textarea>
+  <?= $required ? 'required' : '' ?>><?= htmlspecialchars($post->__get($name)) ?></textarea>

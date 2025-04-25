@@ -26,7 +26,6 @@ use WPLite\Utils\Components;
  *
  * @return void
  */
-add_action('after_setup_theme', 'wplite_init');
 function wplite_init(): void {
   SetupController::init();
   AuthController::init();
@@ -52,3 +51,5 @@ function wplite_init(): void {
   Components::register('article-card');
   Components::register('related-posts');
 }
+
+wplite_init();

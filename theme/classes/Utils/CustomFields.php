@@ -115,10 +115,6 @@ class CustomFields
       $label = $field['label'] ?? '';
       $helper_text = $field['helper_text'] ?? '';
       $width = $field['width'] ?? 100;
-
-      // if ($parent_name) {
-      //   $name = "{$parent_name}_{$name}";
-      // }
     ?>
       <div style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;">
         <?php if ($label) { ?>
@@ -132,63 +128,63 @@ class CustomFields
         <?php } ?>
 
         <?php if ('group' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/group', null, [
+          <?php get_template_part('classes/Views/CustomFields/group', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('repeater' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/repeater', null, [
+          <?php get_template_part('classes/Views/CustomFields/repeater', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('select' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/select', null, [
+          <?php get_template_part('classes/Views/CustomFields/select', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('wpeditor' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/wpeditor', null, [
+          <?php get_template_part('classes/Views/CustomFields/wpeditor', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('image' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/image', null, [
+          <?php get_template_part('classes/Views/CustomFields/image', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('checkbox' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/checkbox', null, [
+          <?php get_template_part('classes/Views/CustomFields/checkbox', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('radio' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/radio', null, [
+          <?php get_template_part('classes/Views/CustomFields/radio', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } elseif ('textarea' === $type) { ?>
-          <?php get_template_part('inc/Views/CustomFields/textarea', null, [
+          <?php get_template_part('classes/Views/CustomFields/textarea', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,
             'parent_name' => $parent_name,
           ]) ?>
         <?php } else { ?>
-          <?php get_template_part('inc/Views/CustomFields/input', null, [
+          <?php get_template_part('classes/Views/CustomFields/input', null, [
             'post_id' => $post->ID,
             'field' => $field,
             'name' => $name,

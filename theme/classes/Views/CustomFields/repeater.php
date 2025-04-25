@@ -49,7 +49,7 @@ $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
       x-merge="append"
       x-sort.ghost="onSort">
       <?php foreach ($keys as $index => $key) { ?>
-        <?php get_template_part('inc/Views/CustomFields/repeater', 'item', [
+        <?php get_template_part('classes/Views/CustomFields/repeater', 'item', [
           'index' => $index,
           'post_id' => $post_id,
           'name' => $name,

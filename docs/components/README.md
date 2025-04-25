@@ -6,7 +6,7 @@ A lightweight system for registering custom theme components and auto-loading th
 
 ### View Template
 
-Place the component’s folder inside the `inc/Views/Components/` directory, and include the PHP, CSS, and JS files within it. Here's an example of the structure:
+Place the component’s folder inside the `classes/Views/Components/` directory, and include the PHP, CSS, and JS files within it. Here's an example of the structure:
 
 ```
 my-component

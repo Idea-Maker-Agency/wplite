@@ -87,6 +87,6 @@ class Components
 
     self::load_assets($name);
 
-    get_template_part("inc/Views/Components/{$name}/{$name}", null, $args);
+    get_template_part("classes/Views/Components/{$name}/{$name}", null, $args);
   }
 }

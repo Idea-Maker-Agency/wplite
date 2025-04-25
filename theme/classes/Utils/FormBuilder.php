@@ -117,15 +117,15 @@ class FormBuilder extends Form
           ?>
             <div class="mb-3">
               <?php if ('select' === $field['type']) { ?>
-                <?php get_template_part('inc/Views/Form/select', null, $args) ?>
+                <?php get_template_part('classes/Views/Form/select', null, $args) ?>
               <?php } elseif ('checkbox' === $field['type']) { ?>
-                <?php get_template_part('inc/Views/Form/checkbox', null, $args) ?>
+                <?php get_template_part('classes/Views/Form/checkbox', null, $args) ?>
               <?php } elseif ('radio' === $field['type']) { ?>
-                <?php get_template_part('inc/Views/Form/radiobox', null, $args) ?>
+                <?php get_template_part('classes/Views/Form/radiobox', null, $args) ?>
               <?php } elseif ('textarea' === $field['type']) { ?>
-                <?php get_template_part('inc/Views/Form/textarea', null, $args) ?>
+                <?php get_template_part('classes/Views/Form/textarea', null, $args) ?>
               <?php } else { ?>
-                <?php get_template_part('inc/Views/Form/input', null, $args) ?>
+                <?php get_template_part('classes/Views/Form/input', null, $args) ?>
               <?php } ?>
 
               <?php if ($error = $this->get_error($name)) { ?>

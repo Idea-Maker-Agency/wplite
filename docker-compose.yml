@@ -57,5 +57,13 @@ services:
     working_dir: /app
     command: install
 
+  theme-builder:
+    image: node:14
+    container_name: wplite-theme-builder
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    entrypoint: sh -c "npm run compile:sass && npm run compile:purify-css && cp -r theme wplite"
+
 volumes:
   mysql_data: {}

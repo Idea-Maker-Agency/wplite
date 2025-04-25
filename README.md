@@ -51,7 +51,7 @@ docker-compose up
 OR compile the theme:
 
 ```bash
-npm run compile:theme
+docker-compose run --rm theme-builder
 ```
 
 The compile command will generate a `wplite` folder which we can zip and upload to development, staging or live server.

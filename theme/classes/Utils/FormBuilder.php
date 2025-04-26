@@ -36,9 +36,9 @@ class FormBuilder extends Form
    *
    * @param string    $action   The form action.
    *
-   * @return $this
+   * @return self
    */
-  public function set_action(string $action) {
+  public function set_action(string $action): self {
     $this->action = $action;
 
     return $this;
@@ -52,14 +52,14 @@ class FormBuilder extends Form
    * @param string    $type     The form field type. Defaults to "input".
    * @param array     $args     The form field args. Defaults to empty array.
    *
-   * @return $this
+   * @return self
    */
   public function add_field(
     string $name,
     string $label = '',
     string $type = 'input',
     array $args = []
-  ) {
+  ): self {
     $this->fields[$name] = [
       'label' => __($label, THEME_TEXT_DOMAIN),
       'type' => $type,
@@ -72,9 +72,14 @@ class FormBuilder extends Form
   /**
    * Render form.
    *
+   * @param array     $args   {
+   *    The extra form args.
+   *    @type string    $submit_text  Submit button text. Defaults to "Submit".
+   * }
+   *
    * @return void
    */
-  public function render(): void
+  public function render(array $args = []): void
   {
   ?>
     <?php if ($non_field_message = $this->get_message('non_field')) { ?>
@@ -96,7 +101,8 @@ class FormBuilder extends Form
     <form
       action="<?= $this->action ?>"
       name="<?= $this->name ?>"
-      method="post">
+      method="post"
+      class="clearfix">
       <?= wp_nonce_field('wplite') ?>
 
       <input
@@ -104,8 +110,10 @@ class FormBuilder extends Form
         type="hidden"
         value="<?= $this->name ?>">
 
+      <?php do_action("form_{$this->name}_before_fields", $this) ?>
+
       <?php if(! empty($this->fields)) { ?>
-        <fieldset class="row">
+        <fieldset class="row p-0 border-0">
           <?php
           foreach ($this->fields as $name => $field) {
             $args = array_merge($field['args'] ?? [], [
@@ -146,10 +154,12 @@ class FormBuilder extends Form
         </fieldset>
       <?php } ?>
 
+      <?php do_action("form_{$this->name}_after_fields", $this) ?>
+
       <button
         type="submit"
         class="btn btn-primary">
-        <?= __('Submit', THEME_TEXT_DOMAIN) ?>
+        <?= __($args['submit_text'] ?? 'Submit', THEME_TEXT_DOMAIN) ?>
       </button>
     </form>
   <?php

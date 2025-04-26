@@ -13,7 +13,7 @@ $cta_secondary_text = CustomFields::get_field('hero_banner_cta_secondary_text');
 $cta_secondary_url = CustomFields::get_field('hero_banner_cta_secondary_url');
 ?>
 
-<section class="hero-banner text-white py-5 text-center d-flex align-items-center position-relative">
+<section class="hero-banner text-white py-5 text-center d-flex align-items-center justify-content-center position-relative">
   <div class="container py-lg-5 px-lg-4 position-relative z-1">
     <div class="row">
       <div class="col-10 col-sm-9 col-lg-6 mx-auto">

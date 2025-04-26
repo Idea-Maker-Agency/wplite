@@ -13,19 +13,25 @@
         'email',
         'Email address',
         'email',
-        ['required' => true]
+        [
+          'required' => true,
+        ]
       )
       ->add_field(
         'password',
         'Password',
         'password',
-        ['required' => true]
+        [
+          'required' => true,
+        ]
       )
       ->add_field(
         'confirm_password',
         'Confirm password',
         'password',
-        ['required' => true]
+        [
+          'required' => true,
+        ]
       )
       ->render()
   ?>

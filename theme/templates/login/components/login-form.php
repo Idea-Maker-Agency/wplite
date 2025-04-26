@@ -13,13 +13,17 @@
         'user_login',
         'Username',
         'text',
-        ['required' => true]
+        [
+          'required' => true,
+        ]
       )
       ->add_field(
         'user_password',
         'Password',
         'password',
-        ['required' => true]
+        [
+          'required' => true,
+        ]
       )
       ->add_field(
         'remember',

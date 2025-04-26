@@ -26,8 +26,8 @@ class ContactForm7Controller
    *
    * @since 1.0.0
    *
-   * @param array $form_tag Form tags array.
-   * @param string $replace Form tags replacement string.
+   * @param array     $form_tag   Form tags array.
+   * @param string    $replace    Form tags replacement string.
    *
    * @return array
    */
@@ -50,8 +50,8 @@ class ContactForm7Controller
    *
    * @since 1.0.0
    *
-   * @param string $template Form default template HTML markup.
-   * @param string $prop Form template type.
+   * @param string    $template   Form default template HTML markup.
+   * @param string    $prop       Form template type.
    *
    * @return string
    */
@@ -112,11 +112,11 @@ class ContactForm7Controller
   /**
    * Filters form response output.
    *
-   * @param string $output Form response output HTML.
-   * @param string $class Form response CSS class.
-   * @param string $content Form response content.
+   * @param string    $output     Form response output HTML.
+   * @param string    $class      Form response CSS class.
+   * @param string    $content    Form response content.
    * @param WPCF7_ContactForm $wpcf7 The WPCF7_ContactForm object.
-   * @param string $status Form response status.
+   * @param string    $status     Form response status.
    *
    * @return string
    */

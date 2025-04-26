@@ -24,17 +24,16 @@ class NavMenuController
   /**
    * Filters the HTML attributes applied to a menu's list item element.
    *
-   * @since 1.0.0
-   *
-   * @param array $atts {
+   * @param array       $atts {
    *    The HTML attributes applied to the menu item's `<li>` element, empty strings are ignored.
    *    @type string $class HTML CSS class attribute.
    *    @type string $id HTML id attribute.
    * }
-   * @param WP_Post $menu_item The current menu item object.
-   * @param stdClass $args An object of wp_nav_menu() arguments.
-   * @param int $depth Depth of menu item. Used for padding.
-   * @return array $atts
+   * @param WP_Post     $menu_item  The current menu item object.
+   * @param stdClass    $args       An object of wp_nav_menu() arguments.
+   * @param int         $depth      Depth of menu item. Used for padding.
+   *
+   * @return array
    */
   public static function nav_menu_item_attributes(
     array $atts,
@@ -57,7 +56,7 @@ class NavMenuController
    *
    * @since 1.0.0
    *
-   * @param array $atts {
+   * @param array       $atts {
    *    The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
    *    @type string $title Title attribute.
    *    @type string $target Target attribute.
@@ -65,10 +64,11 @@ class NavMenuController
    *    @type string $href The href attribute.
    *    @type string $aria-current The aria-current attribute.
    * }
-   * @param WP_Post $menu_item The current menu item object.
-   * @param stdClass $args An object of wp_nav_menu() arguments.
-   * @param int $depth Depth of menu item. Used for padding.
-   * @return array $atts
+   * @param WP_Post     $menu_item  The current menu item object.
+   * @param stdClass    $args       An object of wp_nav_menu() arguments.
+   * @param int         $depth      Depth of menu item. Used for padding.
+   *
+   * @return array
    */
   public static function nav_menu_link_attributes(
     array $atts,
@@ -98,9 +98,9 @@ class NavMenuController
   /**
    * Filters the CSS class(es) applied to a menu list element.
    *
-   * @param array $classes Array of the CSS classes that are applied to the menu <ul> element.
-   * @param stdClass $args An object of wp_nav_menu() arguments.
-   * @param int $depth Depth of menu item. Used for padding.
+   * @param array     $classes  Array of the CSS classes that are applied to the menu <ul> element.
+   * @param stdClass  $args     An object of wp_nav_menu() arguments.
+   * @param int       $depth    Depth of menu item. Used for padding.
    *
    * @return array
    */

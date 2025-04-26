@@ -47,7 +47,7 @@ class Form
    * Set form field value.
    *
    * @param string    $key        The form field key.
-   * @param array     $new_value  The form field value.
+   * @param mixed     $new_value  The form field value.
    *
    * @return void
    */
@@ -57,6 +57,8 @@ class Form
     $prev_values[$key] = $new_value;
 
     $this->values = $prev_values;
+
+    $_SESSION["form_{$this->name}"]['values'] = $this->values;
   }
 
   /**

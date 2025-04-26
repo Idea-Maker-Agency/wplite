@@ -46,13 +46,15 @@ class Form
   /**
    * Set form values.
    *
-   * @param array     $values     The form values.
+   * @param array     $new_values The form values.
    *
    * @return void
    */
-  public function set_values(array $values): void
+  public function set_values(array $new_values): void
   {
-    $this->values = $values;
+    $prev_values = $_SESSION["form_{$this->name}"]['values'];
+
+    $this->values = array_merge($prev_values, $new_values);
 
     $_SESSION["form_{$this->name}"]['values'] = $this->values;
   }

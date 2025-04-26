@@ -23,6 +23,7 @@ $form_value = $args['form_value'] ?? '';
 <select
   name="<?= $name ?>"
   id="id_<?= $name ?>"
+  aria-describedby="id_<?= $name ?>_helper"
   <?= $disabled ? 'disabled' : '' ?>
   <?= $required ? 'required' : '' ?>
   class="form-control">

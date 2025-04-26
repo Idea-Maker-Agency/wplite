@@ -28,6 +28,7 @@ $form_value = $args['form_value'] ?? '';
   placeholder="<?= $placeholder ?>"
   rows="<?= $rows ?>"
   cols="<?= $cols ?>"
+  aria-describedby="id_<?= $name ?>_helper"
   <?= $disabled ? 'disabled' : '' ?>
   <?= $required ? 'required' : '' ?>
   class="form-control"><?= $form_value ?></textarea>

@@ -27,6 +27,7 @@ $form_value = $args['form_value'] ?? '';
   type="<?= $type ?>"
   placeholder="<?= $placeholder ?>"
   value="<?= ('password' !== $type) ? $form_value : '' ?>"
+  aria-describedby="id_<?= $name ?>_helper"
   <?= $disabled ? 'disabled' : '' ?>
   <?= $required ? 'required' : '' ?>
   class="form-control">

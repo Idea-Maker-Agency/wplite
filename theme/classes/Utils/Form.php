@@ -52,7 +52,7 @@ class Form
    */
   public function set_values(array $new_values): void
   {
-    $prev_values = $_SESSION["form_{$this->name}"]['values'];
+    $prev_values = $_SESSION["form_{$this->name}"]['values'] ?? [];
 
     $this->values = array_merge($prev_values, $new_values);
 

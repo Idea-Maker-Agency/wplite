@@ -116,7 +116,9 @@ class CustomFields
       $helper_text = $field['helper_text'] ?? '';
       $width = $field['width'] ?? 100;
     ?>
-      <div style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;">
+      <div
+        style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;"
+        <?= ('hidden' === $type) ? 'hidden' : '' ?>>
         <?php if ($label) { ?>
           <p class="post-attributes-label-wrapper page-template-label-wrapper">
             <label

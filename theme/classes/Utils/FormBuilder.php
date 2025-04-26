@@ -123,7 +123,9 @@ class FormBuilder extends Form
               'form_value' => $this->get_value($name),
             ]);
           ?>
-            <div class="<?= $args['wrapper_class'] ?? 'mb-3' ?>">
+            <div
+              class="<?= $args['wrapper_class'] ?? 'mb-3' ?>"
+              <?= ('hidden' === $args['type']) ? 'hidden' : '' ?>>
               <?php if ('select' === $field['type']) { ?>
                 <?php get_template_part('classes/Views/Form/select', null, $args) ?>
               <?php } elseif ('checkbox' === $field['type']) { ?>

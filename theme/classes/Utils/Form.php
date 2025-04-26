@@ -44,6 +44,22 @@ class Form
   }
 
   /**
+   * Set form field value.
+   *
+   * @param string    $key        The form field key.
+   * @param array     $new_value  The form field value.
+   *
+   * @return void
+   */
+  public function set_value(string $key, mixed $new_value): void
+  {
+    $prev_values = $_SESSION["form_{$this->name}"]['values'] ?? [];
+    $prev_values[$key] = $new_value;
+
+    $this->values = $prev_values;
+  }
+
+  /**
    * Set form values.
    *
    * @param array     $new_values The form values.

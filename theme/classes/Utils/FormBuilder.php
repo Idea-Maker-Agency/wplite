@@ -128,6 +128,14 @@ class FormBuilder extends Form
                 <?php get_template_part('classes/Views/Form/input', null, $args) ?>
               <?php } ?>
 
+              <?php if (! empty($args['helper_text'])) { ?>
+                <div
+                  id="id_<?= $name ?>_helper"
+                  class="form-text">
+                  <?= $args['helper_text'] ?>
+                </div>
+              <?php } ?>
+
               <?php if ($error = $this->get_error($name)) { ?>
                 <div class="invalid-feedback d-block">
                   <?= $error ?>

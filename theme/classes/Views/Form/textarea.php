@@ -4,6 +4,7 @@ $label = $args['label'] ?? '';
 $placeholder = $args['placeholder'] ?? '';
 $disabled = $args['disabled'] ?? false;
 $required = $args['required'] ?? false;
+$readonly = $args['readonly'] ?? false;
 $rows = $args['rows'] ?? 10;
 $cols = $args['cols'] ?? 6;
 
@@ -31,4 +32,5 @@ $form_value = $args['form_value'] ?? '';
   aria-describedby="id_<?= $name ?>_helper"
   <?= $disabled ? 'disabled' : '' ?>
   <?= $required ? 'required' : '' ?>
+  <?= $readonly ? 'readonly' : '' ?>
   class="form-control"><?= $form_value ?></textarea>

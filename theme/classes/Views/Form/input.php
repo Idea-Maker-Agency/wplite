@@ -5,6 +5,7 @@ $type = $args['type'] ?? 'text';
 $placeholder = $args['placeholder'] ?? '';
 $disabled = $args['disabled'] ?? false;
 $required = $args['required'] ?? false;
+$readonly = $args['readonly'] ?? false;
 
 $form_value = $args['form_value'] ?? '';
 ?>
@@ -30,4 +31,5 @@ $form_value = $args['form_value'] ?? '';
   aria-describedby="id_<?= $name ?>_helper"
   <?= $disabled ? 'disabled' : '' ?>
   <?= $required ? 'required' : '' ?>
+  <?= $readonly ? 'readonly' : '' ?>
   class="form-control">

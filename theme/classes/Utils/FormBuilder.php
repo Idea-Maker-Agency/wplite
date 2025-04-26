@@ -98,6 +98,8 @@ class FormBuilder extends Form
       </div>
     <?php } ?>
 
+    <?php do_action("form_{$this->name}_before", $this) ?>
+
     <form
       action="<?= $this->action ?>"
       name="<?= $this->name ?>"
@@ -164,10 +166,8 @@ class FormBuilder extends Form
         <?= __($args['submit_text'] ?? 'Submit', THEME_TEXT_DOMAIN) ?>
       </button>
     </form>
-  <?php
 
-    $this->clear_values();
-    $this->clear_messages();
-    $this->clear_errors();
+    <?php do_action("form_{$this->name}_after", $this) ?>
+  <?php
   }
 }

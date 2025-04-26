@@ -4,10 +4,25 @@ namespace WPLite\Controllers\Form;
 
 if (! defined('ABSPATH')) die;
 
-use WPLite\Utils\Router;
+use WPLite\Utils\{
+  FormBuilder,
+  Router
+};
 
 class LoginFormController extends BaseFormController
 {
+  /**
+   * Init.
+   *
+   * @return void
+   */
+  public static function init(): void
+  {
+    parent::init();
+
+    add_action('form_login_after', [self::class, 'reset_form_state']);
+  }
+
   /**
    * The form action name.
    *
@@ -62,5 +77,17 @@ class LoginFormController extends BaseFormController
     $this->cleanup();
 
     Router::redirect('home');
+  }
+
+  /**
+   * Reset form state.
+   *
+   * @return void
+   */
+  public static function reset_form_state(FormBuilder $form_builder): void
+  {
+    $form_builder->clear_values();
+    $form_builder->clear_messages();
+    $form_builder->clear_errors();
   }
 }

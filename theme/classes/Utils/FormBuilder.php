@@ -120,7 +120,7 @@ class FormBuilder extends Form
               'name' => $name,
               'label' => $field['label'],
               'type' => $field['type'],
-              'form_value' => $this->get_value($name),
+              'form_value' => $this->get_value($name) ?: null,
             ]);
           ?>
             <div

@@ -7,7 +7,7 @@ $disabled = $args['disabled'] ?? false;
 $required = $args['required'] ?? false;
 $readonly = $args['readonly'] ?? false;
 
-$form_value = $args['form_value'] ?? '';
+$form_value = $args['form_value'] ?? $args['default_value'];
 ?>
 
 <?php if ($label) { ?>

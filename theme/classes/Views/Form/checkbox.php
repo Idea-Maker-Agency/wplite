@@ -4,7 +4,7 @@ $label = $args['label'] ?? '';
 $disabled = $args['disabled'] ?? false;
 $required = $args['required'] ?? false;
 
-$form_value = $args['form_value'] ?? '';
+$form_value = $args['form_value'] ?? $args['default_value'];
 ?>
 
 <div class="form-check">

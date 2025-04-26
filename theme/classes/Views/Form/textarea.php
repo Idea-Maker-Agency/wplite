@@ -8,7 +8,7 @@ $readonly = $args['readonly'] ?? false;
 $rows = $args['rows'] ?? 10;
 $cols = $args['cols'] ?? 6;
 
-$form_value = $args['form_value'] ?? '';
+$form_value = $args['form_value'] ?? $args['default_value'];
 ?>
 
 <?php if ($label) { ?>

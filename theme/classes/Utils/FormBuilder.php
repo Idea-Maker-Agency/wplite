@@ -104,7 +104,8 @@ class FormBuilder extends Form
       action="<?= $this->action ?>"
       name="<?= $this->name ?>"
       method="post"
-      class="clearfix">
+      class="clearfix"
+      enctype="multipart/form-data">
       <?= wp_nonce_field('wplite') ?>
 
       <input

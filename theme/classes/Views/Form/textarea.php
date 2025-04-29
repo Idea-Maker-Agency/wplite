@@ -1,36 +1,13 @@
-<?php
-$name = $args['name'] ?? '';
-$label = $args['label'] ?? '';
-$placeholder = $args['placeholder'] ?? '';
-$disabled = $args['disabled'] ?? false;
-$required = $args['required'] ?? false;
-$readonly = $args['readonly'] ?? false;
-$rows = $args['rows'] ?? 10;
-$cols = $args['cols'] ?? 6;
-
-$form_value = $args['form_value'] ?? $args['default_value'];
-?>
-
-<?php if ($label) { ?>
+<?php if (! $args['hide_label']) { ?>
   <label
-    for="id_<?= $name ?>"
+    for="<?= $args['id'] ?>"
     class="form-label">
-    <?= $label ?>
+    <?= $args['label'] ?>
 
-    <?php if ($required) { ?>
+    <?php if ($args['required']) { ?>
       <span class="text-danger">*</span>
     <?php } ?>
   </label>
 <?php } ?>
 
-<textarea
-  name="<?= $name ?>"
-  id="id_<?= $name ?>"
-  placeholder="<?= $placeholder ?>"
-  rows="<?= $rows ?>"
-  cols="<?= $cols ?>"
-  aria-describedby="id_<?= $name ?>_helper"
-  <?= $disabled ? 'disabled' : '' ?>
-  <?= $required ? 'required' : '' ?>
-  <?= $readonly ? 'readonly' : '' ?>
-  class="form-control"><?= $form_value ?></textarea>
+<textarea <?= implode(' ', $args['attrs']) ?>><?= $args['request_value'] ?? $args['value'] ?></textarea>

@@ -55,18 +55,70 @@ class FormBuilder extends Form
    * @return self
    */
   public function add_field(
-    string $name,
-    string $label = '',
-    string $type = 'input',
-    array $args = []
+    string $label,
+    mixed $args = null,
+    string $name = ''
   ): self {
-    $this->fields[$name] = [
-      'label' => __($label, THEME_TEXT_DOMAIN),
-      'type' => $type,
-      'args' => $args,
-    ];
+    if (empty($args)) {
+			$args = [];
+		}
+
+		if (empty($name)) {
+			$name = $this->slugify($label);
+		}
+
+    if (! empty($args['helper_text'])) {
+      $args['aria-describedby'] = "id_{$name}_helper";
+    }
+
+    $defaults = [
+			'type' => 'text',
+			'name' => $name,
+			'id' => "id_{$name}",
+			'label' => __($label, THEME_TEXT_DOMAIN),
+			'value' => '',
+			'placeholder' => '',
+			'class' => [
+        'form-control',
+      ],
+			'min' => '',
+			'max' => '',
+			'step' => '',
+			'autofocus' => false,
+			'checked' => false,
+			'selected' => false,
+			'required' => false,
+      'hide_label' => false,
+			'options' => [],
+      'wrap_id' => '',
+      'wrap_class' => [
+        'mb-3',
+      ],
+      'helper_text' => '',
+		];
+
+    $this->fields[$name] = array_merge($defaults, $args);
 
     return $this;
+  }
+
+  /**
+   * Create a slug from a label.
+   *
+   * @param string    $string   The label string.
+   *
+   * @return string
+   */
+  private function slugify(string $string): string
+  {
+    $slug = '';
+
+    $slug = str_replace('"', '', $string);
+		$slug = str_replace("'", '', $slug);
+		$slug = str_replace('_', '-', $slug);
+		$slug = preg_replace('~[\W\s]~', '-', $slug);
+
+		return strtolower($slug);
   }
 
   /**
@@ -81,6 +133,7 @@ class FormBuilder extends Form
    */
   public function render(array $args = []): void
   {
+    $non_attrs = ['label', 'value', 'options', 'wrap_id', 'wrap_class', 'helper_text', 'hide_label'];
   ?>
     <?php if ($non_field_message = $this->get_message('non_field')) { ?>
       <div
@@ -118,24 +171,49 @@ class FormBuilder extends Form
       <?php if(! empty($this->fields)) { ?>
         <fieldset class="row p-0 border-0">
           <?php
-          foreach ($this->fields as $name => $field) {
-            $args = array_merge($field['args'] ?? [], [
-              'name' => $name,
-              'label' => $field['label'],
-              'type' => $field['type'],
-              'form_value' => $this->get_value($name) ?: null,
-            ]);
+          foreach ($this->fields as $name => $args) {
+            // Override field value
+            $args['request_value'] = $this->get_value($name) ?: null;
+
+            if ('password' === $args['type']) {
+              $args['value'] = '';
+              $args['request_value'] = '';
+            } elseif (in_array($args['type'], ['checkbox', 'radio'])) {
+              $class_index = array_search('form-control', $args['class']);
+
+              $args['class'][$class_index] = 'form-check-input';
+
+              if ('checkbox' === $args['type']) {
+                $args['value'] = '1';
+              }
+            }
+
+            // Set field attributes
+            $args['attrs'] = array_filter($args, function ($value, $key) use ($non_attrs) {
+              if (empty($value)) return false;
+
+              if (in_array($key, $non_attrs)) return false;
+
+              return true;
+            }, ARRAY_FILTER_USE_BOTH);
+
+            $args['attrs'] = array_map(function ($key, $value) {
+              if (is_array($value)) $value = implode(' ', $value);
+
+              return $key . '="' . $value . '"';
+            }, array_keys($args['attrs']), $args['attrs']);
           ?>
             <div
-              class="<?= $args['wrapper_class'] ?? 'mb-3' ?>"
+              <?= ! empty($args['wrap_id']) ? 'id="' . $args['wrap_id'] . '"' : '' ?>
+              <?= ! empty($args['wrap_class']) ? 'class="' . implode(' ', $args['wrap_class']) . '"' : '' ?>
               <?= ('hidden' === $args['type']) ? 'hidden' : '' ?>>
-              <?php if ('select' === $field['type']) { ?>
+              <?php if ('select' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/select', null, $args) ?>
-              <?php } elseif ('checkbox' === $field['type']) { ?>
+              <?php } elseif ('checkbox' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/checkbox', null, $args) ?>
-              <?php } elseif ('radio' === $field['type']) { ?>
+              <?php } elseif ('radio' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/radiobox', null, $args) ?>
-              <?php } elseif ('textarea' === $field['type']) { ?>
+              <?php } elseif ('textarea' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/textarea', null, $args) ?>
               <?php } else { ?>
                 <?php get_template_part('classes/Views/Form/input', null, $args) ?>
@@ -143,7 +221,7 @@ class FormBuilder extends Form
 
               <?php if (! empty($args['helper_text'])) { ?>
                 <div
-                  id="id_<?= $name ?>_helper"
+                  id="<?= $args['aria-describedby'] ?>"
                   class="form-text">
                   <?= $args['helper_text'] ?>
                 </div>

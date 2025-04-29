@@ -42,12 +42,12 @@ class LoginFormController extends BaseFormController
   {
     $values = $this->get_values();
 
-    if (empty($values['user_login'])) {
-      $this->add_error('Username is required.', 'user_login');
+    if (empty($values['username'])) {
+      $this->add_error('Username is required.', 'username');
     }
 
-    if (empty($values['user_password'])) {
-      $this->add_error('Password is required.', 'user_password');
+    if (empty($values['password'])) {
+      $this->add_error('Password is required.', 'password');
     }
   }
 
@@ -61,9 +61,9 @@ class LoginFormController extends BaseFormController
     $values = $this->get_values();
 
     $user = wp_signon([
-      'user_login' => $values['user_login'],
-      'user_password' => $values['user_password'],
-      'remember' => $values['remember'],
+      'user_login' => $values['username'],
+      'user_password' => $values['password'],
+      'remember' => $values['remember-me'],
     ]);
 
     if (is_wp_error($user)) {

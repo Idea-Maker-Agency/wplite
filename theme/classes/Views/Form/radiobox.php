@@ -1,29 +1,14 @@
-<?php
-$name = $args['name'] ?? '';
-$value = $args['value'] ?? '';
-$label = $args['label'] ?? '';
-$disabled = $args['disabled'] ?? false;
-$required = $args['required'] ?? false;
-
-$form_value = $args['form_value'] ?? $args['default_value'];
-?>
-
 <div class="form-check">
   <input
-    name="<?= $name ?>"
-    id="id_<?= $name ?>"
-    class="form-check-input"
-    type="radio"
-    value="<?= $value ?>"
-    <?= $disabled ? 'disabled' : '' ?>
-    <?= $required ? 'required' : '' ?>
-    <?= checked($form_value, $value) ?>>
+    <?= implode(' ', $args['attrs']) ?>
+    <?= checked($args['request_value'], $args['value']) ?>
+    value="<?= $args['value'] ?>">
 
-  <?php if ($label) { ?>
+  <?php if (! $args['hide_label']) { ?>
     <label
-      for="id_<?= $name ?>"
+      for="<?= $args['id'] ?>"
       class="form-check-label">
-      <?= $label ?>
+      <?= $args['label'] ?>
     </label>
   <?php } ?>
 </div>

@@ -10,25 +10,19 @@
   <?php
     $form
       ->add_field(
-        'email',
         'Email address',
-        'email',
         [
           'required' => true,
         ]
       )
       ->add_field(
-        'password',
         'Password',
-        'password',
         [
           'required' => true,
         ]
       )
       ->add_field(
-        'confirm_password',
         'Confirm password',
-        'password',
         [
           'required' => true,
         ]

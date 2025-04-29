@@ -1,44 +1,26 @@
-<?php
-$name = $args['name'] ?? '';
-$label = $args['label'] ?? '';
-$disabled = $args['disabled'] ?? false;
-$required = $args['required'] ?? false;
-$readonly = $args['readonly'] ?? false;
-$options = $args['options'] ?? [];
-
-$form_value = $args['form_value'] ?? $args['default_value'];
-?>
-
-<?php if ($label) { ?>
+<?php if (! $args['hide_label']) { ?>
   <label
-    for="id_<?= $name ?>"
+    for="<?= $args['id'] ?>"
     class="form-label">
-    <?= $label ?>
+    <?= $args['label'] ?>
 
-    <?php if ($required) { ?>
+    <?php if ($args['required']) { ?>
       <span class="text-danger">*</span>
     <?php } ?>
   </label>
 <?php } ?>
 
-<select
-  name="<?= $name ?>"
-  id="id_<?= $name ?>"
-  aria-describedby="id_<?= $name ?>_helper"
-  <?= $disabled ? 'disabled' : '' ?>
-  <?= $required ? 'required' : '' ?>
-  <?= $readonly ? 'readonly' : '' ?>
-  class="form-control">
+<select <?= implode(' ', $args['attrs']) ?>>
   <option
     value=""
-    <?= checked($form_value, '') ?>>
+    <?= selected($args['request_value'] ?? $args['value'], '') ?>>
     <?= __('Select option', THEME_TEXT_DOMAIN) ?>
   </option>
 
-  <?php foreach ($options as $option) { ?>
+  <?php foreach ($args['options'] as $option) { ?>
     <option
       value="<?= $option['value'] ?>"
-      <?= checked($form_value, $option['value']) ?>>
+      <?= selected($args['request_value'] ?? $args['value'], $option['value']) ?>>
       <?= __($option['text'], THEME_TEXT_DOMAIN) ?>
     </option>
   <?php } ?>

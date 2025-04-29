@@ -10,25 +10,23 @@
   <?php
     $form
       ->add_field(
-        'user_login',
         'Username',
-        'text',
         [
           'required' => true,
         ]
       )
       ->add_field(
-        'user_password',
         'Password',
-        'password',
         [
+          'type' => 'password',
           'required' => true,
         ]
       )
       ->add_field(
-        'remember',
         'Remember me',
-        'checkbox'
+        [
+          'type' => 'checkbox',
+        ]
       )
       ->render()
   ?>

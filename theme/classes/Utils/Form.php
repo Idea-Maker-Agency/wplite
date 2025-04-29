@@ -248,4 +248,19 @@ class Form
 
     unset($_SESSION["form_{$this->name}"]['errors']);
   }
+
+  /**
+   * Check if file is valid.
+   *
+   * @param string    $name         The file input name.
+   * @param array     $allowed_ext  The allowed file extensions.
+   *
+   * @return bool
+   */
+  public static function is_file_valid(string $name, array $allowed_ext = []): bool
+  {
+    $ext = pathinfo($_FILES[$name]['name'], PATHINFO_EXTENSION);
+
+    return in_array($ext, $allowed_ext);
+  }
 }

@@ -47,10 +47,9 @@ class FormBuilder extends Form
   /**
    * Add form field.
    *
-   * @param string    $name     The form field name.
    * @param string    $label    The form field label. Defaults to empty string.
-   * @param string    $type     The form field type. Defaults to "input".
    * @param array     $args     The form field args. Defaults to empty array.
+   * @param string    $name     The form field name.
    *
    * @return self
    */
@@ -64,7 +63,7 @@ class FormBuilder extends Form
 		}
 
 		if (empty($name)) {
-			$name = $this->slugify($label);
+			$name = $this->namify($label);
 		}
 
     if (! empty($args['helper_text'])) {
@@ -103,22 +102,22 @@ class FormBuilder extends Form
   }
 
   /**
-   * Create a slug from a label.
+   * Create a name from a label.
    *
    * @param string    $string   The label string.
    *
    * @return string
    */
-  private function slugify(string $string): string
+  private function namify(string $string): string
   {
-    $slug = '';
+    $name = '';
 
-    $slug = str_replace('"', '', $string);
-		$slug = str_replace("'", '', $slug);
-		$slug = str_replace('_', '-', $slug);
-		$slug = preg_replace('~[\W\s]~', '-', $slug);
+    $name = str_replace('"', '', $string);
+		$name = str_replace("'", '', $name);
+		$name = str_replace('-', '_', $name);
+		$name = preg_replace('~[\W\s]~', '_', $name);
 
-		return strtolower($slug);
+		return strtolower($name);
   }
 
   /**

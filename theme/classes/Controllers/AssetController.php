@@ -23,6 +23,9 @@ class AssetController
     add_action('wp_enqueue_scripts', [self::class, 'enqueue_vendor_styles'], 10);
     add_action('wp_enqueue_scripts', [self::class, 'enqueue_vendor_scripts'], 10);
 
+    add_action('wp_enqueue_scripts', [self::class, 'enqueue_template_styles'], 10);
+    add_action('wp_enqueue_scripts', [self::class, 'enqueue_template_scripts'], 10);
+
     add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_styles'], 10);
     add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_scripts'], 10);
   }
@@ -144,6 +147,46 @@ class AssetController
         }
       }
     }
+  }
+
+  /**
+   * Enqueue template styles.
+   *
+   * @since 1.0.0
+   */
+  public static function enqueue_template_styles(): void
+  {
+    global $post;
+
+    $path = get_theme_file_path("templates/{$post->post_name}/{$post->post_name}.css");
+    $uri = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.css");
+
+    if (! file_exists($path)) return;
+
+    $handle = "wplite-{$post->post_name}";
+    $version = filemtime($path);
+
+    wp_enqueue_style($handle, $uri, [], $version, 'all');
+  }
+
+  /**
+   * Enqueue template scripts.
+   *
+   * @since 1.0.0
+   */
+  public static function enqueue_template_scripts(): void
+  {
+    global $post;
+
+    $path = get_theme_file_path("templates/{$post->post_name}/{$post->post_name}.js");
+    $uri = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.js");
+
+    if (! file_exists($path)) return;
+
+    $handle = "wplite-{$post->post_name}";
+    $version = filemtime($path);
+
+    wp_enqueue_script($handle, $uri, [], $version, true);
   }
 
   /**

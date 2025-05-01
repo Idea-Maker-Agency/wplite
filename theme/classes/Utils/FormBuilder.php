@@ -238,11 +238,15 @@ class FormBuilder extends Form
 
       <?php do_action("form_{$this->name}_after_fields", $this) ?>
 
+      <?php do_action("form_{$this->name}_before_submit", $this) ?>
+
       <button
         type="submit"
         class="btn btn-primary">
         <?= __($args['submit_text'] ?? 'Submit', THEME_TEXT_DOMAIN) ?>
       </button>
+
+      <?php do_action("form_{$this->name}_after_submit", $this) ?>
     </form>
 
     <?php do_action("form_{$this->name}_after", $this) ?>

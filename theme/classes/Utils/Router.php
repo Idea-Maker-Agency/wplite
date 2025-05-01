@@ -40,7 +40,13 @@ class Router
   public static function redirect(string $path = '', array $params = []): void
   {
     if ($path) {
-      $permalink = 'home' === $path ? get_home_url() : get_permalink(get_page_by_path($path));
+      $page = get_page_by_path($path);
+
+      if ($page) {
+        $permalink = 'home' === $path ? get_home_url() : get_permalink($page);
+      } else {
+        $permalink = $path;
+      }
     } else {
       $permalink = $_SERVER['HTTP_REFERER'];
     }

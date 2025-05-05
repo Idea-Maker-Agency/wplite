@@ -24,7 +24,7 @@
     <label
       for="id_<?= $id ?>"
       class="form-check-label">
-      <?= $option['label'] ?>
+      <?= $option['text'] ?>
     </label>
   </div>
 <?php } ?>

@@ -4,6 +4,8 @@ namespace WPLite\Utils;
 
 if (! defined('ABSPATH')) die;
 
+use WPLite\Models\Auth;
+
 class Form
 {
   /**
@@ -35,12 +37,49 @@ class Form
   protected array $errors = [];
 
   /**
+   * Transient expiration.
+   *
+   * @access protected
+   */
+  protected int $transient_expiration = 60 * 10; // Expires after 10mins
+
+  /**
    * Initialize class.
    *
    * @param string    $name     The form name.
    */
   public function __construct(string $name) {
     $this->name = $name;
+
+    if (! isset($_COOKIE['user_id'])) {
+      $user_id = wp_generate_uuid4();
+
+      setcookie(
+        'user_id',
+        $user_id,
+        time() + DAY_IN_SECONDS,
+        COOKIEPATH,
+        COOKIE_DOMAIN
+      );
+
+      $_COOKIE['user_id'] = $user_id;
+    }
+  }
+
+  /**
+   * Transient key.
+   *
+   * @return string
+   */
+  protected function transient_key(): string
+  {
+    if (Auth::check()) {
+      $user_id = Auth::id();
+    } else {
+      $user_id = $_COOKIE['user_id'];
+    }
+
+    return "form_{$this->name}_{$user_id}";
   }
 
   /**
@@ -53,12 +92,18 @@ class Form
    */
   public function set_value(string $key, mixed $new_value): void
   {
-    $prev_values = $_SESSION["form_{$this->name}"]['values'] ?? [];
+    $key = $this->transient_key();
+
+    $prev_values = get_transient("{$key}_values") ?: [];
     $prev_values[$key] = $new_value;
 
     $this->values = $prev_values;
 
-    $_SESSION["form_{$this->name}"]['values'] = $this->values;
+    set_transient(
+      "{$key}_values",
+      $this->values,
+      $this->transient_expiration
+    );
   }
 
   /**
@@ -70,25 +115,34 @@ class Form
    */
   public function set_values(array $new_values): void
   {
-    $prev_values = $_SESSION["form_{$this->name}"]['values'] ?? [];
+    $key = $this->transient_key();
+
+    $prev_values = get_transient("{$key}_values") ?: [];
 
     $this->values = array_merge($prev_values, $new_values);
 
-    $_SESSION["form_{$this->name}"]['values'] = $this->values;
+    set_transient(
+      "{$key}_values",
+      $this->values,
+      $this->transient_expiration
+    );
   }
 
   /**
    * Get form value.
    *
    * @param string    $field    The form field name.
+   * @param mixed     $fallback The fallback value.
    *
    * @return mixed
    */
-  public function get_value(string $field): mixed
+  public function get_value(string $field, mixed $fallback = null): mixed
   {
-    $value = $_SESSION["form_{$this->name}"]['values'][$field] ?? '';
+    $key = $this->transient_key();
 
-    return $value;
+    $values = get_transient("{$key}_values") ?: [];
+
+    return $values[$field] ?? $fallback;
   }
 
   /**
@@ -98,7 +152,9 @@ class Form
    */
   public function get_values(): array
   {
-    $values = $_SESSION["form_{$this->name}"]['values'] ?? [];
+    $key = $this->transient_key();
+
+    $values = get_transient("{$key}_values") ?: [];
 
     return $values;
   }
@@ -110,9 +166,11 @@ class Form
    */
   public function clear_values(): void
   {
+    $key = $this->transient_key();
+
     $this->values = [];
 
-    unset($_SESSION["form_{$this->name}"]['values']);
+    delete_transient("{$key}_values");
   }
 
   /**
@@ -125,13 +183,19 @@ class Form
    */
   public function add_message(string $message, string $field = ''): void
   {
+    $key = $this->transient_key();
+
     if ($field) {
       $this->messages[$field] = __($message, THEME_TEXT_DOMAIN);
     } else {
       $this->messages[] = __($message, THEME_TEXT_DOMAIN);
     }
 
-    $_SESSION["form_{$this->name}"]['messages'] = $this->messages;
+    set_transient(
+      "{$key}_messages",
+      $this->messages,
+      $this->transient_expiration
+    );
   }
 
   /**
@@ -141,7 +205,7 @@ class Form
    */
   public function has_messages(): bool
   {
-    return ! empty($this->messages);
+    return ! empty($this->get_messages());
   }
 
   /**
@@ -153,9 +217,11 @@ class Form
    */
   public function get_message(string $field): mixed
   {
-    $value = $_SESSION["form_{$this->name}"]['messages'][$field] ?? '';
+    $key = $this->transient_key();
 
-    return $value;
+    $messages = get_transient("{$key}_messages") ?: [];
+
+    return $messages[$field] ?? '';
   }
 
   /**
@@ -165,7 +231,9 @@ class Form
    */
   public function get_messages(): array
   {
-    $messages = $_SESSION["form_{$this->name}"]['messages'] ?? [];
+    $key = $this->transient_key();
+
+    $messages = get_transient("{$key}_messages") ?: [];
 
     return $messages;
   }
@@ -177,9 +245,11 @@ class Form
    */
   public function clear_messages(): void
   {
+    $key = $this->transient_key();
+
     $this->messages = [];
 
-    unset($_SESSION["form_{$this->name}"]['messages']);
+    delete_transient("{$key}_messages");
   }
 
   /**
@@ -192,13 +262,19 @@ class Form
    */
   public function add_error(string $message, string $field = ''): void
   {
+    $key = $this->transient_key();
+
     if ($field) {
       $this->errors[$field] = __($message, THEME_TEXT_DOMAIN);
     } else {
       $this->errors[] = __($message, THEME_TEXT_DOMAIN);
     }
 
-    $_SESSION["form_{$this->name}"]['errors'] = $this->errors;
+    set_transient(
+      "{$key}_errors",
+      $this->errors,
+      $this->transient_expiration
+    );
   }
 
   /**
@@ -208,7 +284,7 @@ class Form
    */
   public function has_errors(): bool
   {
-    return ! empty($this->errors);
+    return ! empty($this->get_errors());
   }
 
   /**
@@ -220,9 +296,11 @@ class Form
    */
   public function get_error(string $field): mixed
   {
-    $value = $_SESSION["form_{$this->name}"]['errors'][$field] ?? '';
+    $key = $this->transient_key();
 
-    return $value;
+    $errors = get_transient("{$key}_errors") ?: [];
+
+    return $errors[$field] ?? '';
   }
 
   /**
@@ -232,7 +310,9 @@ class Form
    */
   public function get_errors(): array
   {
-    $errors = $_SESSION["form_{$this->name}"]['errors'] ?? [];
+    $key = $this->transient_key();
+
+    $errors = get_transient("{$key}_errors") ?: [];
 
     return $errors;
   }
@@ -244,9 +324,11 @@ class Form
    */
   public function clear_errors(): void
   {
+    $key = $this->transient_key();
+
     $this->errors = [];
 
-    unset($_SESSION["form_{$this->name}"]['errors']);
+    delete_transient("{$key}_errors");
   }
 
   /**

@@ -17,8 +17,6 @@ class SetupController
    */
   public static function init(): void
   {
-    add_action('init', [self::class, 'init_session']);
-
     add_action('after_setup_theme', [self::class, 'setup']);
     add_action('after_switch_theme', [self::class, 'generate_initial_pages']);
 
@@ -26,18 +24,6 @@ class SetupController
 
     add_filter('excerpt_length', [self::class, 'excerpt_length'], 999);
     add_filter('excerpt_more', [self::class, 'excerpt_more'], 999);
-  }
-
-  /**
-   * Init session.
-   *
-   * @return void
-   */
-  public static function init_session(): void
-  {
-    if (! session_id()) {
-      session_start();
-    }
   }
 
   /**

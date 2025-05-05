@@ -1,3 +1,11 @@
+<?php
+if ('hidden' === $args['type']) {
+  $value = $args['value'] ?? '';
+} else {
+  $value = $args['request_value'] ?? $args['value'];
+}
+?>
+
 <?php if (! $args['hide_label']) { ?>
   <label
     for="<?= $args['id'] ?>"
@@ -12,4 +20,4 @@
 
 <input
   <?= implode(' ', $args['attrs']) ?>
-  value="<?= $args['request_value'] ?? $args['value'] ?>">
+  value="<?= $value ?>">

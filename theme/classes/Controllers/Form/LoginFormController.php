@@ -76,7 +76,7 @@ class LoginFormController extends BaseFormController
 
     $this->cleanup();
 
-    Router::redirect('home');
+    Router::redirect($values['redirect'] ?? 'home');
   }
 
   /**

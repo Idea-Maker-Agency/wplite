@@ -10,6 +10,13 @@
   <?php
     $form
       ->add_field(
+        'Redirect',
+        [
+          'type' => 'hidden',
+          'value' => $_GET['redirect'] ?? '',
+        ]
+      )
+      ->add_field(
         'Username',
         [
           'required' => true,

@@ -89,7 +89,7 @@ class SignUpFormController extends BaseFormController
 
     $this->cleanup();
 
-    Router::redirect('home');
+    Router::redirect($values['redirect'] ?? 'home');
   }
 
   /**

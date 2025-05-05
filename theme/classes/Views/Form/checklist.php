@@ -10,21 +10,31 @@
   </label>
 <?php } ?>
 
-<?php foreach ($args['options'] as $option) { ?>
-  <?php $id = strtolower(str_replace(' ', '-', $option['value'])) ?>
+<?php
+foreach ($args['options'] as $option) {
+  $text = $option['text'] ?? $option;
+  $value = $option['value'] ?? $option;
 
+  $id = strtolower(str_replace(' ', '-', $option['value']));
+?>
   <div class="form-check">
     <input
       id="id_<?= $id ?>"
       name="<?= $args['name'] ?>[]"
-      <?= checked($args['request_value'], $option['value']) ?>
-      value="<?= $option['value'] ?>"
+      <?= checked($args['request_value'] ?? $args['value'], $value) ?>
+      value="<?= $value ?>"
       type="checkbox">
 
     <label
       for="id_<?= $id ?>"
       class="form-check-label">
-      <?= $option['text'] ?>
+      <?= $text ?>
     </label>
+
+    <?php if (! empty($option['helper_text'])) { ?>
+      <div class="form-text">
+        <?= $option['helper_text'] ?>
+      </div>
+    <?php } ?>
   </div>
 <?php } ?>

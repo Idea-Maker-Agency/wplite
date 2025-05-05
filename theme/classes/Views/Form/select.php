@@ -17,11 +17,15 @@
     <?= __('Select option', THEME_TEXT_DOMAIN) ?>
   </option>
 
-  <?php foreach ($args['options'] as $option) { ?>
+  <?php
+  foreach ($args['options'] as $option) {
+    $text = $option['text'] ?? $option;
+    $value = $option['value'] ?? $option;
+  ?>
     <option
-      value="<?= $option['value'] ?>"
-      <?= selected($args['request_value'] ?? $args['value'], $option['value']) ?>>
-      <?= __($option['text'], THEME_TEXT_DOMAIN) ?>
+      value="<?= $value ?>"
+      <?= selected($args['request_value'] ?? $args['value'], $value) ?>>
+      <?= __($text, THEME_TEXT_DOMAIN) ?>
     </option>
   <?php } ?>
 </select>

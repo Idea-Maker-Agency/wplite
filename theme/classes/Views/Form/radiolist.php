@@ -22,6 +22,7 @@ foreach ($args['options'] as $option) {
       id="id_<?= $id ?>"
       name="<?= $args['name'] ?>"
       <?= checked($args['request_value'] ?? $args['value'], $value) ?>
+      <?= $args['required'] ? 'required' : '' ?>
       value="<?= $value ?>"
       type="radio">
 

@@ -212,6 +212,8 @@ class FormBuilder extends Form
                 <?php get_template_part('classes/Views/Form/checkbox', null, $args) ?>
               <?php } elseif ('radio' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/radiobox', null, $args) ?>
+              <?php } elseif ('radiolist' === $args['type']) { ?>
+                <?php get_template_part('classes/Views/Form/radiolist', null, $args) ?>
               <?php } elseif ('textarea' === $args['type']) { ?>
                 <?php get_template_part('classes/Views/Form/textarea', null, $args) ?>
               <?php } else { ?>

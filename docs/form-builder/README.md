@@ -16,16 +16,20 @@ Use the FormBuilder utility to define and render fields in your view:
   <?php
     $form
       ->add_field(
-        'first_name',
         'First name',
-        'text',
-        ['required' => true]
+        [
+          'type' => 'text',
+          'required' => true,
+        ],
+        'first_name'
       )
       ->add_field(
-        'last_name',
         'Last name',
-        'text',
-        ['required' => true]
+        [
+          'type' => 'text',
+          'required' => true,
+        ],
+        'last_name'
       )
       ->render()
   ?>

@@ -15,7 +15,7 @@ foreach ($args['options'] as $option) {
   $text = $option['text'] ?? $option;
   $value = $option['value'] ?? $option;
 
-  $id = strtolower(str_replace(' ', '-', $option['value']));
+  $id = strtolower(str_replace(' ', '-', $value));
 ?>
   <div class="form-check">
     <input

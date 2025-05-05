@@ -21,10 +21,11 @@ foreach ($args['options'] as $option) {
     <input
       id="id_<?= $id ?>"
       name="<?= $args['name'] ?>"
-      <?= checked($args['request_value'] ?? $args['value'], $value) ?>
-      <?= $args['required'] ? 'required' : '' ?>
       value="<?= $value ?>"
-      type="radio">
+      type="radio"
+      class="form-check-input"
+      <?= checked($args['request_value'] ?? $args['value'], $value) ?>
+      <?= $args['required'] ? 'required' : '' ?>>
 
     <label
       for="id_<?= $id ?>"

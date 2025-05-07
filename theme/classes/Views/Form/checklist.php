@@ -25,7 +25,7 @@ foreach ($args['options'] as $option) {
       value="<?= $value ?>"
       type="checkbox"
       class="form-check-input"
-      <?= in_array($value, $args['request_value'] ?? $args['value']) ? 'checked' : '' ?>>
+      <?= in_array($value, $args['request_value'] ?: $args['value'] ?: []) ? 'checked' : '' ?>>
 
     <label
       for="id_<?= $id ?>"

@@ -25,7 +25,7 @@ foreach ($args['options'] as $option) {
       value="<?= $value ?>"
       type="radio"
       class="form-check-input"
-      <?= in_array($value, $args['request_value'] ?? $args['value']) ? 'checked' : '' ?>
+      <?= checked($args['request_value'] ?? $args['value'], $value) ?>
       <?= $args['required'] ? 'required' : '' ?>>
 
     <label

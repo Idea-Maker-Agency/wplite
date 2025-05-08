@@ -78,7 +78,8 @@ class AssetController
     ];
 
     if (! empty($styles)) {
-      foreach ($styles as $handle => $args) {
+      foreach ($styles as $name => $args) {
+        $handle = "wplite-{$name}";
         $version = $args['version'] ?? '1.0.0';
         $dependencies = $args['dependencies'] ?? [];
         $media = $args['media'] ?? 'all';
@@ -86,7 +87,7 @@ class AssetController
         $enqueue = $args['enqueue'] ?? false;
 
         $suffix = $minified ? '.min' : '';
-        $src = THEME_DIR_URI . "/assets/vendor/{$handle}/css/{$handle}{$suffix}.css";
+        $src = THEME_DIR_URI . "/assets/vendor/{$name}/css/{$name}{$suffix}.css";
 
         wp_register_style(
           $handle,

@@ -193,16 +193,14 @@ class TemplateController
         if (! $page_template) {
           $page_template = locate_template("page-{$slug}.php");
         }
-      }
 
-      $fields = locate_template(str_replace('.php', '.yaml', $page_template));
-
-      if (! $fields) {
         $fields = str_replace('.php', '.yaml', $page_template);
+      } else {
+        $fields = locate_template(str_replace('.php', '.yaml', $page_template));
       }
     }
 
-    if (! $fields) return;
+    if (! file_exists($fields)) return;
 
     $load_fields = Spyc::YAMLLoad($fields);
 

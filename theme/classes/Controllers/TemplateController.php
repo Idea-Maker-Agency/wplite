@@ -187,7 +187,7 @@ class TemplateController
     } else {
       $slug = get_post_field('post_name', $id);
 
-      if ('default' === $page_template) {
+      if (empty($page_template) || 'default' === $page_template) {
         $page_template = locate_template("templates/{$slug}/{$slug}.php");
 
         if (! $page_template) {
@@ -196,6 +196,10 @@ class TemplateController
       }
 
       $fields = locate_template(str_replace('.php', '.yaml', $page_template));
+
+      if (! $fields) {
+        $fields = str_replace('.php', '.yaml', $page_template);
+      }
     }
 
     if (! $fields) return;

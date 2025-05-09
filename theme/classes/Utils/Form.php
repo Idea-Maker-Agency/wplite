@@ -5,8 +5,9 @@ namespace WPLite\Utils;
 if (! defined('ABSPATH')) die;
 
 use WPLite\Models\Auth;
+use WPLite\Utils\Transient;
 
-class Form
+class Form extends Transient
 {
   /**
    * Form name.
@@ -16,70 +17,14 @@ class Form
   protected string $name;
 
   /**
-   * Form values array.
-   *
-   * @access protected
-   */
-  protected array $values = [];
-
-  /**
-   * Form messages array.
-   *
-   * @access protected
-   */
-  protected array $messages = [];
-
-  /**
-   * Form errors array.
-   *
-   * @access protected
-   */
-  protected array $errors = [];
-
-  /**
-   * Transient expiration.
-   *
-   * @access protected
-   */
-  protected int $transient_expiration = 60 * 10; // Expires after 10mins
-
-  /**
    * Initialize class.
    *
    * @param string    $name     The form name.
    */
   public function __construct(string $name) {
+    parent::__construct("form_{$name}", 60 * 10);
+
     $this->name = $name;
-
-    if (! isset($_COOKIE['user_id'])) {
-      $user_id = wp_generate_uuid4();
-
-      setcookie(
-        'user_id',
-        $user_id,
-        time() + DAY_IN_SECONDS,
-        COOKIEPATH,
-        COOKIE_DOMAIN
-      );
-
-      $_COOKIE['user_id'] = $user_id;
-    }
-  }
-
-  /**
-   * Transient key.
-   *
-   * @return string
-   */
-  protected function transient_key(): string
-  {
-    if (Auth::check()) {
-      $user_id = Auth::id();
-    } else {
-      $user_id = $_COOKIE['user_id'];
-    }
-
-    return "form_{$this->name}_{$user_id}";
   }
 
   /**
@@ -92,18 +37,11 @@ class Form
    */
   public function set_value(string $key, mixed $new_value): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $prev_values = get_transient("{$key}_values") ?: [];
-    $prev_values[$key] = $new_value;
+    $transient['values'][$key] = $new_value;
 
-    $this->values = $prev_values;
-
-    set_transient(
-      "{$key}_values",
-      $this->values,
-      $this->transient_expiration
-    );
+    $this->set_transient($transient);
   }
 
   /**
@@ -115,17 +53,11 @@ class Form
    */
   public function set_values(array $new_values): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $prev_values = get_transient("{$key}_values") ?: [];
+    $transient['values'] = $new_values;
 
-    $this->values = array_merge($prev_values, $new_values);
-
-    set_transient(
-      "{$key}_values",
-      $this->values,
-      $this->transient_expiration
-    );
+    $this->set_transient($transient);
   }
 
   /**
@@ -138,11 +70,9 @@ class Form
    */
   public function get_value(string $field, mixed $fallback = null): mixed
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $values = get_transient("{$key}_values") ?: [];
-
-    return $values[$field] ?? $fallback;
+    return $transient['values'][$field] ?? $fallback;
   }
 
   /**
@@ -152,11 +82,9 @@ class Form
    */
   public function get_values(): array
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $values = get_transient("{$key}_values") ?: [];
-
-    return $values;
+    return $transient['values'] ?? [];
   }
 
   /**
@@ -166,11 +94,10 @@ class Form
    */
   public function clear_values(): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
+    $transient['values'] = [];
 
-    $this->values = [];
-
-    delete_transient("{$key}_values");
+    $this->set_transient($transient);
   }
 
   /**
@@ -183,19 +110,15 @@ class Form
    */
   public function add_message(string $message, string $field = ''): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
     if ($field) {
-      $this->messages[$field] = __($message, THEME_TEXT_DOMAIN);
+      $transient['messages'][$field] = __($message, THEME_TEXT_DOMAIN);
     } else {
-      $this->messages[] = __($message, THEME_TEXT_DOMAIN);
+      $transient['messages'][] = __($message, THEME_TEXT_DOMAIN);
     }
 
-    set_transient(
-      "{$key}_messages",
-      $this->messages,
-      $this->transient_expiration
-    );
+    $this->set_transient($transient);
   }
 
   /**
@@ -217,11 +140,9 @@ class Form
    */
   public function get_message(string $field): mixed
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $messages = get_transient("{$key}_messages") ?: [];
-
-    return $messages[$field] ?? '';
+    return $transient['messages'][$field] ?? null;
   }
 
   /**
@@ -231,11 +152,9 @@ class Form
    */
   public function get_messages(): array
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $messages = get_transient("{$key}_messages") ?: [];
-
-    return $messages;
+    return $transient['messages'] ?? [];
   }
 
   /**
@@ -245,11 +164,10 @@ class Form
    */
   public function clear_messages(): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
+    $transient['messages'] = [];
 
-    $this->messages = [];
-
-    delete_transient("{$key}_messages");
+    $this->set_transient($transient);
   }
 
   /**
@@ -262,19 +180,15 @@ class Form
    */
   public function add_error(string $message, string $field = ''): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
     if ($field) {
-      $this->errors[$field] = __($message, THEME_TEXT_DOMAIN);
+      $transient['errors'][$field] = __($message, THEME_TEXT_DOMAIN);
     } else {
-      $this->errors[] = __($message, THEME_TEXT_DOMAIN);
+      $transient['errors'][] = __($message, THEME_TEXT_DOMAIN);
     }
 
-    set_transient(
-      "{$key}_errors",
-      $this->errors,
-      $this->transient_expiration
-    );
+    $this->set_transient($transient);
   }
 
   /**
@@ -296,11 +210,9 @@ class Form
    */
   public function get_error(string $field): mixed
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $errors = get_transient("{$key}_errors") ?: [];
-
-    return $errors[$field] ?? '';
+    return $transient['errors'][$field] ?? null;
   }
 
   /**
@@ -310,11 +222,9 @@ class Form
    */
   public function get_errors(): array
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
 
-    $errors = get_transient("{$key}_errors") ?: [];
-
-    return $errors;
+    return $transient['errors'] ?? [];
   }
 
   /**
@@ -324,11 +234,10 @@ class Form
    */
   public function clear_errors(): void
   {
-    $key = $this->transient_key();
+    $transient = $this->get_transient() ?? [];
+    $transient['errors'] = [];
 
-    $this->errors = [];
-
-    delete_transient("{$key}_errors");
+    $this->set_transient($transient);
   }
 
   /**

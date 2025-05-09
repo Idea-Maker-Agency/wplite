@@ -40,20 +40,22 @@ class SignUpFormController extends BaseFormController
    */
   protected function validate(): void
   {
-    $values = $this->get_values();
+    $email_address = $this->get_value('email_address');
+    $password = $this->get_value('password');
+    $confirm_password = $this->get_value('confirm_password');
 
-    if (empty($values['email-address'])) {
-      $this->add_error('Email address is required.', 'email-address');
+    if (empty($email_address)) {
+      $this->add_error('Email address is required.', 'email_address');
     }
 
-    if (empty($values['password'])) {
+    if (empty($password)) {
       $this->add_error('Password is required.', 'password');
     }
 
-    if (empty($values['confirm-password'])) {
-      $this->add_error('Password confirmation is required.', 'confirm-password');
-    } elseif ($values['password'] !== $values['confirm-password']) {
-      $this->add_error('Passwords does not match.', 'confirm-password');
+    if (empty($confirm_password)) {
+      $this->add_error('Password confirmation is required.', 'confirm_password');
+    } elseif ($password !== $confirm_password) {
+      $this->add_error('Passwords does not match.', 'confirm_password');
     }
   }
 
@@ -64,15 +66,18 @@ class SignUpFormController extends BaseFormController
    */
   protected function process(): void
   {
-    $values = $this->get_values();
+    $email_address = $this->get_value('email_address');
+    $password = $this->get_value('password');
 
-    if (email_exists($values['email-address'])) {
+    $redirect = $this->get_value('redirect');
+
+    if (email_exists($email_address)) {
       $this->add_error('Email address is already taken.', 'non_field');
 
       Router::redirect('sign-up');
     }
 
-    $user_id = wp_create_user($values['email-address'], $values['password'], $values['email-address']);
+    $user_id = wp_create_user($email_address, $password, $email_address);
 
     if (is_wp_error($user_id)) {
       $this->add_error('Sign up failed.', 'non_field');
@@ -81,15 +86,15 @@ class SignUpFormController extends BaseFormController
     }
 
     $user = wp_signon([
-      'user_login' => $values['email-address'],
-      'user_password' => $values['password'],
+      'user_login' => $email_address,
+      'user_password' => $password,
     ]);
 
     wp_set_current_user($user);
 
     $this->cleanup();
 
-    Router::redirect($values['redirect'] ?? 'home');
+    Router::redirect($redirect ?: 'home');
   }
 
   /**

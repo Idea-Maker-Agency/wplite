@@ -25,12 +25,14 @@
       ->add_field(
         'Password',
         [
+          'type' => 'password',
           'required' => true,
         ]
       )
       ->add_field(
         'Confirm password',
         [
+          'type' => 'password',
           'required' => true,
         ]
       )

@@ -40,13 +40,14 @@ class LoginFormController extends BaseFormController
    */
   protected function validate(): void
   {
-    $values = $this->get_values();
+    $username = $this->get_value('username');
+    $password = $this->get_value('password');
 
-    if (empty($values['username'])) {
+    if (empty($username)) {
       $this->add_error('Username is required.', 'username');
     }
 
-    if (empty($values['password'])) {
+    if (empty($password)) {
       $this->add_error('Password is required.', 'password');
     }
   }
@@ -58,12 +59,16 @@ class LoginFormController extends BaseFormController
    */
   protected function process(): void
   {
-    $values = $this->get_values();
+    $username = $this->get_value('username');
+    $password = $this->get_value('password');
+    $rememberme = $this->get_value('remember-me');
+
+    $redirect = $this->get_value('redirect');
 
     $user = wp_signon([
-      'user_login' => $values['username'],
-      'user_password' => $values['password'],
-      'remember' => $values['remember-me'],
+      'user_login' => $username,
+      'user_password' => $password,
+      'remember' => $rememberme,
     ]);
 
     if (is_wp_error($user)) {
@@ -76,7 +81,7 @@ class LoginFormController extends BaseFormController
 
     $this->cleanup();
 
-    Router::redirect($values['redirect'] ?? 'home');
+    Router::redirect($redirect ?: 'home');
   }
 
   /**

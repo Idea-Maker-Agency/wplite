@@ -171,18 +171,32 @@ class FormBuilder extends Form
         <fieldset class="row p-0 border-0">
           <?php
           foreach ($this->fields as $name => $args) {
+            $type = $args['type'] ?? 'text';
+
+            $wrap_id = $args['wrap_id'] ?? null;
+            $wrap_class = null;
+
+            if (! empty($args['wrap_class'])) {
+              $wrap_class =
+                is_array($args['wrap_class'])
+                ? implode(' ', $args['wrap_class'])
+                : $args['wrap_class'];
+            }
+
+            $helper_text = $args['helper_text'] ?? '';
+
             // Override field value
             $args['request_value'] = $this->get_value($name) ?: null;
 
-            if ('password' === $args['type']) {
+            if ('password' === $type) {
               $args['value'] = '';
               $args['request_value'] = '';
-            } elseif (in_array($args['type'], ['checkbox', 'radio'])) {
+            } elseif (in_array($type, ['checkbox', 'radio'])) {
               $class_index = array_search('form-control', $args['class']);
 
               $args['class'][$class_index] = 'form-check-input';
 
-              if ('checkbox' === $args['type']) {
+              if ('checkbox' === $type) {
                 $args['value'] = '1';
               }
             }
@@ -203,30 +217,30 @@ class FormBuilder extends Form
             }, array_keys($args['attrs']), $args['attrs']);
           ?>
             <div
-              <?= ! empty($args['wrap_id']) ? 'id="' . $args['wrap_id'] . '"' : '' ?>
-              <?= ! empty($args['wrap_class']) ? 'class="' . implode(' ', $args['wrap_class']) . '"' : '' ?>
-              <?= ('hidden' === $args['type']) ? 'hidden' : '' ?>>
-              <?php if ('select' === $args['type']) { ?>
+              <?= $wrap_id ? 'id="' . $wrap_id . '"' : '' ?>
+              <?= $wrap_class ? 'class="' . $wrap_class . '"' : '' ?>
+              <?= ('hidden' === $type) ? 'hidden' : '' ?>>
+              <?php if ('select' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/select', null, $args) ?>
-              <?php } elseif ('checkbox' === $args['type']) { ?>
+              <?php } elseif ('checkbox' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/checkbox', null, $args) ?>
-              <?php } elseif ('checklist' === $args['type']) { ?>
+              <?php } elseif ('checklist' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/checklist', null, $args) ?>
-              <?php } elseif ('radio' === $args['type']) { ?>
+              <?php } elseif ('radio' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/radiobox', null, $args) ?>
-              <?php } elseif ('radiolist' === $args['type']) { ?>
+              <?php } elseif ('radiolist' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/radiolist', null, $args) ?>
-              <?php } elseif ('textarea' === $args['type']) { ?>
+              <?php } elseif ('textarea' === $type) { ?>
                 <?php get_template_part('classes/Views/Form/textarea', null, $args) ?>
               <?php } else { ?>
                 <?php get_template_part('classes/Views/Form/input', null, $args) ?>
               <?php } ?>
 
-              <?php if (! empty($args['helper_text'])) { ?>
+              <?php if ($helper_text) { ?>
                 <div
                   id="<?= $args['aria-describedby'] ?>"
                   class="form-text">
-                  <?= $args['helper_text'] ?>
+                  <?= $helper_text ?>
                 </div>
               <?php } ?>
 

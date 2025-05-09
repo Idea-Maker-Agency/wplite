@@ -61,7 +61,7 @@ class LoginFormController extends BaseFormController
   {
     $username = $this->get_value('username');
     $password = $this->get_value('password');
-    $rememberme = $this->get_value('remember-me');
+    $rememberme = $this->get_value('remember_me');
 
     $redirect = $this->get_value('redirect');
 

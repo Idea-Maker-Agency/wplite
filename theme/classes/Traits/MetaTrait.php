@@ -22,7 +22,15 @@ trait MetaTrait
    */
   protected function load_meta(int $id): void
   {
-    $this->meta = get_post_meta($id);
+    $meta = get_post_meta($id);
+
+    $this->meta = array_map(function ($value) {
+      if (is_serialized($value[0])) {
+        return [unserialize($value[0])];
+      } else {
+        return $value;
+      }
+    }, $meta);
   }
 
   /**

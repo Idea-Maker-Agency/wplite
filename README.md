@@ -18,7 +18,7 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Features](#features)
   - [Dynamic theme customizer](#dynamic-theme-customizer)
   - [Organized page templates](#organized-page-templates)
-  - [Organized components](#organized-components)
+  - [Organized views](#organized-views)
   - [Built-in custom fields registration](#built-in-custom-fields-registration)
   - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
@@ -232,9 +232,9 @@ Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.
 
 Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.fields.yaml).
 
-### Organized components
+### Organized views
 
-Custom components can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/components/README.md)
+Custom views can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/views/README.md)
 
 ### Built-in custom fields registration
 

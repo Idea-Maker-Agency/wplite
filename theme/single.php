@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\Components;
+use WPLite\Utils\View;
 
 get_header();
 ?>
@@ -114,7 +114,7 @@ get_header();
       <div class="container">
         <h2 class="mb-4 fw-bold">Related Posts</h2>
 
-        <?php Components::render('related-posts') ?>
+        <?php View::render('related-posts', 'Components') ?>
       </div>
     </section>
   <?php } ?>

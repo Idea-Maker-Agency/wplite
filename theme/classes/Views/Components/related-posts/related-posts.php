@@ -1,5 +1,5 @@
 <?php
-use WPLite\Utils\Components;
+use WPLite\Utils\View;
 
 $args = wp_parse_args($args, [
   'posts_per_page' => 6,
@@ -17,7 +17,7 @@ $query = new WP_Query($args);
       <?php $query->the_post() ?>
 
       <div class="col-12 col-sm-6 col-lg-4">
-        <?php Components::render('article-card', [
+        <?php View::render('article-card', 'Components', [
           'post' => $post,
         ]) ?>
       </div>

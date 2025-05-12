@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\Components;
+use WPLite\Utils\View;
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ use WPLite\Utils\Components;
 
     <nav class="header navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <?php Components::render('logo', [
+        <?php View::render('logo', 'Components', [
           'link_class' => 'navbar-brand',
         ]) ?>
 

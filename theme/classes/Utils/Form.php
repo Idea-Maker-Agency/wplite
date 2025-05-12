@@ -55,7 +55,11 @@ class Form extends Transient
   {
     $transient = $this->get_transient() ?? [];
 
-    $transient['values'] = $new_values;
+    $transient['values'] =
+      array_merge(
+        $transient['values'] ?? [],
+        $new_values
+      );
 
     $this->set_transient($transient);
   }

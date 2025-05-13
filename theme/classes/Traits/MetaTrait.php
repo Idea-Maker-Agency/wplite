@@ -14,15 +14,20 @@ trait MetaTrait
   private array $meta = [];
 
   /**
-   * Load meta data for the given post ID.
+   * Load meta data for the given object ID.
    *
-   * @param int     $id  The post ID.
+   * @param int     $id       The object ID.
+   * @param string  $context  The object context. Defaults to 'post'.
    *
    * @return void
    */
-  protected function load_meta(int $id): void
+  protected function load_meta(int $id, string $context = 'post'): void
   {
-    $meta = get_post_meta($id);
+    if ('user' === $context) {
+      $meta = get_user_meta($id);
+    } else {
+      $meta = get_post_meta($id);
+    }
 
     $this->meta = array_map(function ($value) {
       if (is_serialized($value[0])) {
@@ -61,14 +66,19 @@ trait MetaTrait
   /**
    * Save meta datas.
    *
-   * @param int     $id       The post ID.
+   * @param int     $id       The object ID.
+   * @param string  $context  The object context.
    *
    * @return void
    */
-  public function save_meta(int $id): void
+  public function save_meta(int $id, string $context = 'post'): void
   {
     foreach ($this->meta as $key => $value) {
-      update_post_meta($id, $key, $value[0]);
+      if ('user' === $context) {
+        update_user_meta($id, $key, $value[0]);
+      } else {
+        update_post_meta($id, $key, $value[0]);
+      }
     }
   }
 }

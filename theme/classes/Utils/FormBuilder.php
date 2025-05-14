@@ -269,5 +269,7 @@ class FormBuilder extends Form
 
     <?php do_action("form_{$this->name}_after", $this) ?>
   <?php
+
+    $this->clear_messages();
   }
 }

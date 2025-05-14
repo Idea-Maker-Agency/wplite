@@ -98,7 +98,6 @@ abstract class BaseFormController extends Form
   public function cleanup(): void
   {
     $this->clear_values();
-    $this->clear_messages();
     $this->clear_errors();
   }
 }

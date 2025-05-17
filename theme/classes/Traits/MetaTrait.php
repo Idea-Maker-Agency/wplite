@@ -47,7 +47,13 @@ trait MetaTrait
    */
   public function get_meta(string $key): mixed
   {
-    return $this->meta[$key][0] ?? null;
+    $value = $this->meta[$key][0];
+
+    if (is_array($value)) {
+      $value = array_values($value);
+    }
+
+    return $value ?? null;
   }
 
   /**
@@ -60,6 +66,10 @@ trait MetaTrait
    */
   public function set_meta(string $key, mixed $value): void
   {
+    if (is_array($value)) {
+      $value = array_values($value);
+    }
+
     $this->meta[$key] = [$value];
   }
 

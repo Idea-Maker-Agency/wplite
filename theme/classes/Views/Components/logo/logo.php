@@ -12,7 +12,7 @@ $site_name = get_bloginfo('name');
     <img
       src="<?= $logo_url ?>"
       alt="<?= $site_name ?>"
-      width="<?= $width ?? 100 ?>"
+      width="<?= $width   ?? 100 ?>"
       height="<?= $height ?? 36 ?>">
   <?php } else { ?>
     <?= $site_name ?>

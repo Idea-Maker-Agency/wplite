@@ -2,7 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Utils\Transient;
 
@@ -11,8 +13,8 @@ class StaticTransient extends Transient
   /**
    * Creates an instance of a child class
    *
-   * @param string    $key          The transient key.
-   * @param int       $expiration   The transient expiration time.
+   * @param string $key        The transient key.
+   * @param int    $expiration The transient expiration time.
    *
    * @return static
    */

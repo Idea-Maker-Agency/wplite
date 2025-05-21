@@ -2,7 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WP_Post;
 
@@ -42,7 +44,7 @@ class CustomFields
       [],
       '0.12.1',
       [
-        'strategy' => 'defer',
+        'strategy'  => 'defer',
         'in_footer' => false,
       ]
     );
@@ -52,7 +54,7 @@ class CustomFields
       [],
       '3.14.9',
       [
-        'strategy' => 'defer',
+        'strategy'  => 'defer',
         'in_footer' => false,
       ]
     );
@@ -62,7 +64,7 @@ class CustomFields
       [],
       '3.14.3',
       [
-        'strategy' => 'defer',
+        'strategy'  => 'defer',
         'in_footer' => false,
       ]
     );
@@ -71,7 +73,7 @@ class CustomFields
   /**
    * Set the custom fields.
    *
-   * @param array     $fields       The array of custom fields.
+   * @param array $fields The array of custom fields.
    *
    * @since 1.0.0
    */
@@ -87,7 +89,9 @@ class CustomFields
    */
   public function add_meta_boxes()
   {
-    if (empty($this->fields)) return;
+    if (empty($this->fields)) {
+      return;
+    }
 
     foreach ($this->fields as $id => $field) {
       $title = $field['group'];
@@ -99,9 +103,9 @@ class CustomFields
   /**
    * Render fields.
    *
-   * @param WP_Post   $post         The WP post object.
-   * @param array     $fields       The array of fields.
-   * @param string    $parent_name  The parent field name.
+   * @param WP_Post $post        The WP post object.
+   * @param array   $fields      The array of fields.
+   * @param string  $parent_name The parent field name.
    *
    * @return void
    */
@@ -111,11 +115,11 @@ class CustomFields
     string $parent_name = ''
   ): void {
     foreach ($fields as $name => $field) {
-      $type = $field['type'] ?? 'text';
-      $label = $field['label'] ?? '';
+      $type        = $field['type']        ?? 'text';
+      $label       = $field['label']       ?? '';
       $helper_text = $field['helper_text'] ?? '';
-      $width = $field['width'] ?? 100;
-    ?>
+      $width       = $field['width']       ?? 100;
+      ?>
       <div
         style="width: calc(<?= $width ?>% - 24px); padding: 0 12px;"
         <?= ('hidden' === $type) ? 'hidden' : '' ?>>
@@ -131,67 +135,67 @@ class CustomFields
 
         <?php if ('group' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/group', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('repeater' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/repeater', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('select' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/select', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('wpeditor' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/wpeditor', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('image' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/image', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('checkbox' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/checkbox', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('radio' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/radio', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } elseif ('textarea' === $type) { ?>
           <?php get_template_part('classes/Views/CustomFields/textarea', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } else { ?>
           <?php get_template_part('classes/Views/CustomFields/input', null, [
-            'post_id' => $post->ID,
-            'field' => $field,
-            'name' => $name,
-            'parent_name' => $parent_name,
-          ]) ?>
+              'post_id'     => $post->ID,
+              'field'       => $field,
+              'name'        => $name,
+              'parent_name' => $parent_name,
+            ]) ?>
         <?php } ?>
 
         <?php if ($helper_text) { ?>
@@ -207,17 +211,19 @@ class CustomFields
   /**
    * Render the meta box fields.
    *
-   * @param WP_Post   $post     The post object.
-   * @param array     $args     The array of meta box arguments.
+   * @param WP_Post $post The post object.
+   * @param array   $args The array of meta box arguments.
    *
    * @since 1.0.0
    */
   public function render_meta_boxes(WP_Post $post, array $args)
   {
-    $field = $this->fields[$args['id']];
+    $field  = $this->fields[$args['id']];
     $fields = $field['fields'] ?? [];
 
-    if (empty($fields)) return;
+    if (empty($fields)) {
+      return;
+    }
 
     $this->render_fields($post, $fields);
   }
@@ -267,8 +273,8 @@ class CustomFields
   /**
    * Save field values.
    *
-   * @param int     $post_id        The post ID.
-   * @param array   $fields         The array of fields.
+   * @param int   $post_id The post ID.
+   * @param array $fields  The array of fields.
    *
    * @return void
    */
@@ -330,20 +336,28 @@ class CustomFields
   /**
    * Handle meta box fields saving.
    *
-   * @param int     $post_id      The post ID.
-   * @param WP_Post $post         The post object.
+   * @param int     $post_id The post ID.
+   * @param WP_Post $post    The post object.
    *
    * @since 1.0.0
    */
   public function handle_save(int $post_id, WP_Post $post)
   {
-    if (! current_user_can('edit_post', $post_id)) return;
+    if (! current_user_can('edit_post', $post_id)) {
+      return;
+    }
 
-    if (wp_is_post_autosave($post_id)) return;
+    if (wp_is_post_autosave($post_id)) {
+      return;
+    }
 
-    if (wp_is_post_revision($post_id)) return;
+    if (wp_is_post_revision($post_id)) {
+      return;
+    }
 
-    if (empty($this->fields)) return;
+    if (empty($this->fields)) {
+      return;
+    }
 
     foreach ($this->fields as $field) {
       $fields = $field['fields'] ?? [];

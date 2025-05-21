@@ -36,8 +36,8 @@ get_header();
 
       <?php the_posts_pagination([
         'mid_size' => 2,
-        'type' => 'list',
-        'class' => '',
+        'type'     => 'list',
+        'class'    => '',
       ]) ?>
     <?php } else { ?>
       <p class="mb-0">

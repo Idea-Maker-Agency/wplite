@@ -12,12 +12,12 @@
 
 <?php
 foreach ($args['options'] as $option) {
-  $text = $option['text'] ?? $option;
+  $text  = $option['text']  ?? $option;
   $value = $option['value'] ?? $option;
 
   $id = strtolower(str_replace(' ', '-', $text));
   $id = "{$args['name']}_{$id}";
-?>
+  ?>
   <div class="form-check">
     <input
       id="id_<?= $id ?>"

@@ -1,6 +1,6 @@
 <?php
 $post_id = intval($args['post_id'] ?? null);
-$name = $args['name'] ?? '';
+$name    = $args['name'] ?? '';
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -13,12 +13,12 @@ if ($post->__get($name)) {
 
   if ($url) {
     $attachment_data = [
-      'id' => $post->__get($name),
-      'alt' => '',
+      'id'    => $post->__get($name),
+      'alt'   => '',
       'sizes' => [
         'thumbnail' => [
-          'url' => $url,
-          'width' => $width,
+          'url'    => $url,
+          'width'  => $width,
           'height' => $height,
         ]
       ]

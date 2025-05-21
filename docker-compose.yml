@@ -53,8 +53,8 @@ services:
     image: composer:latest
     container_name: wplite-composer
     volumes:
-      - ./theme:/app
-    working_dir: /app
+      - ./theme:/theme
+    working_dir: /theme
     command: install
 
 volumes:

@@ -31,9 +31,9 @@ get_header();
       </div>
 
       <?php the_posts_pagination([
-        'mid_size'  => 2,
-        'type' => 'list',
-        'class' => '',
+        'mid_size' => 2,
+        'type'     => 'list',
+        'class'    => '',
       ]) ?>
     <?php } else { ?>
       <p class="mb-0">

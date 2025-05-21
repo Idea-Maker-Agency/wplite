@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WP_Post;
 use stdClass;
@@ -24,14 +26,14 @@ class NavMenuController
   /**
    * Filters the HTML attributes applied to a menu's list item element.
    *
-   * @param array       $atts {
-   *    The HTML attributes applied to the menu item's `<li>` element, empty strings are ignored.
-   *    @type string $class HTML CSS class attribute.
-   *    @type string $id HTML id attribute.
-   * }
-   * @param WP_Post     $menu_item  The current menu item object.
-   * @param stdClass    $args       An object of wp_nav_menu() arguments.
-   * @param int         $depth      Depth of menu item. Used for padding.
+   * @param array    $atts      {
+   *                            The HTML attributes applied to the menu item's `<li>` element, empty strings are ignored.
+   * @type  string   $class HTML CSS class attribute.
+   * @type  string   $id HTML id attribute.
+   *                 }
+   * @param WP_Post  $menu_item The current menu item object.
+   * @param stdClass $args      An object of wp_nav_menu() arguments.
+   * @param int      $depth     Depth of menu item. Used for padding.
    *
    * @return array
    */
@@ -42,7 +44,7 @@ class NavMenuController
     int $depth
   ): array {
     $atts['class'] = 'nav-item';
-    $atts['id'] = 'nav-item-'. $menu_item->ID;
+    $atts['id']    = 'nav-item-'. $menu_item->ID;
 
     if (in_array('menu-item-has-children', $menu_item->classes)) {
       $atts['class'] .= ' dropdown';
@@ -56,17 +58,17 @@ class NavMenuController
    *
    * @since 1.0.0
    *
-   * @param array       $atts {
-   *    The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
-   *    @type string $title Title attribute.
-   *    @type string $target Target attribute.
-   *    @type string $rel The rel attribute.
-   *    @type string $href The href attribute.
-   *    @type string $aria-current The aria-current attribute.
-   * }
-   * @param WP_Post     $menu_item  The current menu item object.
-   * @param stdClass    $args       An object of wp_nav_menu() arguments.
-   * @param int         $depth      Depth of menu item. Used for padding.
+   * @param array    $atts      {
+   *                            The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
+   * @type  string   $title Title attribute.
+   * @type  string   $target Target attribute.
+   * @type  string   $rel The rel attribute.
+   * @type  string   $href The href attribute.
+   * @type  string   $aria-current The aria-current attribute.
+   *                 }
+   * @param WP_Post  $menu_item The current menu item object.
+   * @param stdClass $args      An object of wp_nav_menu() arguments.
+   * @param int      $depth     Depth of menu item. Used for padding.
    *
    * @return array
    */
@@ -81,9 +83,9 @@ class NavMenuController
     if (in_array('menu-item-has-children', $menu_item->classes)) {
       $atts['class'] .= ' dropdown-toggle';
 
-      $atts['aria-expanded'] = 'false';
+      $atts['aria-expanded']  = 'false';
       $atts['data-bs-toggle'] = 'dropdown';
-      $atts['role'] = 'button';
+      $atts['role']           = 'button';
 
       unset($atts['href']);
     }
@@ -98,9 +100,9 @@ class NavMenuController
   /**
    * Filters the CSS class(es) applied to a menu list element.
    *
-   * @param array     $classes  Array of the CSS classes that are applied to the menu <ul> element.
-   * @param stdClass  $args     An object of wp_nav_menu() arguments.
-   * @param int       $depth    Depth of menu item. Used for padding.
+   * @param array    $classes Array of the CSS classes that are applied to the menu <ul> element.
+   * @param stdClass $args    An object of wp_nav_menu() arguments.
+   * @param int      $depth   Depth of menu item. Used for padding.
    *
    * @return array
    */

@@ -1,6 +1,7 @@
 <?php
+
 $post_id = intval($args['post_id'] ?? null);
-$name = $args['name'] ?? '';
+$name    = $args['name'] ?? '';
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -15,7 +16,6 @@ wp_editor(
     'media_buttons' => false,
     'textarea_name' => $name,
     'textarea_rows' => 10,
-    'teeny' => true,
+    'teeny'         => true,
   ]
 );
-?>

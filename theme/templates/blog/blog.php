@@ -34,10 +34,10 @@ get_header();
         <?php wp_reset_postdata() ?>
       </div>
 
-      <?php the_posts_pagination( [
+      <?php the_posts_pagination([
         'mid_size' => 2,
-        'type' => 'list',
-        'class' => '',
+        'type'     => 'list',
+        'class'    => '',
       ]) ?>
     <?php } else { ?>
       <p class="mb-0">

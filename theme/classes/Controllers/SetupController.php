@@ -2,9 +2,12 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
-use WP_Theme, WP_Post;
+use WP_Theme;
+use WP_Post;
 use Spyc;
 use WPLite\Utils\CustomFields;
 
@@ -97,18 +100,18 @@ class SetupController
 
     foreach ($pages as $page) {
       $page_object = get_page_by_path($page['slug']);
-      $page_id = $page_object ? $page_object->ID : 0;
+      $page_id     = $page_object ? $page_object->ID : 0;
 
       $front_page_id = get_option('page_on_front');
       $posts_page_id = get_option('page_for_posts');
 
       $page_id = wp_insert_post([
-        'ID' => $page_id,
-        'post_title' => $page['title'],
-        'post_name' => $page['slug'],
+        'ID'           => $page_id,
+        'post_title'   => $page['title'],
+        'post_name'    => $page['slug'],
         'post_content' => '',
-        'post_status' => 'publish',
-        'post_type' => 'page',
+        'post_status'  => 'publish',
+        'post_type'    => 'page',
       ]);
 
       if (
@@ -135,20 +138,20 @@ class SetupController
   public static function register_sidebars(): void
   {
     register_sidebar([
-      'id' => 'primary-sidebar',
-      'name' => __('Primary Sidebar', THEME_TEXT_DOMAIN),
-      'description' => __('Widgets in this area will be shown on posts sidebar.', THEME_TEXT_DOMAIN),
+      'id'            => 'primary-sidebar',
+      'name'          => __('Primary Sidebar', THEME_TEXT_DOMAIN),
+      'description'   => __('Widgets in this area will be shown on posts sidebar.', THEME_TEXT_DOMAIN),
       'before_widget' => '<div id="%1$s" class="card mb-3 mb-lg-4 %2$s"><div class="card-body">',
-      'after_widget' => '</div></div>',
-      'before_title' => '<h2 class="card-title mb-3 fs-4">',
-      'after_title' => '</h2>',
+      'after_widget'  => '</div></div>',
+      'before_title'  => '<h2 class="card-title mb-3 fs-4">',
+      'after_title'   => '</h2>',
     ]);
   }
 
   /**
    * Filters the maximum number of words in a post excerpt.
    *
-   * @param int     $length   The maximum number of words.
+   * @param int $length The maximum number of words.
    *
    * @return int
    */
@@ -160,7 +163,7 @@ class SetupController
   /**
    * Filters the string in the “more” link displayed after a trimmed excerpt.
    *
-   * @param string    $more   The string shown within the more link.
+   * @param string $more The string shown within the more link.
    *
    * @return string
    */

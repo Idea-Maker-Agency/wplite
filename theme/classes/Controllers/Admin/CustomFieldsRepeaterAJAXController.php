@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers\Admin;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Utils\CustomFields;
 
@@ -27,20 +29,20 @@ class CustomFieldsRepeaterAJAXController
   public static function add(): void
   {
     $post_id = intval($_POST['post_id'] ?: null);
-    $name = $_POST['name'] ?? '';
-    $index = $_POST['index'] ?? 0;
-    $fields = json_decode(stripslashes($_POST['fields'] ?? ''), true);
-    $keys = json_decode(stripslashes($_POST['keys'] ?? ''), true);
+    $name    = $_POST['name']  ?? '';
+    $index   = $_POST['index'] ?? 0;
+    $fields  = json_decode(stripslashes($_POST['fields'] ?? ''), true);
+    $keys    = json_decode(stripslashes($_POST['keys'] ?? ''), true);
 
     $key = $keys[count($keys) - 1];
     ?>
     <div id="repeater-fields-<?= $name ?>">
       <?php get_template_part('classes/Views/CustomFields/repeater', 'item', [
         'post_id' => $post_id,
-        'name' => $name,
-        'index' => $index,
-        'key' => $key,
-        'fields' => $fields,
+        'name'    => $name,
+        'index'   => $index,
+        'key'     => $key,
+        'fields'  => $fields,
       ]) ?>
     </div>
     <?php
@@ -57,8 +59,8 @@ class CustomFieldsRepeaterAJAXController
     global $wpdb;
 
     $post_id = intval($_POST['post_id'] ?: null);
-    $name = $_POST['name'] ?? '';
-    $key = $_POST['key'] ?? '';
+    $name    = $_POST['name'] ?? '';
+    $key     = $_POST['key']  ?? '';
 
     // Delete meta datas if exists
     $results = $wpdb->get_results(

@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPCF7_ContactForm;
 
@@ -26,8 +28,8 @@ class ContactForm7Controller
    *
    * @since 1.0.0
    *
-   * @param array     $form_tag   Form tags array.
-   * @param string    $replace    Form tags replacement string.
+   * @param array  $form_tag Form tags array.
+   * @param string $replace  Form tags replacement string.
    *
    * @return array
    */
@@ -50,8 +52,8 @@ class ContactForm7Controller
    *
    * @since 1.0.0
    *
-   * @param string    $template   Form default template HTML markup.
-   * @param string    $prop       Form template type.
+   * @param string $template Form default template HTML markup.
+   * @param string $prop     Form template type.
    *
    * @return string
    */
@@ -82,23 +84,16 @@ class ContactForm7Controller
         "<div class=\"position-relative d-inline-block\">\n".
         "\t[submit \"%10\$s\"]\n".
         "</div>",
-
         __('(optional)', THEME_TEXT_DOMAIN),
-
         __('Your name', THEME_TEXT_DOMAIN),
         __('id_your-name', THEME_TEXT_DOMAIN),
-
         __('Your email', THEME_TEXT_DOMAIN),
         __('id_your-email', THEME_TEXT_DOMAIN),
-
         __('Subject', THEME_TEXT_DOMAIN),
         __('id_subject', THEME_TEXT_DOMAIN),
-
         __('Your message', THEME_TEXT_DOMAIN),
         __('id_message', THEME_TEXT_DOMAIN),
-
         __('Submit', THEME_TEXT_DOMAIN),
-
         'form-label small',
         'mb-3'
       );
@@ -112,11 +107,11 @@ class ContactForm7Controller
   /**
    * Filters form response output.
    *
-   * @param string    $output     Form response output HTML.
-   * @param string    $class      Form response CSS class.
-   * @param string    $content    Form response content.
-   * @param WPCF7_ContactForm $wpcf7 The WPCF7_ContactForm object.
-   * @param string    $status     Form response status.
+   * @param string            $output  Form response output HTML.
+   * @param string            $class   Form response CSS class.
+   * @param string            $content Form response content.
+   * @param WPCF7_ContactForm $wpcf7   The WPCF7_ContactForm object.
+   * @param string            $status  Form response status.
    *
    * @return string
    */
@@ -133,7 +128,7 @@ class ContactForm7Controller
     );
 
     $atts = [
-      'class' => implode(' ', $classes),
+      'class'       => implode(' ', $classes),
       'aria-hidden' => 'true',
     ];
 

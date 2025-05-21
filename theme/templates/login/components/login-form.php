@@ -12,7 +12,7 @@
       ->add_field(
         'Redirect',
         [
-          'type' => 'hidden',
+          'type'  => 'hidden',
           'value' => $_GET['redirect'] ?? '',
         ]
       )
@@ -25,7 +25,7 @@
       ->add_field(
         'Password',
         [
-          'type' => 'password',
+          'type'     => 'password',
           'required' => true,
         ]
       )

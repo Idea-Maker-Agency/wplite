@@ -7,7 +7,9 @@ use WPLite\Utils\{
   Router
 };
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 abstract class BaseFormController extends Form
 {
@@ -35,9 +37,10 @@ abstract class BaseFormController extends Form
   /**
    * Initialize class.
    *
-   * @param string    $name     The form name.
+   * @param string $name The form name.
    */
-  public function __construct(string $form) {
+  public function __construct(string $form)
+  {
     parent::__construct($form);
   }
 
@@ -72,7 +75,7 @@ abstract class BaseFormController extends Form
   {
     $this->set_values($_POST);
 
-    $nonce = $_POST['_wpnonce'] ?? '';
+    $nonce    = $_POST['_wpnonce']         ?? '';
     $referrer = $_POST['_wp_http_referer'] ?? '';
 
     if (! wp_verify_nonce($nonce, 'wplite')) {

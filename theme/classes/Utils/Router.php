@@ -2,14 +2,16 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class Router
 {
   /**
    * Get page url by path.
    *
-   * @param string    $path   The page path.
+   * @param string $path The page path.
    *
    * @return string|bool
    */
@@ -23,7 +25,7 @@ class Router
       $page = get_page_by_path($path);
 
       $qs = http_build_query($params);
-      $qs = ! empty($qs) ? '?' . $qs  : '';
+      $qs = ! empty($qs) ? '?' . $qs : '';
 
       return get_the_permalink($page) . $qs;
     }
@@ -32,8 +34,8 @@ class Router
   /**
    * Redirect to page by path.
    *
-   * @param string    $path     The page path.
-   * @param array     $params   An array of query params.
+   * @param string $path   The page path.
+   * @param array  $params An array of query params.
    *
    * @return void
    */
@@ -52,7 +54,7 @@ class Router
     }
 
     $qs = http_build_query($params);
-    $qs = ! empty($qs) ? '?' . $qs  : '';
+    $qs = ! empty($qs) ? '?' . $qs : '';
 
     if (wp_safe_redirect($permalink . $qs)) {
       exit();

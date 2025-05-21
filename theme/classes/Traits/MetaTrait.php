@@ -2,7 +2,9 @@
 
 namespace WPLite\Traits;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 trait MetaTrait
 {
@@ -16,8 +18,8 @@ trait MetaTrait
   /**
    * Load meta data for the given object ID.
    *
-   * @param int     $id       The object ID.
-   * @param string  $context  The object context. Defaults to 'post'.
+   * @param int    $id      The object ID.
+   * @param string $context The object context. Defaults to 'post'.
    *
    * @return void
    */
@@ -41,7 +43,7 @@ trait MetaTrait
   /**
    * Dynamically get meta data.
    *
-   * @param string    $key    The meta key.
+   * @param string $key The meta key.
    *
    * @return mixed
    */
@@ -59,8 +61,8 @@ trait MetaTrait
   /**
    * Dynamically set meta data.
    *
-   * @param string    $key    The meta key.
-   * @param mixed     $value  The meta value.
+   * @param string $key   The meta key.
+   * @param mixed  $value The meta value.
    *
    * @return void
    */
@@ -76,8 +78,8 @@ trait MetaTrait
   /**
    * Save meta datas.
    *
-   * @param int     $id       The object ID.
-   * @param string  $context  The object context.
+   * @param int    $id      The object ID.
+   * @param string $context The object context.
    *
    * @return void
    */

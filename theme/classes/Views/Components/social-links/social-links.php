@@ -1,7 +1,7 @@
 <?php
-$facebook_url = get_theme_mod('wplite_social_links_facebook_url');
+$facebook_url  = get_theme_mod('wplite_social_links_facebook_url');
 $instagram_url = get_theme_mod('wplite_social_links_instagram_url');
-$x_url = get_theme_mod('wplite_social_links_x_url');
+$x_url         = get_theme_mod('wplite_social_links_x_url');
 ?>
 
 <ul class="social-links list-unstyled mb-0 d-flex align-items-center column-gap-3">

@@ -2,7 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Models\Auth;
 use WPLite\Utils\Transient;
@@ -19,9 +21,10 @@ class Form extends Transient
   /**
    * Initialize class.
    *
-   * @param string    $name     The form name.
+   * @param string $name The form name.
    */
-  public function __construct(string $name) {
+  public function __construct(string $name)
+  {
     parent::__construct("form_{$name}", 60 * 10);
 
     $this->name = $name;
@@ -30,8 +33,8 @@ class Form extends Transient
   /**
    * Set form field value.
    *
-   * @param string    $key        The form field key.
-   * @param mixed     $new_value  The form field value.
+   * @param string $key       The form field key.
+   * @param mixed  $new_value The form field value.
    *
    * @return void
    */
@@ -47,7 +50,7 @@ class Form extends Transient
   /**
    * Set form values.
    *
-   * @param array     $new_values The form values.
+   * @param array $new_values The form values.
    *
    * @return void
    */
@@ -55,8 +58,7 @@ class Form extends Transient
   {
     $transient = $this->get_transient() ?? [];
 
-    $transient['values'] =
-      array_merge(
+    $transient['values'] = array_merge(
         $transient['values'] ?? [],
         $new_values
       );
@@ -67,8 +69,8 @@ class Form extends Transient
   /**
    * Get form value.
    *
-   * @param string    $field    The form field name.
-   * @param mixed     $fallback The fallback value.
+   * @param string $field    The form field name.
+   * @param mixed  $fallback The fallback value.
    *
    * @return mixed
    */
@@ -98,7 +100,7 @@ class Form extends Transient
    */
   public function clear_values(): void
   {
-    $transient = $this->get_transient() ?? [];
+    $transient           = $this->get_transient() ?? [];
     $transient['values'] = [];
 
     $this->set_transient($transient);
@@ -107,8 +109,8 @@ class Form extends Transient
   /**
    * Add form message.
    *
-   * @param string    $message  The message message.
-   * @param string    $field    The form field name. (Optional)
+   * @param string $message The message message.
+   * @param string $field   The form field name. (Optional)
    *
    * @return void
    */
@@ -138,7 +140,7 @@ class Form extends Transient
   /**
    * Get form field message.
    *
-   * @param string    $field    The form field name.
+   * @param string $field The form field name.
    *
    * @return mixed
    */
@@ -168,7 +170,7 @@ class Form extends Transient
    */
   public function clear_messages(): void
   {
-    $transient = $this->get_transient() ?? [];
+    $transient             = $this->get_transient() ?? [];
     $transient['messages'] = [];
 
     $this->set_transient($transient);
@@ -177,8 +179,8 @@ class Form extends Transient
   /**
    * Add form error.
    *
-   * @param string    $message  The error message.
-   * @param string    $field    The form field name. (Optional)
+   * @param string $message The error message.
+   * @param string $field   The form field name. (Optional)
    *
    * @return void
    */
@@ -208,7 +210,7 @@ class Form extends Transient
   /**
    * Get form field error.
    *
-   * @param string    $field    The form field name.
+   * @param string $field The form field name.
    *
    * @return mixed
    */
@@ -238,7 +240,7 @@ class Form extends Transient
    */
   public function clear_errors(): void
   {
-    $transient = $this->get_transient() ?? [];
+    $transient           = $this->get_transient() ?? [];
     $transient['errors'] = [];
 
     $this->set_transient($transient);
@@ -247,8 +249,8 @@ class Form extends Transient
   /**
    * Check if file is valid.
    *
-   * @param string    $name         The file input name.
-   * @param array     $allowed_ext  The allowed file extensions.
+   * @param string $name        The file input name.
+   * @param array  $allowed_ext The allowed file extensions.
    *
    * @return bool
    */

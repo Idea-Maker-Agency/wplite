@@ -19,9 +19,9 @@
 
   <?php
   foreach ($args['options'] as $option) {
-    $text = $option['text'] ?? $option;
+    $text  = $option['text']  ?? $option;
     $value = $option['value'] ?? $option;
-  ?>
+    ?>
     <option
       value="<?= $value ?>"
       <?= selected($args['request_value'] ?? $args['value'], $value) ?>>

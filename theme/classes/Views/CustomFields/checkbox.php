@@ -1,6 +1,6 @@
 <?php
-$post_id = intval($args['post_id'] ?? null);
-$name = $args['name'] ?? '';
+$post_id  = intval($args['post_id'] ?? null);
+$name     = $args['name']              ?? '';
 $required = $args['field']['required'] ?? false;
 
 if (! empty($args['parent_name'])) {

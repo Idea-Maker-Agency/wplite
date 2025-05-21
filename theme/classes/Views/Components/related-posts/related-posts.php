@@ -3,9 +3,9 @@ use WPLite\Utils\View;
 
 $args = wp_parse_args($args, [
   'posts_per_page' => 6,
-  'post__not_in' => [$post->ID],
-  'category__in' => wp_get_post_categories($post->ID),
-  'orderby' => 'date',
+  'post__not_in'   => [$post->ID],
+  'category__in'   => wp_get_post_categories($post->ID),
+  'orderby'        => 'date',
 ]);
 
 $query = new WP_Query($args);

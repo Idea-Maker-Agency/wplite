@@ -2,7 +2,9 @@
 
 namespace WPLite\Models;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class Auth
 {
@@ -29,13 +31,15 @@ class Auth
   /**
    * Check if user matches the role provided.
    *
-   * @param string    $role   The role to check.
+   * @param string $role The role to check.
    *
    * @return bool
    */
   public static function has_role(string $role): bool
   {
-    if (! self::check()) return false;
+    if (! self::check()) {
+      return false;
+    }
 
     $user = wp_get_current_user();
 
@@ -45,13 +49,15 @@ class Auth
   /**
    * Get user meta data by key.
    *
-   * @param string    $key    The meta key.
+   * @param string $key The meta key.
    *
    * @return mixed
    */
   public static function get_meta(string $key): mixed
   {
-    if (! self::check()) return null;
+    if (! self::check()) {
+      return null;
+    }
 
     return get_user_meta(self::id(), $key, true);
   }

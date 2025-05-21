@@ -9,6 +9,7 @@
  */
 
 use WPLite\Utils\View;
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,9 @@ use WPLite\Utils\View;
       rel="pingback"
       href="<?php bloginfo('pingback_url') ?>" />
 
-    <?php if (is_singular() && get_option('thread_comments')) { wp_enqueue_script('comment-reply'); } ?>
+    <?php if (is_singular() && get_option('thread_comments')) {
+      wp_enqueue_script('comment-reply');
+    } ?>
 
     <link
       href="<?= THEME_DIR_URI ?>/assets/lib/fonts/Poppins Regular.woff2"
@@ -60,7 +63,9 @@ use WPLite\Utils\View;
   </head>
 
   <body <?php body_class() ?>>
-    <?php if (function_exists('wp_body_open')) { wp_body_open(); } ?>
+    <?php if (function_exists('wp_body_open')) {
+      wp_body_open();
+    } ?>
 
     <nav class="header navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -84,9 +89,9 @@ use WPLite\Utils\View;
           class="collapse navbar-collapse">
           <?php if ($main_nav_menu_id = get_theme_mod('wplite_navigation_menu')) { ?>
             <?php wp_nav_menu([
-              'menu' => $main_nav_menu_id,
-              'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
-              'container' => '',
+              'menu'        => $main_nav_menu_id,
+              'menu_class'  => 'navbar-nav ms-auto mb-2 mb-lg-0',
+              'container'   => '',
               'fallback_cb' => false,
             ]) ?>
           <?php } ?>

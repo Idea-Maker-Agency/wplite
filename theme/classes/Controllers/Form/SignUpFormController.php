@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers\Form;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Utils\{
   FormBuilder,
@@ -40,8 +42,8 @@ class SignUpFormController extends BaseFormController
    */
   protected function validate(): void
   {
-    $email_address = $this->get_value('email_address');
-    $password = $this->get_value('password');
+    $email_address    = $this->get_value('email_address');
+    $password         = $this->get_value('password');
     $confirm_password = $this->get_value('confirm_password');
 
     if (empty($email_address)) {
@@ -67,7 +69,7 @@ class SignUpFormController extends BaseFormController
   protected function process(): void
   {
     $email_address = $this->get_value('email_address');
-    $password = $this->get_value('password');
+    $password      = $this->get_value('password');
 
     $redirect = $this->get_value('redirect');
 
@@ -86,7 +88,7 @@ class SignUpFormController extends BaseFormController
     }
 
     $user = wp_signon([
-      'user_login' => $email_address,
+      'user_login'    => $email_address,
       'user_password' => $password,
     ]);
 

@@ -9,6 +9,7 @@
  */
 
 use WPLite\Utils\View;
+
 ?>
     </main>
 
@@ -17,8 +18,8 @@ use WPLite\Utils\View;
         <div class="row">
           <div class="col-12 col-lg-4">
             <?php View::render('logo', 'Components', [
-              'width' => 95,
-              'height' => 45,
+              'width'      => 95,
+              'height'     => 45,
               'link_class' => 'footer-logo mb-4 fs-4 d-inline-block',
             ]) ?>
 
@@ -36,9 +37,9 @@ use WPLite\Utils\View;
 
             <?php if ($quick_links_menu_id = get_theme_mod('wplite_footer_quick_links_menu')) { ?>
               <?php wp_nav_menu([
-                'menu' => $quick_links_menu_id,
-                'menu_class' => 'list-unstyled d-grid row-gap-2',
-                'container' => '',
+                'menu'        => $quick_links_menu_id,
+                'menu_class'  => 'list-unstyled d-grid row-gap-2',
+                'container'   => '',
                 'fallback_cb' => false,
               ]) ?>
             <?php } ?>

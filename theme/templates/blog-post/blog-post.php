@@ -89,22 +89,26 @@ get_header();
               </footer>
             </article>
 
-            <?php if (comments_open() || get_comments_number()) { comments_template(); } ?>
+            <?php if (comments_open() || get_comments_number()) {
+              comments_template();
+            } ?>
 
             <?php
-            the_post_navigation( [
+            the_post_navigation([
               'next_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Next', THEME_TEXT_DOMAIN) . '</span> ' .
                             '<span class="screen-reader-text">' . __('Next post:', THEME_TEXT_DOMAIN) . '</span> ' .
                             '<span class="nav-links__text">%title</span>',
               'prev_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Previous', THEME_TEXT_DOMAIN) . '</span> ' .
                             '<span class="screen-reader-text">' . __('Previous post:', THEME_TEXT_DOMAIN) . '</span> ' .
                             '<span class="nav-links__text">%title</span>',
-            ] )
-            ?>
+            ])
+    ?>
           </main>
 
           <aside class="col-12 col-lg-3">
-            <?php if (is_active_sidebar('primary-sidebar')) { dynamic_sidebar('primary-sidebar'); } ?>
+            <?php if (is_active_sidebar('primary-sidebar')) {
+              dynamic_sidebar('primary-sidebar');
+            } ?>
           </aside>
         </div>
       </div>

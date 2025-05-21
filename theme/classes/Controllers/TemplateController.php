@@ -2,9 +2,12 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
-use WP_Theme, WP_Post;
+use WP_Theme;
+use WP_Post;
 use Spyc;
 use WPLite\Utils\CustomFields;
 
@@ -44,9 +47,9 @@ class TemplateController
   /**
    * Loads custom page templates file.
    *
-   * @param string    $template   Path to the template.
-   * @param string    $type       Sanitized filename without extension.
-   * @param array     $templates  A list of template candidates, in descending order of priority.
+   * @param string $template  Path to the template.
+   * @param string $type      Sanitized filename without extension.
+   * @param array  $templates A list of template candidates, in descending order of priority.
    *
    * @return string
    */
@@ -76,7 +79,7 @@ class TemplateController
   /**
    * Loads custom single templates file.
    *
-   * @param string    $template   Path to the template.
+   * @param string $template Path to the template.
    *
    * @return string
    */
@@ -102,7 +105,7 @@ class TemplateController
   /**
    * Loads custom archive templates file.
    *
-   * @param string    $template   Path to the template.
+   * @param string $template Path to the template.
    *
    * @return string
    */
@@ -121,7 +124,7 @@ class TemplateController
   /**
    * Loads custom category templates file.
    *
-   * @param string    $template   Path to the template.
+   * @param string $template Path to the template.
    *
    * @return string
    */
@@ -143,7 +146,7 @@ class TemplateController
   /**
    * Loads custom tag templates file.
    *
-   * @param string    $template   Path to the template.
+   * @param string $template Path to the template.
    *
    * @return string
    */
@@ -169,7 +172,7 @@ class TemplateController
    */
   public static function init_custom_fields(): void
   {
-    $id = intval($_GET['post'] ?? 0);
+    $id     = intval($_GET['post'] ?? 0);
     $action = $_POST['action'] ?? null;
 
     $front_page_id = get_option('page_on_front');
@@ -178,7 +181,9 @@ class TemplateController
       $id = intval($_POST['post_ID'] ?? 0);
     }
 
-    if (! $id) return;
+    if (! $id) {
+      return;
+    }
 
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
@@ -200,11 +205,15 @@ class TemplateController
       }
     }
 
-    if (! file_exists($fields)) return;
+    if (! file_exists($fields)) {
+      return;
+    }
 
     $load_fields = Spyc::YAMLLoad($fields);
 
-    if (empty($load_fields)) return;
+    if (empty($load_fields)) {
+      return;
+    }
 
     $custom_fields = new CustomFields();
 
@@ -217,9 +226,9 @@ class TemplateController
   /**
    * Filters list of page templates.
    *
-   * @param array     $page_templates   Array of page templates. Keys are filenames, values are translated names.
-   * @param WP_Theme  $theme            The theme object.
-   * @param WP_Post   $post             The post being edited, provided for context, or null.
+   * @param array    $page_templates Array of page templates. Keys are filenames, values are translated names.
+   * @param WP_Theme $theme          The theme object.
+   * @param WP_Post  $post           The post being edited, provided for context, or null.
    *
    * @return array
    */
@@ -229,14 +238,16 @@ class TemplateController
     WP_Post | null $post
   ): array {
     $path = THEME_DIR_PATH . '/page-templates';
-    $dir = scandir($path);
+    $dir  = scandir($path);
 
     if ($dir) {
       $subdir = array_filter($dir, function ($subdir) use ($path) {
-        if (in_array($subdir, ['.', '..'])) return false;
+        if (in_array($subdir, ['.', '..'])) {
+          return false;
+        }
 
         return is_dir($path . '/' . $subdir);
-      } );
+      });
 
       $subdir_keys = array_map(function ($value) {
         return 'page-templates/' . $value . '/' . $value . '.php';
@@ -267,9 +278,9 @@ class TemplateController
    *
    * @since 1.0.0
    *
-   * @param string $title Archive title to be displayed.
+   * @param string $title      Archive title to be displayed.
    * @param string $orig_title Archive title without prefix.
-   * @param string $prefix Archive title prefix.
+   * @param string $prefix     Archive title prefix.
    *
    * @return string
    */
@@ -293,7 +304,7 @@ class TemplateController
    * Filters the HTML output of the search form.
    *
    * @param string $form The search form HTML output.
-   * @param array $args The array of arguments for building the search form.
+   * @param array  $args The array of arguments for building the search form.
    *
    * @return string
    */
@@ -310,8 +321,8 @@ class TemplateController
    *
    * @since 1.0.0
    *
-   * @param string    $output   HTML output.
-   * @param array     $args     An array of arguments. See `paginate_links()` for information on accepted arguments.
+   * @param string $output HTML output.
+   * @param array  $args   An array of arguments. See `paginate_links()` for information on accepted arguments.
    *
    * @return string
    */

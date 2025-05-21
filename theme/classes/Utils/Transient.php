@@ -2,7 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Models\Auth;
 
@@ -29,8 +31,8 @@ abstract class Transient
   /**
    * Initialize the class.
    *
-   * @param string    $key          The transient key.
-   * @param int       $expiration   The transient expiration time.
+   * @param string $key        The transient key.
+   * @param int    $expiration The transient expiration time.
    */
   public function __construct(string $key, int $expiration = 60 * 10)
   {
@@ -51,7 +53,7 @@ abstract class Transient
       $_COOKIE['user_id'] = $user_id;
     }
 
-    $this->key = $key;
+    $this->key        = $key;
     $this->expiration = $expiration;
   }
 
@@ -74,7 +76,7 @@ abstract class Transient
   /**
    * Set a transient value.
    *
-   * @param mixed     $value  The transient value.
+   * @param mixed $value The transient value.
    *
    * @return void
    */
@@ -92,7 +94,9 @@ abstract class Transient
   {
     $transient = get_transient($this->get_key());
 
-    if (false === $transient) return null;
+    if (false === $transient) {
+      return null;
+    }
 
     return $transient;
   }

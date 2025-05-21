@@ -26,7 +26,8 @@ use WPLite\Utils\View;
  *
  * @return void
  */
-function wplite_init(): void {
+function wplite_init(): void
+{
   SetupController::init();
   AuthController::init();
   AssetController::init();

@@ -1,7 +1,7 @@
 <?php
 $post_id = intval($args['post_id'] ?? null);
-$name = $args['name'] ?? '';
-$fields = $args['field']['fields'] ?? [];
+$name    = $args['name']            ?? '';
+$fields  = $args['field']['fields'] ?? [];
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -50,11 +50,11 @@ $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
       x-sort.ghost="onSort">
       <?php foreach ($keys as $index => $key) { ?>
         <?php get_template_part('classes/Views/CustomFields/repeater', 'item', [
-          'index' => $index,
+          'index'   => $index,
           'post_id' => $post_id,
-          'name' => $name,
-          'key' => $key,
-          'fields' => $fields,
+          'name'    => $name,
+          'key'     => $key,
+          'fields'  => $fields,
         ]) ?>
       <?php } ?>
     </div>

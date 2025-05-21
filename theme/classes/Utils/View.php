@@ -2,7 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class View
 {
@@ -16,8 +18,8 @@ class View
   /**
    * Register a new view.
    *
-   * @param string    $name       The view name.
-   * @param string    $namespace  The view namespace.
+   * @param string $name      The view name.
+   * @param string $namespace The view namespace.
    */
   public static function register(string $name, string $namespace = ''): void
   {
@@ -38,13 +40,13 @@ class View
         }
 
         $path = get_theme_file_path("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
-        $uri = get_theme_file_uri("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
+        $uri  = get_theme_file_uri("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
 
         if (! file_exists($path)) {
           continue;
         }
 
-        $handle = "wplite-view-{$name}";
+        $handle  = "wplite-view-{$name}";
         $version = filemtime($path);
 
         if ('css' === $ext) {
@@ -59,8 +61,8 @@ class View
   /**
    * Load view assets.
    *
-   * @param string    $name       The view name.
-   * @param string    $namespace  The view namespace.
+   * @param string $name      The view name.
+   * @param string $namespace The view namespace.
    *
    * @return void
    */
@@ -87,9 +89,9 @@ class View
   /**
    * Render the view.
    *
-   * @param string    $name       The view name.
-   * @param string    $namespace  The view namespace.
-   * @param array     $args       The view args. (Optional)
+   * @param string $name      The view name.
+   * @param string $namespace The view namespace.
+   * @param array  $args      The view args. (Optional)
    *
    * @return void
    */

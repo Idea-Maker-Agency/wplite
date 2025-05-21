@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class CommentController
 {
@@ -19,13 +21,13 @@ class CommentController
   /**
    * Add bootstrap 5 classes to comment form fields.
    *
-   * @param array     $fields   The array of comment form fields.
+   * @param array $fields The array of comment form fields.
    *
    * @return array
    */
   public static function comment_form_default_fields(array $fields): array
   {
-    $fields = array_map(function($name, $field) {
+    $fields = array_map(function ($name, $field) {
       if ('cookies' === $name) {
         $field = str_replace(
           '<label',

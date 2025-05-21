@@ -2,9 +2,12 @@
 
 namespace WPLite\Controllers\Admin;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
-use WP_Customize_Manager, WP_Customize_Image_Control;
+use WP_Customize_Manager;
+use WP_Customize_Image_Control;
 use Spyc;
 
 class ThemeCustomizerController
@@ -22,7 +25,7 @@ class ThemeCustomizerController
   /**
    * Register customizer.
    *
-   * @param WP_Customize_Manager    $manager  The WP Customizer Manager instance.
+   * @param WP_Customize_Manager $manager The WP Customizer Manager instance.
    *
    * @return void
    */
@@ -35,9 +38,9 @@ class ThemeCustomizerController
         $panel_id = "wplite_{$panel_key}";
 
         $manager->add_panel($panel_id, [
-          'title' => __($panel['title'], THEME_TEXT_DOMAIN),
+          'title'       => __($panel['title'], THEME_TEXT_DOMAIN),
           'description' => __($panel['description'], THEME_TEXT_DOMAIN),
-          'priority' => $panel['priority'] ?? 10,
+          'priority'    => $panel['priority'] ?? 10,
         ]);
 
         if (! empty($panel['sections'])) {
@@ -51,13 +54,13 @@ class ThemeCustomizerController
 
             if (! empty($section['settings'])) {
               foreach ($section['settings'] as $setting_key => $setting) {
-                $setting_id = "{$section_id}_{$setting_key}";
+                $setting_id   = "{$section_id}_{$setting_key}";
                 $setting_args = [
-                  'label' => __($setting['label'], THEME_TEXT_DOMAIN),
+                  'label'       => __($setting['label'], THEME_TEXT_DOMAIN),
                   'description' => __($setting['description'] ?? '', THEME_TEXT_DOMAIN),
-                  'section' => $section_id,
-                  'settings' => $setting_id,
-                  'type' => $setting['type'],
+                  'section'     => $section_id,
+                  'settings'    => $setting_id,
+                  'type'        => $setting['type'],
                 ];
 
                 if (
@@ -73,7 +76,9 @@ class ThemeCustomizerController
 
                 if ('image' === $setting['type']) {
                   $manager->add_control(new WP_Customize_Image_Control(
-                    $manager, $setting_id, $setting_args
+                    $manager,
+                    $setting_id,
+                    $setting_args
                   ));
                 } else {
                   $manager->add_control($setting_id, $setting_args);
@@ -89,7 +94,7 @@ class ThemeCustomizerController
   /**
    * Resolve select choices.
    *
-   * @param string    $source   The select choices source.
+   * @param string $source The select choices source.
    *
    * @return array
    */

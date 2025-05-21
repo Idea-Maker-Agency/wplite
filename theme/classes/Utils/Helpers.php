@@ -2,18 +2,20 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class Helpers
 {
   /**
    * Get webp asset image url.
    *
-   * @param string    $name       The webp image file name.
-   * @param array     $size       {
-   *  @param int        $width      The webp image file width.
-   *  @param int        $height     The webp image file height.
-   * }
+   * @param string $name   The webp image file name.
+   * @param array  $size   {
+   * @param int    $width  The webp image file width.
+   * @param int    $height The webp image file height.
+   *                       }
    *
    * @return string
    */

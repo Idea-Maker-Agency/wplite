@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers\Form;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 use WPLite\Utils\{
   FormBuilder,
@@ -59,16 +61,16 @@ class LoginFormController extends BaseFormController
    */
   protected function process(): void
   {
-    $username = $this->get_value('username');
-    $password = $this->get_value('password');
+    $username   = $this->get_value('username');
+    $password   = $this->get_value('password');
     $rememberme = $this->get_value('remember_me');
 
     $redirect = $this->get_value('redirect');
 
     $user = wp_signon([
-      'user_login' => $username,
+      'user_login'    => $username,
       'user_password' => $password,
-      'remember' => $rememberme,
+      'remember'      => $rememberme,
     ]);
 
     if (is_wp_error($user)) {

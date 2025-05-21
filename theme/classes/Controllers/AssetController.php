@@ -2,7 +2,9 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) die;
+if (! defined('ABSPATH')) {
+  die;
+}
 
 class AssetController
 {
@@ -79,15 +81,15 @@ class AssetController
 
     if (! empty($styles)) {
       foreach ($styles as $name => $args) {
-        $handle = "wplite-{$name}";
-        $version = $args['version'] ?? '1.0.0';
+        $handle       = "wplite-{$name}";
+        $version      = $args['version']      ?? '1.0.0';
         $dependencies = $args['dependencies'] ?? [];
-        $media = $args['media'] ?? 'all';
-        $minified = $args['minified'] ?? false;
-        $enqueue = $args['enqueue'] ?? false;
+        $media        = $args['media']        ?? 'all';
+        $minified     = $args['minified']     ?? false;
+        $enqueue      = $args['enqueue']      ?? false;
 
         $suffix = $minified ? '.min' : '';
-        $src = THEME_DIR_URI . "/assets/vendor/{$name}/css/{$name}{$suffix}.css";
+        $src    = THEME_DIR_URI . "/assets/vendor/{$name}/css/{$name}{$suffix}.css";
 
         wp_register_style(
           $handle,
@@ -113,25 +115,25 @@ class AssetController
   {
     $scripts = [
       'bootstrap' => [
-        'version' => '5.3.3',
+        'version'  => '5.3.3',
         'minified' => true,
-        'enqueue' => true,
+        'enqueue'  => true,
         'strategy' => 'defer',
       ],
     ];
 
     if (! empty($scripts)) {
       foreach ($scripts as $name => $args) {
-        $handle = "wplite-{$name}";
-        $version = $args['version'] ?? '1.0.0';
+        $handle       = "wplite-{$name}";
+        $version      = $args['version']      ?? '1.0.0';
         $dependencies = $args['dependencies'] ?? [];
-        $minified = $args['minified'] ?? false;
-        $enqueue = $args['enqueue'] ?? false;
+        $minified     = $args['minified']     ?? false;
+        $enqueue      = $args['enqueue']      ?? false;
 
         $suffix = $minified ? '.min' : '';
-        $src = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
-        $args = [
-          'strategy' => $args['strategy'] ?? '',
+        $src    = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
+        $args   = [
+          'strategy'  => $args['strategy']  ?? '',
           'in_footer' => $args['in_footer'] ?? true,
         ];
 
@@ -160,11 +162,13 @@ class AssetController
     global $post;
 
     $path = get_theme_file_path("templates/{$post->post_name}/{$post->post_name}.css");
-    $uri = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.css");
+    $uri  = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.css");
 
-    if (! file_exists($path)) return;
+    if (! file_exists($path)) {
+      return;
+    }
 
-    $handle = "wplite-{$post->post_name}";
+    $handle  = "wplite-{$post->post_name}";
     $version = filemtime($path);
 
     wp_enqueue_style($handle, $uri, [], $version, 'all');
@@ -180,11 +184,13 @@ class AssetController
     global $post;
 
     $path = get_theme_file_path("templates/{$post->post_name}/{$post->post_name}.js");
-    $uri = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.js");
+    $uri  = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.js");
 
-    if (! file_exists($path)) return;
+    if (! file_exists($path)) {
+      return;
+    }
 
-    $handle = "wplite-{$post->post_name}";
+    $handle  = "wplite-{$post->post_name}";
     $version = filemtime($path);
 
     wp_enqueue_script($handle, $uri, [], $version, true);
@@ -199,20 +205,20 @@ class AssetController
   {
     $templates = wp_get_theme()->get_page_templates();
 
-    $templates = array_filter($templates, function(string $title, string $base_path) {
+    $templates = array_filter($templates, function (string $title, string $base_path) {
       return is_page_template($base_path);
     }, ARRAY_FILTER_USE_BOTH);
 
     if (! empty($templates)) {
       foreach ($templates as $base_path => $title) {
         $path = get_theme_file_path(str_replace('.php', '.css', $base_path));
-        $uri = get_theme_file_uri(str_replace('.php', '.css', $base_path));
+        $uri  = get_theme_file_uri(str_replace('.php', '.css', $base_path));
 
         if (! file_exists($path)) {
           continue;
         }
 
-        $handle = 'wplite-' . strtolower(str_replace(' ', '-', $title));
+        $handle  = 'wplite-' . strtolower(str_replace(' ', '-', $title));
         $version = filemtime($path);
 
         wp_enqueue_style($handle, $uri, [], $version, 'all');
@@ -229,20 +235,20 @@ class AssetController
   {
     $templates = wp_get_theme()->get_page_templates();
 
-    $templates = array_filter($templates, function(string $title, string $base_path) {
+    $templates = array_filter($templates, function (string $title, string $base_path) {
       return is_page_template($base_path);
     }, ARRAY_FILTER_USE_BOTH);
 
     if (! empty($templates)) {
       foreach ($templates as $base_path => $title) {
         $path = get_theme_file_path(str_replace('.php', '.js', $base_path));
-        $uri = get_theme_file_uri(str_replace('.php', '.js', $base_path));
+        $uri  = get_theme_file_uri(str_replace('.php', '.js', $base_path));
 
         if (! file_exists($path)) {
           continue;
         }
 
-        $handle = 'wplite-' . strtolower(str_replace(' ', '-', $title));
+        $handle  = 'wplite-' . strtolower(str_replace(' ', '-', $title));
         $version = filemtime($path);
 
         wp_enqueue_script($handle, $uri, [], $version, true);

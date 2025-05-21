@@ -5,7 +5,9 @@ $default_args = [];
 
 extract(wp_parse_args($args, $default_args));
 
-if (is_null($post)) return;
+if (is_null($post)) {
+  return;
+}
 ?>
 
 <article

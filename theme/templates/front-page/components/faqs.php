@@ -30,7 +30,7 @@ $items = CustomFields::get_field('faqs_items');
                     aria-expanded="<?= $is_first ? 'true' : 'false' ?>"
                     aria-controls="accordion-item-<?= $key ?>"
                     type="button"
-                    class="accordion-button <?= ! $is_first ?  'collapsed' : '' ?>">
+                    class="accordion-button <?= ! $is_first ? 'collapsed' : '' ?>">
                     <?= $item['title'] ?>
                   </button>
                 </div>

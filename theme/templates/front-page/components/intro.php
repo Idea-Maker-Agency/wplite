@@ -3,11 +3,11 @@ use WPLite\Utils\CustomFields;
 
 $featured_image_id = CustomFields::get_field('intro_featured_image');
 
-$title = CustomFields::get_field('intro_title', 'Lorem ipsum');
+$title   = CustomFields::get_field('intro_title', 'Lorem ipsum');
 $content = CustomFields::get_field('intro_content', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident');
 
 $cta_text = CustomFields::get_field('intro_cta_text');
-$cta_url = CustomFields::get_field('intro_cta_url');
+$cta_url  = CustomFields::get_field('intro_cta_url');
 ?>
 
 <section class="py-5">

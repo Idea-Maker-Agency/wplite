@@ -18,7 +18,7 @@ class StaticTransient extends Transient
    *
    * @return static
    */
-  public static function create(
+  public static function get_instance(
     string $key,
     int $expiration = 60 * 10
   ): static {

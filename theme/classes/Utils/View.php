@@ -18,41 +18,45 @@ class View
   /**
    * Register a new view.
    *
-   * @param string $name      The view name.
-   * @param string $namespace The view namespace.
+   * @param string|string[] $names  The view name.
+   * @param string $namespace       The view namespace.
    */
-  public static function register(string $name, string $namespace = ''): void
+  public static function register(mixed $names, string $namespace = ''): void
   {
+    $names = is_array($names) ? $names : [$names];
+
     if (! isset(self::$views[$namespace])) {
-      self::$views[$namespace] = [$name];
+      self::$views[$namespace] = $names;
     } else {
-      self::$views[$namespace][] = $name;
+      self::$views[$namespace] = array_merge(self::$views[$namespace], $names);
     }
 
-    add_action('wp_enqueue_scripts', function () use ($name, $namespace) {
+    add_action('wp_enqueue_scripts', function () use ($names, $namespace) {
       $exts = ['css', 'js'];
 
-      foreach ($exts as $ext) {
-        $folder = '';
+      foreach ($names as $name) {
+        foreach ($exts as $ext) {
+          $folder = '';
 
-        if ($namespace) {
-          $folder = "{$namespace}/";
-        }
+          if ($namespace) {
+            $folder = "{$namespace}/";
+          }
 
-        $path = get_theme_file_path("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
-        $uri  = get_theme_file_uri("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
+          $path = get_theme_file_path("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
+          $uri  = get_theme_file_uri("/classes/Views/{$folder}{$name}/{$name}.{$ext}");
 
-        if (! file_exists($path)) {
-          continue;
-        }
+          if (! file_exists($path)) {
+            continue;
+          }
 
-        $handle  = "wplite-view-{$name}";
-        $version = filemtime($path);
+          $handle  = "wplite-view-{$name}";
+          $version = filemtime($path);
 
-        if ('css' === $ext) {
-          wp_register_style($handle, $uri, [], $version);
-        } else {
-          wp_register_script($handle, $uri, [], $version, true);
+          if ('css' === $ext) {
+            wp_register_style($handle, $uri, [], $version);
+          } else {
+            wp_register_script($handle, $uri, [], $version, true);
+          }
         }
       }
     });

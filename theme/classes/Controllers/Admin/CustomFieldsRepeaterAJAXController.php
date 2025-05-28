@@ -28,7 +28,7 @@ class CustomFieldsRepeaterAJAXController
    */
   public static function add(): void
   {
-    $post_id = intval($_POST['post_id'] ?: null);
+    $post_id = (int) $_POST['post_id'] ?: 0;
     $name    = $_POST['name']  ?? '';
     $index   = $_POST['index'] ?? 0;
     $fields  = json_decode(stripslashes($_POST['fields'] ?? ''), true);
@@ -58,7 +58,7 @@ class CustomFieldsRepeaterAJAXController
   {
     global $wpdb;
 
-    $post_id = intval($_POST['post_id'] ?: null);
+    $post_id = (int) $_POST['post_id'] ?: 0;
     $name    = $_POST['name'] ?? '';
     $key     = $_POST['key']  ?? '';
 

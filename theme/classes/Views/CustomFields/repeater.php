@@ -1,5 +1,5 @@
 <?php
-$post_id = intval($args['post_id'] ?? null);
+$post_id = (int) $args['post_id']   ?? 0;
 $name    = $args['name']            ?? '';
 $fields  = $args['field']['fields'] ?? [];
 
@@ -17,7 +17,7 @@ $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
     get nextIndex() {
       const sortedKeys = this.keys.map((key) => {
         return parseInt(key.replace("<?= $name ?>_", ""))
-      }).sort()
+      }).sort((a, b) => a - b)
 
       return sortedKeys[sortedKeys.length - 1] + 1
     },

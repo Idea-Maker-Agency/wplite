@@ -1,5 +1,5 @@
 <?php
-$post_id     = intval($args['post_id'] ?? null);
+$post_id     = (int) $args['post_id']        ?? 0;
 $name        = $args['name']                 ?? '';
 $type        = $args['field']['type']        ?? 'text';
 $placeholder = $args['field']['placeholder'] ?? '';

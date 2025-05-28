@@ -1,7 +1,7 @@
 <?php
 
-$post_id = intval($args['post_id'] ?? null);
-$name    = $args['name'] ?? '';
+$post_id = (int) $args['post_id'] ?? 0;
+$name    = $args['name']          ?? '';
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";

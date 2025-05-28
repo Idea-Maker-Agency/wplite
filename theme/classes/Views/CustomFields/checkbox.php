@@ -1,5 +1,5 @@
 <?php
-$post_id  = intval($args['post_id'] ?? null);
+$post_id  = (int) $args['post_id']     ?? 0;
 $name     = $args['name']              ?? '';
 $required = $args['field']['required'] ?? false;
 

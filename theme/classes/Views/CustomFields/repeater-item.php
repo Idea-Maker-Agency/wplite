@@ -1,11 +1,11 @@
 <?php
 use WPLite\Utils\CustomFields;
 
-$index   = intval($args['index'] ?? 0);
-$post_id = intval($args['post_id'] ?? null);
-$name    = $args['name']   ?? '';
-$key     = $args['key']    ?? '';
-$fields  = $args['fields'] ?? [];
+$index   = (int) $args['index']   ?? 0;
+$post_id = (int) $args['post_id'] ?? 0;
+$name    = $args['name']          ?? '';
+$key     = $args['key']           ?? '';
+$fields  = $args['fields']        ?? [];
 
 $post = get_post($post_id);
 

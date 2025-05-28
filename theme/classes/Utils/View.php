@@ -18,8 +18,8 @@ class View
   /**
    * Register a new view.
    *
-   * @param string|string[] $names  The view name.
-   * @param string $namespace       The view namespace.
+   * @param string|string[] $names     The view name.
+   * @param string          $namespace The view namespace.
    */
   public static function register(mixed $names, string $namespace = ''): void
   {

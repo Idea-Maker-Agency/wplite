@@ -172,13 +172,13 @@ class TemplateController
    */
   public static function init_custom_fields(): void
   {
-    $id     = intval($_GET['post'] ?? 0);
-    $action = $_POST['action'] ?? null;
+    $id     = (int) $_GET['post'] ?? 0;
+    $action = $_POST['action']    ?? null;
 
     $front_page_id = get_option('page_on_front');
 
     if (! $id && 'editpost' === $action) {
-      $id = intval($_POST['post_ID'] ?? 0);
+      $id = (int) $_POST['post_ID'] ?? 0;
     }
 
     if (! $id) {

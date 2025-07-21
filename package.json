@@ -2,8 +2,8 @@
   "name": "wplite",
   "version": "1.0.0",
   "scripts": {
-    "watch:sass": "sass --style=compressed --watch --poll theme/assets/lib/scss/main.scss theme/assets/lib/css/main.min.css",
-    "compile:sass": "sass --style=compressed theme/assets/lib/scss/main.scss theme/assets/lib/css/main.min.css",
+    "watch:sass": "sass --load-path=theme/assets/lib/scss --style=compressed --watch --poll theme/assets/lib/scss/main.scss:theme/assets/lib/css/main.min.css theme/assets/lib/scss/templates:theme/assets/lib/css/templates",
+    "compile:sass": "sass --load-path=theme/assets/lib/scss --style=compressed theme/assets/lib/scss/main.scss:theme/assets/lib/css/main.min.css theme/assets/lib/scss/templates:theme/assets/lib/css/templates",
     "compile:purify-css": "purifycss theme/assets/lib/css/main.min.css theme/*.php theme/lib/functions/*.php theme/lib/templates/**/*.php theme/lib/templates/structure/**/*.php --min --info --whitelist collapse,wpcf7-not-valid-tip --out theme/assets/lib/css/main.min.css",
     "compile:theme": "npm run compile:sass && npm run compile:purify-css && cp -r theme wplite"
   },
@@ -11,7 +11,7 @@
     "bootstrap": "^5.3.3"
   },
   "devDependencies": {
-    "sass": "^1.77.7",
-    "purify-css": "^1.2.6"
+    "purify-css": "^1.2.6",
+    "sass": "^1.77.7"
   }
 }

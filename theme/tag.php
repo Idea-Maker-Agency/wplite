@@ -8,7 +8,7 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\View;
+use WPLite\Utils\Component;
 
 get_header();
 ?>
@@ -25,7 +25,7 @@ get_header();
           <?php the_post() ?>
 
           <div class="col-12 col-sm-6 col-lg-4">
-            <?php View::render('article-card', 'Components', [
+            <?php Component::render('article-card', 'Blog', [
               'post' => $post,
             ]) ?>
           </div>

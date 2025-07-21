@@ -10,6 +10,9 @@ theme/.php-cs-fixer.cache
 # Vendor
 theme/vendor
 
+# Compiled assets
+theme/assets/lib/css
+
 # Theme
 wplite
 wplite.zip

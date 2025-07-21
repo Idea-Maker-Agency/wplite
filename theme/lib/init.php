@@ -17,7 +17,10 @@ use WPLite\Controllers\Form\{
   LoginFormController,
   SignUpFormController
 };
-use WPLite\Utils\View;
+use WPLite\Utils\{
+  Component,
+  View
+};
 
 /**
  * Init.
@@ -46,11 +49,16 @@ function wplite_init(): void
   LoginFormController::init();
   SignUpFormController::init();
 
-  // Register views
-  View::register('logo', 'Components');
-  View::register('social-links', 'Components');
-  View::register('article-card', 'Components');
-  View::register('related-posts', 'Components');
+  // Register components
+  Component::register([
+    'logo',
+    'social-links',
+    'related-posts',
+  ], 'Misc');
+
+  Component::register([
+    'article-card',
+  ], 'Blog');
 }
 
 wplite_init();

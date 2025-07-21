@@ -161,14 +161,20 @@ class AssetController
   {
     global $post;
 
-    $path = get_theme_file_path("templates/{$post->post_name}/{$post->post_name}.css");
-    $uri  = get_theme_file_uri("templates/{$post->post_name}/{$post->post_name}.css");
+    $slug = $post->post_name;
+
+    if (is_front_page()) {
+      $slug = 'front-page';
+    }
+
+    $path = get_theme_file_path("assets/lib/css/templates/{$slug}.css");
+    $uri  = get_theme_file_uri("assets/lib/css/templates/{$slug}.css");
 
     if (! file_exists($path)) {
       return;
     }
 
-    $handle  = "wplite-{$post->post_name}";
+    $handle  = "wplite-{$slug}";
     $version = filemtime($path);
 
     wp_enqueue_style($handle, $uri, [], $version, 'all');

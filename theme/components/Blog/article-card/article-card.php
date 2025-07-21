@@ -1,9 +1,7 @@
 <?php
+$args = wp_parse_args($args, []);
+
 $post = get_post($args['post']);
-
-$default_args = [];
-
-extract(wp_parse_args($args, $default_args));
 
 if (is_null($post)) {
   return;

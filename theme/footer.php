@@ -8,8 +8,10 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\View;
-
+use WPLite\Utils\{
+  Component,
+  View
+};
 ?>
     </main>
 
@@ -17,7 +19,7 @@ use WPLite\Utils\View;
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-4">
-            <?php View::render('logo', 'Components', [
+            <?php Component::render('logo', 'Misc', [
               'width'      => 95,
               'height'     => 45,
               'link_class' => 'footer-logo mb-4 fs-4 d-inline-block',
@@ -52,7 +54,7 @@ use WPLite\Utils\View;
               </h4>
             <?php } ?>
 
-            <?php View::render('social-links', 'Components') ?>
+            <?php Component::render('social-links', 'Components') ?>
           </div>
         </div>
       </div>

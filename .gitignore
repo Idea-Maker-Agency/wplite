@@ -13,5 +13,11 @@ theme/vendor
 # Compiled assets
 theme/assets/lib/css
 
+theme/templates/**/*.css
+theme/templates/**/*.css.map
+
+theme/page-templates/**/*.css
+theme/page-templates/**/*.css.map
+
 # Theme
 *.zip

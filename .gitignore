@@ -14,5 +14,4 @@ theme/vendor
 theme/assets/lib/css
 
 # Theme
-wplite
-wplite.zip
+*.zip

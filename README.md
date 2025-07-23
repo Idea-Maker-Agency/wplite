@@ -204,7 +204,7 @@ Templates lives in a custom folder called `templates` and are organized by folde
 
 ```
 templates
-├── 404/404.php
+├── page/404/404.php                              // 404 template
 ├── page/home/home.php                            // Front-page template
 ├── search/search.php                             // Search template
 ├── page/<post_name>/<post_name>.php              // Inner page template

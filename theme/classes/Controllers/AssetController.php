@@ -166,6 +166,8 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'home';
+      } else if (is_404()) {
+        $slug = '404';
       }
 
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
@@ -214,6 +216,8 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'home';
+      } else if (is_404()) {
+        $slug = '404';
       }
 
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");

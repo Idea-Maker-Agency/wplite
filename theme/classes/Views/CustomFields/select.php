@@ -4,7 +4,7 @@ $name     = $args['name']              ?? '';
 $multiple = $args['field']['multiple'] ?? false;
 $required = $args['field']['required'] ?? false;
 $options  = $args['field']['options']  ?? [];
-$source   = $args['field']['post_type_source'];
+$source   = $args['field']['source'];
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -29,7 +29,7 @@ if (! empty($source)) {
 
     $options = array_map(function ($user) {
       return [
-        'label' => $post->display_name,
+        'label' => $user->display_name,
         'value' => $user->ID,
       ];
     }, $users);

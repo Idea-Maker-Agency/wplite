@@ -30,7 +30,7 @@ $post = get_post($post_id);
 
 <select
   id="id_field_<?= $name ?>"
-  name="<?= $name ?>"
+  name="<?= $name ?><?= $multiple ? '[]' : '' ?>"
   class="postbox"
   <?= $multiple ? 'multiple' : '' ?>
   <?= $required ? 'required' : '' ?>>

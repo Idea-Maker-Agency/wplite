@@ -163,11 +163,11 @@ class AssetController
 
     $slug = $post->post_name;
 
-    if (is_front_page()) {
-      $slug = 'front-page';
-    }
+    if (is_front_page() || is_page()) {
+      if (is_front_page()) {
+        $slug = 'home';
+      }
 
-    if (is_page()) {
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
       $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
     } else if (is_category() || is_tag() || is_tax()) {
@@ -211,11 +211,11 @@ class AssetController
 
     $slug = $post->post_name;
 
-    if (is_front_page()) {
-      $slug = 'front-page';
-    }
+    if (is_front_page() || is_page()) {
+      if (is_front_page()) {
+        $slug = 'home';
+      }
 
-    if (is_page()) {
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
       $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
     } else if (is_category() || is_tag() || is_tax()) {
@@ -233,9 +233,6 @@ class AssetController
 
       $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.js");
       $uri  = get_theme_file_uri("templates/single/{$slug}/single-{$slug}.js");
-    } else {
-      $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
-      $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
     }
 
     if (! file_exists($path)) {

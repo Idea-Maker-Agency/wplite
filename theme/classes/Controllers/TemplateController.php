@@ -61,7 +61,7 @@ class TemplateController
     global $post;
 
     if (is_front_page()) {
-      $view_template = locate_template("templates/front-page/front-page.php");
+      $view_template = locate_template("templates/page/home/home.php");
     } elseif (is_home()) {
       $view_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
@@ -167,7 +167,7 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $fields = locate_template("templates/front-page/front-page.yaml");
+      $fields = locate_template("templates/page/home/home.yaml");
     } else {
       $slug = get_post_field('post_name', $id);
 

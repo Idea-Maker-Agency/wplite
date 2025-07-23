@@ -8,6 +8,8 @@
  * @since      1.0.0
  */
 
+use WPLite\Utils\Component;
+
 get_header();
 ?>
 
@@ -19,7 +21,7 @@ get_header();
           <?= get_the_title() ?>
         </h1>
 
-        <?php get_template_part('templates/page/sign-up/components/sign-up', 'form') ?>
+        <?php Component::render('sign-up-form', 'Auth') ?>
       </div>
     </div>
   </div>

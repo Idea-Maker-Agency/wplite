@@ -58,6 +58,7 @@ function wplite_init(): void
 
   Component::register([
     'login-form',
+    'sign-up-form',
   ], 'Auth');
 
   Component::register([

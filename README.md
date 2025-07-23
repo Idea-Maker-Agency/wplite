@@ -206,7 +206,7 @@ Templates lives in a custom folder called `templates` and are organized by folde
 templates
 ├── page/404/404.php                              // 404 template
 ├── page/home/home.php                            // Front-page template
-├── search/search.php                             // Search template
+├── page/search/search.php                             // Search template
 ├── page/<post_name>/<post_name>.php              // Inner page template
 ├── archive/<post_type>/archive-<post_type.php>   // Custom post type's archive template (e.g. templates/archive/movies/archive-movies.php)
 ├── single/<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single/movies/single-movies.php)

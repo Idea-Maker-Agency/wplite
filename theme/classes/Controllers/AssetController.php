@@ -166,6 +166,8 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'home';
+      } else if (is_search()) {
+        $slug = 'search';
       } else if (is_404()) {
         $slug = '404';
       }
@@ -216,6 +218,8 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'home';
+      } else if (is_search()) {
+      $slug = 'search';
       } else if (is_404()) {
         $slug = '404';
       }

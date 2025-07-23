@@ -65,7 +65,7 @@ class TemplateController
     } elseif (is_home()) {
       $view_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
-      $view_template = locate_template("templates/search/search.php");
+      $view_template = locate_template("templates/page/search/search.php");
     } elseif (is_404()) {
       $view_template = locate_template("templates/page/404/404.php");
     } else {

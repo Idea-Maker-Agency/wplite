@@ -10,19 +10,30 @@ if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
 }
 
-// Use post type as source of options
-if (! empty($source) && post_type_exists($source)) {
-  $posts = get_posts([
-    'post_type' => $source,
-    'posts_per_page' => -1,
-  ]);
+// Use post type/users as source of options
+if (! empty($source)) {
+  if (post_type_exists($source)) {
+    $posts = get_posts([
+      'post_type' => $source,
+      'posts_per_page' => -1,
+    ]);
 
-  $options = array_map(function ($post) {
-    return [
-      'label' => $post->post_title,
-      'value' => $post->ID,
-    ];
-  }, $posts);
+    $options = array_map(function ($post) {
+      return [
+        'label' => $post->post_title,
+        'value' => $post->ID,
+      ];
+    }, $posts);
+  } else if ('users' === $source) {
+    $users = get_users();
+
+    $options = array_map(function ($user) {
+      return [
+        'label' => $post->display_name,
+        'value' => $user->ID,
+      ];
+    }, $users);
+  }
 }
 
 $post = get_post($post_id);

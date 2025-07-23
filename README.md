@@ -210,8 +210,8 @@ templates
 ├── front-page/front-page.php                     // Front-page template
 ├── search/search.php                             // Search template
 ├── <post_type>/<post_type.php>                   // Custom post type's archive template (e.g. templates/movies/movies.php)
-├── single-<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single-movies/single-movies.php)
-    single-<post_type>/<slug>.php                 // Custom post type's singular template by slug (e.g. templates/single-movies/back-to-the-future.php)
+├── single/<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single/movies/single-movies.php)
+    single/<post_type>/single-<slug>.php          // Custom post type's singular template by slug (e.g. templates/single/movies/single-back-to-the-future.php)
 ```
 
 ### Additional Scripts

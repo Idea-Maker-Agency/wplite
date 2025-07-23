@@ -87,17 +87,8 @@ class TemplateController
   {
     global $post;
 
-    if ('post' === $post->post_type) {
-      $view_template = locate_template("templates/blog-post/blog-post.php");
-    } elseif (is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}")) {
-      // E.g. `templates/single-<post_type>/<slug>.php`
-      $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
-
-      if (! $view_template) {
-        // E.g. `templates/single-<post_type>/single-<post_type>.php`
-        $view_template = locate_template("templates/single-{$post->post_type}/single-{$post->post_type}.php");
-      }
-    }
+    // E.g. `templates/single-<post_type>/single-<post_type>.php`
+    $view_template = locate_template("templates/single/{$post->post_type}/single-{$post->post_type}.php");
 
     return $view_template ?: $template;
   }

@@ -170,6 +170,11 @@ class AssetController
     $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
     $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
 
+    if (is_single()) {
+      $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.css");
+      $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.css");
+    }
+
     if (! file_exists($path)) {
       return;
     }
@@ -197,6 +202,11 @@ class AssetController
 
     $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
     $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
+
+    if (is_single()) {
+      $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.js");
+      $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.js");
+    }
 
     if (! file_exists($path)) {
       return;

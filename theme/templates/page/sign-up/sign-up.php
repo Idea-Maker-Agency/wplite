@@ -1,12 +1,14 @@
 <?php
 /**
- * The template for displaying login page.
+ * The template for displaying sign-up page.
  *
  * @package    WPLite
  * @subpackage Templates
  * @author     Idea Maker
  * @since      1.0.0
  */
+
+use WPLite\Utils\Component;
 
 get_header();
 ?>
@@ -19,7 +21,7 @@ get_header();
           <?= get_the_title() ?>
         </h1>
 
-        <?php get_template_part('templates/login/components/login', 'form') ?>
+        <?php Component::render('sign-up-form', 'Auth') ?>
       </div>
     </div>
   </div>

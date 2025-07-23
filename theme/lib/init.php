@@ -57,6 +57,11 @@ function wplite_init(): void
   ], 'Misc');
 
   Component::register([
+    'login-form',
+    'sign-up-form',
+  ], 'Auth');
+
+  Component::register([
     'article-card',
   ], 'Blog');
 }

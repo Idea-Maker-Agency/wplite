@@ -204,14 +204,12 @@ Templates lives in a custom folder called `templates` and are organized by folde
 
 ```
 templates
-├── 404/404.php
-├── blog/blog.php                                 // Blog template
-├── blog-post/blog-post.php                       // Single blog post template
-├── front-page/front-page.php                     // Front-page template
-├── search/search.php                             // Search template
-├── <post_type>/<post_type.php>                   // Custom post type's archive template (e.g. templates/movies/movies.php)
-├── single-<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single-movies/single-movies.php)
-    single-<post_type>/<slug>.php                 // Custom post type's singular template by slug (e.g. templates/single-movies/back-to-the-future.php)
+├── page/404/404.php                              // 404 template
+├── page/home/home.php                            // Front-page template
+├── page/search/search.php                             // Search template
+├── page/<post_name>/<post_name>.php              // Inner page template
+├── archive/<post_type>/archive-<post_type.php>   // Custom post type's archive template (e.g. templates/archive/movies/archive-movies.php)
+├── single/<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single/movies/single-movies.php)
 ```
 
 ### Additional Scripts
@@ -238,7 +236,7 @@ Custom views can be organized into folders, and any CSS or JS files named identi
 
 ### Built-in custom fields registration
 
-The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
+The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. home/home.yaml). Following are the available field types:
 
 - [`text` | `url` | `email` | `password`](/docs/custom-fields/input/README.md)
 - [`select`](/docs/custom-fields/select/README.md)

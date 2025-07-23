@@ -163,12 +163,36 @@ class AssetController
 
     $slug = $post->post_name;
 
-    if (is_front_page()) {
-      $slug = 'front-page';
-    }
+    if (is_front_page() || is_page()) {
+      if (is_front_page()) {
+        $slug = 'home';
+      } else if (is_search()) {
+        $slug = 'search';
+      } else if (is_404()) {
+        $slug = '404';
+      }
 
-    $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
-    $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
+      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
+      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
+    } else if (is_category() || is_tag() || is_tax()) {
+      $slug = get_queried_object()->taxonomy ?? '';
+
+      $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
+    } else if (is_home() || is_archive()) {
+      $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
+
+      $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.css");
+    } else if (is_single()) {
+      $slug = $post->post_type;
+
+      $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/single/{$slug}/single-{$slug}.css");
+    } else {
+      $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
+      $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
+    }
 
     if (! file_exists($path)) {
       return;
@@ -191,12 +215,33 @@ class AssetController
 
     $slug = $post->post_name;
 
-    if (is_front_page()) {
-      $slug = 'front-page';
-    }
+    if (is_front_page() || is_page()) {
+      if (is_front_page()) {
+        $slug = 'home';
+      } else if (is_search()) {
+      $slug = 'search';
+      } else if (is_404()) {
+        $slug = '404';
+      }
 
-    $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
-    $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
+      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
+      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
+    } else if (is_category() || is_tag() || is_tax()) {
+      $slug = get_queried_object()->taxonomy ?? '';
+
+      $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
+    } else if (is_home() || is_archive()) {
+      $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
+
+      $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.js");
+    } else if (is_single()) {
+      $slug = $post->post_type;
+
+      $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/single/{$slug}/single-{$slug}.js");
+    }
 
     if (! file_exists($path)) {
       return;

@@ -61,16 +61,16 @@ class TemplateController
     global $post;
 
     if (is_front_page()) {
-      $view_template = locate_template("templates/front-page/front-page.php");
+      $view_template = locate_template("templates/page/home/home.php");
     } elseif (is_home()) {
-      $view_template = locate_template("templates/blog/blog.php");
+      $view_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
-      $view_template = locate_template("templates/search/search.php");
+      $view_template = locate_template("templates/page/search/search.php");
     } elseif (is_404()) {
-      $view_template = locate_template("templates/404/404.php");
+      $view_template = locate_template("templates/page/404/404.php");
     } else {
-      // E.g. `templates/<slug>/<slug>.php`
-      $view_template = locate_template("templates/{$post->post_name}/{$post->post_name}.php");
+      // E.g. `templates/page/<slug>/<slug>.php`
+      $view_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
     }
 
     return $view_template ?: $template;
@@ -87,17 +87,8 @@ class TemplateController
   {
     global $post;
 
-    if ('post' === $post->post_type) {
-      $view_template = locate_template("templates/blog-post/blog-post.php");
-    } elseif (is_dir(THEME_DIR_PATH . "/templates/single-{$post->post_type}")) {
-      // E.g. `templates/single-<post_type>/<slug>.php`
-      $view_template = locate_template("templates/single-{$post->post_type}/{$post->post_name}.php");
-
-      if (! $view_template) {
-        // E.g. `templates/single-<post_type>/single-<post_type>.php`
-        $view_template = locate_template("templates/single-{$post->post_type}/single-{$post->post_type}.php");
-      }
-    }
+    // E.g. `templates/single-<post_type>/single-<post_type>.php`
+    $view_template = locate_template("templates/single/{$post->post_type}/single-{$post->post_type}.php");
 
     return $view_template ?: $template;
   }
@@ -113,9 +104,9 @@ class TemplateController
   {
     $post_type = get_queried_object()->name ?? '';
 
-    if (is_dir(THEME_DIR_PATH . "/templates/{$post_type}")) {
-      // E.g. `templates/<post_type>/<post_type>.php`
-      $view_template = locate_template("templates/{$post_type}/{$post_type}.php");
+    if (is_dir(THEME_DIR_PATH . "/templates/archive/{$post_type}")) {
+      // E.g. `templates/archive/<post_type>/<post_type>.php`
+      $view_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
     }
 
     return $view_template ?: $template;
@@ -132,13 +123,7 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    // E.g. `templates/blog-category/<slug>.php`
-    $view_template = locate_template("templates/blog-category/{$slug}.php");
-
-    if (! $view_template) {
-      // E.g. `templates/blog-category/blog-category.php`
-      $view_template = locate_template("templates/blog-category/blog-category.php");
-    }
+    $view_template = locate_template("templates/taxonomy/category/taxonomy-category.php");
 
     return $view_template ?: $template;
   }
@@ -154,13 +139,7 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    // E.g. `templates/blog-tag/<slug>.php`
-    $view_template = locate_template("templates/blog-tag/{$slug}.php");
-
-    if (! $view_template) {
-      // E.g. `templates/blog-tag/blog-tag.php`
-      $view_template = locate_template("templates/blog-tag/blog-tag.php");
-    }
+    $view_template = locate_template("templates/taxonomy/post_tag/taxonomy-post_tag.php");
 
     return $view_template ?: $template;
   }
@@ -188,7 +167,7 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $fields = locate_template("templates/front-page/front-page.yaml");
+      $fields = locate_template("templates/page/home/home.yaml");
     } else {
       $slug = get_post_field('post_name', $id);
 

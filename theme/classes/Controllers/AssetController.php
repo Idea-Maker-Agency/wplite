@@ -170,6 +170,11 @@ class AssetController
     if (is_page()) {
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
       $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
+    } else if (is_category() || is_tag() || is_tax()) {
+      $slug = get_queried_object()->taxonomy ?? '';
+
+      $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
     } else if (is_home() || is_archive()) {
       $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
 
@@ -213,6 +218,11 @@ class AssetController
     if (is_page()) {
       $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
       $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
+    } else if (is_category() || is_tag() || is_tax()) {
+      $slug = get_queried_object()->taxonomy ?? '';
+
+      $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
     } else if (is_home() || is_archive()) {
       $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
 

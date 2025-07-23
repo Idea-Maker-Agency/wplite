@@ -123,13 +123,7 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    // E.g. `templates/blog-category/<slug>.php`
-    $view_template = locate_template("templates/blog-category/{$slug}.php");
-
-    if (! $view_template) {
-      // E.g. `templates/blog-category/blog-category.php`
-      $view_template = locate_template("templates/blog-category/blog-category.php");
-    }
+    $view_template = locate_template("templates/taxonomy/category/taxonomy-category.php");
 
     return $view_template ?: $template;
   }
@@ -145,13 +139,7 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    // E.g. `templates/blog-tag/<slug>.php`
-    $view_template = locate_template("templates/blog-tag/{$slug}.php");
-
-    if (! $view_template) {
-      // E.g. `templates/blog-tag/blog-tag.php`
-      $view_template = locate_template("templates/blog-tag/blog-tag.php");
-    }
+    $view_template = locate_template("templates/taxonomy/post_tag/taxonomy-post_tag.php");
 
     return $view_template ?: $template;
   }

@@ -209,6 +209,7 @@ templates
 ├── blog-post/blog-post.php                       // Single blog post template
 ├── front-page/front-page.php                     // Front-page template
 ├── search/search.php                             // Search template
+├── page/<post_name>/<post_name>.php              // Inner page template
 ├── <post_type>/<post_type.php>                   // Custom post type's archive template (e.g. templates/movies/movies.php)
 ├── single/<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single/movies/single-movies.php)
 ```

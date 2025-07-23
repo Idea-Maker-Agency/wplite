@@ -69,8 +69,8 @@ class TemplateController
     } elseif (is_404()) {
       $view_template = locate_template("templates/404/404.php");
     } else {
-      // E.g. `templates/<slug>/<slug>.php`
-      $view_template = locate_template("templates/{$post->post_name}/{$post->post_name}.php");
+      // E.g. `templates/page/<slug>/<slug>.php`
+      $view_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
     }
 
     return $view_template ?: $template;

@@ -170,7 +170,10 @@ class AssetController
     $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
     $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
 
-    if (is_single()) {
+    if (is_page()) {
+      $path = get_theme_file_path("templates/page/{$post->post_name}/{$post->post_name}.css");
+      $uri  = get_theme_file_uri("templates/page/{$post->post_name}/{$post->post_name}.css");
+    } else if (is_single()) {
       $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.css");
       $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.css");
     }
@@ -203,7 +206,10 @@ class AssetController
     $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
     $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
 
-    if (is_single()) {
+    if (is_page()) {
+      $path = get_theme_file_path("templates/page/{$post->post_name}/{$post->post_name}.js");
+      $uri  = get_theme_file_uri("templates/page/{$post->post_name}/{$post->post_type}.js");
+    } else if (is_single()) {
       $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.js");
       $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.js");
     }

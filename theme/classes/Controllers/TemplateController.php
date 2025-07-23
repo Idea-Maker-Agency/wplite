@@ -63,7 +63,7 @@ class TemplateController
     if (is_front_page()) {
       $view_template = locate_template("templates/front-page/front-page.php");
     } elseif (is_home()) {
-      $view_template = locate_template("templates/blog/blog.php");
+      $view_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
       $view_template = locate_template("templates/search/search.php");
     } elseif (is_404()) {
@@ -104,9 +104,9 @@ class TemplateController
   {
     $post_type = get_queried_object()->name ?? '';
 
-    if (is_dir(THEME_DIR_PATH . "/templates/{$post_type}")) {
-      // E.g. `templates/<post_type>/<post_type>.php`
-      $view_template = locate_template("templates/{$post_type}/{$post_type}.php");
+    if (is_dir(THEME_DIR_PATH . "/templates/archive/{$post_type}")) {
+      // E.g. `templates/archive/<post_type>/<post_type>.php`
+      $view_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
     }
 
     return $view_template ?: $template;

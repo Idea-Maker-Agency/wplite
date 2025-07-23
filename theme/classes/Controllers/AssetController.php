@@ -167,15 +167,22 @@ class AssetController
       $slug = 'front-page';
     }
 
-    $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
-    $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
-
     if (is_page()) {
-      $path = get_theme_file_path("templates/page/{$post->post_name}/{$post->post_name}.css");
-      $uri  = get_theme_file_uri("templates/page/{$post->post_name}/{$post->post_name}.css");
+      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
+      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
+    } else if (is_home() || is_archive()) {
+      $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
+
+      $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.css");
     } else if (is_single()) {
-      $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.css");
-      $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.css");
+      $slug = $post->post_type;
+
+      $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.css");
+      $uri  = get_theme_file_uri("templates/single/{$slug}/single-{$slug}.css");
+    } else {
+      $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
+      $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
     }
 
     if (! file_exists($path)) {
@@ -203,15 +210,22 @@ class AssetController
       $slug = 'front-page';
     }
 
-    $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
-    $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
-
     if (is_page()) {
-      $path = get_theme_file_path("templates/page/{$post->post_name}/{$post->post_name}.js");
-      $uri  = get_theme_file_uri("templates/page/{$post->post_name}/{$post->post_type}.js");
+      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
+      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
+    } else if (is_home() || is_archive()) {
+      $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
+
+      $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.js");
     } else if (is_single()) {
-      $path = get_theme_file_path("templates/single/{$post->post_type}/single-{$post->post_type}.js");
-      $uri  = get_theme_file_uri("templates/single/{$post->post_type}/single-{$post->post_type}.js");
+      $slug = $post->post_type;
+
+      $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.js");
+      $uri  = get_theme_file_uri("templates/single/{$slug}/single-{$slug}.js");
+    } else {
+      $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
+      $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
     }
 
     if (! file_exists($path)) {

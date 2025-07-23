@@ -205,12 +205,10 @@ Templates lives in a custom folder called `templates` and are organized by folde
 ```
 templates
 ├── 404/404.php
-├── blog/blog.php                                 // Blog template
-├── blog-post/blog-post.php                       // Single blog post template
 ├── front-page/front-page.php                     // Front-page template
 ├── search/search.php                             // Search template
 ├── page/<post_name>/<post_name>.php              // Inner page template
-├── <post_type>/<post_type.php>                   // Custom post type's archive template (e.g. templates/movies/movies.php)
+├── archive/<post_type>/archive-<post_type.php>   // Custom post type's archive template (e.g. templates/archive/movies/archive-movies.php)
 ├── single/<post_type>/single-<post_type>.php     // Custom post type's singular template (e.g. templates/single/movies/single-movies.php)
 ```
 

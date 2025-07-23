@@ -1,46 +1,52 @@
-<?php $form = new WPLite\Utils\FormBuilder('login') ?>
+<?php
+use WPLite\Models\Auth;
+use WPLite\Utils\{
+  FormBuilder,
+  Router
+};
 
-<?php if (is_user_logged_in()) { ?>
+if (Auth::check()) {
+?>
   <div
     class="alert alert-warning my-0"
     role="alert">
     <?= __('You are currently logged in.', THEME_TEXT_DOMAIN) ?>
   </div>
-<?php } else { ?>
-  <?php
-    $form
-      ->add_field(
-        'Redirect',
-        [
-          'type'  => 'hidden',
-          'value' => $_GET['redirect'] ?? '',
-        ]
-      )
-      ->add_field(
-        'Username',
-        [
-          'required' => true,
-        ]
-      )
-      ->add_field(
-        'Password',
-        [
-          'type'     => 'password',
-          'required' => true,
-        ]
-      )
-      ->add_field(
-        'Remember me',
-        [
-          'type' => 'checkbox',
-        ]
-      )
-      ->render()
-  ?>
-
+<?php
+} else {
+  (new FormBuilder('login'))
+    ->add_field(
+      'Redirect',
+      [
+        'type'  => 'hidden',
+        'value' => $_GET['redirect'] ?? '',
+      ]
+    )
+    ->add_field(
+      'Username',
+      [
+        'required' => true,
+      ]
+    )
+    ->add_field(
+      'Password',
+      [
+        'type'     => 'password',
+        'required' => true,
+      ]
+    )
+    ->add_field(
+      'Remember me',
+      [
+        'type' => 'checkbox',
+      ]
+    )
+    ->render();
+?>
   <a
-    href="<?= WPLite\Utils\Router::url('sign-up') ?>"
+    href="<?= Router::url('sign-up') ?>"
     class="mt-3 d-inline-block">
-    <?= __('Dont\'t have an account?') ?>
+    <?= __('Dont\'t have an account?', THEME_TEXT_DOMAIN) ?>
   </a>
-<?php }
+<?php
+}

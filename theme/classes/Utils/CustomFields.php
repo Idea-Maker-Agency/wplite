@@ -89,6 +89,8 @@ class CustomFields
    */
   public function add_meta_boxes()
   {
+    global $post;
+
     if (empty($this->fields)) {
       return;
     }
@@ -96,7 +98,7 @@ class CustomFields
     foreach ($this->fields as $id => $field) {
       $title = $field['group'];
 
-      add_meta_box($id, $title, [&$this, 'render_meta_boxes'], 'page');
+      add_meta_box($id, $title, [&$this, 'render_meta_boxes'], $post->post_type);
     }
   }
 

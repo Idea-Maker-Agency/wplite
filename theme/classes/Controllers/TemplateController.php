@@ -169,13 +169,14 @@ class TemplateController
     if ($front_page_id == $id) {
       $fields = locate_template("templates/page/home/home.yaml");
     } else {
-      $slug = get_post_field('post_name', $id);
+      $post_type = get_post_field('post_type', $id);
+      $post_name = get_post_field('post_name', $id);
 
       if (empty($page_template) || 'default' === $page_template) {
-        $page_template = locate_template("templates/{$slug}/{$slug}.php");
-
-        if (! $page_template) {
-          $page_template = locate_template("page-{$slug}.php");
+        if ('page' === $post_type) {
+          $page_template = locate_template("templates/page/{$post_name}/{$post_name}.php");
+        } else {
+          $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php");
         }
 
         $fields = str_replace('.php', '.yaml', $page_template);
@@ -199,7 +200,9 @@ class TemplateController
     $custom_fields->set_fields($load_fields);
     $custom_fields->init();
 
-    remove_post_type_support('page', 'editor');
+    if ('page' === $post_type) {
+      remove_post_type_support('page', 'editor');
+    }
   }
 
   /**

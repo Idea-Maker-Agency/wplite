@@ -172,8 +172,27 @@ class AssetController
         $slug = '404';
       }
 
-      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
-      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
+      $ancestors = get_post_ancestors($post);
+
+      $nested_path = array_reduce(
+        array_reverse($ancestors),
+        function (string $path, int $ancestor_id) {
+          $slug = get_post_field('post_name', $ancestor_id);
+
+          $path = "{$slug}/{$path}";
+
+          return $path;
+        },
+        $slug
+      );
+
+      $path = get_theme_file_path("templates/page/{$nested_path}/{$slug}.css");
+      $uri  = get_theme_file_uri("templates/page/{$nested_path}/{$slug}.css");
+
+      if (! file_exists($path)) {
+        $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
+        $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
+      }
     } else if (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';
 
@@ -224,8 +243,27 @@ class AssetController
         $slug = '404';
       }
 
-      $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
-      $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
+      $ancestors = get_post_ancestors($post);
+
+      $nested_path = array_reduce(
+        array_reverse($ancestors),
+        function (string $path, int $ancestor_id) {
+          $slug = get_post_field('post_name', $ancestor_id);
+
+          $path = "{$slug}/{$path}";
+
+          return $path;
+        },
+        $slug
+      );
+
+      $path = get_theme_file_path("templates/page/{$nested_path}/{$slug}.js");
+      $uri  = get_theme_file_uri("templates/page/{$nested_path}/{$slug}.js");
+
+      if (! file_exists($path)) {
+        $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
+        $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
+      }
     } else if (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';
 

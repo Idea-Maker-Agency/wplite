@@ -61,7 +61,7 @@ class TemplateController
     global $post;
 
     if (is_front_page()) {
-      $view_template = locate_template("templates/page/home/home.php");
+      $view_template = locate_template("templates/page/front-page/front-page.php");
     } elseif (is_home()) {
       $view_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
@@ -186,14 +186,32 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $fields = locate_template("templates/page/home/home.yaml");
+      $fields = locate_template("templates/page/front-page/front-page.yaml");
     } else {
       $post_type = get_post_field('post_type', $id);
       $post_name = get_post_field('post_name', $id);
 
       if (empty($page_template) || 'default' === $page_template) {
         if ('page' === $post_type) {
-          $page_template = locate_template("templates/page/{$post_name}/{$post_name}.php");
+          $ancestors = get_post_ancestors($id);
+
+          $nested_path = array_reduce(
+            array_reverse($ancestors),
+            function (string $path, int $ancestor_id) {
+              $slug = get_post_field('post_name', $ancestor_id);
+
+              $path = "{$slug}/{$path}";
+
+              return $path;
+            },
+            $post_name
+          );
+
+          $page_template = locate_template("templates/page/{$nested_path}/{$post_name}.php");
+
+          if (! $page_template) {
+            $page_template = locate_template("templates/page/{$post_name}/{$post_name}.php");
+          }
         } else {
           $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php");
         }

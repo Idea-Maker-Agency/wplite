@@ -8,12 +8,14 @@
  * @since      1.0.0
  */
 
+use WPLite\Utils\Helpers;
+
 get_header();
 
-get_template_part('templates/page/front-page/sections/hero', 'banner');
-get_template_part('templates/page/front-page/sections/intro');
-get_template_part('templates/page/front-page/sections/features');
-get_template_part('templates/page/front-page/sections/faqs');
-get_template_part('templates/page/front-page/sections/testimonials');
+Helpers::get_template_part('hero-banner');
+Helpers::get_template_part('intro');
+Helpers::get_template_part('features');
+Helpers::get_template_part('faqs');
+Helpers::get_template_part('testimonials');
 
 get_footer();

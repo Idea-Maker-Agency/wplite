@@ -193,7 +193,25 @@ class TemplateController
 
       if (empty($page_template) || 'default' === $page_template) {
         if ('page' === $post_type) {
-          $page_template = locate_template("templates/page/{$post_name}/{$post_name}.php");
+          $ancestors = get_post_ancestors($id);
+
+          $nested_path = array_reduce(
+            array_reverse($ancestors),
+            function (string $path, int $ancestor_id) {
+              $slug = get_post_field('post_name', $ancestor_id);
+
+              $path = "{$slug}/{$path}";
+
+              return $path;
+            },
+            $post_name
+          );
+
+          $page_template = locate_template("templates/page/{$nested_path}/{$post_name}.php");
+
+          if (! $page_template) {
+            $page_template = locate_template("templates/page/{$post_name}/{$post_name}.php");
+          }
         } else {
           $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php");
         }

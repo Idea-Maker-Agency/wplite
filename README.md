@@ -95,7 +95,8 @@ project
 - `docs/`: Contains the docs for the application.
 - `theme/`: Contains the main source code for the application.
   - `assets/`: Contains static assets like css, js, images and fonts.
-  - `lib/`: Contains php classes, functions, structure related templates, custom components and widgets.
+  - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
+    - `custom-fields`: Includes re-usable .yaml files for templates custom fields.
   - `template-parts/`: Custom template parts.
   - `templates/`: Custom page templates.
   - `vendor/`: Vendor php modules.
@@ -228,7 +229,7 @@ Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.
 
 ### Organized page templates
 
-Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.fields.yaml).
+Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.yaml).
 
 ### Organized views
 
@@ -247,6 +248,13 @@ The theme includes built-in custom fields registration system for templates and 
 - [`textarea`](/docs/custom-fields/textarea/README.md)
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
+
+You can also create and re-use custom fields by creating a .yaml file inside `lib/custom-fields`. To be able to re-use it, add `use_globals` as list in your template's .yaml file. See example usage:
+
+```yaml
+use_globals:
+  - header-banner # This will include lib/custom-fields/header-banner.yaml if it exists
+```
 
 ### Form Builder
 

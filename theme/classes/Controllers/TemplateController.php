@@ -80,7 +80,7 @@ class TemplateController
 
           return $path;
         },
-        $slug
+        $post->post_name
       );
 
       // E.g. `templates/page/<parent>/<slug>/<slug>.php`

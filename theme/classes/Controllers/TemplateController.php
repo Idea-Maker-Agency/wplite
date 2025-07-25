@@ -71,16 +71,20 @@ class TemplateController
     } else {
       $ancestors = get_post_ancestors($post);
 
-      $path = array_reduce(array_reverse($ancestors), function (string $path, int $ancestor_id) {
-        $slug = get_post_field('post_name', $ancestor_id);
+      $nested_path = array_reduce(
+        array_reverse($ancestors),
+        function (string $path, int $ancestor_id) {
+          $slug = get_post_field('post_name', $ancestor_id);
 
-        $path = "{$slug}/{$path}";
+          $path = "{$slug}/{$path}";
 
-        return $path;
-      }, $post->post_name);
+          return $path;
+        },
+        $slug
+      );
 
       // E.g. `templates/page/<parent>/<slug>/<slug>.php`
-      $view_template = locate_template("templates/page/{$path}/{$post->post_name}.php");
+      $view_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php");
 
       if (! $view_template) {
         // E.g. `templates/page/<slug>/<slug>.php`

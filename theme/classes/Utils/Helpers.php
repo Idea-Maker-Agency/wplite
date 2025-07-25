@@ -9,6 +9,24 @@ if (! defined('ABSPATH')) {
 class Helpers
 {
   /**
+   * Get current template part.
+   *
+   * @param string $name   The template file name.
+   * @param array  $args   Additional arguments passed to the template.
+   *
+   * @return void
+   */
+  public static function get_template_part(string $name, array $args = []): void
+  {
+    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+    $caller = $backtrace[0]['file'] ?? null;
+
+    $path = str_replace(THEME_DIR_PATH . '/', '', dirname($caller));
+
+    get_template_part("{$path}/template-parts/{$name}", null, $args);
+  }
+
+  /**
    * Get webp asset image url.
    *
    * @param string $name   The webp image file name.

@@ -243,6 +243,14 @@ class TemplateController
           $ext_fields = Spyc::YAMLLoad($ext_file);
 
           if (! empty($ext_fields)) {
+            $ext_fields = array_map(function (mixed $key, array $fields) {
+              $ext_field = array_merge([
+                'key' => $key,
+              ], $fields);
+
+              return $ext_field;
+            }, array_keys($ext_fields), $ext_fields);
+
             $groups = array_merge($groups, $ext_fields);
           }
         } else {

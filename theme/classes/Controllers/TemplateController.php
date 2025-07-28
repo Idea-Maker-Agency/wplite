@@ -232,28 +232,26 @@ class TemplateController
       return;
     }
 
-    // Include re-usable custom fields if exists
-    $globals = $load_fields['use_globals'] ?: [];
-
-    if (! empty($globals)) {
-      unset($load_fields['use_globals']);
-
-      $load_fields = array_reduce(
-        array_reverse($globals),
-        function (array $carry, mixed $item) {
-          $file = locate_template("lib/custom-fields/{$item}.yaml");
+    // Reduce the array to fetch re-usable custom fields if `use` key exists.
+    $load_fields = array_reduce(
+      array_keys($load_fields),
+      function (array $carry, mixed $key) use ($load_fields) {
+        if ('use' === $key) {
+          $file = locate_template("lib/custom-field-groups/{$load_fields[$key]}.yaml");
 
           $fields = Spyc::YAMLLoad($file);
 
           if (! empty($fields)) {
             $carry = array_merge($fields, $carry);
           }
+        } else {
+          $carry[] = $load_fields[$key];
+        }
 
-          return $carry;
-        },
-        $load_fields
-      );
-    }
+        return $carry;
+      },
+      []
+    );
 
     $custom_fields = new CustomFields();
 

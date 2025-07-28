@@ -235,20 +235,23 @@ class TemplateController
     // Reduce the array to fetch re-usable custom fields if `use` key exists.
     $load_fields = array_reduce(
       array_keys($load_fields),
-      function (array $carry, mixed $key) use ($load_fields) {
-        if ('use' === $key) {
-          $file = locate_template("lib/custom-field-groups/{$load_fields[$key]}.yaml");
+      function (array $groups, mixed $key) use ($load_fields) {
+        $ext_group = $load_fields[$key]['use'] ?: null;
 
-          $fields = Spyc::YAMLLoad($file);
+        if ($ext_group) {
+          $ext_file = locate_template("lib/custom-field-groups/{$ext_group}.yaml");
+          $ext_fields = Spyc::YAMLLoad($ext_file);
 
-          if (! empty($fields)) {
-            $carry = array_merge($fields, $carry);
+          if (! empty($ext_fields)) {
+            $groups = array_merge($groups, $ext_fields);
           }
         } else {
-          $carry[] = $load_fields[$key];
+          $groups[] = array_merge([
+            'key' => $key,
+          ], $load_fields[$key]);
         }
 
-        return $carry;
+        return $groups;
       },
       []
     );

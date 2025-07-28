@@ -249,11 +249,10 @@ The theme includes built-in custom fields registration system for templates and 
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
 
-You can also create and re-use custom fields by creating a .yaml file inside `lib/custom-field-groups`. To be able to re-use it, add `use_globals` as list in your template's .yaml file. See example usage:
+You can also create and re-use custom fields by creating a .yaml file inside `lib/custom-field-groups`. To be able to re-use it, add `use` as list in your template's .yaml file. See example usage:
 
 ```yaml
-use_globals:
-  - header-banner # This will include lib/custom-field-groups/header-banner.yaml if it exists
+use: header-banner # This will include lib/custom-field-groups/header-banner.yaml if it exists
 ```
 
 ### Form Builder

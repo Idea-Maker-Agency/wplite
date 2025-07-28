@@ -221,13 +221,15 @@ class CustomFields
   public function render_meta_boxes(WP_Post $post, array $args)
   {
     $field  = $this->fields[$args['id']];
+
+    $key    = $field['key']    ?? '';
     $fields = $field['fields'] ?? [];
 
     if (empty($fields)) {
       return;
     }
 
-    $this->render_fields($post, $fields);
+    $this->render_fields($post, $fields, $key);
   }
 
   /**
@@ -301,7 +303,7 @@ class CustomFields
           $sub_fields = array_keys($field['fields']);
 
           // Filter keys with non-empty fields
-          $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true);
+          $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true) ?: [];
 
           $keys = array_filter($keys, function ($key) use ($sub_fields) {
             $valid_fields = array_filter($sub_fields, function ($sub_field) use ($key) {
@@ -362,9 +364,10 @@ class CustomFields
     }
 
     foreach ($this->fields as $field) {
+      $key    = $field['key']    ?? '';
       $fields = $field['fields'] ?? [];
 
-      $this->save_fields($post_id, $fields);
+      $this->save_fields($post_id, $fields, $key);
     }
   }
 }

@@ -252,7 +252,7 @@ The theme includes built-in custom fields registration system for templates and 
 You can also create and re-use custom fields by creating a .yaml file inside `lib/custom-field-groups`. To be able to re-use it, add `use` as list in your template's .yaml file. See example usage:
 
 ```yaml
-use: header-banner # This will include lib/custom-field-groups/header-banner.yaml if it exists
+- use: header-banner # This will include lib/custom-field-groups/header-banner.yaml if it exists
 ```
 
 ### Form Builder

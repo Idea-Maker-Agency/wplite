@@ -1,19 +1,19 @@
 hero_banner:
   group: "Hero Banner"
   fields:
-    hero_banner_bg:
+    bg:
       type: image
       label: "Background image"
 
-    hero_banner_title:
+    title:
       type: text
       label: "Title"
 
-    hero_banner_content:
+    content:
       type: wpeditor
       label: "Content"
 
-    hero_banner_cta_primary:
+    cta_primary:
       type: group
       label: "Primary CTA Button"
       fields:
@@ -27,7 +27,7 @@ hero_banner:
           label: "URL"
           width: 50
 
-    hero_banner_cta_secondary:
+    cta_secondary:
       type: group
       label: "Secondary CTA Button"
       fields:
@@ -44,19 +44,19 @@ hero_banner:
 intro:
   group: "Intro"
   fields:
-    intro_featured_image:
+    featured_image:
       type: "image"
       label: "Featured image"
 
-    intro_title:
+    title:
       type: "text"
       label: "Title"
 
-    intro_content:
+    content:
       type: "wpeditor"
       label: "Content"
 
-    intro_cta:
+    cta:
       type: group
       label: "CTA Button"
       fields:
@@ -73,15 +73,15 @@ intro:
 features:
   group: "Features"
   fields:
-    features_title:
+    title:
       type: text
       label: "Title"
 
-    features_intro:
+    intro:
       type: text
       label: "Intro"
 
-    features_items:
+    items:
       type: repeater
       label: "Features"
       fields:
@@ -104,15 +104,15 @@ features:
 faqs:
   group: "FAQs"
   fields:
-    faqs_title:
+    title:
       type: text
       label: "Title"
 
-    faqs_intro:
+    intro:
       type: text
       label: "Intro"
 
-    faqs_items:
+    items:
       type: repeater
       label: "FAQs"
       fields:
@@ -129,11 +129,11 @@ faqs:
 testimonials:
   group: "Testimonials"
   fields:
-    testimonials_title:
+    title:
       type: text
       label: "Title"
 
-    testimonials_items:
+    items:
       type: repeater
       label: "Testimonials"
       fields:

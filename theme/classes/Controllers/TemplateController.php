@@ -234,9 +234,9 @@ class TemplateController
 
     // Reduce the array to fetch re-usable custom fields if `use` key exists.
     $load_fields = array_reduce(
-      $load_fields,
-      function (array $groups, mixed $group) {
-        $ext_group = $group['use'] ?: null;
+      array_keys($load_fields),
+      function (array $groups, mixed $key) use ($load_fields) {
+        $ext_group = $load_fields[$key]['use'] ?: null;
 
         if ($ext_group) {
           $ext_file = locate_template("lib/custom-field-groups/{$ext_group}.yaml");
@@ -246,7 +246,9 @@ class TemplateController
             $groups = array_merge($groups, $ext_fields);
           }
         } else {
-          $groups[] = $group;
+          $groups[] = array_merge([
+            'key' => $key,
+          ], $load_fields[$key]);
         }
 
         return $groups;

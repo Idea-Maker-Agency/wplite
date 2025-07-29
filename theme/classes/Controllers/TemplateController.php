@@ -239,14 +239,21 @@ class TemplateController
         $ext_group = $load_fields[$key]['use'] ?: null;
 
         if ($ext_group) {
+          $ext_custom_name = $load_fields[$key]['name'] ?: null;
+          $ext_custom_title = $load_fields[$key]['title'] ?: null;
+
           $ext_file = locate_template("lib/custom-field-groups/{$ext_group}.yaml");
           $ext_fields = Spyc::YAMLLoad($ext_file);
 
           if (! empty($ext_fields)) {
-            $ext_fields = array_map(function (mixed $key, array $fields) {
+            $ext_fields = array_map(function (mixed $key, array $fields) use ($ext_custom_name, $ext_custom_title) {
               $ext_field = array_merge([
-                'key' => $key,
+                'key' => $ext_custom_name ?? $key,
               ], $fields);
+
+              if ($ext_custom_title) {
+                $ext_field['group'] = $ext_custom_title;
+              }
 
               return $ext_field;
             }, array_keys($ext_fields), $ext_fields);

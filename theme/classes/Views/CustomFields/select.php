@@ -51,7 +51,13 @@ $post = get_post($post_id);
     <?php foreach ($options as $option) { ?>
       <option
         value="<?= $option['value'] ?>"
-        <?php selected($post->__get($name), $option['value'], true) ?>>
+        <?php
+        selected(
+          $multiple ? in_array($option['value'], $post->__get($name) ?: []) : $post->__get($name),
+          $multiple ? true : $option['value'],
+          true
+        );
+        ?>>
         <?= $option['label'] ?>
       </option>
     <?php } ?>

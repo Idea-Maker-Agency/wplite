@@ -25,8 +25,8 @@ class Helpers
 			$path = str_replace(get_stylesheet_directory() . '/', '', dirname($caller));
 
 			get_template_part("{$path}/template-parts/{$name}", null, $args);
-		} else if (0 === strpos(dirname($caller), THEME_DIR_URI)) {
-			$path = str_replace(THEME_DIR_URI . '/', '', dirname($caller));
+		} else if (0 === strpos(dirname($caller), THEME_DIR_PATH)) {
+			$path = str_replace(THEME_DIR_PATH . '/', '', dirname($caller));
 
 			get_template_part("{$path}/template-parts/{$name}", null, $args);
 		}

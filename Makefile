@@ -1,7 +1,7 @@
-THEME_NAME ?= wplite
+theme_name ?= wplite
 
 theme-build:
-	docker compose run --rm sass sh -c "npm run compile:sass && cp -r theme $(THEME_NAME) && npx bestzip $(THEME_NAME).zip $(THEME_NAME)/* && rm -r $(THEME_NAME)"
+	docker compose run --rm sass sh -c "npm run compile:sass && cp -r theme $(theme_name) && npx bestzip $(theme_name).zip $(theme_name)/* && rm -r $(theme_name)"
 
 watch\:templates-sass:
 	docker compose run --rm sass sh -c "npm run watch:templates-sass"

@@ -1,0 +1,92 @@
+[
+	{
+		"panel": "wplite",
+		"title": "WPLite",
+		"description": "WPLite Theme Options",
+		"priority": 10,
+		"sections": [
+			{
+				"name": "branding",
+				"title": "Branding",
+				"settings": [
+					{
+						"name": "logo",
+						"type": "image",
+						"label": "Logo"
+					}
+				]
+			},
+			{
+				"name": "navigation",
+				"title": "Navigation",
+				"settings": [
+					{
+						"name": "menu",
+						"type": "select",
+						"label": "Menu",
+						"source": "wp-nav-menus"
+					}
+				]
+			},
+			{
+				"name": "footer",
+				"title": "Footer",
+				"settings": [
+					{
+						"name": "intro",
+						"type": "textarea",
+						"label": "Intro"
+					},
+					{
+						"name": "quick_links_heading",
+						"type": "text",
+						"label": "Quick Links: Heading"
+					},
+					{
+						"name": "quick_links_menu",
+						"type": "select",
+						"label": "Quick Links: Links",
+						"source": "wp-nav-menus"
+					},
+					{
+						"name": "get_in_touch_heading",
+						"type": "text",
+						"label": "Get In Touch: Heading"
+					}
+				]
+			},
+			{
+				"name": "copyright",
+				"title": "Copyright",
+				"settings": [
+					{
+						"name": "text",
+						"type": "text",
+						"label": "Text"
+					}
+				]
+			},
+			{
+				"name": "social_links",
+				"title": "Social Links",
+				"settings": [
+					{
+						"name": "facebook_url",
+						"type": "url",
+						"label": "Facebook URL"
+					},
+					{
+						"name": "instagram_url",
+						"type": "url",
+						"label": "Instagram URL"
+					},
+					{
+						"name": "x_url",
+						"type": "url",
+						"label": "X URL"
+					}
+				]
+			}
+		]
+	}
+]

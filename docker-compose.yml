@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 services:
   mysql:
     image: mysql:latest
@@ -28,7 +28,7 @@ services:
     volumes:
       - .:/usr/src/app
     working_dir: /usr/src/app
-    command: sh -c "npm install && npm run watch:sass"
+    command: sh -c "npm install"
 
   wordpress:
     depends_on:

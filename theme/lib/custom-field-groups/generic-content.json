@@ -1,12 +1,12 @@
 [
-  {
-    "name": "title",
-    "type": "text",
-    "label": "Title"
-  },
-  {
-    "name": "content",
-    "type": "wpeditor",
-    "label": "Content"
-  }
+	{
+		"name": "title",
+		"type": "text",
+		"label": "Title"
+	},
+	{
+		"name": "content",
+		"type": "wpeditor",
+		"label": "Content"
+	}
 ]

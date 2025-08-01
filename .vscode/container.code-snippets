@@ -1,16 +1,16 @@
 {
-  "WPLite": {
-    "scope": "html,php",
-    "prefix": "wplite:container",
-    "body": [
-      "<section ",
-      "\tid=\"${1}\" ",
-      "\tclass=\"py-5 position-relative\">",
-      "\t<div class=\"container position-relative z-1\">",
-      "\t\t${0}",
-      "\t</div>",
-      "</section>"
-    ],
-    "description": "A simple container component."
-  }
+	"WPLite": {
+		"scope": "html,php",
+		"prefix": "wplite:container",
+		"body": [
+			"<section ",
+			"\tid=\"${1}\" ",
+			"\tclass=\"py-5 position-relative\">",
+			"\t<div class=\"container position-relative z-1\">",
+			"\t\t${0}",
+			"\t</div>",
+			"</section>",
+		],
+		"description": "A simple container component.",
+	},
 }

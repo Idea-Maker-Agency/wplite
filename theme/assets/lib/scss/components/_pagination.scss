@@ -1,19 +1,19 @@
 .pagination {
-  column-gap: 10px;
+	column-gap: 10px;
 }
 
 .page-link {
-  @include center-content;
+	@include center-content;
 
-  width: $pagination-link-size;
-  height: $pagination-link-size;
-  border-radius: $pagination-border-radius;
+	width: $pagination-link-size;
+	height: $pagination-link-size;
+	border-radius: $pagination-border-radius;
 
-  &.prev,
-  &.next {
-    width: auto;
-    padding-right: $pagination-padding-x * 4;
-    padding-left: $pagination-padding-x * 4;
-    border-radius: 0 !important;
-  }
+	&.prev,
+	&.next {
+		width: auto;
+		padding-right: $pagination-padding-x * 4;
+		padding-left: $pagination-padding-x * 4;
+		border-radius: 0 !important;
+	}
 }

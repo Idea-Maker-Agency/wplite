@@ -1,165 +1,165 @@
 [
-  {
-    "name": "hero_banner",
-    "title": "Hero Banner",
-    "extends": "generic-content",
-    "fields": [
-      {
-        "name": "cta_primary",
-        "type": "group",
-        "label": "Primary CTA Button",
-        "fields": [
-          {
-            "name": "text",
-            "type": "text",
-            "label": "Text",
-            "args": {
-              "width": 50
-            }
-          },
-          {
-            "name": "url",
-            "type": "url",
-            "label": "URL",
-            "args": {
-              "width": 50
-            }
-          }
-        ]
-      },
-      {
-        "name": "cta_secondary",
-        "type": "group",
-        "label": "Secondary CTA Button",
-        "fields": [
-          {
-            "name": "text",
-            "type": "text",
-            "label": "Text",
-            "args": {
-              "width": 50
-            }
-          },
-          {
-            "name": "url",
-            "type": "url",
-            "label": "URL",
-            "args": {
-              "width": 50
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "intro",
-    "title": "Intro",
-    "extends": "generic-content",
-    "fields": [
-      {
-        "name": "cta",
-        "type": "group",
-        "label": "CTA Button",
-        "extends": "button"
-      }
-    ]
-  },
-  {
-    "name": "features",
-    "title": "Features",
-    "extends": "generic-content",
-    "fields": [
-      {
-        "name": "items",
-        "type": "repeater",
-        "extends": "generic-content",
-        "fields": [
-          {
-            "name": "featured_image",
-            "type": "image",
-            "label": "Featured Image"
-          },
-          {
-            "name": "url",
-            "type": "url",
-            "label": "URL"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "faqs",
-    "title": "FAQs",
-    "extends": "generic-content",
-    "fields": [
-      {
-        "name": "items",
-        "type": "repeater",
-        "label": "Items",
-        "fields": [
-          {
-            "name": "title",
-            "type": "text",
-            "label": "Title",
-            "args": {
-              "width": 40
-            }
-          },
-          {
-            "name": "description",
-            "type": "textarea",
-            "label": "Description",
-            "args": {
-              "width": 60
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "name": "testimonials",
-    "title": "Testimonials",
-    "extends": "generic-content",
-    "fields": [
-      {
-        "name": "items",
-        "type": "repeater",
-        "label": "Testimonials",
-        "fields": [
-          {
-            "name": "avatar",
-            "type": "image",
-            "label": "Avatar",
-            "args": {
-              "width": 30
-            }
-          },
-          {
-            "name": "full_name",
-            "type": "text",
-            "label": "Full Name",
-            "args": {
-              "width": 35
-            }
-          },
-          {
-            "name": "job_title",
-            "type": "text",
-            "label": "Job Title",
-            "args": {
-              "width": 35
-            }
-          },
-          {
-            "name": "testimonial",
-            "type": "textarea",
-            "label": "Testimonial"
-          }
-        ]
-      }
-    ]
-  }
+	{
+		"name": "hero_banner",
+		"title": "Hero Banner",
+		"extends": "generic-content",
+		"fields": [
+			{
+				"name": "cta_primary",
+				"type": "group",
+				"label": "Primary CTA Button",
+				"fields": [
+					{
+						"name": "text",
+						"type": "text",
+						"label": "Text",
+						"args": {
+							"width": 50
+						}
+					},
+					{
+						"name": "url",
+						"type": "url",
+						"label": "URL",
+						"args": {
+							"width": 50
+						}
+					}
+				]
+			},
+			{
+				"name": "cta_secondary",
+				"type": "group",
+				"label": "Secondary CTA Button",
+				"fields": [
+					{
+						"name": "text",
+						"type": "text",
+						"label": "Text",
+						"args": {
+							"width": 50
+						}
+					},
+					{
+						"name": "url",
+						"type": "url",
+						"label": "URL",
+						"args": {
+							"width": 50
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "intro",
+		"title": "Intro",
+		"extends": "generic-content",
+		"fields": [
+			{
+				"name": "cta",
+				"type": "group",
+				"label": "CTA Button",
+				"extends": "button"
+			}
+		]
+	},
+	{
+		"name": "features",
+		"title": "Features",
+		"extends": "generic-content",
+		"fields": [
+			{
+				"name": "items",
+				"type": "repeater",
+				"extends": "generic-content",
+				"fields": [
+					{
+						"name": "featured_image",
+						"type": "image",
+						"label": "Featured Image"
+					},
+					{
+						"name": "url",
+						"type": "url",
+						"label": "URL"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "faqs",
+		"title": "FAQs",
+		"extends": "generic-content",
+		"fields": [
+			{
+				"name": "items",
+				"type": "repeater",
+				"label": "Items",
+				"fields": [
+					{
+						"name": "title",
+						"type": "text",
+						"label": "Title",
+						"args": {
+							"width": 40
+						}
+					},
+					{
+						"name": "description",
+						"type": "textarea",
+						"label": "Description",
+						"args": {
+							"width": 60
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "testimonials",
+		"title": "Testimonials",
+		"extends": "generic-content",
+		"fields": [
+			{
+				"name": "items",
+				"type": "repeater",
+				"label": "Testimonials",
+				"fields": [
+					{
+						"name": "avatar",
+						"type": "image",
+						"label": "Avatar",
+						"args": {
+							"width": 30
+						}
+					},
+					{
+						"name": "full_name",
+						"type": "text",
+						"label": "Full Name",
+						"args": {
+							"width": 35
+						}
+					},
+					{
+						"name": "job_title",
+						"type": "text",
+						"label": "Job Title",
+						"args": {
+							"width": 35
+						}
+					},
+					{
+						"name": "testimonial",
+						"type": "textarea",
+						"label": "Testimonial"
+					}
+				]
+			}
+		]
+	}
 ]

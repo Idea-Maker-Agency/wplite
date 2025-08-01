@@ -13,7 +13,7 @@ get_header();
 
 <section
   id=""
-  class="py-5 position-relative">
+	class="py-5 position-relative">
   <div class="container position-relative z-1">
     <?php the_content() ?>
   </div>

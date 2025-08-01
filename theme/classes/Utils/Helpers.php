@@ -21,9 +21,15 @@ class Helpers
     $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
     $caller = $backtrace[0]['file'] ?? null;
 
-    $path = str_replace(get_theme_file_path() . '/', '', dirname($caller));
+		if (0 === strpos(dirname($caller), get_stylesheet_directory())) {
+			$path = str_replace(get_stylesheet_directory() . '/', '', dirname($caller));
 
-    get_template_part("{$path}/template-parts/{$name}", null, $args);
+			get_template_part("{$path}/template-parts/{$name}", null, $args);
+		} else if (0 === strpos(dirname($caller), THEME_DIR_URI)) {
+			$path = str_replace(THEME_DIR_URI . '/', '', dirname($caller));
+
+			get_template_part("{$path}/template-parts/{$name}", null, $args);
+		}
   }
 
   /**

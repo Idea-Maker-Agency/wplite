@@ -1,7 +1,19 @@
 <?php
-$post_id = (int) $args['post_id']   ?? 0;
-$name    = $args['name']            ?? '';
+$post_id = intval($args['post_id']);
+$name    = $args['field']['name'];
 $fields  = $args['field']['fields'] ?? [];
+$extends = $args['field']['extends'] ?? null;
+
+if ($extends) {
+  $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
+
+  if (file_exists($extends_file)) {
+    $extends_contents = file_get_contents($extends_file);
+    $extends_fields = json_decode($extends_contents, true) ?: [];
+
+    $fields = array_merge($extends_fields, $fields);
+  }
+}
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -48,15 +60,17 @@ $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
       id="repeater-fields-<?= $name ?>"
       x-merge="append"
       x-sort.ghost="onSort">
-      <?php foreach ($keys as $index => $key) { ?>
-        <?php get_template_part('classes/Views/CustomFields/repeater', 'item', [
+      <?php
+      foreach ($keys as $index => $key) {
+        get_template_part('classes/Views/CustomFields/repeater', 'item', [
           'index'   => $index,
           'post_id' => $post_id,
           'name'    => $name,
           'key'     => $key,
           'fields'  => $fields,
-        ]) ?>
-      <?php } ?>
+        ]);
+      }
+      ?>
     </div>
 
     <div style="clear: both;"></div>

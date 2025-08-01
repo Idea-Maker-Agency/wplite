@@ -2,7 +2,7 @@
 use WPLite\Utils\CustomFields;
 
 $title = CustomFields::get_field('faqs_title', 'FAQs');
-$intro = CustomFields::get_field('faqs_intro', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.');
+$content = CustomFields::get_field('faqs_content', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.');
 $items = CustomFields::get_field('faqs_items');
 ?>
 

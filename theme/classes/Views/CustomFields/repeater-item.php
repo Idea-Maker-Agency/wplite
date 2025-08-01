@@ -6,6 +6,18 @@ $post_id = (int) $args['post_id'] ?? 0;
 $name    = $args['name']          ?? '';
 $key     = $args['key']           ?? '';
 $fields  = $args['fields']        ?? [];
+$extends = $args['field']['extends'] ?? null;
+
+if ($extends) {
+  $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
+
+  if (file_exists($extends_file)) {
+    $extends_contents = file_get_contents($extends_file);
+    $extends_fields = json_decode($extends_contents, true) ?: [];
+
+    $fields = array_merge($extends_fields, $fields);
+  }
+}
 
 $post = get_post($post_id);
 

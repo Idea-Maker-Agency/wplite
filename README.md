@@ -96,7 +96,7 @@ project
 - `theme/`: Contains the main source code for the application.
   - `assets/`: Contains static assets like css, js, images and fonts.
   - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
-    - `custom-field-groups`: Includes re-usable .yaml files for templates custom fields.
+    - `custom-field-groups`: Includes re-usable custom field groups .json files.
   - `template-parts/`: Custom template parts.
   - `templates/`: Custom page templates.
   - `vendor/`: Vendor php modules.
@@ -229,7 +229,7 @@ Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.
 
 ### Organized page templates
 
-Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.yaml).
+Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.json).
 
 ### Organized views
 
@@ -237,7 +237,7 @@ Custom views can be organized into folders, and any CSS or JS files named identi
 
 ### Built-in custom fields registration
 
-The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .yaml file using the same name as youre template php file (e.g. front-page/front-page.yaml). Following are the available field types:
+The theme includes built-in custom fields registration system for templates and page templates. To register custom fields, create a .json file using the same name as youre template php file (e.g. front-page/front-page.json). Following are the available field types:
 
 - [`text` | `url` | `email` | `password`](/docs/custom-fields/input/README.md)
 - [`select`](/docs/custom-fields/select/README.md)
@@ -249,10 +249,17 @@ The theme includes built-in custom fields registration system for templates and 
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
 
-You can also create and re-use custom fields by creating a .yaml file inside `lib/custom-field-groups`. To be able to re-use it, add `use` as list in your template's .yaml file. See example usage:
+You can also create and re-use custom fields by creating a .json file inside `lib/custom-field-groups`. To be able to re-use it, use `extends` in your field. See example usage:
 
-```yaml
-- use: header-banner # This will include lib/custom-field-groups/header-banner.yaml if it exists
+```json
+{
+  "name": "header-banner",
+  "title": "Header Banner",
+  "extends": "generic-content",
+  "fields": []
+}
+
+# This will include lib/custom-field-groups/header-banner.json if it exists
 ```
 
 ### Form Builder

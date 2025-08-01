@@ -8,7 +8,6 @@ if (! defined('ABSPATH')) {
 
 use WP_Theme;
 use WP_Post;
-use Spyc;
 use WPLite\Utils\CustomFields;
 
 class TemplateController
@@ -186,7 +185,9 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $fields = locate_template("templates/page/front-page/front-page.yaml");
+      $json_file = locate_template("templates/page/front-page/front-page.json");
+
+      remove_post_type_support('page', 'editor');
     } else {
       $post_type = get_post_field('post_type', $id);
       $post_name = get_post_field('post_name', $id);
@@ -216,69 +217,31 @@ class TemplateController
           $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php");
         }
 
-        $fields = str_replace('.php', '.yaml', $page_template);
+        $json_file = str_replace('.php', '.json', $page_template);
       } else {
-        $fields = locate_template(str_replace('.php', '.yaml', $page_template));
+        $json_file = locate_template(str_replace('.php', '.json', $page_template));
+      }
+
+      if ('page' === $post_type) {
+        remove_post_type_support('page', 'editor');
       }
     }
 
-    if (! file_exists($fields)) {
+    if (! file_exists($json_file)) {
       return;
     }
 
-    $load_fields = Spyc::YAMLLoad($fields);
+    $json_contents = file_get_contents($json_file);
+    $json_groups = json_decode($json_contents, true);
 
-    if (empty($load_fields)) {
+    if (empty($json_groups)) {
       return;
     }
-
-    // Reduce the array to fetch re-usable custom fields if `use` key exists.
-    $load_fields = array_reduce(
-      array_keys($load_fields),
-      function (array $groups, mixed $key) use ($load_fields) {
-        $ext_group = $load_fields[$key]['use'] ?: null;
-
-        if ($ext_group) {
-          $ext_custom_name = $load_fields[$key]['name'] ?: null;
-          $ext_custom_title = $load_fields[$key]['title'] ?: null;
-
-          $ext_file = locate_template("lib/custom-field-groups/{$ext_group}.yaml");
-          $ext_fields = Spyc::YAMLLoad($ext_file);
-
-          if (! empty($ext_fields)) {
-            $ext_fields = array_map(function (mixed $key, array $fields) use ($ext_custom_name, $ext_custom_title) {
-              $ext_field = array_merge([
-                'key' => $ext_custom_name ?? $key,
-              ], $fields);
-
-              if ($ext_custom_title) {
-                $ext_field['group'] = $ext_custom_title;
-              }
-
-              return $ext_field;
-            }, array_keys($ext_fields), $ext_fields);
-
-            $groups = array_merge($groups, $ext_fields);
-          }
-        } else {
-          $groups[] = array_merge([
-            'key' => $key,
-          ], $load_fields[$key]);
-        }
-
-        return $groups;
-      },
-      []
-    );
 
     $custom_fields = new CustomFields();
 
-    $custom_fields->set_fields($load_fields);
+    $custom_fields->set_groups($json_groups);
     $custom_fields->init();
-
-    if ('page' === $post_type) {
-      remove_post_type_support('page', 'editor');
-    }
   }
 
   /**

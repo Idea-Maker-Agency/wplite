@@ -1,17 +1,17 @@
 <?php
-$post_id  = (int) $args['post_id']     ?? 0;
-$name     = $args['name']              ?? '';
-$multiple = $args['field']['multiple'] ?? false;
-$required = $args['field']['required'] ?? false;
+$post_id  = intval($args['post_id']);
+$name     = $args['field']['name'];
 $options  = $args['field']['options']  ?? [];
-$source   = $args['field']['source'];
+$multiple = $args['field']['args']['multiple'] ?? false;
+$required = $args['field']['args']['required'] ?? false;
+$source   = $args['field']['args']['source'] ?? null;
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
 }
 
 // Use post type/users as source of options
-if (! empty($source)) {
+if ($source) {
   if (post_type_exists($source)) {
     $posts = get_posts([
       'post_type' => $source,
@@ -43,12 +43,17 @@ $post = get_post($post_id);
   id="id_field_<?= $name ?>"
   name="<?= $name ?><?= $multiple ? '[]' : '' ?>"
   class="postbox"
+  style="width: 100%;"
   <?= $multiple ? 'multiple' : '' ?>
   <?= $required ? 'required' : '' ?>>
-  <option disabled>Select option</option>
+  <option disabled>
+    <?= __('Select option', THEME_TEXT_DOMAIN) ?>
+  </option>
 
-  <?php if (! empty($options)) { ?>
-    <?php foreach ($options as $option) { ?>
+  <?php
+  if (! empty($options)) {
+    foreach ($options as $option) {
+  ?>
       <option
         value="<?= $option['value'] ?>"
         <?php
@@ -60,6 +65,8 @@ $post = get_post($post_id);
         ?>>
         <?= $option['label'] ?>
       </option>
-    <?php } ?>
-  <?php } ?>
+  <?php
+    }
+  }
+  ?>
 </select>

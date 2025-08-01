@@ -1,12 +1,14 @@
 <?php
-$post_id = (int) $args['post_id'] ?? 0;
-$name    = $args['name']          ?? '';
+$post_id  = intval($args['post_id']);
+$name     = $args['field']['name'];
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
 }
 
 $attachment_data = null;
+
+$post = get_post($post_id);
 
 if ($post->__get($name)) {
   [$url, $width, $height] = wp_get_attachment_image_src((int) $post->__get($name), 'thumbnail');
@@ -25,8 +27,6 @@ if ($post->__get($name)) {
     ];
   }
 }
-
-$post = get_post($post_id);
 ?>
 
 <div

@@ -21,7 +21,7 @@ class Helpers
     $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
     $caller = $backtrace[0]['file'] ?? null;
 
-    $path = str_replace(THEME_DIR_PATH . '/', '', dirname($caller));
+    $path = str_replace(get_theme_file_path() . '/', '', dirname($caller));
 
     get_template_part("{$path}/template-parts/{$name}", null, $args);
   }

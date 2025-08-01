@@ -7,7 +7,7 @@ $extends = $args['field']['extends'] ?? null;
 if ($extends) {
   $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
 
-  if (file_exists($extends_file)) {
+  if ($extends_file) {
     $extends_contents = file_get_contents($extends_file);
     $extends_fields = json_decode($extends_contents, true) ?: [];
 

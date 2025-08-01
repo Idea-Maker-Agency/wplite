@@ -60,13 +60,13 @@ class TemplateController
     global $post;
 
     if (is_front_page()) {
-      $view_template = locate_template("templates/page/front-page/front-page.php");
+      $custom_template = locate_template("templates/page/front-page/front-page.php");
     } elseif (is_home()) {
-      $view_template = locate_template("templates/archive/post/archive-post.php");
+      $custom_template = locate_template("templates/archive/post/archive-post.php");
     } elseif (is_search()) {
-      $view_template = locate_template("templates/page/search/search.php");
+      $custom_template = locate_template("templates/page/search/search.php");
     } elseif (is_404()) {
-      $view_template = locate_template("templates/page/404/404.php");
+      $custom_template = locate_template("templates/page/404/404.php");
     } else {
       $ancestors = get_post_ancestors($post);
 
@@ -83,15 +83,15 @@ class TemplateController
       );
 
       // E.g. `templates/page/<parent>/<slug>/<slug>.php`
-      $view_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php");
+      $custom_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php");
 
-      if (! $view_template) {
+      if (! $custom_template) {
         // E.g. `templates/page/<slug>/<slug>.php`
-        $view_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
+        $custom_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
       }
     }
 
-    return $view_template ?: $template;
+    return $custom_template ?: $template;
   }
 
   /**
@@ -106,9 +106,9 @@ class TemplateController
     global $post;
 
     // E.g. `templates/single-<post_type>/single-<post_type>.php`
-    $view_template = locate_template("templates/single/{$post->post_type}/single-{$post->post_type}.php");
+    $custom_template = locate_template("templates/single/{$post->post_type}/single-{$post->post_type}.php");
 
-    return $view_template ?: $template;
+    return $custom_template ?: $template;
   }
 
   /**
@@ -122,12 +122,10 @@ class TemplateController
   {
     $post_type = get_queried_object()->name ?? '';
 
-    if (is_dir(THEME_DIR_PATH . "/templates/archive/{$post_type}")) {
-      // E.g. `templates/archive/<post_type>/<post_type>.php`
-      $view_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
-    }
+		// E.g. `templates/archive/<post_type>/<post_type>.php`
+		$custom_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
 
-    return $view_template ?: $template;
+    return $custom_template ?: $template;
   }
 
   /**
@@ -141,9 +139,9 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    $view_template = locate_template("templates/taxonomy/category/taxonomy-category.php");
+    $custom_template = locate_template("templates/taxonomy/category/taxonomy-category.php");
 
-    return $view_template ?: $template;
+    return $custom_template ?: $template;
   }
 
   /**
@@ -157,9 +155,9 @@ class TemplateController
   {
     $slug = get_queried_object()->slug ?? '';
 
-    $view_template = locate_template("templates/taxonomy/post_tag/taxonomy-post_tag.php");
+    $custom_template = locate_template("templates/taxonomy/post_tag/taxonomy-post_tag.php");
 
-    return $view_template ?: $template;
+    return $custom_template ?: $template;
   }
 
   /**
@@ -227,7 +225,7 @@ class TemplateController
       }
     }
 
-    if (! file_exists($json_file)) {
+    if (! $json_file) {
       return;
     }
 
@@ -258,7 +256,7 @@ class TemplateController
     WP_Theme $theme,
     WP_Post | null $post
   ): array {
-    $path = THEME_DIR_PATH . '/page-templates';
+    $path = get_theme_file_path('page-templates');
     $dir  = scandir($path);
 
     if ($dir) {

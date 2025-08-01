@@ -1,15 +1,11 @@
 <?php
-$post_id  = (int) $args['post_id']     ?? 0;
-$name     = $args['name']              ?? '';
-$multiple = $args['field']['multiple'] ?? false;
-$required = $args['field']['required'] ?? false;
+$post_id  = intval($args['post_id']);
+$name     = $args['field']['name'];
+$multiple = $args['field']['args']['multiple'] ?? false;
+$required = $args['field']['args']['required'] ?? false;
 
-if (! empty($args['parent_name'])) {
-  $name = "{$args['parent_name']}_{$name}";
-}
-
-$options  = $args['field']['options']  ?? [];
-$options  = array_map(function ($option) {
+$options = $args['field']['options'] ?? [];
+$options = array_map(function ($option) {
   if (is_string($option)) {
     return [
       'label' => $option,
@@ -19,6 +15,10 @@ $options  = array_map(function ($option) {
 
   return $option;
 }, $options);
+
+if (! empty($args['parent_name'])) {
+  $name = "{$args['parent_name']}_{$name}";
+}
 
 $post = get_post($post_id);
 
@@ -31,8 +31,8 @@ if ($multiple) {
           <input
             id="id_field_<?= $name ?>"
             name="<?= $name ?>[]"
-            type="checkbox"
             value="<?= $option['value'] ?>"
+            type="checkbox"
             <?php checked(in_array($option['value'], $post->__get($name) ?: [])) ?>
             <?= $required ? 'required' : '' ?>>
 

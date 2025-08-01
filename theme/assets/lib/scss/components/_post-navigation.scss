@@ -1,35 +1,35 @@
 .post-navigation {
-  padding-top: 15px;
-  margin-top: 30px;
-  border-top: 1px solid $light;
+	padding-top: 15px;
+	margin-top: 30px;
+	border-top: 1px solid $light;
 
-  .nav-links {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
+	.nav-links {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
 
-    a {
-      text-decoration: none;
-    }
+		a {
+			text-decoration: none;
+		}
 
-    &__label {
-      font-size: 12px;
-      font-family: 400;
-    }
+		&__label {
+			font-size: 12px;
+			font-family: 400;
+		}
 
-    &__text {
-      font-weight: 700;
-      display: block;
-    }
-  }
+		&__text {
+			font-weight: 700;
+			display: block;
+		}
+	}
 
-  .nav-previous {
-    margin-right: auto;
-    text-align: left;
-  }
+	.nav-previous {
+		margin-right: auto;
+		text-align: left;
+	}
 
-  .nav-next {
-    margin-left: auto;
-    text-align: right;
-  }
+	.nav-next {
+		margin-left: auto;
+		text-align: right;
+	}
 }

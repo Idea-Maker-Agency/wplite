@@ -1,0 +1,18 @@
+[
+	{
+		"name": "text",
+		"type": "text",
+		"label": "Text",
+		"args": {
+			"width": 50
+		}
+	},
+	{
+		"name": "url",
+		"type": "url",
+		"label": "URL",
+		"args": {
+			"width": 50
+		}
+	}
+]

@@ -6,11 +6,6 @@ if (! defined('ABSPATH')) {
   die;
 }
 
-use WP_Theme;
-use WP_Post;
-use Spyc;
-use WPLite\Utils\CustomFields;
-
 class SetupController
 {
   /**

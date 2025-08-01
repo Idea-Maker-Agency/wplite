@@ -8,7 +8,6 @@ if (! defined('ABSPATH')) {
 
 use WP_Customize_Manager;
 use WP_Customize_Image_Control;
-use Spyc;
 
 class ThemeCustomizerController
 {
@@ -31,11 +30,13 @@ class ThemeCustomizerController
    */
   public static function register(WP_Customize_Manager $manager): void
   {
-    $panels = Spyc::YAMLLoad(get_theme_file_path('/config/customizer.yaml'));
+		$file = get_theme_file_path('/config/customizer.json');
+		$contents = file_get_contents($file);
+		$panels = json_decode($contents, true);
 
     if (! empty($panels)) {
-      foreach ($panels as $panel_key => $panel) {
-        $panel_id = "wplite_{$panel_key}";
+      foreach ($panels as $panel) {
+        $panel_id = "wplite_{$panel['panel']}";
 
         $manager->add_panel($panel_id, [
           'title'       => __($panel['title'], THEME_TEXT_DOMAIN),
@@ -44,8 +45,8 @@ class ThemeCustomizerController
         ]);
 
         if (! empty($panel['sections'])) {
-          foreach ($panel['sections'] as $section_key => $section) {
-            $section_id = "wplite_{$section_key}";
+          foreach ($panel['sections'] as $section) {
+            $section_id = "wplite_{$section['name']}";
 
             $manager->add_section($section_id, [
               'title' => __($section['title'], THEME_TEXT_DOMAIN),
@@ -53,8 +54,8 @@ class ThemeCustomizerController
             ]);
 
             if (! empty($section['settings'])) {
-              foreach ($section['settings'] as $setting_key => $setting) {
-                $setting_id   = "{$section_id}_{$setting_key}";
+              foreach ($section['settings'] as $setting) {
+                $setting_id   = "{$section_id}_{$setting['name']}";
                 $setting_args = [
                   'label'       => __($setting['label'], THEME_TEXT_DOMAIN),
                   'description' => __($setting['description'] ?? '', THEME_TEXT_DOMAIN),
@@ -65,9 +66,9 @@ class ThemeCustomizerController
 
                 if (
                   'select' === $setting['type']
-                  && isset($setting['choices'])
+                  && isset($setting['source'])
                 ) {
-                  $setting_args['choices'] = self::resolve_select_choices($setting['choices']);
+                  $setting_args['choices'] = self::resolve_select_choices($setting['source']);
                 }
 
                 $manager->add_setting($setting_id, [

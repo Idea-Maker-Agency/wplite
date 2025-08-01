@@ -1,22 +1,22 @@
 {
-  "WPLite": {
-    "scope": "html,php",
-    "prefix": "wplite:image",
-    "body": [
-      "<img ",
-      "\tsrc=\"<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1:placeholder}', '', [ ${2:640}, ${3:480} ]) ?>\" ",
-      "\tsrcset=\"",
-      "\t\t${4:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ ${2}, ${3} ]) ?> ${2}w}, ",
-      "\t\t${5:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ 540, 360 ]) ?> 540w}, ",
-      "\t\t${6:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ 320, 230 ]) ?> 320w}\" ",
-      "\tsizes=\"(min-width: ${2}px) ${2}px, (min-width: 540px) 540px, 100vw\" ",
-      "\twidth=\"${2}\" ",
-      "\theight=\"${3}\" ",
-      "\talt=\"${7:Alt text}\" ",
-      "\tloading=\"lazy\" ",
-      "\tdecoding=\"async\" ",
-      "\tclass=\"img-fluid${0: rounded-4}\" />"
-    ],
-    "description": "A simple responsive image component."
-  }
+	"WPLite": {
+		"scope": "html,php",
+		"prefix": "wplite:image",
+		"body": [
+			"<img ",
+			"\tsrc=\"<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1:placeholder}', '', [ ${2:640}, ${3:480} ]) ?>\" ",
+			"\tsrcset=\"",
+			"\t\t${4:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ ${2}, ${3} ]) ?> ${2}w}, ",
+			"\t\t${5:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ 540, 360 ]) ?> 540w}, ",
+			"\t\t${6:<?= WPLite\\Utils\\Helpers::get_webp_asset_url('${1}', '', [ 320, 230 ]) ?> 320w}\" ",
+			"\tsizes=\"(min-width: ${2}px) ${2}px, (min-width: 540px) 540px, 100vw\" ",
+			"\twidth=\"${2}\" ",
+			"\theight=\"${3}\" ",
+			"\talt=\"${7:Alt text}\" ",
+			"\tloading=\"lazy\" ",
+			"\tdecoding=\"async\" ",
+			"\tclass=\"img-fluid${0: rounded-4}\" />",
+		],
+		"description": "A simple responsive image component.",
+	},
 }

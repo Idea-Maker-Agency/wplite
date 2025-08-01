@@ -5,19 +5,22 @@ use WPLite\Utils\{
 };
 
 $title = CustomFields::get_field('testimonials_title', 'Testimonials');
+$content = CustomFields::get_field('testimonials_content', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.');
 $items = CustomFields::get_field('testimonials_items');
 ?>
 
-<section class="bg-primary bg-opacity-75 py-5 position-relative">
+<section class="bg-primary bg-opacity-75 py-5 text-center position-relative">
   <div class="container position-relative z-1">
-    <h2 class="text-white display-5 fw-bold text-center">
+    <h2 class="text-white display-5 fw-bold">
       <?= $title ?>
     </h2>
+
+    <?= wpautop($content) ?>
 
     <?php if (! empty($items)) { ?>
       <div
         id="testimonial-carousel"
-        class="testimonial-carousel carousel slide mt-5"
+        class="testimonial-carousel carousel slide mt-5 text-start"
         data-bs-ride="carousel">
         <div class="carousel-inner">
           <?php foreach ($items as $key => $item) { ?>

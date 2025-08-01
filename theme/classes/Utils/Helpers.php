@@ -47,6 +47,6 @@ class Helpers
       $filename = "{$name}.webp";
     }
 
-    return THEME_DIR_URI . "/assets/lib/img/{$filename}";
+    return get_theme_file_uri("/assets/lib/img/{$filename}");
   }
 }

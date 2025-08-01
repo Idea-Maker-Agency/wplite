@@ -10,9 +10,7 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Folder Structure](#folder-structure)
   - [Key Files and Directories](#key-files-and-directories)
 - [VSCode Components](#vscode-components)
-- [Style Guide](#style-guide)
-  - [HTML](#html)
-  - [PHP](#php)
+- [Style Guide](#style-guide) - [HTML](#html) - [PHP](#php)
 - [Templating Guide](#templating-guide)
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
@@ -48,10 +46,16 @@ Run the development server:
 docker-compose up
 ```
 
-OR compile the theme:
+To watch templates or page-templates scss files:
 
 ```bash
-make theme-build
+make watch:sass # You can pass arg `sass_dir=page-templates`. Defaults to `sass_dir=templates`
+```
+
+Compile the theme:
+
+```bash
+make compile # You can pass arg `name=my-theme`. Defaults to `name=wplite`
 ```
 
 The compile command will generate a `wplite` folder which we can zip and upload to development, staging or live server.

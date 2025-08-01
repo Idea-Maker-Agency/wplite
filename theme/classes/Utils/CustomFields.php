@@ -235,7 +235,7 @@ class CustomFields
     if ($extends) {
       $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
 
-      if (file_exists($extends_file)) {
+      if ($extends_file) {
         $extends_contents = file_get_contents($extends_file ?: '');
         $extends_fields = json_decode($extends_contents, true) ?: [];
 
@@ -317,9 +317,9 @@ class CustomFields
         $value = $_POST[$name] ?? '';
 
         if ('group' === $type) {
-          $this->save_fields($post_id, $field['fields'], $name);
+          $this->save_fields($post_id, $field['fields'] ?? [], $name);
         } elseif ('repeater' === $type) {
-          $sub_fields = array_keys($field['fields']);
+					$sub_fields = array_column($field['fields'] ?? [], 'name');
 
           // Filter keys with non-empty fields
           $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true) ?: [];
@@ -336,7 +336,7 @@ class CustomFields
 
           if (! empty($keys)) {
             foreach ($keys as $key) {
-              $this->save_fields($post_id, $field['fields'], $key);
+              $this->save_fields($post_id, $field['fields'] ?? [], $key);
             }
 
             update_post_meta($post_id, "{$name}_keys", $keys);

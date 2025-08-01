@@ -12,3 +12,11 @@ quote_type = double
 [*.md]
 max_line_length = off
 trim_trailing_whitespace = false
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[*.yaml]
+indent_style = space
+indent_size = 2

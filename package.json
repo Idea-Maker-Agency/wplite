@@ -2,7 +2,6 @@
 	"name": "wplite",
 	"version": "1.0.0",
 	"scripts": {
-		"watch:sass": "sass --load-path=theme/scss --style=compressed --watch --poll theme/scss/main.scss:theme/assets/css/main.min.css theme/templates:theme/templates theme/page-templates:theme/page-templates",
 		"watch:templates-sass": "sass --load-path=theme/scss --style=compressed --watch --poll theme/scss/main.scss:theme/assets/css/main.min.css theme/templates:theme/templates",
 		"watch:page-templates-sass": "sass --load-path=theme/scss --style=compressed --watch --poll theme/scss/main.scss:theme/assets/css/main.min.css theme/page-templates:theme/page-templates",
 		"compile:sass": "sass --load-path=theme/scss --style=compressed theme/scss/main.scss:theme/assets/css/main.min.css theme/templates:theme/templates theme/page-templates:theme/page-templates",

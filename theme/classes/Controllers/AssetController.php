@@ -57,7 +57,7 @@ class AssetController
   {
     wp_enqueue_style(
       'wplite-main',
-      THEME_DIR_URI . '/assets/lib/css/main.min.css',
+      THEME_DIR_URI . '/assets/css/main.min.css',
       [],
       THEME_VERSION,
       'all'

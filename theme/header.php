@@ -37,22 +37,11 @@ use WPLite\Utils\Component;
       rel="pingback"
       href="<?php bloginfo('pingback_url') ?>" />
 
-    <?php if (is_singular() && get_option('thread_comments')) {
+    <?php
+		if (is_singular() && get_option('thread_comments')) {
       wp_enqueue_script('comment-reply');
-    } ?>
-
-    <link
-      href="<?= THEME_DIR_URI ?>/assets/lib/fonts/Poppins Regular.woff2"
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin>
-    <link
-      href="<?= THEME_DIR_URI ?>/assets/lib/fonts/Poppins Bold.woff2"
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin>
+    }
+		?>
 
     <link
       rel="stylesheet"
@@ -62,9 +51,11 @@ use WPLite\Utils\Component;
   </head>
 
   <body <?php body_class() ?>>
-    <?php if (function_exists('wp_body_open')) {
+    <?php
+		if (function_exists('wp_body_open')) {
       wp_body_open();
-    } ?>
+    }
+		?>
 
     <nav class="header navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -86,14 +77,16 @@ use WPLite\Utils\Component;
         <div
           id="header-menu"
           class="collapse navbar-collapse">
-          <?php if ($main_nav_menu_id = get_theme_mod('wplite_navigation_menu')) { ?>
-            <?php wp_nav_menu([
+          <?php
+					if ($main_nav_menu_id = get_theme_mod('wplite_navigation_menu')) {
+						wp_nav_menu([
               'menu'        => $main_nav_menu_id,
               'menu_class'  => 'navbar-nav ms-auto mb-2 mb-lg-0',
               'container'   => '',
               'fallback_cb' => false,
-            ]) ?>
-          <?php } ?>
+            ]);
+					}
+					?>
         </div>
       </div>
     </nav>

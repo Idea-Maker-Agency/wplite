@@ -42,13 +42,13 @@ use WPLite\Utils\Component;
     } ?>
 
     <link
-      href="<?= THEME_DIR_URI ?>/assets/lib/fonts/Poppins Regular.woff2"
+      href="<?= THEME_DIR_URI ?>/assets/fonts/Poppins Regular.woff2"
       rel="preload"
       as="font"
       type="font/woff2"
       crossorigin>
     <link
-      href="<?= THEME_DIR_URI ?>/assets/lib/fonts/Poppins Bold.woff2"
+      href="<?= THEME_DIR_URI ?>/assets/fonts/Poppins Bold.woff2"
       rel="preload"
       as="font"
       type="font/woff2"

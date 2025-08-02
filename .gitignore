@@ -11,7 +11,7 @@ theme/.php-cs-fixer.cache
 theme/vendor
 
 # Compiled assets
-theme/assets/lib/css
+theme/assets/css
 
 theme/templates/**/*.css
 theme/templates/**/*.css.map

@@ -42,19 +42,6 @@ use WPLite\Utils\Component;
     } ?>
 
     <link
-      href="<?= THEME_DIR_URI ?>/assets/fonts/Poppins Regular.woff2"
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin>
-    <link
-      href="<?= THEME_DIR_URI ?>/assets/fonts/Poppins Bold.woff2"
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      crossorigin>
-
-    <link
       rel="stylesheet"
       href="<?php bloginfo('stylesheet_url') ?>">
 

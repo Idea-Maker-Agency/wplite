@@ -21,25 +21,29 @@ get_header();
 
     <?php if (have_posts()) { ?>
       <div class="row mb-4">
-        <?php while (have_posts()) { ?>
-          <?php the_post() ?>
-
+        <?php
+				while (have_posts()) {
+					the_post();
+				?>
           <div class="col-12 col-sm-6 col-lg-4">
             <?php Component::render('article-card', 'Blog', [
               'post' => $post,
             ]) ?>
           </div>
-        <?php } ?>
-
-        <?php wp_reset_postdata() ?>
+        <?php
+				}
+				wp_reset_postdata();
+				?>
       </div>
 
-      <?php the_posts_pagination([
+		<?php
+			the_posts_pagination([
         'mid_size' => 2,
         'type'     => 'list',
         'class'    => '',
-      ]) ?>
-    <?php } else { ?>
+      ]);
+		} else {
+		?>
       <p class="mb-0">
         <?php _e('No posts found.', THEME_TEXT_DOMAIN) ?>
       </p>

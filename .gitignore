@@ -4,9 +4,6 @@
 # Nodejs
 node_modules
 
-# PHP CS Fixer
-theme/.php-cs-fixer.cache
-
 # Vendor
 theme/vendor
 

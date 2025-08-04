@@ -1,7 +1,8 @@
-sass_dir ?= templates
+dev\:templates:
+	docker compose run --rm sass sh -c "npm run watch:templates-sass"
 
-watch\:sass:
-	docker compose run --rm sass sh -c "npm run watch:$(sass_dir)-sass"
+dev\:page-templates:
+	docker compose run --rm sass sh -c "npm run watch:page-templates-sass"
 
 name ?= wplite
 

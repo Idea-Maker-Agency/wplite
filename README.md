@@ -49,7 +49,9 @@ docker-compose up
 To watch templates or page-templates scss files:
 
 ```bash
-make watch:sass # You can pass arg `sass_dir=page-templates`. Defaults to `sass_dir=templates`
+make dev:templates
+
+make dev:page-templates
 ```
 
 Compile the theme:

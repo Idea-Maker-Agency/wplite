@@ -1,3 +1,6 @@
+dev:
+	docker compose run --rm sass sh -c "npm run watch:sass"
+
 dev\:templates:
 	docker compose run --rm sass sh -c "npm run watch:templates-sass"
 

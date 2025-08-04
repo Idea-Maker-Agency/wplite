@@ -211,6 +211,37 @@ class CustomFields
     }
   }
 
+	/**
+	 * Extend fields.
+	 *
+	 * @param array $fields 	The array of fields.
+	 * @param mixed $extends 	Whether a string or array of strings of custom field groups.
+	 *
+	 * @return array
+	 */
+	public static function extend_fields(array $fields, mixed $extends): array {
+		$extends = is_array($extends) ? $extends : [$extends];
+
+		$fields = array_reduce(
+			array_reverse($extends),
+			function (array $carry, string $extend) {
+				$extend_file = locate_template("lib/custom-field-groups/{$extend}.json");
+
+				if ($extend_file) {
+					$extend_contents = file_get_contents($extend_file ?: '');
+					$extend_fields = json_decode($extend_contents, true) ?: [];
+
+					$carry = array_merge($extend_fields, $carry);
+				}
+
+				return $carry;
+			},
+			$fields
+		);
+
+		return $fields;
+	}
+
   /**
    * Render the meta box fields.
    *
@@ -233,14 +264,7 @@ class CustomFields
     $extends = $this->groups[$index]['extends'] ?? null;
 
     if ($extends) {
-      $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
-
-      if ($extends_file) {
-        $extends_contents = file_get_contents($extends_file ?: '');
-        $extends_fields = json_decode($extends_contents, true) ?: [];
-
-        $fields = array_merge($extends_fields, $fields);
-      }
+			$fields = self::extend_fields($fields, $extends);
     }
 
     if (empty($fields)) {
@@ -389,12 +413,7 @@ class CustomFields
       $extends = $group['extends'] ?? null;
 
       if ($extends) {
-        $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
-        $extends_contents = file_get_contents($extends_file);
-
-        $extends_fields = json_decode($extends_contents, true) ?: [];
-
-        $fields = array_merge($extends_fields, $fields);
+				$fields = self::extend_fields($fields, $extends);
       }
 
       $this->save_fields($post_id, $fields, $name);

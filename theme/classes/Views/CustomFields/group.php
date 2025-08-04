@@ -7,14 +7,24 @@ $fields  = $args['field']['fields'] ?? [];
 $extends = $args['field']['extends'] ?? null;
 
 if ($extends) {
-  $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
+	$extends = is_array($extends) ? $extends : [$extends];
 
-  if ($extends_file) {
-    $extends_contents = file_get_contents($extends_file);
-    $extends_fields = json_decode($extends_contents, true) ?: [];
+	$fields = array_reduce(
+		array_reverse($extends),
+		function (array $carry, string $extend) {
+			$extend_file = locate_template("lib/custom-field-groups/{$extend}.json");
 
-    $fields = array_merge($extends_fields, $fields);
-  }
+			if ($extend_file) {
+				$extend_contents = file_get_contents($extend_file ?: '');
+				$extend_fields = json_decode($extend_contents, true) ?: [];
+
+				$carry = array_merge($extend_fields, $carry);
+			}
+
+			return $carry;
+		},
+		$fields
+	);
 }
 
 if (! empty($args['parent_name'])) {

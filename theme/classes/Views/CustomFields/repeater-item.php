@@ -9,14 +9,7 @@ $fields  = $args['fields']        ?? [];
 $extends = $args['field']['extends'] ?? null;
 
 if ($extends) {
-  $extends_file = locate_template("lib/custom-field-groups/{$extends}.json");
-
-  if ($extends_file) {
-    $extends_contents = file_get_contents($extends_file);
-    $extends_fields = json_decode($extends_contents, true) ?: [];
-
-    $fields = array_merge($extends_fields, $fields);
-  }
+	$fields = CustomFields::extend_fields($fields, $extends);
 }
 
 $post = get_post($post_id);

@@ -15,6 +15,7 @@ This guide will help you set up and run a local installation of Wordpress using 
   - [Additional Scripts](#additional-scripts)
 - [Features](#features)
   - [Dynamic theme customizer](#dynamic-theme-customizer)
+  - [Organized components](#organized-components)
   - [Organized page templates](#organized-page-templates)
   - [Organized views](#organized-views)
   - [Built-in custom fields registration](#built-in-custom-fields-registration)
@@ -71,6 +72,7 @@ project
 ├── theme
 |   ├── assets
 |   ├── lib
+|   ├── components
 |   ├── template-parts
 |   ├── templates
 |   ├── vendor
@@ -103,6 +105,7 @@ project
   - `assets/`: Contains static assets like css, js, images and fonts.
   - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
     - `custom-field-groups`: Includes re-usable custom field groups .json files.
+  - `components/`: Custom components.
   - `template-parts/`: Custom template parts.
   - `templates/`: Custom page templates.
   - `vendor/`: Vendor php modules.
@@ -232,11 +235,44 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 
 ### Dynamic theme customizer
 
-Includes a **dynamic, YAML-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight YAML parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.yaml` configuration file.
+Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight JSON parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.json` configuration file.
+
+### Organized components
+
+Custom components can be organized into folders. We need to register our component in order to use it. Use the `after_setup_theme` hook to register custom components.
+
+```php
+<?php
+use WPLite\Utils\Component;
+
+add_action('after_setup_theme', 'wplite_child_register_components');
+function wplite_child_register_components() {
+	Component::register([
+		'my-component',
+	], 'Misc');
+}
+```
+
+To use the component, use the `Component::render()` static method in your template:
+
+```php
+<?php
+use WPLite\Utils\Component;
+
+Component::render('my-component', 'Misc', [
+	'arg_1' => '',
+]);
+```
+
+It is suggested that we put scss module in the same folder to organize the modules and then import it into your template's scss, see example:
+
+```scss
+@use "components/Misc/{{component_name}}/{{component_scss}}";
+```
 
 ### Organized page templates
 
-Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a YAML file, using the same filename as the associated page template (e.g., sample.json).
+Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a JSON file, using the same filename as the associated page template (e.g., sample.json).
 
 ### Organized views
 

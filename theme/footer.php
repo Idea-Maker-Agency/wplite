@@ -56,7 +56,7 @@ use WPLite\Utils\{
               </h4>
             <?php } ?>
 
-            <?php Component::render('social-links', 'Components') ?>
+            <?php Component::render('social-links', 'Misc') ?>
           </div>
         </div>
       </div>

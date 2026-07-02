@@ -37,7 +37,7 @@ function wplite_init(): void
   new AssetController();
   NavMenuController::init();
   TemplateController::init();
-  CommentController::init();
+  new CommentController();
 
   if (class_exists('WPCF7')) {
     ContactForm7Controller::init();

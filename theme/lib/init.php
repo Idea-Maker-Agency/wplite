@@ -44,7 +44,7 @@ function wplite_init(): void
   }
 
   ThemeCustomizerController::init();
-  CustomFieldsRepeaterAJAXController::init();
+  new CustomFieldsRepeaterAJAXController();
   new UploadsController();
 
   // Initialize front-end form controllers

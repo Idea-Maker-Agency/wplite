@@ -2,6 +2,8 @@
 
 namespace WPLite\Controllers\Admin;
 
+use enshrined\svgSanitize\Sanitizer;
+
 defined('ABSPATH') || exit;
 
 class UploadsController
@@ -12,6 +14,7 @@ class UploadsController
   public function __construct()
   {
     add_filter('wp_check_filetype_and_ext', [$this, 'allow_svg_uploads'], 10, 4);
+    add_filter('wp_handle_upload_prefilter', [$this, 'sanitize_uploaded_svg']);
     add_filter('upload_mimes', [$this, 'upload_mimes'], 10, 1);
   }
 
@@ -37,6 +40,26 @@ class UploadsController
         'type'            => $filetype['type'],
         'proper_filename' => $data['proper_filename']
     ];
+  }
+
+  /**
+   * Filter data for the current svg file to upload.
+   *
+   * @param  array $file
+   * @return array
+   */
+  public function sanitize_uploaded_svg(array $file): array
+  {
+    if ($file['type'] === 'image/svg+xml') {
+      $sanitizer = new Sanitizer();
+
+      $dirty_svg = file_get_contents($file['tmp_name']);
+      $clean_svg = $sanitizer->sanitize($dirty_svg);
+
+      file_put_contents($file['tmp_name'], $clean_svg);
+    }
+
+    return $file;
   }
 
   /**

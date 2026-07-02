@@ -2,61 +2,51 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) {
-  die;
-}
-
-use WP_Theme;
-use WP_Post;
 use WPLite\Utils\CustomFields;
+
+defined('ABSPATH') || exit;
 
 class TemplateController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_filter('frontpage_template', [self::class, 'load_page_template'], 10, 3);
-    add_filter('home_template', [self::class, 'load_page_template'], 10, 3);
-    add_filter('page_template', [self::class, 'load_page_template'], 10, 3);
-    add_filter('privacypolicy_template', [self::class, 'load_page_template'], 10, 3);
-    add_filter('search_template', [self::class, 'load_page_template'], 10, 3);
-    add_filter('404_template', [self::class, 'load_page_template'], 10, 3);
+    add_filter('frontpage_template', [$this, 'load_page_template'], 10, 3);
+    add_filter('home_template', [$this, 'load_page_template'], 10, 3);
+    add_filter('page_template', [$this, 'load_page_template'], 10, 3);
+    add_filter('privacypolicy_template', [$this, 'load_page_template'], 10, 3);
+    add_filter('search_template', [$this, 'load_page_template'], 10, 3);
+    add_filter('404_template', [$this, 'load_page_template'], 10, 3);
 
-    add_filter('single_template', [self::class, 'load_single_template'], 10, 3);
-    add_filter('singular_template', [self::class, 'load_single_template'], 10, 1);
+    add_filter('single_template', [$this, 'load_single_template'], 10, 3);
+    add_filter('singular_template', [$this, 'load_single_template'], 10, 1);
 
-    add_filter('archive_template', [self::class, 'load_archive_template'], 10, 1);
+    add_filter('archive_template', [$this, 'load_archive_template'], 10, 1);
 
-    add_filter('category_template', [self::class, 'load_category_template'], 10, 3);
+    add_filter('category_template', [$this, 'load_category_template'], 10, 3);
 
-    add_filter('tag_template', [self::class, 'load_tag_template'], 10, 3);
+    add_filter('tag_template', [$this, 'load_tag_template'], 10, 3);
 
-    add_action('admin_init', [self::class, 'init_custom_fields']);
-    add_filter('theme_page_templates', [self::class, 'page_templates'], 10, 3);
+    add_action('admin_init', [$this, 'init_custom_fields']);
+    add_filter('theme_page_templates', [$this, 'page_templates'], 10, 3);
 
-    add_filter('get_the_archive_title', [self::class, 'archive_title_output'], 10, 3);
-    add_filter('get_search_form', [self::class, 'search_form_output'], 10, 2);
-    add_filter('paginate_links_output', [self::class, 'paginate_links_output'], 10, 2);
+    add_filter('get_the_archive_title', [$this, 'archive_title_output'], 10, 3);
+    add_filter('get_search_form', [$this, 'search_form_output'], 10, 2);
+    add_filter('paginate_links_output', [$this, 'paginate_links_output'], 10, 2);
   }
 
   /**
    * Loads custom page templates file.
    *
-   * @param string $template  Path to the template.
-   * @param string $type      Sanitized filename without extension.
-   * @param array  $templates A list of template candidates, in descending order of priority.
-   *
+   * @param  string $template
+   * @param  string $type
+   * @param  array  $templates
    * @return string
    */
-  public static function load_page_template(
-    string $template,
-    string $type,
-    array $templates
-  ): string {
+  public function load_page_template(string $template, string $type, array $templates): string
+  {
     global $post;
 
     if (is_front_page()) {
@@ -97,11 +87,10 @@ class TemplateController
   /**
    * Loads custom single templates file.
    *
-   * @param string $template Path to the template.
-   *
+   * @param  string $template
    * @return string
    */
-  public static function load_single_template(string $template): string
+  public function load_single_template(string $template): string
   {
     global $post;
 
@@ -114,16 +103,15 @@ class TemplateController
   /**
    * Loads custom archive templates file.
    *
-   * @param string $template Path to the template.
-   *
+   * @param  string $template
    * @return string
    */
-  public static function load_archive_template(string $template): string
+  public function load_archive_template(string $template): string
   {
     $post_type = get_queried_object()->name ?? '';
 
-		// E.g. `templates/archive/<post_type>/<post_type>.php`
-		$custom_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
+    // E.g. `templates/archive/<post_type>/<post_type>.php`
+    $custom_template = locate_template("templates/archive/{$post_type}/archive-{$post_type}.php");
 
     return $custom_template ?: $template;
   }
@@ -131,11 +119,10 @@ class TemplateController
   /**
    * Loads custom category templates file.
    *
-   * @param string $template Path to the template.
-   *
+   * @param  string $template
    * @return string
    */
-  public static function load_category_template(string $template): string
+  public function load_category_template(string $template): string
   {
     $slug = get_queried_object()->slug ?? '';
 
@@ -147,11 +134,10 @@ class TemplateController
   /**
    * Loads custom tag templates file.
    *
-   * @param string $template Path to the template.
-   *
+   * @param  string $template
    * @return string
    */
-  public static function load_tag_template(string $template): string
+  public function load_tag_template(string $template): string
   {
     $slug = get_queried_object()->slug ?? '';
 
@@ -162,10 +148,8 @@ class TemplateController
 
   /**
    * Init custom fields.
-   *
-   * @return void
    */
-  public static function init_custom_fields(): void
+  public function init_custom_fields()
   {
     $id     = (int) $_GET['post'] ?? 0;
     $action = $_POST['action']    ?? null;
@@ -230,7 +214,7 @@ class TemplateController
     }
 
     $json_contents = file_get_contents($json_file);
-    $json_groups = json_decode($json_contents, true);
+    $json_groups   = json_decode($json_contents, true);
 
     if (empty($json_groups)) {
       return;
@@ -245,17 +229,13 @@ class TemplateController
   /**
    * Filters list of page templates.
    *
-   * @param array    $page_templates Array of page templates. Keys are filenames, values are translated names.
-   * @param WP_Theme $theme          The theme object.
-   * @param WP_Post  $post           The post being edited, provided for context, or null.
-   *
+   * @param  array     $page_templates
+   * @param  \WP_Theme $theme
+   * @param  mixed     $post
    * @return array
    */
-  public static function page_templates(
-    array $page_templates,
-    WP_Theme $theme,
-    WP_Post | null $post
-  ): array {
+  public function page_templates(array $page_templates, \WP_Theme $theme, mixed $post): array
+  {
     $path = get_theme_file_path('page-templates');
     $dir  = scandir($path);
 
@@ -295,19 +275,13 @@ class TemplateController
   /**
    * Filters the archive title.
    *
-   * @since 1.0.0
-   *
-   * @param string $title      Archive title to be displayed.
-   * @param string $orig_title Archive title without prefix.
-   * @param string $prefix     Archive title prefix.
-   *
+   * @param  string $title
+   * @param  string $orig_title
+   * @param  string $prefix
    * @return string
    */
-  public static function archive_title_output(
-    string $title,
-    string $orig_title,
-    string $prefix
-  ): string {
+  public function archive_title_output(string $title, string $orig_title, string $prefix): string
+  {
     if (! empty($prefix)) {
       return sprintf(
         _x('%1$s %2$s', 'archive title'),
@@ -322,12 +296,11 @@ class TemplateController
   /**
    * Filters the HTML output of the search form.
    *
-   * @param string $form The search form HTML output.
-   * @param array  $args The array of arguments for building the search form.
-   *
+   * @param  string $form
+   * @param  array  $args
    * @return string
    */
-  public static function search_form_output(string $form, array $args): string
+  public function search_form_output(string $form, array $args): string
   {
     $form = str_replace('type="text"', 'type="text" class="form-control"', $form);
     $form = str_replace('type="submit"', 'type="submit" class="btn btn-secondary mt-2"', $form);
@@ -338,14 +311,11 @@ class TemplateController
   /**
    * Filters the HTML output of paginated links for archives.
    *
-   * @since 1.0.0
-   *
-   * @param string $output HTML output.
-   * @param array  $args   An array of arguments. See `paginate_links()` for information on accepted arguments.
-   *
+   * @param  string $output
+   * @param  array  $args
    * @return string
    */
-  public static function paginate_links_output(string $output, array $args): string
+  public function paginate_links_output(string $output, array $args): string
   {
     if ('list' === $args['type']) {
       $output = str_replace("<ul class='page-numbers'", "<ul class='pagination mb-0 justify-content-center'", $output);

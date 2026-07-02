@@ -2,20 +2,18 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class Router
 {
   /**
    * Get page url by path.
    *
-   * @param string $path The page path.
-   *
-   * @return string|bool
+   * @param  string $path
+   * @param  array  $params
+   * @return string
    */
-  public static function url(string $path, array $params = []): string | bool
+  public function url(string $path, array $params = []): string
   {
     if ('home' === $path) {
       return get_home_url();
@@ -34,12 +32,10 @@ class Router
   /**
    * Redirect to page by path.
    *
-   * @param string $path   The page path.
-   * @param array  $params An array of query params.
-   *
-   * @return void
+   * @param string $path
+   * @param array  $params
    */
-  public static function redirect(string $path = '', array $params = []): void
+  public function redirect(string $path = '', array $params = [])
   {
     if ($path) {
       $page = get_page_by_path($path);

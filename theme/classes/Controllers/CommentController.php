@@ -2,30 +2,25 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class CommentController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_filter('comment_form_default_fields', [self::class, 'comment_form_default_fields'], 10, 1);
+    add_filter('comment_form_default_fields', [$this, 'comment_form_default_fields'], 10, 1);
   }
 
   /**
    * Add bootstrap 5 classes to comment form fields.
    *
-   * @param array $fields The array of comment form fields.
-   *
+   * @param  array $fields
    * @return array
    */
-  public static function comment_form_default_fields(array $fields): array
+  public function comment_form_default_fields(array $fields): array
   {
     $fields = array_map(function ($name, $field) {
       if ('cookies' === $name) {

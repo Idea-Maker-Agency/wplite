@@ -1,7 +1,7 @@
 <?php
 $post_id     = (int) $args['post_id'];
 $name        = $args['field']['name'];
-$required    = $args['field']['args']['required'] ?? false;
+$required    = $args['field']['args']['required']    ?? false;
 $placeholder = $args['field']['args']['placeholder'] ?? '';
 
 if (! empty($args['parent_name'])) {

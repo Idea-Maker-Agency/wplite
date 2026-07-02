@@ -2,142 +2,140 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class FormBuilder extends Form
 {
-  /**
-   * The form action.
-   *
-   * @access public
-   */
-  public string $action;
+    /**
+     * The form action.
+     *
+     * @access public
+     */
+    public string $action;
 
-  /**
-   * Form fields array.
-   *
-   * @access public
-   */
-  public array $fields = [];
+    /**
+     * Form fields array.
+     *
+     * @access public
+     */
+    public array $fields = [];
 
-  /**
-   * Initialize class.
-   *
-   * @param string $name The form name.
-   */
-  public function __construct(string $name)
-  {
-    parent::__construct($name);
+    /**
+     * Initialize class.
+     *
+     * @param string $name The form name.
+     */
+    public function __construct(string $name)
+    {
+        parent::__construct($name);
 
-    $this->action = admin_url('admin-post.php');
-  }
-
-  /**
-   * Set form action.
-   *
-   * @param string $action The form action.
-   *
-   * @return self
-   */
-  public function set_action(string $action): self
-  {
-    $this->action = $action;
-
-    return $this;
-  }
-
-  /**
-   * Add form field.
-   *
-   * @param string $label The form field label. Defaults to empty string.
-   * @param array  $args  The form field args. Defaults to empty array.
-   * @param string $name  The form field name.
-   *
-   * @return self
-   */
-  public function add_field(
-    string $label,
-    mixed $args = null,
-    string $name = ''
-  ): self {
-    if (empty($args)) {
-      $args = [];
+        $this->action = admin_url('admin-post.php');
     }
 
-    if (empty($name)) {
-      $name = $this->namify($label);
+    /**
+     * Set form action.
+     *
+     * @param string $action The form action.
+     *
+     * @return self
+     */
+    public function set_action(string $action): self
+    {
+        $this->action = $action;
+
+        return $this;
     }
 
-    if (! empty($args['helper_text'])) {
-      $args['aria-describedby'] = "id_{$name}_helper";
+    /**
+     * Add form field.
+     *
+     * @param string $label The form field label. Defaults to empty string.
+     * @param array  $args  The form field args. Defaults to empty array.
+     * @param string $name  The form field name.
+     *
+     * @return self
+     */
+    public function add_field(
+        string $label,
+        mixed $args = null,
+        string $name = ''
+    ): self {
+        if (empty($args)) {
+            $args = [];
+        }
+
+        if (empty($name)) {
+            $name = $this->namify($label);
+        }
+
+        if (! empty($args['helper_text'])) {
+            $args['aria-describedby'] = "id_{$name}_helper";
+        }
+
+        $defaults = [
+                'type'        => 'text',
+                'name'        => $name,
+                'id'          => "id_{$name}",
+                'label'       => __($label, THEME_TEXT_DOMAIN),
+                'value'       => '',
+                'placeholder' => '',
+                'class'       => [
+            'form-control',
+          ],
+                'min'       => '',
+                'max'       => '',
+                'step'      => '',
+                'autofocus' => false,
+                'checked'   => false,
+                'selected'  => false,
+                'required'  => false,
+          'hide_label'      => false,
+                'options'   => [],
+          'wrap_id'         => '',
+          'wrap_class'      => [
+            'mb-3',
+          ],
+          'helper_text' => '',
+            ];
+
+        $this->fields[$name] = array_merge($defaults, $args);
+
+        return $this;
     }
 
-    $defaults = [
-            'type'        => 'text',
-            'name'        => $name,
-            'id'          => "id_{$name}",
-            'label'       => __($label, THEME_TEXT_DOMAIN),
-            'value'       => '',
-            'placeholder' => '',
-            'class'       => [
-        'form-control',
-      ],
-            'min'       => '',
-            'max'       => '',
-            'step'      => '',
-            'autofocus' => false,
-            'checked'   => false,
-            'selected'  => false,
-            'required'  => false,
-      'hide_label'      => false,
-            'options'   => [],
-      'wrap_id'         => '',
-      'wrap_class'      => [
-        'mb-3',
-      ],
-      'helper_text' => '',
-        ];
+    /**
+     * Create a name from a label.
+     *
+     * @param string $string The label string.
+     *
+     * @return string
+     */
+    private function namify(string $string): string
+    {
+        $name = '';
 
-    $this->fields[$name] = array_merge($defaults, $args);
+        $name = str_replace('"', '', $string);
+        $name = str_replace("'", '', $name);
+        $name = str_replace('-', '_', $name);
+        $name = preg_replace('~[\W\s]~', '_', $name);
 
-    return $this;
-  }
+        return strtolower($name);
+    }
 
-  /**
-   * Create a name from a label.
-   *
-   * @param string $string The label string.
-   *
-   * @return string
-   */
-  private function namify(string $string): string
-  {
-    $name = '';
-
-    $name = str_replace('"', '', $string);
-    $name = str_replace("'", '', $name);
-    $name = str_replace('-', '_', $name);
-    $name = preg_replace('~[\W\s]~', '_', $name);
-
-    return strtolower($name);
-  }
-
-  /**
-   * Render form.
-   *
-   * @param array  $args {
-   *                     The extra form args.
-   * @type  string $submit_text  Submit button text. Defaults to "Submit".
-   *               }
-   *
-   * @return void
-   */
-  public function render(array $args = []): void
-  {
-    $non_attrs = ['label', 'value', 'options', 'wrap_id', 'wrap_class', 'helper_text', 'hide_label'];
-    ?>
+    /**
+     * Render form.
+     *
+     * @param array  $args {
+     *                     The extra form args.
+     * @type  string $submit_text  Submit button text. Defaults to "Submit".
+     *               }
+     *
+     * @return void
+     */
+    public function render(array $args = []): void
+    {
+        $non_attrs = ['label', 'value', 'options', 'wrap_id', 'wrap_class', 'helper_text', 'hide_label'];
+        ?>
     <?php if ($non_field_message = $this->get_message('non_field')) { ?>
       <div
         class="alert alert-success"
@@ -174,57 +172,57 @@ class FormBuilder extends Form
       <?php if (! empty($this->fields)) { ?>
         <fieldset class="row p-0 border-0">
           <?php
-            foreach ($this->fields as $name => $args) {
-              $type = $args['type'] ?? 'text';
+                foreach ($this->fields as $name => $args) {
+                    $type = $args['type'] ?? 'text';
 
-              $wrap_id    = $args['wrap_id'] ?? null;
-              $wrap_class = null;
+                    $wrap_id    = $args['wrap_id'] ?? null;
+                    $wrap_class = null;
 
-              if (! empty($args['wrap_class'])) {
-                $wrap_class = is_array($args['wrap_class'])
-                  ? implode(' ', $args['wrap_class'])
-                  : $args['wrap_class'];
-              }
+                    if (! empty($args['wrap_class'])) {
+                        $wrap_class = is_array($args['wrap_class'])
+                          ? implode(' ', $args['wrap_class'])
+                          : $args['wrap_class'];
+                    }
 
-              $helper_text = $args['helper_text'] ?? '';
+                    $helper_text = $args['helper_text'] ?? '';
 
-              // Override field value
-              $args['request_value'] = $this->get_value($name) ?: null;
+                    // Override field value
+                    $args['request_value'] = $this->get_value($name) ?: null;
 
-              if ('password' === $type) {
-                $args['value']         = '';
-                $args['request_value'] = '';
-              } elseif (in_array($type, ['checkbox', 'radio'])) {
-                $class_index = array_search('form-control', $args['class']);
+                    if ('password' === $type) {
+                        $args['value']         = '';
+                        $args['request_value'] = '';
+                    } elseif (in_array($type, ['checkbox', 'radio'])) {
+                        $class_index = array_search('form-control', $args['class']);
 
-                $args['class'][$class_index] = 'form-check-input';
+                        $args['class'][$class_index] = 'form-check-input';
 
-                if ('checkbox' === $type) {
-                  $args['value'] = '1';
-                }
-              }
+                        if ('checkbox' === $type) {
+                            $args['value'] = '1';
+                        }
+                    }
 
-              // Set field attributes
-              $args['attrs'] = array_filter($args, function ($value, $key) use ($non_attrs) {
-                if (empty($value)) {
-                  return false;
-                }
+                    // Set field attributes
+                    $args['attrs'] = array_filter($args, function ($value, $key) use ($non_attrs) {
+                        if (empty($value)) {
+                            return false;
+                        }
 
-                if (in_array($key, $non_attrs)) {
-                  return false;
-                }
+                        if (in_array($key, $non_attrs)) {
+                            return false;
+                        }
 
-                return true;
-              }, ARRAY_FILTER_USE_BOTH);
+                        return true;
+                    }, ARRAY_FILTER_USE_BOTH);
 
-              $args['attrs'] = array_map(function ($key, $value) {
-                if (is_array($value)) {
-                  $value = implode(' ', $value);
-                }
+                    $args['attrs'] = array_map(function ($key, $value) {
+                        if (is_array($value)) {
+                            $value = implode(' ', $value);
+                        }
 
-                return $key . '="' . $value . '"';
-              }, array_keys($args['attrs']), $args['attrs']);
-              ?>
+                        return $key . '="' . $value . '"';
+                    }, array_keys($args['attrs']), $args['attrs']);
+                    ?>
             <div
               <?= $wrap_id ? 'id="' . $wrap_id . '"' : '' ?>
               <?= $wrap_class ? 'class="' . $wrap_class . '"' : '' ?>
@@ -280,5 +278,5 @@ class FormBuilder extends Form
   <?php
 
     $this->clear_messages();
-  }
+    }
 }

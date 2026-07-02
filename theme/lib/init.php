@@ -11,7 +11,8 @@ use WPLite\Controllers\{
 };
 use WPLite\Controllers\Admin\{
   ThemeCustomizerController,
-  CustomFieldsRepeaterAJAXController
+  CustomFieldsRepeaterAJAXController,
+  UploadsController
 };
 use WPLite\Controllers\Form\{
   LoginFormController,
@@ -31,19 +32,20 @@ use WPLite\Utils\{
  */
 function wplite_init(): void
 {
-  SetupController::init();
-  AuthController::init();
-  AssetController::init();
-  NavMenuController::init();
-  TemplateController::init();
-  CommentController::init();
+  new SetupController();
+  new AuthController();
+  new AssetController();
+  new NavMenuController();
+  new TemplateController();
+  new CommentController();
 
   if (class_exists('WPCF7')) {
     ContactForm7Controller::init();
   }
 
-  ThemeCustomizerController::init();
-  CustomFieldsRepeaterAJAXController::init();
+  new ThemeCustomizerController();
+  new CustomFieldsRepeaterAJAXController();
+  new UploadsController();
 
   // Initialize front-end form controllers
   LoginFormController::init();

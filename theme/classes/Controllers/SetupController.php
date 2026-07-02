@@ -2,34 +2,28 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class SetupController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_action('after_setup_theme', [self::class, 'setup']);
-    add_action('after_switch_theme', [self::class, 'generate_initial_pages']);
+    add_action('after_setup_theme', [$this, 'setup']);
+    add_action('after_switch_theme', [$this, 'generate_initial_pages']);
 
-    add_action('widgets_init', [self::class, 'register_sidebars']);
+    add_action('widgets_init', [$this, 'register_sidebars']);
 
-    add_filter('excerpt_length', [self::class, 'excerpt_length'], 999);
-    add_filter('excerpt_more', [self::class, 'excerpt_more'], 999);
+    add_filter('excerpt_length', [$this, 'excerpt_length'], 999);
+    add_filter('excerpt_more', [$this, 'excerpt_more'], 999);
   }
 
   /**
    * Setup.
-   *
-   * @return void
    */
-  public static function setup(): void
+  public function setup()
   {
     add_theme_support('post-thumbnails');
     add_theme_support('widgets');
@@ -69,10 +63,8 @@ class SetupController
 
   /**
    * Generate initial pages.
-   *
-   * @return void
    */
-  public static function generate_initial_pages(): void
+  public function generate_initial_pages()
   {
     $pages = [
       [
@@ -127,10 +119,8 @@ class SetupController
 
   /**
    * Register custom sidebars.
-   *
-   * @return void
    */
-  public static function register_sidebars(): void
+  public function register_sidebars()
   {
     register_sidebar([
       'id'            => 'primary-sidebar',
@@ -146,11 +136,10 @@ class SetupController
   /**
    * Filters the maximum number of words in a post excerpt.
    *
-   * @param int $length The maximum number of words.
-   *
+   * @param  int $length
    * @return int
    */
-  public static function excerpt_length(int $length): int
+  public function excerpt_length(int $length): int
   {
     return 14;
   }
@@ -158,11 +147,10 @@ class SetupController
   /**
    * Filters the string in the “more” link displayed after a trimmed excerpt.
    *
-   * @param string $more The string shown within the more link.
-   *
+   * @param  string $more
    * @return string
    */
-  public static function excerpt_more(string $more): string
+  public function excerpt_more(string $more): string
   {
     return '...';
   }

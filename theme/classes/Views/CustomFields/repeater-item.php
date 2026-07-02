@@ -1,15 +1,15 @@
 <?php
 use WPLite\Utils\CustomFields;
 
-$index   = (int) $args['index']   ?? 0;
-$post_id = (int) $args['post_id'] ?? 0;
-$name    = $args['name']          ?? '';
-$key     = $args['key']           ?? '';
-$fields  = $args['fields']        ?? [];
+$index   = (int) $args['index']      ?? 0;
+$post_id = (int) $args['post_id']    ?? 0;
+$name    = $args['name']             ?? '';
+$key     = $args['key']              ?? '';
+$fields  = $args['fields']           ?? [];
 $extends = $args['field']['extends'] ?? null;
 
 if ($extends) {
-	$fields = CustomFields::extend_fields($fields, $extends);
+  $fields = CustomFields::extend_fields($fields, $extends);
 }
 
 $post = get_post($post_id);

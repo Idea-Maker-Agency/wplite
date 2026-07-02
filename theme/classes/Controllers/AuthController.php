@@ -2,38 +2,30 @@
 
 namespace WPLite\Controllers;
 
-use WPLite\Utils\{
-  Form,
-  Router
-};
+use WPLite\Utils\Form;
+use WPLite\Utils\Router;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class AuthController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_action('wp_logout', [self::class, 'on_logout']);
+    add_action('wp_logout', [$this, 'on_logout']);
   }
 
   /**
    * Redirect to login page on logout.
-   *
-   * @return void
    */
-  public static function on_logout(): void
+  public function on_logout()
   {
-    $form = new Form('login');
+    $router = new Router();
+    $form   = new Form('login');
 
     $form->add_message('You have successfully logged out.', 'non_field');
-
-    Router::redirect('login');
+    $router->redirect('login');
   }
 }

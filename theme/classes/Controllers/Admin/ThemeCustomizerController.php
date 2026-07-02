@@ -2,37 +2,28 @@
 
 namespace WPLite\Controllers\Admin;
 
-if (! defined('ABSPATH')) {
-  die;
-}
-
-use WP_Customize_Manager;
-use WP_Customize_Image_Control;
+defined('ABSPATH') || exit;
 
 class ThemeCustomizerController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_action('customize_register', [self::class, 'register']);
+    add_action('customize_register', [$this, 'register']);
   }
 
   /**
    * Register customizer.
    *
-   * @param WP_Customize_Manager $manager The WP Customizer Manager instance.
-   *
-   * @return void
+   * @param \WP_Customize_Manager $manager
    */
-  public static function register(WP_Customize_Manager $manager): void
+  public function register(\WP_Customize_Manager $manager)
   {
-		$file = get_theme_file_path('/config/customizer.json');
-		$contents = file_get_contents($file);
-		$panels = json_decode($contents, true);
+    $file     = get_theme_file_path('/config/customizer.json');
+    $contents = file_get_contents($file);
+    $panels   = json_decode($contents, true);
 
     if (! empty($panels)) {
       foreach ($panels as $panel) {
@@ -68,7 +59,7 @@ class ThemeCustomizerController
                   'select' === $setting['type']
                   && isset($setting['source'])
                 ) {
-                  $setting_args['choices'] = self::resolve_select_choices($setting['source']);
+                  $setting_args['choices'] = $this->resolve_select_choices($setting['source']);
                 }
 
                 $manager->add_setting($setting_id, [
@@ -76,7 +67,7 @@ class ThemeCustomizerController
                 ]);
 
                 if ('image' === $setting['type']) {
-                  $manager->add_control(new WP_Customize_Image_Control(
+                  $manager->add_control(new \WP_Customize_Image_Control(
                     $manager,
                     $setting_id,
                     $setting_args
@@ -95,11 +86,10 @@ class ThemeCustomizerController
   /**
    * Resolve select choices.
    *
-   * @param string $source The select choices source.
-   *
+   * @param  string $source
    * @return array
    */
-  private static function resolve_select_choices(string $source): array
+  private function resolve_select_choices(string $source): array
   {
     $choices = [
       null => __('Select option', THEME_TEXT_DOMAIN),

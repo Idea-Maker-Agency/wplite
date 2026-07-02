@@ -3,11 +3,11 @@ use WPLite\Utils\CustomFields;
 
 $post_id = intval($args['post_id']);
 $name    = $args['field']['name'];
-$fields  = $args['field']['fields'] ?? [];
+$fields  = $args['field']['fields']  ?? [];
 $extends = $args['field']['extends'] ?? null;
 
 if ($extends) {
-	$fields = CustomFields::extend_fields($fields, $extends);
+  $fields = CustomFields::extend_fields($fields, $extends);
 }
 
 if (! empty($args['parent_name'])) {
@@ -65,7 +65,7 @@ $keys = get_post_meta($post_id, "{$name}_keys", true) ?: ["{$name}_0"];
           'fields'  => $fields,
         ]);
       }
-      ?>
+?>
     </div>
 
     <div style="clear: both;"></div>

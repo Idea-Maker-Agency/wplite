@@ -2,42 +2,36 @@
 
 namespace WPLite\Controllers;
 
-if (! defined('ABSPATH')) {
-  die;
-}
+defined('ABSPATH') || exit;
 
 class AssetController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
     add_filter('use_block_editor_for_post', '__return_false');
     add_filter('use_widgets_block_editor', '__return_false');
 
-    add_action('wp_print_styles', [self::class, 'disable_gutenberg_styles'], 100);
+    add_action('wp_print_styles', [$this, 'disable_gutenberg_styles'], 100);
 
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_theme_styles'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_theme_styles'], 10);
 
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_vendor_styles'], 10);
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_vendor_scripts'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_styles'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_scripts'], 10);
 
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_template_styles'], 10);
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_template_scripts'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_styles'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_scripts'], 10);
 
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_styles'], 10);
-    add_action('wp_enqueue_scripts', [self::class, 'enqueue_page_template_scripts'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_styles'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_scripts'], 10);
   }
 
   /**
-   * Disable gutenberg styles.
-   *
-   * @return void
+   * Disable Gutenberg styles.
    */
-  public static function disable_gutenberg_styles(): void
+  public function disable_gutenberg_styles()
   {
     wp_dequeue_style('global-styles');
 
@@ -50,10 +44,8 @@ class AssetController
 
   /**
    * Enqueue theme styles.
-   *
-   * @return void
    */
-  public static function enqueue_theme_styles(): void
+  public function enqueue_theme_styles()
   {
     wp_enqueue_style(
       'wplite-main',
@@ -66,10 +58,8 @@ class AssetController
 
   /**
    * Enqueue vendor styles.
-   *
-   * @return void
    */
-  public static function enqueue_vendor_styles(): void
+  public function enqueue_vendor_styles()
   {
     $styles = [
       // '{{vendor-name}}' => [
@@ -108,10 +98,8 @@ class AssetController
 
   /**
    * Enqueue vendor scripts.
-   *
-   * @return void
    */
-  public static function enqueue_vendor_scripts(): void
+  public static function enqueue_vendor_scripts()
   {
     $scripts = [
       'bootstrap' => [
@@ -154,10 +142,8 @@ class AssetController
 
   /**
    * Enqueue template styles.
-   *
-   * @since 1.0.0
    */
-  public static function enqueue_template_styles(): void
+  public function enqueue_template_styles()
   {
     global $post;
 
@@ -166,9 +152,9 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'front-page';
-      } else if (is_search()) {
+      } elseif (is_search()) {
         $slug = 'search';
-      } else if (is_404()) {
+      } elseif (is_404()) {
         $slug = '404';
       }
 
@@ -193,17 +179,17 @@ class AssetController
         $path = get_theme_file_path("templates/page/{$slug}/{$slug}.css");
         $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.css");
       }
-    } else if (is_category() || is_tag() || is_tax()) {
+    } elseif (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';
 
       $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
       $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.css");
-    } else if (is_home() || is_archive()) {
+    } elseif (is_home() || is_archive()) {
       $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
 
       $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.css");
       $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.css");
-    } else if (is_single()) {
+    } elseif (is_single()) {
       $slug = $post->post_type;
 
       $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.css");
@@ -225,10 +211,8 @@ class AssetController
 
   /**
    * Enqueue template scripts.
-   *
-   * @since 1.0.0
    */
-  public static function enqueue_template_scripts(): void
+  public function enqueue_template_scripts()
   {
     global $post;
 
@@ -237,9 +221,9 @@ class AssetController
     if (is_front_page() || is_page()) {
       if (is_front_page()) {
         $slug = 'front-page';
-      } else if (is_search()) {
-      $slug = 'search';
-      } else if (is_404()) {
+      } elseif (is_search()) {
+        $slug = 'search';
+      } elseif (is_404()) {
         $slug = '404';
       }
 
@@ -264,17 +248,17 @@ class AssetController
         $path = get_theme_file_path("templates/page/{$slug}/{$slug}.js");
         $uri  = get_theme_file_uri("templates/page/{$slug}/{$slug}.js");
       }
-    } else if (is_category() || is_tag() || is_tax()) {
+    } elseif (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';
 
       $path = get_theme_file_path("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
       $uri  = get_theme_file_uri("templates/taxonomy/{$slug}/taxonomy-{$slug}.js");
-    } else if (is_home() || is_archive()) {
+    } elseif (is_home() || is_archive()) {
       $slug = is_home() ? 'post' : (get_queried_object()->name ?? '');
 
       $path = get_theme_file_path("templates/archive/{$slug}/archive-{$slug}.js");
       $uri  = get_theme_file_uri("templates/archive/{$slug}/archive-{$slug}.js");
-    } else if (is_single()) {
+    } elseif (is_single()) {
       $slug = $post->post_type;
 
       $path = get_theme_file_path("templates/single/{$slug}/single-{$slug}.js");
@@ -293,10 +277,8 @@ class AssetController
 
   /**
    * Enqueue page template styles.
-   *
-   * @since 1.0.0
    */
-  public static function enqueue_page_template_styles(): void
+  public function enqueue_page_template_styles()
   {
     $templates = wp_get_theme()->get_page_templates();
 
@@ -323,10 +305,8 @@ class AssetController
 
   /**
    * Enqueue page template scripts.
-   *
-   * @since 1.0.0
    */
-  public static function enqueue_page_template_scripts(): void
+  public function enqueue_page_template_scripts()
   {
     $templates = wp_get_theme()->get_page_templates();
 

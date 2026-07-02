@@ -2,31 +2,25 @@
 
 namespace WPLite\Controllers\Admin;
 
-if (! defined('ABSPATH')) {
-  die;
-}
-
 use WPLite\Utils\CustomFields;
+
+defined('ABSPATH') || exit;
 
 class CustomFieldsRepeaterAJAXController
 {
   /**
-   * Init.
-   *
-   * @return void
+   * Constructor.
    */
-  public static function init(): void
+  public function __construct()
   {
-    add_action('wp_ajax_custom_fields__repeater_add', [self::class, 'add'], 10);
-    add_action('wp_ajax_custom_fields__repeater_remove', [self::class, 'remove'], 10);
+    add_action('wp_ajax_custom_fields__repeater_add', [$this, 'add'], 10);
+    add_action('wp_ajax_custom_fields__repeater_remove', [$this, 'remove'], 10);
   }
 
   /**
    * Add new field.
-   *
-   * @return void
    */
-  public static function add(): void
+  public function add()
   {
     $post_id = (int) $_POST['post_id'] ?: 0;
     $name    = $_POST['name']  ?? '';
@@ -51,10 +45,8 @@ class CustomFieldsRepeaterAJAXController
 
   /**
    * Remove field.
-   *
-   * @return void
    */
-  public static function remove(): void
+  public function remove()
   {
     global $wpdb;
 

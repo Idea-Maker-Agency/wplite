@@ -36,7 +36,7 @@ function wplite_init(): void
   new AuthController();
   new AssetController();
   new NavMenuController();
-  TemplateController::init();
+  new TemplateController();
   new CommentController();
 
   if (class_exists('WPCF7')) {

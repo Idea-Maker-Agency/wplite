@@ -43,7 +43,7 @@ function wplite_init(): void
     ContactForm7Controller::init();
   }
 
-  ThemeCustomizerController::init();
+  new ThemeCustomizerController();
   new CustomFieldsRepeaterAJAXController();
   new UploadsController();
 

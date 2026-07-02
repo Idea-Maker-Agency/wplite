@@ -2,9 +2,6 @@
 
 namespace WPLite\Controllers;
 
-use WP_Post;
-use stdClass;
-
 defined('ABSPATH') || exit;
 
 class NavMenuController
@@ -22,18 +19,14 @@ class NavMenuController
   /**
    * Filters the HTML attributes applied to a menu's list item element.
    *
-   * @param  array    $atts
-   * @param  WP_Post  $menu_item
-   * @param  stdClass $args
-   * @param  int      $depth
+   * @param  array     $atts
+   * @param  \WP_Post  $menu_item
+   * @param  \stdClass $args
+   * @param  int       $depth
    * @return array
    */
-  public function nav_menu_item_attributes(
-    array $atts,
-    WP_Post $menu_item,
-    stdClass $args,
-    int $depth
-  ): array {
+  public function nav_menu_item_attributes(array $atts, \WP_Post $menu_item, \stdClass $args, int $depth): array
+  {
     $atts['class'] = 'nav-item';
     $atts['id']    = 'nav-item-'. $menu_item->ID;
 
@@ -47,18 +40,14 @@ class NavMenuController
   /**
    * Filters the HTML attributes applied to a menu item's anchor element.
    *
-   * @param  array    $atts
-   * @param  WP_Post  $menu_item
-   * @param  stdClass $args
-   * @param  int      $depth
+   * @param  array     $atts
+   * @param  \WP_Post  $menu_item
+   * @param  \stdClass $args
+   * @param  int       $depth
    * @return array
    */
-  public function nav_menu_link_attributes(
-    array $atts,
-    WP_Post $menu_item,
-    stdClass $args,
-    int $depth
-  ): array {
+  public function nav_menu_link_attributes(array $atts, \WP_Post $menu_item, \stdClass $args, int $depth): array
+  {
     $atts['class'] = 0 < $depth ? 'dropdown-item' : 'nav-link';
 
     if (in_array('menu-item-has-children', $menu_item->classes)) {
@@ -81,16 +70,13 @@ class NavMenuController
   /**
    * Filters the CSS class(es) applied to a menu list element.
    *
-   * @param  array    $classes
-   * @param  stdClass $args
-   * @param  int      $depth
+   * @param  array     $classes
+   * @param  \stdClass $args
+   * @param  int       $depth
    * @return array
    */
-  public function nav_menu_submenu_css_class(
-    array $classes,
-    stdClass $args,
-    int $depth
-  ): array {
+  public function nav_menu_submenu_css_class(array $classes, \stdClass $args, int $depth): array
+  {
     return [
       'dropdown-menu',
     ];

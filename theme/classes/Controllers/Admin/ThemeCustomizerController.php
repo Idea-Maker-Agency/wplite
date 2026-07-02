@@ -2,9 +2,6 @@
 
 namespace WPLite\Controllers\Admin;
 
-use WP_Customize_Manager;
-use WP_Customize_Image_Control;
-
 defined('ABSPATH') || exit;
 
 class ThemeCustomizerController
@@ -20,9 +17,9 @@ class ThemeCustomizerController
   /**
    * Register customizer.
    *
-   * @param WP_Customize_Manager $manager
+   * @param \WP_Customize_Manager $manager
    */
-  public function register(WP_Customize_Manager $manager)
+  public function register(\WP_Customize_Manager $manager)
   {
     $file     = get_theme_file_path('/config/customizer.json');
     $contents = file_get_contents($file);
@@ -70,7 +67,7 @@ class ThemeCustomizerController
                 ]);
 
                 if ('image' === $setting['type']) {
-                  $manager->add_control(new WP_Customize_Image_Control(
+                  $manager->add_control(new \WP_Customize_Image_Control(
                     $manager,
                     $setting_id,
                     $setting_args

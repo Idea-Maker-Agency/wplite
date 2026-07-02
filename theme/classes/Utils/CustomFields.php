@@ -2,11 +2,9 @@
 
 namespace WPLite\Utils;
 
-if (! defined('ABSPATH')) {
-  die;
-}
-
 use WP_Post;
+
+defined('ABSPATH') || exit;
 
 class CustomFields
 {
@@ -200,7 +198,7 @@ class CustomFields
           ]);
         }
 
-        if (! empty($field['args']['helper_text'])) {
+      if (! empty($field['args']['helper_text'])) {
         ?>
           <p class="post-attributes-help-text">
             <?= esc_html($field['args']['helper_text']) ?>
@@ -211,36 +209,37 @@ class CustomFields
     }
   }
 
-	/**
-	 * Extend fields.
-	 *
-	 * @param array $fields 	The array of fields.
-	 * @param mixed $extends 	Whether a string or array of strings of custom field groups.
-	 *
-	 * @return array
-	 */
-	public static function extend_fields(array $fields, mixed $extends): array {
-		$extends = is_array($extends) ? $extends : [$extends];
+  /**
+   * Extend fields.
+   *
+   * @param array $fields  The array of fields.
+   * @param mixed $extends Whether a string or array of strings of custom field groups.
+   *
+   * @return array
+   */
+  public static function extend_fields(array $fields, mixed $extends): array
+  {
+    $extends = is_array($extends) ? $extends : [$extends];
 
-		$fields = array_reduce(
-			array_reverse($extends),
-			function (array $carry, string $extend) {
-				$extend_file = locate_template("lib/custom-field-groups/{$extend}.json");
+    $fields = array_reduce(
+      array_reverse($extends),
+      function (array $carry, string $extend) {
+        $extend_file = locate_template("lib/custom-field-groups/{$extend}.json");
 
-				if ($extend_file) {
-					$extend_contents = file_get_contents($extend_file ?: '');
-					$extend_fields = json_decode($extend_contents, true) ?: [];
+        if ($extend_file) {
+          $extend_contents = file_get_contents($extend_file ?: '');
+          $extend_fields   = json_decode($extend_contents, true) ?: [];
 
-					$carry = array_merge($extend_fields, $carry);
-				}
+          $carry = array_merge($extend_fields, $carry);
+        }
 
-				return $carry;
-			},
-			$fields
-		);
+        return $carry;
+      },
+      $fields
+    );
 
-		return $fields;
-	}
+    return $fields;
+  }
 
   /**
    * Render the meta box fields.
@@ -253,18 +252,18 @@ class CustomFields
   public function render_meta_boxes(WP_Post $post, array $args)
   {
     $column = array_column($this->groups, 'name');
-    $index = array_search($args['id'], $column);
+    $index  = array_search($args['id'], $column);
 
     if (! isset($this->groups[$index])) {
       return;
     }
 
-    $name = $this->groups[$index]['name'];
-    $fields = $this->groups[$index]['fields'] ?? [];
+    $name    = $this->groups[$index]['name'];
+    $fields  = $this->groups[$index]['fields']  ?? [];
     $extends = $this->groups[$index]['extends'] ?? null;
 
     if ($extends) {
-			$fields = self::extend_fields($fields, $extends);
+      $fields = self::extend_fields($fields, $extends);
     }
 
     if (empty($fields)) {
@@ -343,7 +342,7 @@ class CustomFields
         if ('group' === $type) {
           $this->save_fields($post_id, $field['fields'] ?? [], $name);
         } elseif ('repeater' === $type) {
-					$sub_fields = array_column($field['fields'] ?? [], 'name');
+          $sub_fields = array_column($field['fields'] ?? [], 'name');
 
           // Filter keys with non-empty fields
           $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true) ?: [];
@@ -407,13 +406,13 @@ class CustomFields
     }
 
     foreach ($this->groups as $group) {
-      $name   = $group['name'] ?? '';
+      $name   = $group['name']   ?? '';
       $fields = $group['fields'] ?? [];
 
       $extends = $group['extends'] ?? null;
 
       if ($extends) {
-				$fields = self::extend_fields($fields, $extends);
+        $fields = self::extend_fields($fields, $extends);
       }
 
       $this->save_fields($post_id, $fields, $name);

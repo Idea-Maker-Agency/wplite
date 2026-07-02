@@ -13,8 +13,8 @@ use WPLite\Utils\Component;
 get_header();
 
 while (have_posts()) {
-	the_post();
-?>
+  the_post();
+  ?>
 	<section class="py-5">
 		<div class="container">
 			<div class="row">
@@ -45,10 +45,10 @@ while (have_posts()) {
 
 						<div itemprop="text">
 							<?php
-							if (has_post_thumbnail()) {
-								echo get_the_post_thumbnail(get_the_ID(), 'featured-image', ['class' => 'mb-4 rounded-4']);
-							} else {
-							?>
+                              if (has_post_thumbnail()) {
+                                echo get_the_post_thumbnail(get_the_ID(), 'featured-image', ['class' => 'mb-4 rounded-4']);
+                              } else {
+                                ?>
 								<svg
 									width="640"
 									height="320"
@@ -92,27 +92,27 @@ while (have_posts()) {
 					</article>
 
 					<?php
-					if (comments_open() || get_comments_number()) {
-						comments_template();
-					}
+                    if (comments_open() || get_comments_number()) {
+                      comments_template();
+                    }
 
-					the_post_navigation([
-						'next_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Next', THEME_TEXT_DOMAIN) . '</span> ' .
-													'<span class="screen-reader-text">' . __('Next post:', THEME_TEXT_DOMAIN) . '</span> ' .
-													'<span class="nav-links__text">%title</span>',
-						'prev_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Previous', THEME_TEXT_DOMAIN) . '</span> ' .
-													'<span class="screen-reader-text">' . __('Previous post:', THEME_TEXT_DOMAIN) . '</span> ' .
-													'<span class="nav-links__text">%title</span>',
-					]);
-					?>
+  the_post_navigation([
+      'next_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Next', THEME_TEXT_DOMAIN) . '</span> ' .
+                                  '<span class="screen-reader-text">' . __('Next post:', THEME_TEXT_DOMAIN) . '</span> ' .
+                                  '<span class="nav-links__text">%title</span>',
+      'prev_text' => '<span class="nav-links__label" aria-hidden="true">' . __('Previous', THEME_TEXT_DOMAIN) . '</span> ' .
+                                  '<span class="screen-reader-text">' . __('Previous post:', THEME_TEXT_DOMAIN) . '</span> ' .
+                                  '<span class="nav-links__text">%title</span>',
+  ]);
+  ?>
 				</main>
 
 				<aside class="col-12 col-lg-3">
 					<?php
-					if (is_active_sidebar('primary-sidebar')) {
-						dynamic_sidebar('primary-sidebar');
-					}
-					?>
+  if (is_active_sidebar('primary-sidebar')) {
+    dynamic_sidebar('primary-sidebar');
+  }
+  ?>
 				</aside>
 			</div>
 		</div>

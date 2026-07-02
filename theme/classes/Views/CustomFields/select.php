@@ -1,10 +1,10 @@
 <?php
 $post_id  = intval($args['post_id']);
 $name     = $args['field']['name'];
-$options  = $args['field']['options']  ?? [];
+$options  = $args['field']['options']          ?? [];
 $multiple = $args['field']['args']['multiple'] ?? false;
 $required = $args['field']['args']['required'] ?? false;
-$source   = $args['field']['args']['source'] ?? null;
+$source   = $args['field']['args']['source']   ?? null;
 
 if (! empty($args['parent_name'])) {
   $name = "{$args['parent_name']}_{$name}";
@@ -14,7 +14,7 @@ if (! empty($args['parent_name'])) {
 if ($source) {
   if (post_type_exists($source)) {
     $posts = get_posts([
-      'post_type' => $source,
+      'post_type'      => $source,
       'posts_per_page' => -1,
     ]);
 
@@ -24,7 +24,7 @@ if ($source) {
         'value' => $post->ID,
       ];
     }, $posts);
-  } else if ('users' === $source) {
+  } elseif ('users' === $source) {
     $users = get_users();
 
     $options = array_map(function ($user) {
@@ -53,20 +53,20 @@ $post = get_post($post_id);
   <?php
   if (! empty($options)) {
     foreach ($options as $option) {
-  ?>
+      ?>
       <option
         value="<?= $option['value'] ?>"
         <?php
-        selected(
-          $multiple ? in_array($option['value'], $post->__get($name) ?: []) : $post->__get($name),
-          $multiple ? true : $option['value'],
-          true
-        );
-        ?>>
+            selected(
+              $multiple ? in_array($option['value'], $post->__get($name) ?: []) : $post->__get($name),
+              $multiple ? true : $option['value'],
+              true
+            );
+      ?>>
         <?= $option['label'] ?>
       </option>
   <?php
     }
   }
-  ?>
+?>
 </select>

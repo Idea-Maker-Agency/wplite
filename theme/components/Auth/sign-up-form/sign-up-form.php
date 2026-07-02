@@ -6,7 +6,7 @@ use WPLite\Utils\{
 };
 
 if (Auth::check()) {
-?>
+  ?>
   <div
     class="alert alert-warning my-0"
     role="alert">
@@ -43,7 +43,7 @@ if (Auth::check()) {
       ]
     )
     ->render();
-?>
+  ?>
   <a
     href="<?= Router::url('login') ?>"
     class="mt-3 d-inline-block">

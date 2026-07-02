@@ -1,8 +1,8 @@
 <?php
 $post_id     = intval($args['post_id']);
 $name        = $args['field']['name'];
-$type        = $args['field']['type'] ?? 'text';
-$required    = $args['field']['args']['required'] ?? false;
+$type        = $args['field']['type']                ?? 'text';
+$required    = $args['field']['args']['required']    ?? false;
 $placeholder = $args['field']['args']['placeholder'] ?? '';
 
 if (! empty($args['parent_name'])) {

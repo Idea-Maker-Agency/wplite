@@ -18,3 +18,4 @@ theme/page-templates/**/*.css.map
 
 # Theme
 *.zip
+.php-cs-fixer.cache

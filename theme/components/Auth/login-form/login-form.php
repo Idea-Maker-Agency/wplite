@@ -5,6 +5,8 @@ use WPLite\Utils\{
   Router
 };
 
+$router = new Router();
+
 if (Auth::check()) {
   ?>
   <div
@@ -44,7 +46,7 @@ if (Auth::check()) {
     ->render();
   ?>
   <a
-    href="<?= Router::url('sign-up') ?>"
+    href="<?= $router->url('sign-up') ?>"
     class="mt-3 d-inline-block">
     <?= __('Dont\'t have an account?', THEME_TEXT_DOMAIN) ?>
   </a>

@@ -75,19 +75,21 @@ abstract class BaseFormController extends Form
   {
     $this->set_values($_POST);
 
+    $router = new Router();
+
     $nonce    = $_POST['_wpnonce']         ?? '';
     $referrer = $_POST['_wp_http_referer'] ?? '';
 
     if (! wp_verify_nonce($nonce, 'wplite')) {
       $this->add_error('Security check failed.', 'non_field');
 
-      Router::redirect($referrer);
+      $router->redirect($referrer);
     }
 
     $this->validate();
 
     if ($this->has_errors()) {
-      Router::redirect($referrer);
+      $router->redirect($referrer);
     }
 
     $this->process();

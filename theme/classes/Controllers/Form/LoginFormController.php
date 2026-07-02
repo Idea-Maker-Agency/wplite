@@ -61,6 +61,8 @@ class LoginFormController extends BaseFormController
    */
   protected function process(): void
   {
+    $router = new Router();
+
     $username   = $this->get_value('username');
     $password   = $this->get_value('password');
     $rememberme = $this->get_value('remember_me');
@@ -76,14 +78,14 @@ class LoginFormController extends BaseFormController
     if (is_wp_error($user)) {
       $this->add_error('Login failed.', 'non_field');
 
-      Router::redirect('login');
+      $router->redirect('login');
     }
 
     wp_set_current_user($user);
 
     $this->cleanup();
 
-    Router::redirect($redirect ?: 'home');
+    $router->redirect($redirect ?: 'home');
   }
 
   /**

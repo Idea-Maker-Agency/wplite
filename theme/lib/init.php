@@ -35,7 +35,7 @@ function wplite_init(): void
   new SetupController();
   new AuthController();
   new AssetController();
-  NavMenuController::init();
+  new NavMenuController();
   TemplateController::init();
   new CommentController();
 

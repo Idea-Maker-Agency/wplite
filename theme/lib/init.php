@@ -33,7 +33,7 @@ use WPLite\Utils\{
 function wplite_init(): void
 {
   SetupController::init();
-  AuthController::init();
+  new AuthController();
   new AssetController();
   NavMenuController::init();
   TemplateController::init();

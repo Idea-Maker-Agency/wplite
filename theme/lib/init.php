@@ -11,7 +11,8 @@ use WPLite\Controllers\{
 };
 use WPLite\Controllers\Admin\{
   ThemeCustomizerController,
-  CustomFieldsRepeaterAJAXController
+  CustomFieldsRepeaterAJAXController,
+  UploadsController
 };
 use WPLite\Controllers\Form\{
   LoginFormController,
@@ -44,6 +45,7 @@ function wplite_init(): void
 
   ThemeCustomizerController::init();
   CustomFieldsRepeaterAJAXController::init();
+  new UploadsController();
 
   // Initialize front-end form controllers
   LoginFormController::init();

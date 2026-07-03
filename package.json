@@ -5,7 +5,8 @@
 		"watch:sass": "sass --load-path=theme --style=compressed --watch --poll theme/scss/main.scss:theme/assets/css/main.min.css",
 		"watch:templates-sass": "sass --load-path=theme --style=compressed --watch --poll theme/templates:theme/templates",
 		"watch:page-templates-sass": "sass --load-path=theme --style=compressed --watch --poll theme/page-templates:theme/page-templates",
-		"compile:sass": "sass --load-path=theme --style=compressed theme/scss/main.scss:theme/assets/css/main.min.css theme/templates:theme/templates theme/page-templates:theme/page-templates",
+		"watch:components-sass": "sass --load-path=theme --style=compressed --watch --poll theme/components:theme/components",
+		"compile:sass": "sass --load-path=theme --style=compressed theme/scss/main.scss:theme/assets/css/main.min.css theme/templates:theme/templates theme/page-templates:theme/page-templates theme/components:theme/components",
 		"compile:theme": "npm run compile:sass && cp -r theme wplite && bestzip wplite.zip wplite/*",
 		"format": "prettier --write ."
 	},

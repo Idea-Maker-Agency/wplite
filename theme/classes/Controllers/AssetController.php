@@ -21,11 +21,11 @@ class AssetController
     add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_styles'], 10);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_scripts'], 10);
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_styles'], 10);
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_scripts'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_styles'], 12);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_scripts'], 12);
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_styles'], 10);
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_scripts'], 10);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_styles'], 12);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_scripts'], 12);
   }
 
   /**
@@ -147,6 +147,12 @@ class AssetController
   {
     global $post;
 
+    $should_enqueue = apply_filters('wplite_auto_enqueue_template_styles', true, $post);
+
+    if (!$should_enqueue) {
+      return;
+    }
+
     $slug = $post->post_name;
 
     if (is_front_page() || is_page()) {
@@ -215,6 +221,12 @@ class AssetController
   public function enqueue_template_scripts()
   {
     global $post;
+
+    $should_enqueue = apply_filters('wplite_auto_enqueue_template_scripts', true, $post);
+
+    if (!$should_enqueue) {
+      return;
+    }
 
     $slug = $post->post_name;
 

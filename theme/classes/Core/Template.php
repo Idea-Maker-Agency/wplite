@@ -32,7 +32,7 @@ class Template
    */
   public function __construct()
   {
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_assets'], 10);
   }
 
   /**
@@ -209,8 +209,10 @@ class Template
       $handle = "wplite-template-{$template_name}";
 
       if ($ext == 'css') {
+        add_filter('wplite_auto_enqueue_template_styles', '__return_false');
         wp_enqueue_style($handle, $uri, $this->components_css_deps, THEME_VERSION, 'all');
       } else {
+        add_filter('wplite_auto_enqueue_template_scripts', '__return_false');
         wp_enqueue_script($handle, $uri, $this->components_js_deps, THEME_VERSION, ['in_footer' => true]);
       }
     }

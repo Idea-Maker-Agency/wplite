@@ -93,6 +93,12 @@ class Template
     }
   }
 
+  /**
+   * Get component name from path.
+   *
+   * @param  string $path
+   * @return string
+   */
   private function get_component_name_from_path(string $path): string
   {
     $parts = explode('/', $path);

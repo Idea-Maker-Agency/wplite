@@ -30,7 +30,8 @@ use WPLite\Utils\{
  *
  * @return void
  */
-function wplite_init(): void
+add_action('after_setup_theme', 'wplite_init');
+function wplite_init()
 {
   new SetupController();
   new AuthController();
@@ -52,20 +53,18 @@ function wplite_init(): void
   SignUpFormController::init();
 
   // Register components
-  Component::register([
-    'logo',
-    'social-links',
-    'related-posts',
-  ], 'Misc');
+  //   Component::register([
+  //     'logo',
+  //     'social-links',
+  //     'related-posts',
+  //   ], 'Misc');
 
-  Component::register([
-    'login-form',
-    'sign-up-form',
-  ], 'Auth');
+  //   Component::register([
+  //     'login-form',
+  //     'sign-up-form',
+  //   ], 'Auth');
 
-  Component::register([
-    'article-card',
-  ], 'Blog');
+  //   Component::register([
+  //     'article-card',
+  //   ], 'Blog');
 }
-
-wplite_init();

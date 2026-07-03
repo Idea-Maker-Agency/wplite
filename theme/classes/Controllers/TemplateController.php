@@ -253,7 +253,13 @@ class TemplateController
       }, $subdir);
 
       $subdir_names = array_map(function ($value, $key) {
-        $file_contents = file_get_contents(get_theme_file_path($key));
+        $file_path = get_theme_file_path($key);
+
+        if (!file_exists($file_path)) {
+          return '';
+        }
+
+        $file_contents = file_get_contents($file_path);
 
         if (preg_match('|Template Name:(.*)$|mi', $file_contents, $type)) {
           return _cleanup_header_comment($type[1]);

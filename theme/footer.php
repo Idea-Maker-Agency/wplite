@@ -21,13 +21,11 @@ use WPLite\Utils\{
         <div class="row">
           <div class="col-12 col-lg-4">
             <?php
-                        Component::render('logo', 'Misc', [
+            Component::render('logo', 'Misc', [
               'width'      => 95,
               'height'     => 45,
               'link_class' => 'footer-logo mb-4 fs-4 d-inline-block',
             ]);
-
-wpautop($intro);
 ?>
           </div>
 
@@ -39,14 +37,14 @@ wpautop($intro);
             <?php } ?>
 
             <?php
-if ($quick_links_menu_id = get_theme_mod('wplite_footer_quick_links_menu')) {
-  wp_nav_menu([
-                'menu'        => $quick_links_menu_id,
-                'menu_class'  => 'list-unstyled d-grid row-gap-2',
-                'container'   => '',
-                'fallback_cb' => false,
-              ]);
-}
+            if ($quick_links_menu_id = get_theme_mod('wplite_footer_quick_links_menu')) {
+              wp_nav_menu([
+                  'menu'        => $quick_links_menu_id,
+                  'menu_class'  => 'list-unstyled d-grid row-gap-2',
+                  'container'   => '',
+                  'fallback_cb' => false,
+                  ]);
+            }
 ?>
           </div>
 

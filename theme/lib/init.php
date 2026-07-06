@@ -7,7 +7,8 @@ use WPLite\Controllers\{
   NavMenuController,
   TemplateController,
   CommentController,
-  ContactForm7Controller
+  ContactForm7Controller,
+  ThemeController
 };
 use WPLite\Controllers\Admin\{
   ThemeCustomizerController,
@@ -39,6 +40,7 @@ function wplite_init()
   new NavMenuController();
   new TemplateController();
   new CommentController();
+  new ThemeController();
 
   if (class_exists('WPCF7')) {
     ContactForm7Controller::init();

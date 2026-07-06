@@ -19,6 +19,7 @@ class TemplateController
     add_filter('privacypolicy_template', [$this, 'load_page_template'], 10, 3);
     add_filter('search_template', [$this, 'load_page_template'], 10, 3);
     add_filter('404_template', [$this, 'load_page_template'], 10, 3);
+    add_action('save_post', [$this, 'on_save_post']);
 
     add_filter('single_template', [$this, 'load_single_template'], 10, 3);
     add_filter('singular_template', [$this, 'load_single_template'], 10, 1);
@@ -30,7 +31,6 @@ class TemplateController
     add_filter('tag_template', [$this, 'load_tag_template'], 10, 3);
 
     add_action('admin_init', [$this, 'init_custom_fields']);
-    add_filter('theme_page_templates', [$this, 'page_templates'], 10, 3);
 
     add_filter('get_the_archive_title', [$this, 'archive_title_output'], 10, 3);
     add_filter('get_search_form', [$this, 'search_form_output'], 10, 2);
@@ -58,30 +58,41 @@ class TemplateController
     } elseif (is_404()) {
       $custom_template = locate_template("templates/page/404/404.php");
     } else {
-      $ancestors = get_post_ancestors($post);
-
-      $nested_path = array_reduce(
-        array_reverse($ancestors),
-        function (string $path, int $ancestor_id) {
-          $slug = get_post_field('post_name', $ancestor_id);
-
-          $path = "{$slug}/{$path}";
-
-          return $path;
-        },
-        $post->post_name
-      );
-
-      // E.g. `templates/page/<parent>/<slug>/<slug>.php`
-      $custom_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php");
+      $custom_template = get_post_meta($post->ID, '_wplite_resolved_template', true);
 
       if (! $custom_template) {
+        $ancestors   = get_post_ancestors($post);
+        $nested_path = array_reduce(
+          array_reverse($ancestors),
+          function (string $path, int $ancestor_id) {
+            $slug = get_post_field('post_name', $ancestor_id);
+            return "{$slug}/{$path}";
+          },
+          $post->post_name
+        );
+
         // E.g. `templates/page/<slug>/<slug>.php`
-        $custom_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
+        $custom_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php") ?: locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
+
+        update_post_meta($post->ID, '_wplite_resolved_template', $custom_template ?: '__none__');
+      }
+
+      if ('__none__' === $custom_template) {
+        $custom_template = '';
       }
     }
 
     return $custom_template ?: $template;
+  }
+
+  /**
+   * On save post.
+   *
+   * @param int $post_id
+   */
+  public function on_save_post(int $post_id)
+  {
+    delete_post_meta($post_id, '_wplite_resolved_template');
   }
 
   /**
@@ -224,58 +235,6 @@ class TemplateController
 
     $custom_fields->set_groups($json_groups);
     $custom_fields->init();
-  }
-
-  /**
-   * Filters list of page templates.
-   *
-   * @param  array     $page_templates
-   * @param  \WP_Theme $theme
-   * @param  mixed     $post
-   * @return array
-   */
-  public function page_templates(array $page_templates, \WP_Theme $theme, mixed $post): array
-  {
-    $path = get_theme_file_path('page-templates');
-    $dir  = scandir($path);
-
-    if ($dir) {
-      $subdir = array_filter($dir, function ($subdir) use ($path) {
-        if (in_array($subdir, ['.', '..'])) {
-          return false;
-        }
-
-        return is_dir($path . '/' . $subdir);
-      });
-
-      $subdir_keys = array_map(function ($value) {
-        return 'page-templates/' . $value . '/' . $value . '.php';
-      }, $subdir);
-
-      $subdir_names = array_map(function ($value, $key) {
-        $file_path = get_theme_file_path($key);
-
-        if (!file_exists($file_path)) {
-          return '';
-        }
-
-        $file_contents = file_get_contents($file_path);
-
-        if (preg_match('|Template Name:(.*)$|mi', $file_contents, $type)) {
-          return _cleanup_header_comment($type[1]);
-        }
-
-        return $value;
-      }, $subdir, $subdir_keys);
-
-      $subdir_items = array_combine($subdir_keys, $subdir_names);
-
-      if (! empty($subdir_items)) {
-        $page_templates = array_merge($page_templates, $subdir_items);
-      }
-    }
-
-    return $page_templates;
   }
 
   /**

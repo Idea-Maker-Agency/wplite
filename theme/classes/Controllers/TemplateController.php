@@ -19,6 +19,7 @@ class TemplateController
     add_filter('privacypolicy_template', [$this, 'load_page_template'], 10, 3);
     add_filter('search_template', [$this, 'load_page_template'], 10, 3);
     add_filter('404_template', [$this, 'load_page_template'], 10, 3);
+    add_action('save_post', [$this, 'on_save_post']);
 
     add_filter('single_template', [$this, 'load_single_template'], 10, 3);
     add_filter('singular_template', [$this, 'load_single_template'], 10, 1);
@@ -57,30 +58,41 @@ class TemplateController
     } elseif (is_404()) {
       $custom_template = locate_template("templates/page/404/404.php");
     } else {
-      $ancestors = get_post_ancestors($post);
-
-      $nested_path = array_reduce(
-        array_reverse($ancestors),
-        function (string $path, int $ancestor_id) {
-          $slug = get_post_field('post_name', $ancestor_id);
-
-          $path = "{$slug}/{$path}";
-
-          return $path;
-        },
-        $post->post_name
-      );
-
-      // E.g. `templates/page/<parent>/<slug>/<slug>.php`
-      $custom_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php");
+      $custom_template = get_post_meta($post->ID, '_wplite_resolved_template', true);
 
       if (! $custom_template) {
+        $ancestors   = get_post_ancestors($post);
+        $nested_path = array_reduce(
+          array_reverse($ancestors),
+          function (string $path, int $ancestor_id) {
+            $slug = get_post_field('post_name', $ancestor_id);
+            return "{$slug}/{$path}";
+          },
+          $post->post_name
+        );
+
         // E.g. `templates/page/<slug>/<slug>.php`
-        $custom_template = locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
+        $custom_template = locate_template("templates/page/{$nested_path}/{$post->post_name}.php") ?: locate_template("templates/page/{$post->post_name}/{$post->post_name}.php");
+
+        update_post_meta($post->ID, '_wplite_resolved_template', $custom_template ?: '__none__');
+      }
+
+      if ('__none__' === $custom_template) {
+        $custom_template = '';
       }
     }
 
     return $custom_template ?: $template;
+  }
+
+  /**
+   * On save post.
+   *
+   * @param int $post_id
+   */
+  public function on_save_post(int $post_id)
+  {
+    delete_post_meta($post_id, '_wplite_resolved_template');
   }
 
   /**

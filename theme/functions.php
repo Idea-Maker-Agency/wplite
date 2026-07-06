@@ -13,4 +13,5 @@ define('THEME_DIR_URI', get_template_directory_uri());
 
 require_once get_theme_file_path('vendor/autoload.php');
 
+require_once get_theme_file_path('lib/page-templates.php');
 require_once get_theme_file_path('lib/init.php');

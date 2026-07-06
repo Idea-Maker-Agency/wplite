@@ -30,7 +30,6 @@ class TemplateController
     add_filter('tag_template', [$this, 'load_tag_template'], 10, 3);
 
     add_action('admin_init', [$this, 'init_custom_fields']);
-    add_filter('theme_page_templates', [$this, 'page_templates'], 10, 3);
 
     add_filter('get_the_archive_title', [$this, 'archive_title_output'], 10, 3);
     add_filter('get_search_form', [$this, 'search_form_output'], 10, 2);
@@ -224,58 +223,6 @@ class TemplateController
 
     $custom_fields->set_groups($json_groups);
     $custom_fields->init();
-  }
-
-  /**
-   * Filters list of page templates.
-   *
-   * @param  array     $page_templates
-   * @param  \WP_Theme $theme
-   * @param  mixed     $post
-   * @return array
-   */
-  public function page_templates(array $page_templates, \WP_Theme $theme, mixed $post): array
-  {
-    $path = get_theme_file_path('page-templates');
-    $dir  = scandir($path);
-
-    if ($dir) {
-      $subdir = array_filter($dir, function ($subdir) use ($path) {
-        if (in_array($subdir, ['.', '..'])) {
-          return false;
-        }
-
-        return is_dir($path . '/' . $subdir);
-      });
-
-      $subdir_keys = array_map(function ($value) {
-        return 'page-templates/' . $value . '/' . $value . '.php';
-      }, $subdir);
-
-      $subdir_names = array_map(function ($value, $key) {
-        $file_path = get_theme_file_path($key);
-
-        if (!file_exists($file_path)) {
-          return '';
-        }
-
-        $file_contents = file_get_contents($file_path);
-
-        if (preg_match('|Template Name:(.*)$|mi', $file_contents, $type)) {
-          return _cleanup_header_comment($type[1]);
-        }
-
-        return $value;
-      }, $subdir, $subdir_keys);
-
-      $subdir_items = array_combine($subdir_keys, $subdir_names);
-
-      if (! empty($subdir_items)) {
-        $page_templates = array_merge($page_templates, $subdir_items);
-      }
-    }
-
-    return $page_templates;
   }
 
   /**

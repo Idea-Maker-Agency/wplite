@@ -7,10 +7,19 @@ defined('ABSPATH') || exit;
 class AssetController
 {
   /**
+   * The theme version.
+   *
+   * @var string
+   */
+  private string $theme_ver;
+
+  /**
    * Constructor.
    */
   public function __construct()
   {
+    $this->theme_ver = wp_get_theme()->__get('version');
+
     add_filter('use_block_editor_for_post', '__return_false');
     add_filter('use_widgets_block_editor', '__return_false');
 
@@ -26,6 +35,16 @@ class AssetController
 
     add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_styles'], 12);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_scripts'], 12);
+  }
+
+  /**
+   * Get the theme page templates.
+   *
+   * @return array
+   */
+  private function get_page_templates(): array
+  {
+    return \WPLite\get_page_templates();
   }
 
   /**
@@ -209,10 +228,13 @@ class AssetController
       return;
     }
 
-    $handle  = "wplite-{$slug}";
-    $version = filemtime($path);
-
-    wp_enqueue_style($handle, $uri, [], $version, 'all');
+    wp_enqueue_style(
+      "wplite-{$slug}",
+      $uri,
+      [],
+      $this->theme_ver,
+      'all'
+    );
   }
 
   /**
@@ -281,10 +303,13 @@ class AssetController
       return;
     }
 
-    $handle  = "wplite-{$slug}";
-    $version = filemtime($path);
-
-    wp_enqueue_script($handle, $uri, [], $version, true);
+    wp_enqueue_script(
+      "wplite-{$slug}",
+      $uri,
+      [],
+      $this->theme_ver,
+      ['strategy' => 'defer', 'in_footer' => true,]
+    );
   }
 
   /**
@@ -292,26 +317,23 @@ class AssetController
    */
   public function enqueue_page_template_styles()
   {
-    $templates = wp_get_theme()->get_page_templates();
+    foreach ($this->get_page_templates() as $path => $name) {
+      $css_path = get_theme_file_path(str_replace('.php', '.css', $path));
 
-    $templates = array_filter($templates, function (string $title, string $base_path) {
-      return is_page_template($base_path);
-    }, ARRAY_FILTER_USE_BOTH);
-
-    if (! empty($templates)) {
-      foreach ($templates as $base_path => $title) {
-        $path = get_theme_file_path(str_replace('.php', '.css', $base_path));
-        $uri  = get_theme_file_uri(str_replace('.php', '.css', $base_path));
-
-        if (! file_exists($path)) {
-          continue;
-        }
-
-        $handle  = 'wplite-' . strtolower(str_replace(' ', '-', $title));
-        $version = filemtime($path);
-
-        wp_enqueue_style($handle, $uri, [], $version, 'all');
+      if (! file_exists($css_path)) {
+        continue;
       }
+
+      $css_uri    = get_theme_file_uri(str_replace('.php', '.css', $path));
+      $css_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+
+      wp_enqueue_style(
+        $css_handle,
+        $css_uri,
+        [],
+        $this->theme_ver,
+        'all'
+      );
     }
   }
 
@@ -320,26 +342,23 @@ class AssetController
    */
   public function enqueue_page_template_scripts()
   {
-    $templates = wp_get_theme()->get_page_templates();
+    foreach ($this->get_page_templates() as $path => $name) {
+      $js_path = get_theme_file_path(str_replace('.php', '.js', $path));
 
-    $templates = array_filter($templates, function (string $title, string $base_path) {
-      return is_page_template($base_path);
-    }, ARRAY_FILTER_USE_BOTH);
-
-    if (! empty($templates)) {
-      foreach ($templates as $base_path => $title) {
-        $path = get_theme_file_path(str_replace('.php', '.js', $base_path));
-        $uri  = get_theme_file_uri(str_replace('.php', '.js', $base_path));
-
-        if (! file_exists($path)) {
-          continue;
-        }
-
-        $handle  = 'wplite-' . strtolower(str_replace(' ', '-', $title));
-        $version = filemtime($path);
-
-        wp_enqueue_script($handle, $uri, [], $version, true);
+      if (! file_exists($js_path)) {
+        continue;
       }
+
+      $js_uri    = get_theme_file_uri(str_replace('.php', '.js', $path));
+      $js_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+
+      wp_enqueue_script(
+        $js_handle,
+        $js_uri,
+        [],
+        $this->theme_ver,
+        ['strategy' => 'defer', 'in_footer' => true,]
+      );
     }
   }
 }

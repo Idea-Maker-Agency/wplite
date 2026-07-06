@@ -34,6 +34,10 @@ class AssetLoader
   /**
    * Get the singleton instance of AssetLoader.
    *
+   * Must be called before the `wp_enqueue_scripts` action fires (e.g. before
+   * `get_header()` runs `wp_head()`). If instantiated from within a template
+   * file, call it at the top of the file, before get_header().
+   *
    * @return AssetLoader
    */
   public static function instantiate(): AssetLoader
@@ -75,6 +79,9 @@ class AssetLoader
   /**
    * Use registered style asset.
    *
+   * Must be called before the `wp_enqueue_scripts` action fires (e.g. before
+   * `get_header()` runs `wp_head()`), otherwise the style will not be enqueued.
+   *
    * @param string $handle
    */
   public static function use_style(string $handle)
@@ -86,6 +93,9 @@ class AssetLoader
 
   /**
    * Use registered script asset.
+   *
+   * Must be called before the `wp_enqueue_scripts` action fires (e.g. before
+   * `get_header()` runs `wp_head()`), otherwise the script will not be enqueued.
    *
    * @param string $handle
    */

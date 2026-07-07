@@ -19,10 +19,6 @@ use WPLite\Controllers\Form\{
   LoginFormController,
   SignUpFormController
 };
-use WPLite\Utils\{
-  Component,
-  View
-};
 
 /**
  * Init.
@@ -53,20 +49,4 @@ function wplite_init()
   // Initialize front-end form controllers
   LoginFormController::init();
   SignUpFormController::init();
-
-  // Register components
-  //   Component::register([
-  //     'logo',
-  //     'social-links',
-  //     'related-posts',
-  //   ], 'Misc');
-
-  //   Component::register([
-  //     'login-form',
-  //     'sign-up-form',
-  //   ], 'Auth');
-
-  //   Component::register([
-  //     'article-card',
-  //   ], 'Blog');
 }

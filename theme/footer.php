@@ -8,10 +8,7 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\{
-  Component,
-  View
-};
+use WPLite\Utils\Component;
 
 ?>
     </main>

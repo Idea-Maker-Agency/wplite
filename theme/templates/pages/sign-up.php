@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying login page.
+ * The template for displaying sign-up page.
  *
  * @package    WPLite
  * @subpackage Templates
@@ -8,10 +8,7 @@
  * @since      1.0.0
  */
 
-use WPLite\Core\Template;
-
-$template = new Template();
-$template->use_component('Auth/login-form');
+use WPLite\Utils\Component;
 
 get_header();
 ?>
@@ -24,7 +21,7 @@ get_header();
           <?= get_the_title() ?>
         </h1>
 
-		<?php $template->get_component('Auth/login-form') ?>
+        <?php Component::render('sign-up-form', 'Auth') ?>
       </div>
     </div>
   </div>

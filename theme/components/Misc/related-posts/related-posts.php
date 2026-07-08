@@ -1,24 +1,30 @@
 <?php
 use WPLite\Utils\Component;
 
-$args = wp_parse_args($args, [
-  'posts_per_page' => 6,
-  'post__not_in'   => [$post->ID],
-  'category__in'   => wp_get_post_categories($post->ID),
-  'orderby'        => 'date',
-]);
+$cache_key        = "wplite_related_posts_{$post->ID}";
+$related_post_ids = get_transient($cache_key);
 
-$query = new WP_Query($args);
+if (false === $related_post_ids) {
+  $query = new WP_Query([
+    'posts_per_page' => 6,
+    'post__not_in'   => [$post->ID],
+    'category__in'   => wp_get_post_categories($post->ID),
+    'orderby'        => 'date',
+    'fields'         => 'ids',
+  ]);
+
+  $related_post_ids = $query->posts;
+
+  set_transient($cache_key, $related_post_ids, HOUR_IN_SECONDS);
+}
 ?>
 
-<?php if ($query->have_posts()) { ?>
+<?php if (! empty($related_post_ids)) { ?>
   <div class="row">
-    <?php while ($query->have_posts()) { ?>
-      <?php $query->the_post() ?>
-
+    <?php foreach ($related_post_ids as $related_post_id) { ?>
       <div class="col-12 col-sm-6 col-lg-4">
         <?php Component::render('article-card', 'Blog', [
-          'post' => $post,
+          'post' => $related_post_id,
         ]) ?>
       </div>
     <?php } ?>

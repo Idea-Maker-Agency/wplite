@@ -44,10 +44,6 @@ use WPLite\Utils\Component;
         }
 ?>
 
-    <link
-      rel="stylesheet"
-      href="<?php bloginfo('stylesheet_url') ?>">
-
     <?php wp_head() ?>
   </head>
 

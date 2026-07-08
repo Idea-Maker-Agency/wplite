@@ -12,14 +12,25 @@ function wplite_get_page_templates(): array
     return $cached;
   }
 
-  $dirs = scandir(THEME_DIR_PATH . '/page-templates');
-  if ($dirs === false) {
-    return [];
+  $scan_dirs = array_unique([get_stylesheet_directory(), THEME_DIR_PATH]);
+
+  $names = [];
+  foreach ($scan_dirs as $theme_dir) {
+    $dirs = scandir($theme_dir . '/page-templates');
+    if ($dirs === false) {
+      continue;
+    }
+
+    foreach ($dirs as $name) {
+      if (! in_array($name, ['.', '..'], true)) {
+        $names[$name] = true;
+      }
+    }
   }
 
   $page_templates = [];
-  foreach ($dirs as $name) {
-    if (in_array($name, ['.', '..'], true) || !is_dir(get_theme_file_path("page-templates/{$name}"))) {
+  foreach (array_keys($names) as $name) {
+    if (!is_dir(get_theme_file_path("page-templates/{$name}"))) {
       continue;
     }
 

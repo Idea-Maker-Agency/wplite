@@ -21,13 +21,18 @@
 @import "./../../node_modules/bootstrap/scss/helpers";
 @import "./../../node_modules/bootstrap/scss/transitions";
 
-@import "./../../node_modules/bootstrap/scss/accordion";
-@import "./../../node_modules/bootstrap/scss/alert";
+// accordion, alert, carousel, and nav are intentionally NOT bundled here -
+// they're conditionally imported per page/page-template by the
+// wplite-sync-template-scss skill, since nothing outside theme/pages/ and
+// theme/page-templates/ currently uses them. buttons, card, forms, navbar,
+// and pagination stay global because root-level templates depend on them
+// (header.php's navbar, 404.php's buttons, comments.php's forms, and
+// article-card's card styling rendered from archive/category/tag/index/
+// single) - those templates are outside the skill's scanning scope, so
+// making these conditional would silently break their styling.
 @import "./../../node_modules/bootstrap/scss/buttons";
 @import "./../../node_modules/bootstrap/scss/card";
-@import "./../../node_modules/bootstrap/scss/carousel";
 @import "./../../node_modules/bootstrap/scss/forms";
-@import "./../../node_modules/bootstrap/scss/nav";
 @import "./../../node_modules/bootstrap/scss/navbar";
 @import "./../../node_modules/bootstrap/scss/pagination";
 

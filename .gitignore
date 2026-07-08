@@ -10,8 +10,8 @@ theme/vendor
 # Compiled assets
 theme/assets/css
 
-theme/templates/**/*.css
-theme/templates/**/*.css.map
+theme/pages/**/*.css
+theme/pages/**/*.css.map
 
 theme/page-templates/**/*.css
 theme/page-templates/**/*.css.map

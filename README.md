@@ -8,18 +8,18 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
-  - [Key Files and Directories](#key-files-and-directories)
+    - [Key Files and Directories](#key-files-and-directories)
 - [VSCode Components](#vscode-components)
 - [Style Guide](#style-guide) - [HTML](#html) - [PHP](#php)
 - [Templating Guide](#templating-guide)
-  - [Additional Scripts](#additional-scripts)
+    - [Additional Scripts](#additional-scripts)
 - [Features](#features)
-  - [Dynamic theme customizer](#dynamic-theme-customizer)
-  - [Organized components](#organized-components)
-  - [Organized page templates](#organized-page-templates)
-  - [Organized views](#organized-views)
-  - [Built-in custom fields registration](#built-in-custom-fields-registration)
-  - [Form Builder](#form-builder)
+    - [Dynamic theme customizer](#dynamic-theme-customizer)
+    - [Organized components](#organized-components)
+    - [Organized page templates](#organized-page-templates)
+    - [Organized views](#organized-views)
+    - [Built-in custom fields registration](#built-in-custom-fields-registration)
+    - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -41,10 +41,10 @@ Copy the `.env-template` file to `.env` and modify it as needed:
 cp .env-template .env
 ```
 
-Run the development server:
+Run the development server in detached mode:
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 To watch and compile all theme Sass (main styles, page templates, page-templates, and components) on change:
@@ -56,10 +56,10 @@ make dev
 Build the theme for production:
 
 ```bash
-make compile
+make build
 ```
 
-The compile command compiles Sass, installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
+The build command compiles Sass, installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -100,29 +100,29 @@ project
 
 - `docs/`: Contains the docs for the application.
 - `theme/`: Contains the main source code for the application.
-  - `assets/`: Contains static assets like css, js, images and fonts.
-  - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
-    - `custom-field-groups`: Includes re-usable custom field groups .json files.
-  - `components/`: Custom components.
-  - `template-parts/`: Custom template parts.
-  - `templates/`: Custom page templates.
-  - `vendor/`: Vendor php modules.
-  - `404.php`: The template for displaying 404 page.
-  - `archive.php`: The template for displaying archive pages.
-  - `category.php`: The template for displaying category pages.
-  - `comments.php`: The template for displaying comments.
-  - `footer.php`: The template for displaying the footer.
-  - `front-page.php`: The template for displaying front-page.
-  - `functions.php`: The main functions php file.
-  - `header.php`: The template for displaying the header.
-  - `home.php`: The template for display blog posts page.
-  - `index.php`: The main template page.
-  - `page.php`: The template for displaying all pages.
-  - `screenshot.png`: The template for displaying the header.
-  - `search.php`: The template for displaying the header.
-  - `single.php`: The template for displaying all single posts.
-  - `style.css`: The main stylesheet css file.
-  - `tag.php`: The template for displaying tag pages.
+    - `assets/`: Contains static assets like css, js, images and fonts.
+    - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
+        - `custom-field-groups`: Includes re-usable custom field groups .json files.
+    - `components/`: Custom components.
+    - `template-parts/`: Custom template parts.
+    - `templates/`: Custom page templates.
+    - `vendor/`: Vendor php modules.
+    - `404.php`: The template for displaying 404 page.
+    - `archive.php`: The template for displaying archive pages.
+    - `category.php`: The template for displaying category pages.
+    - `comments.php`: The template for displaying comments.
+    - `footer.php`: The template for displaying the footer.
+    - `front-page.php`: The template for displaying front-page.
+    - `functions.php`: The main functions php file.
+    - `header.php`: The template for displaying the header.
+    - `home.php`: The template for display blog posts page.
+    - `index.php`: The main template page.
+    - `page.php`: The template for displaying all pages.
+    - `screenshot.png`: The template for displaying the header.
+    - `search.php`: The template for displaying the header.
+    - `single.php`: The template for displaying all single posts.
+    - `style.css`: The main stylesheet css file.
+    - `tag.php`: The template for displaying tag pages.
 - `.editorconfig`: Defines coding styles and indentation settings for consistent formatting across different editors and IDEs.
 - `.env-template`: The .env template file.
 - `docker-compose.yml`: The docker-compose.yml file configures and manages all application services, allowing you to build and run your multi-container Docker application with a single command.

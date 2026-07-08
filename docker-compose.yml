@@ -22,7 +22,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
 
   sass:
-    image: node:14
+    image: node:22-alpine
     container_name: wplite-sass
     volumes:
       - .:/usr/src/app

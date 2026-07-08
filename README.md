@@ -47,21 +47,19 @@ Run the development server:
 docker-compose up
 ```
 
-To watch templates or page-templates scss files:
+To watch and compile all theme Sass (main styles, page templates, page-templates, and components) on change:
 
 ```bash
-make dev:templates
-
-make dev:page-templates
+make dev
 ```
 
-Compile the theme:
+Build the theme for production:
 
 ```bash
-make compile # You can pass arg `name=my-theme`. Defaults to `name=wplite`
+make compile
 ```
 
-The compile command will generate a `wplite` folder which we can zip and upload to development, staging or live server.
+The compile command compiles Sass, installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
 
 **[⬆ back to top](#table-of-contents)**
 

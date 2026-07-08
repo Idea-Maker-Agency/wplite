@@ -28,6 +28,8 @@ class SetupController
     add_theme_support('post-thumbnails');
     add_theme_support('widgets');
 
+    $this->remove_head_bloat();
+
     add_image_size(
       'thumbnail',
       get_option('thumbnail_size_w', 320),
@@ -59,6 +61,21 @@ class SetupController
       320,
       ['center', 'center']
     );
+  }
+
+  /**
+   * Remove default `wp_head` output that adds requests/bytes but isn't used by the theme.
+   */
+  private function remove_head_bloat()
+  {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_shortlink_wp_head');
   }
 
   /**

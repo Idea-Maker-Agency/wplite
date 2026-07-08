@@ -307,25 +307,34 @@ class AssetController
    */
   public function enqueue_page_template_styles()
   {
-    $page_templates = wplite_get_page_templates();
-    foreach ($page_templates as $path => $name) {
-      $css_path = get_theme_file_path(str_replace('.php', '.css', $path));
+	global $post;
 
-      if (! file_exists($css_path)) {
-        continue;
-      }
+	if (!$post) {
+		return;
+	}
 
-      $css_uri    = get_theme_file_uri(str_replace('.php', '.css', $path));
-      $css_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+	$page_template = $post->__get('page_template');
 
-      wp_enqueue_style(
-        $css_handle,
-        $css_uri,
-        [],
-        $this->theme_ver,
-        'all'
-      );
-    }
+	if ($page_template == 'default') {
+		return;
+	}
+
+	$css_path = get_theme_file_path(str_replace('.php', '.css', $page_template));
+
+	if (! file_exists($css_path)) {
+		return;
+	}
+
+	$css_uri    = get_theme_file_uri(str_replace('.php', '.css', $page_template));
+	$css_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+
+	wp_enqueue_style(
+		$css_handle,
+		$css_uri,
+		[],
+		$this->theme_ver,
+		'all'
+	);
   }
 
   /**
@@ -333,24 +342,33 @@ class AssetController
    */
   public function enqueue_page_template_scripts()
   {
-    $page_templates = wplite_get_page_templates();
-    foreach ($page_templates as $path => $name) {
-      $js_path = get_theme_file_path(str_replace('.php', '.js', $path));
+	global $post;
 
-      if (! file_exists($js_path)) {
-        continue;
-      }
+	if (!$post) {
+		return;
+	}
 
-      $js_uri    = get_theme_file_uri(str_replace('.php', '.js', $path));
-      $js_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+	$page_template = $post->__get('page_template');
 
-      wp_enqueue_script(
+	if ($page_template == 'default') {
+		return;
+	}
+
+	$js_path = get_theme_file_path(str_replace('.php', '.JS', $page_template));
+
+	if (! file_exists($js_path)) {
+		return;
+	}
+
+	$js_uri    = get_theme_file_uri(str_replace('.php', '.js', $page_template));
+	$js_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+
+	wp_enqueue_script(
         $js_handle,
         $js_uri,
         [],
         $this->theme_ver,
         ['strategy' => 'defer', 'in_footer' => true,]
-      );
-    }
+	);
   }
 }

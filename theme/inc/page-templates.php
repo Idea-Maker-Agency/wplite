@@ -1,20 +1,18 @@
 <?php
 
-namespace WPLite;
-
 /**
  * Get page templates.
  *
  * @return array
  */
-function get_page_templates(): array
+function wplite_get_page_templates(): array
 {
   $cached = get_transient('wplite_page_templates_list');
   if ($cached !== false) {
     return $cached;
   }
 
-  $dirs = scandir(get_theme_file_path('page-templates'));
+  $dirs = scandir(THEME_DIR_PATH . '/page-templates');
   if ($dirs === false) {
     return [];
   }

@@ -38,16 +38,6 @@ class AssetController
   }
 
   /**
-   * Get the theme page templates.
-   *
-   * @return array
-   */
-  private function get_page_templates(): array
-  {
-    return \WPLite\get_page_templates();
-  }
-
-  /**
    * Disable Gutenberg styles.
    */
   public function disable_gutenberg_styles()
@@ -317,7 +307,8 @@ class AssetController
    */
   public function enqueue_page_template_styles()
   {
-    foreach ($this->get_page_templates() as $path => $name) {
+    $page_templates = wplite_get_page_templates();
+    foreach ($page_templates as $path => $name) {
       $css_path = get_theme_file_path(str_replace('.php', '.css', $path));
 
       if (! file_exists($css_path)) {
@@ -342,7 +333,8 @@ class AssetController
    */
   public function enqueue_page_template_scripts()
   {
-    foreach ($this->get_page_templates() as $path => $name) {
+    $page_templates = wplite_get_page_templates();
+    foreach ($page_templates as $path => $name) {
       $js_path = get_theme_file_path(str_replace('.php', '.js', $path));
 
       if (! file_exists($js_path)) {

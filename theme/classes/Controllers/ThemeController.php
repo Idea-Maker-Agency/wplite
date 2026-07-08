@@ -17,22 +17,12 @@ class ThemeController
   }
 
   /**
-   * Get the theme's page templates.
-   *
-   * @return array
-   */
-  private function get_page_templates(): array
-  {
-    return \WPLite\get_page_templates();
-  }
-
-  /**
    * Cache theme's page templates.
    */
   public function cache_page_templates()
   {
     delete_transient('wplite_page_templates_list');
-    $this->get_page_templates();
+    wplite_get_page_templates();
   }
 
   /**
@@ -43,7 +33,7 @@ class ThemeController
    */
   public function include_page_templates(array $page_templates): array
   {
-    $theme_page_templates = $this->get_page_templates();
+    $theme_page_templates = wplite_get_page_templates();
     if ($theme_page_templates) {
       unset($page_templates['inc/page-templates.php']);
 

@@ -1,4 +1,4 @@
-<?php
+a<?php
 
 use WPLite\Controllers\{
   SetupController,
@@ -19,6 +19,8 @@ use WPLite\Controllers\Form\{
   LoginFormController,
   SignUpFormController
 };
+
+require_once THEME_DIR_PATH . '/inc/page-templates.php';
 
 /**
  * Init.

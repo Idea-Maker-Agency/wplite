@@ -11,6 +11,5 @@ define('THEME_TEXT_DOMAIN', 'wplite');
 define('THEME_DIR_PATH', get_template_directory());
 define('THEME_DIR_URI', get_template_directory_uri());
 
-require_once get_theme_file_path('vendor/autoload.php');
-
-require_once get_theme_file_path('lib/init.php');
+require_once THEME_DIR_PATH . '/vendor/autoload.php';
+require_once THEME_DIR_PATH . '/lib/init.php';

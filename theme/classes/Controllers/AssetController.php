@@ -187,12 +187,12 @@ class AssetController
         $slug
       );
 
-      $path = get_theme_file_path("templates/pages/{$nested_path}/{$slug}.css");
-      $uri  = get_theme_file_uri("templates/pages/{$nested_path}/{$slug}.css");
+      $path = get_theme_file_path("pages/{$nested_path}/{$slug}.css");
+      $uri  = get_theme_file_uri("pages/{$nested_path}/{$slug}.css");
 
       if (! file_exists($path)) {
-        $path = get_theme_file_path("templates/pages/{$slug}/{$slug}.css");
-        $uri  = get_theme_file_uri("templates/pages/{$slug}/{$slug}.css");
+        $path = get_theme_file_path("pages/{$slug}/{$slug}.css");
+        $uri  = get_theme_file_uri("pages/{$slug}/{$slug}.css");
       }
     } elseif (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';
@@ -265,12 +265,12 @@ class AssetController
         $slug
       );
 
-      $path = get_theme_file_path("templates/pages/{$nested_path}/{$slug}.js");
-      $uri  = get_theme_file_uri("templates/pages/{$nested_path}/{$slug}.js");
+      $path = get_theme_file_path("pages/{$nested_path}/{$slug}.js");
+      $uri  = get_theme_file_uri("pages/{$nested_path}/{$slug}.js");
 
       if (! file_exists($path)) {
-        $path = get_theme_file_path("templates/pages/{$slug}/{$slug}.js");
-        $uri  = get_theme_file_uri("templates/pages/{$slug}/{$slug}.js");
+        $path = get_theme_file_path("pages/{$slug}/{$slug}.js");
+        $uri  = get_theme_file_uri("pages/{$slug}/{$slug}.js");
       }
     } elseif (is_category() || is_tag() || is_tax()) {
       $slug = get_queried_object()->taxonomy ?? '';

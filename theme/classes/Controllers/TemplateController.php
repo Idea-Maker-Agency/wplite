@@ -50,13 +50,13 @@ class TemplateController
     global $post;
 
     if (is_front_page()) {
-      $custom_template = locate_template("templates/pages/front-page/front-page.php") ?: locate_template("templates/pages/front-page.php");
+      $custom_template = locate_template("pages/front-page/front-page.php") ?: locate_template("pages/front-page.php");
     } elseif (is_home()) {
       $custom_template = locate_template("templates/archive/post/archive-post.php") ?: locate_template("templates/archive/archive-post.php");
     } elseif (is_search()) {
-      $custom_template = locate_template("templates/pages/search/search.php") ?: locate_template("templates/pages/search.php");
+      $custom_template = locate_template("pages/search/search.php") ?: locate_template("pages/search.php");
     } elseif (is_404()) {
-      $custom_template = locate_template("templates/pages/404/404.php") ?: locate_template("templates/pages/404.php");
+      $custom_template = locate_template("pages/404/404.php") ?: locate_template("pages/404.php");
     } else {
       $custom_template = get_post_meta($post->ID, '_wplite_resolved_template', true);
 
@@ -71,10 +71,10 @@ class TemplateController
           $post->post_name
         );
 
-        // E.g. `templates/pages/<slug>/<slug>.php` or, if it has no CSS/JS, flat as `templates/pages/<slug>.php`
-        $custom_template = locate_template("templates/pages/{$nested_path}/{$post->post_name}.php")
-          ?: locate_template("templates/pages/{$post->post_name}/{$post->post_name}.php")
-          ?: locate_template("templates/pages/{$post->post_name}.php");
+        // E.g. `pages/<slug>/<slug>.php` or, if it has no CSS/JS, flat as `pages/<slug>.php`
+        $custom_template = locate_template("pages/{$nested_path}/{$post->post_name}.php")
+          ?: locate_template("pages/{$post->post_name}/{$post->post_name}.php")
+          ?: locate_template("pages/{$post->post_name}.php");
 
         update_post_meta($post->ID, '_wplite_resolved_template', $custom_template ?: '__none__');
       }
@@ -184,8 +184,8 @@ class TemplateController
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-      $json_file = locate_template("templates/pages/front-page/front-page.json")
-        ?: locate_template("templates/pages/front-page.json");
+      $json_file = locate_template("pages/front-page/front-page.json")
+        ?: locate_template("pages/front-page.json");
 
       remove_post_type_support('page', 'editor');
     } else {
@@ -208,14 +208,14 @@ class TemplateController
             $post_name
           );
 
-          $page_template = locate_template("templates/pages/{$nested_path}/{$post_name}.php");
+          $page_template = locate_template("pages/{$nested_path}/{$post_name}.php");
 
           if (! $page_template) {
-            $page_template = locate_template("templates/pages/{$post_name}/{$post_name}.php");
+            $page_template = locate_template("pages/{$post_name}/{$post_name}.php");
           }
 
           if (! $page_template) {
-            $page_template = locate_template("templates/pages/{$post_name}.php");
+            $page_template = locate_template("pages/{$post_name}.php");
           }
         } else {
           $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php")

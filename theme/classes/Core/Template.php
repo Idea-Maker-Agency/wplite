@@ -158,10 +158,10 @@ class Template
         $slug
       );
 
-      $path = "templates/pages/{$nested_path}";
+      $path = "pages/{$nested_path}";
 
       if (! file_exists($path)) {
-        $path = "templates/pages/{$slug}";
+        $path = "pages/{$slug}";
       }
 
       return $path;

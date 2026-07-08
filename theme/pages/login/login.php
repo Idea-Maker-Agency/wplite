@@ -19,7 +19,7 @@ get_header();
 					<?= get_the_title() ?>
 				</h1>
 
-				<?php get_template_part('pages/partials/login', 'form') ?>
+				<?php get_template_part('pages/login/login', 'form') ?>
 			</div>
 		</div>
 	</div>

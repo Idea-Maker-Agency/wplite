@@ -21,7 +21,7 @@ get_header();
           <?= get_the_title() ?>
         </h1>
 
-		<?php get_template_part('pages/partials/sign-up', 'form') ?>
+		<?php get_template_part('pages/sign-up/sign-up', 'form') ?>
       </div>
     </div>
   </div>

@@ -45,6 +45,8 @@ class ThemeController
   {
     $theme_page_templates = $this->get_page_templates();
     if ($theme_page_templates) {
+      unset($page_templates['inc/page-templates.php']);
+
       return array_merge($page_templates, $theme_page_templates);
     }
 

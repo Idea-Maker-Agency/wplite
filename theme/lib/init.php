@@ -1,4 +1,4 @@
-a<?php
+<?php
 
 use WPLite\Controllers\{
   SetupController,

@@ -21,7 +21,7 @@ get_header();
           <?= get_the_title() ?>
         </h1>
 
-        <?php Component::render('sign-up-form', 'Auth') ?>
+		<?php get_template_part('pages/partials/sign-up', 'form') ?>
       </div>
     </div>
   </div>

@@ -8,8 +8,6 @@
  * @since      1.0.0
  */
 
-use WPLite\Utils\Component;
-
 get_header();
 ?>
 
@@ -21,7 +19,7 @@ get_header();
 					<?= get_the_title() ?>
 				</h1>
 
-				<?php Component::render('login-form', 'Auth') ?>
+				<?php get_template_part('pages/partials/login', 'form') ?>
 			</div>
 		</div>
 	</div>

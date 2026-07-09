@@ -19,10 +19,10 @@ use WPLite\Controllers\Form\{
 require_once THEME_DIR_PATH . '/inc/functions-templates.php';
 require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
 
-require_once THEME_DIR_PATH . '/inc/page-templates.php';
-require_once THEME_DIR_PATH . '/inc/script-loader.php';
-require_once THEME_DIR_PATH . '/inc/nav-menu.php';
-require_once THEME_DIR_PATH . '/inc/comment-template.php';
+require_once THEME_DIR_PATH . '/inc/hooks-comment-template.php';
+require_once THEME_DIR_PATH . '/inc/hooks-nav-menu.php';
+require_once THEME_DIR_PATH . '/inc/hooks-page-templates.php';
+require_once THEME_DIR_PATH . '/inc/hooks-script-loader.php';
 
 /**
  * Init.

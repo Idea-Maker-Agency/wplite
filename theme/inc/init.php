@@ -5,7 +5,6 @@ use WPLite\Controllers\{
   AuthController,
   NavMenuController,
   TemplateController,
-  CommentController,
   ContactForm7Controller,
   ThemeController
 };
@@ -22,6 +21,7 @@ use WPLite\Controllers\Form\{
 require_once THEME_DIR_PATH . '/inc/links.php';
 require_once THEME_DIR_PATH . '/inc/page-templates.php';
 require_once THEME_DIR_PATH . '/inc/script-loader.php';
+require_once THEME_DIR_PATH . '/inc/comment-template.php';
 
 /**
  * Init.
@@ -37,7 +37,6 @@ function wplite_init()
   new AuthController();
   new NavMenuController();
   new TemplateController();
-  new CommentController();
   new ThemeController();
 
   if (class_exists('WPCF7')) {

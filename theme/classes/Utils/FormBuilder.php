@@ -228,19 +228,19 @@ class FormBuilder extends Form
               <?= $wrap_class ? 'class="' . $wrap_class . '"' : '' ?>
               <?= ('hidden' === $type) ? 'hidden' : '' ?>>
               <?php if ('select' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/select', null, $args) ?>
+                <?php get_template_part('inc/form-fields/select', null, $args) ?>
               <?php } elseif ('checkbox' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/checkbox', null, $args) ?>
+                <?php get_template_part('inc/form-fields/checkbox', null, $args) ?>
               <?php } elseif ('checklist' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/checklist', null, $args) ?>
+                <?php get_template_part('inc/form-fields/checklist', null, $args) ?>
               <?php } elseif ('radio' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/radiobox', null, $args) ?>
+                <?php get_template_part('inc/form-fields/radiobox', null, $args) ?>
               <?php } elseif ('radiolist' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/radiolist', null, $args) ?>
+                <?php get_template_part('inc/form-fields/radiolist', null, $args) ?>
               <?php } elseif ('textarea' === $type) { ?>
-                <?php get_template_part('classes/Views/Form/textarea', null, $args) ?>
+                <?php get_template_part('inc/form-fields/textarea', null, $args) ?>
               <?php } else { ?>
-                <?php get_template_part('classes/Views/Form/input', null, $args) ?>
+                <?php get_template_part('inc/form-fields/input', null, $args) ?>
               <?php } ?>
 
               <?php if ($helper_text) { ?>

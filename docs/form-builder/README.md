@@ -37,62 +37,96 @@ Use the FormBuilder utility to define and render fields in your view:
 </div>
 ```
 
-### Controller
+### Actions
 
-Create a dedicated controller to handle validation and processing of the form submission:
+Create a dedicated `inc/actions-my-form.php` file to handle validation and processing of the form submission:
 
 ```php
 <?php
 
-namespace WPLite\Controllers\Form;
+use WPLite\Utils\Form;
 
-if (! defined('ABSPATH')) die;
-
-class MyFormController extends BaseFormController
-{
-  /**
-   * The form action name.
-   *
-   * @return string
-   */
-  public static function form_action(): string
-  {
-    return 'my-form';
-  }
-
-  /**
-   * Validate form submission.
-   *
-   * @return void
-   */
-  protected function validate(): void
-  {
-    $values = $this->get_values();
-
-    // Validation logic goes here...
-  }
-
-  /**
-   * Process form submission.
-   *
-   * @return void
-   */
-  protected function process(): void
-  {
-    $values = $this->get_values();
-
-    // Process form submission...
-
-    $this->cleanup();
-  }
+if (! defined('ABSPATH')) {
+  die;
 }
 
+add_action('after_setup_theme', 'wplite_my_form_init');
+/**
+ * Init.
+ *
+ * @return void
+ */
+function wplite_my_form_init(): void
+{
+  add_action('admin_post_nopriv_my-form', 'wplite_my_form_dispatch');
+  add_action('admin_post_my-form', 'wplite_my_form_dispatch');
+}
+
+/**
+ * Dispatch form submission.
+ *
+ * @return void
+ */
+function wplite_my_form_dispatch(): void
+{
+  $form = new Form('my-form');
+
+  $form->set_values($_POST);
+
+  $nonce    = $_POST['_wpnonce']         ?? '';
+  $referrer = $_POST['_wp_http_referer'] ?? '';
+
+  if (! wp_verify_nonce($nonce, 'wplite')) {
+    $form->add_error('Security check failed.', 'non_field');
+
+    wplite_redirect($referrer);
+  }
+
+  wplite_my_form_validate($form);
+
+  if ($form->has_errors()) {
+    wplite_redirect($referrer);
+  }
+
+  wplite_my_form_process($form);
+}
+
+/**
+ * Validate form submission.
+ *
+ * @param Form $form The form instance.
+ *
+ * @return void
+ */
+function wplite_my_form_validate(Form $form): void
+{
+  $values = $form->get_values();
+
+  // Validation logic goes here...
+}
+
+/**
+ * Process form submission.
+ *
+ * @param Form $form The form instance.
+ *
+ * @return void
+ */
+function wplite_my_form_process(Form $form): void
+{
+  $values = $form->get_values();
+
+  // Process form submission...
+
+  $form->clear_values();
+  $form->clear_errors();
+}
 ```
 
 ### Initialization
 
-Ensure your controller is registered by adding the following line in `lib/init.php` within the `wplite_init()` function:
+Ensure your actions file is loaded by adding the following line in `inc/init.php`:
 
 ```php
-WPLite\Controllers\Form\MyFormController::init();
+require_once THEME_DIR_PATH . '/inc/actions-my-form.php';
 ```

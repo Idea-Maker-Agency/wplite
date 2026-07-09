@@ -16,7 +16,9 @@ use WPLite\Controllers\Form\{
   SignUpFormController
 };
 
-require_once THEME_DIR_PATH . '/inc/links.php';
+require_once THEME_DIR_PATH . '/inc/functions-templates.php';
+require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
+
 require_once THEME_DIR_PATH . '/inc/page-templates.php';
 require_once THEME_DIR_PATH . '/inc/script-loader.php';
 require_once THEME_DIR_PATH . '/inc/nav-menu.php';

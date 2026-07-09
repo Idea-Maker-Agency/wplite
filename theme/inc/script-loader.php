@@ -1,159 +1,110 @@
 <?php
 
-namespace WPLite\Controllers;
+add_filter('use_block_editor_for_post', '__return_false');
+add_filter('use_widgets_block_editor', '__return_false');
 
-defined('ABSPATH') || exit;
+/**
+ * Disable Gutenberg styles.
+ */
+function wplite_disable_gutenberg_styles() {
+	wp_dequeue_style('global-styles');
 
-class AssetController
-{
-  /**
-   * The theme version.
-   *
-   * @var string
-   */
-  private string $theme_ver;
+	wp_dequeue_style('wp-block-library');
+	wp_dequeue_style('wp-block-library-theme');
+	wp_dequeue_style('wc-block-style');
 
-  /**
-   * Constructor.
-   */
-  public function __construct()
-  {
-    $this->theme_ver = wp_get_theme()->__get('version');
+	wp_dequeue_style('storefront-gutenberg-blocks');
+}
+add_action('wp_print_styles', 'wplite_disable_gutenberg_styles', 100);
 
-    add_filter('use_block_editor_for_post', '__return_false');
-    add_filter('use_widgets_block_editor', '__return_false');
+/**
+ * Enqueue vendor styles.
+ */
+function wplite_vendor_styles() {
+	$styles = [
+		// '{{vendor-name}}' => [
+		//   'version' => '{{vendor-version}}',
+		//   'minified' => true,
+		//   'enqueue' => true,
+		// ],
+	];
 
-    add_action('wp_print_styles', [$this, 'disable_gutenberg_styles'], 100);
+	if (! empty($styles)) {
+		foreach ($styles as $name => $args) {
+			$handle       = "wplite-{$name}";
+			$version      = $args['version']      ?? '1.0.0';
+			$dependencies = $args['dependencies'] ?? [];
+			$media        = $args['media']        ?? 'all';
+			$minified     = $args['minified']     ?? false;
+			$enqueue      = $args['enqueue']      ?? false;
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_theme_styles'], 10);
+			$suffix = $minified ? '.min' : '';
+			$src    = THEME_DIR_URI . "/assets/vendor/{$name}/css/{$name}{$suffix}.css";
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_styles'], 10);
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_vendor_scripts'], 10);
+			wp_register_style(
+				$handle,
+				$src,
+				$dependencies,
+				$version,
+				$media
+			);
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_styles'], 12);
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_template_scripts'], 12);
+			if ($enqueue) {
+				wp_enqueue_style($handle);
+			}
+		}
+	}
+}
+add_action('wp_enqueue_scripts', 'wplite_vendor_styles', 10);
 
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_styles'], 12);
-    add_action('wp_enqueue_scripts', [$this, 'enqueue_page_template_scripts'], 12);
-  }
-
-  /**
-   * Disable Gutenberg styles.
-   */
-  public function disable_gutenberg_styles()
-  {
-    wp_dequeue_style('global-styles');
-
-    wp_dequeue_style('wp-block-library');
-    wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('wc-block-style');
-
-    wp_dequeue_style('storefront-gutenberg-blocks');
-  }
-
-  /**
-   * Enqueue theme styles.
-   */
-  public function enqueue_theme_styles()
-  {
-    wp_enqueue_style(
-      'wplite-main',
-      THEME_DIR_URI . '/assets/css/main.min.css',
-      [],
-      THEME_VERSION,
-      'all'
-    );
-  }
-
-  /**
-   * Enqueue vendor styles.
-   */
-  public function enqueue_vendor_styles()
-  {
-    $styles = [
-      // '{{vendor-name}}' => [
-      //   'version' => '{{vendor-version}}',
-      //   'minified' => true,
-      //   'enqueue' => true,
-      // ],
-    ];
-
-    if (! empty($styles)) {
-      foreach ($styles as $name => $args) {
-        $handle       = "wplite-{$name}";
-        $version      = $args['version']      ?? '1.0.0';
-        $dependencies = $args['dependencies'] ?? [];
-        $media        = $args['media']        ?? 'all';
-        $minified     = $args['minified']     ?? false;
-        $enqueue      = $args['enqueue']      ?? false;
-
-        $suffix = $minified ? '.min' : '';
-        $src    = THEME_DIR_URI . "/assets/vendor/{$name}/css/{$name}{$suffix}.css";
-
-        wp_register_style(
-          $handle,
-          $src,
-          $dependencies,
-          $version,
-          $media
-        );
-
-        if ($enqueue) {
-          wp_enqueue_style($handle);
-        }
-      }
-    }
-  }
-
-  /**
-   * Enqueue vendor scripts.
-   */
-  public static function enqueue_vendor_scripts()
-  {
+ /**
+ * Enqueue vendor scripts.
+ */
+function wplite_vendor_scripts() {
     $scripts = [
-      'bootstrap' => [
-        'version'  => '5.3.3',
-        'minified' => true,
-        'enqueue'  => true,
-        'strategy' => 'defer',
-      ],
+		'bootstrap' => [
+			'version'  => '5.3.3',
+			'minified' => true,
+			'enqueue'  => true,
+			'strategy' => 'defer',
+		],
     ];
 
     if (! empty($scripts)) {
-      foreach ($scripts as $name => $args) {
-        $handle       = "wplite-{$name}";
-        $version      = $args['version']      ?? '1.0.0';
-        $dependencies = $args['dependencies'] ?? [];
-        $minified     = $args['minified']     ?? false;
-        $enqueue      = $args['enqueue']      ?? false;
+		foreach ($scripts as $name => $args) {
+			$handle       = "wplite-{$name}";
+			$version      = $args['version']      ?? '1.0.0';
+			$dependencies = $args['dependencies'] ?? [];
+			$minified     = $args['minified']     ?? false;
+			$enqueue      = $args['enqueue']      ?? false;
 
-        $suffix = $minified ? '.min' : '';
-        $src    = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
-        $args   = [
-          'strategy'  => $args['strategy']  ?? '',
-          'in_footer' => $args['in_footer'] ?? true,
-        ];
+			$suffix = $minified ? '.min' : '';
+			$src    = THEME_DIR_URI . "/assets/vendor/{$name}/js/{$name}{$suffix}.js";
+			$args   = [
+				'strategy'  => $args['strategy']  ?? '',
+				'in_footer' => $args['in_footer'] ?? true,
+			];
 
-        wp_register_script(
-          $handle,
-          $src,
-          $dependencies,
-          $version,
-          $args
-        );
+			wp_register_script(
+				$handle,
+				$src,
+				$dependencies,
+				$version,
+				$args
+			);
 
-        if ($enqueue) {
-          wp_enqueue_script($handle);
-        }
-      }
+			if ($enqueue) {
+				wp_enqueue_script($handle);
+			}
+		}
     }
-  }
+}
+add_action('wp_enqueue_scripts', 'wplite_vendor_scripts', 10);
 
-  /**
-   * Enqueue template styles.
-   */
-  public function enqueue_template_styles()
-  {
+/**
+ * Enqueue template styles.
+ */
+function wplite_template_styles() {
     global $post;
 
     $should_enqueue = apply_filters('wplite_auto_enqueue_template_styles', true, $post);
@@ -222,16 +173,16 @@ class AssetController
       "wplite-{$slug}",
       $uri,
       [],
-      $this->theme_ver,
+      wp_get_theme()->__get('version'),
       'all'
     );
-  }
+}
+add_action('wp_enqueue_scripts', 'wplite_template_styles', 12);
 
-  /**
-   * Enqueue template scripts.
-   */
-  public function enqueue_template_scripts()
-  {
+/**
+ * Enqueue template scripts.
+ */
+function wplite_template_scripts() {
     global $post;
 
     $should_enqueue = apply_filters('wplite_auto_enqueue_template_scripts', true, $post);
@@ -297,16 +248,16 @@ class AssetController
       "wplite-{$slug}",
       $uri,
       [],
-      $this->theme_ver,
+      wp_get_theme()->__get('version'),
       ['strategy' => 'defer', 'in_footer' => true,]
     );
-  }
+}
+add_action('wp_enqueue_scripts', 'wplite_template_scripts', 12);
 
-  /**
-   * Enqueue page template styles.
-   */
-  public function enqueue_page_template_styles()
-  {
+/**
+ * Enqueue page template styles.
+ */
+function wplite_page_template_styles() {
 	global $post;
 
 	if (!$post) {
@@ -332,16 +283,16 @@ class AssetController
 		$css_handle,
 		$css_uri,
 		[],
-		$this->theme_ver,
+		wp_get_theme()->__get('version'),
 		'all'
 	);
-  }
+}
+add_action('wp_enqueue_scripts', 'wplite_page_template_styles', 12);
 
-  /**
-   * Enqueue page template scripts.
-   */
-  public function enqueue_page_template_scripts()
-  {
+/**
+ * Enqueue page template scripts.
+ */
+function wplite_page_template_scripts() {
 	global $post;
 
 	if (!$post) {
@@ -367,8 +318,8 @@ class AssetController
         $js_handle,
         $js_uri,
         [],
-        $this->theme_ver,
+        wp_get_theme()->__get('version'),
         ['strategy' => 'defer', 'in_footer' => true,]
 	);
-  }
 }
+add_action('wp_enqueue_scripts', 'wplite_page_template_scripts', 12);

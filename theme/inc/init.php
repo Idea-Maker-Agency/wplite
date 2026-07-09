@@ -3,7 +3,6 @@
 use WPLite\Controllers\{
   SetupController,
   AuthController,
-  AssetController,
   NavMenuController,
   TemplateController,
   CommentController,
@@ -22,6 +21,7 @@ use WPLite\Controllers\Form\{
 
 require_once THEME_DIR_PATH . '/inc/links.php';
 require_once THEME_DIR_PATH . '/inc/page-templates.php';
+require_once THEME_DIR_PATH . '/inc/script-loader.php';
 
 /**
  * Init.
@@ -35,7 +35,6 @@ function wplite_init()
 {
   new SetupController();
   new AuthController();
-  new AssetController();
   new NavMenuController();
   new TemplateController();
   new CommentController();

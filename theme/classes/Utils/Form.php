@@ -2,7 +2,6 @@
 
 namespace WPLite\Utils;
 
-use WPLite\Models\Auth;
 use WPLite\Utils\Transient;
 
 defined('ABSPATH') || exit;

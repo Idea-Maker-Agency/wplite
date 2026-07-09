@@ -1,5 +1,4 @@
 <?php
-use WPLite\Models\Auth;
 use WPLite\Utils\{
   FormBuilder,
   Router
@@ -7,7 +6,7 @@ use WPLite\Utils\{
 
 $router = new Router();
 
-if (Auth::check()) {
+if (is_user_logged_in()) {
   ?>
   <div
     class="alert alert-warning my-0"

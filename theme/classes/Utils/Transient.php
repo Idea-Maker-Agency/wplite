@@ -2,8 +2,6 @@
 
 namespace WPLite\Utils;
 
-use WPLite\Models\Auth;
-
 defined('ABSPATH') || exit;
 
 abstract class Transient
@@ -35,7 +33,7 @@ abstract class Transient
     public function __construct(string $key, int $expiration = 60 * 10)
     {
         if (
-            ! Auth::check()
+            !is_user_logged_in()
             && ! isset($_COOKIE['user_id'])
         ) {
             $user_id = wp_generate_uuid4();
@@ -62,8 +60,8 @@ abstract class Transient
      */
     private function get_key(): string
     {
-        if (Auth::check()) {
-            $user_id = Auth::id();
+        if (is_user_logged_in()) {
+            $user_id = get_current_user_id();
         } else {
             $user_id = $_COOKIE['user_id'];
         }

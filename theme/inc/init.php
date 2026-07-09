@@ -3,7 +3,6 @@
 use WPLite\Controllers\{
   SetupController,
   AuthController,
-  NavMenuController,
   TemplateController,
   ContactForm7Controller
 };
@@ -20,6 +19,7 @@ use WPLite\Controllers\Form\{
 require_once THEME_DIR_PATH . '/inc/links.php';
 require_once THEME_DIR_PATH . '/inc/page-templates.php';
 require_once THEME_DIR_PATH . '/inc/script-loader.php';
+require_once THEME_DIR_PATH . '/inc/nav-menu.php';
 require_once THEME_DIR_PATH . '/inc/comment-template.php';
 
 /**
@@ -34,7 +34,6 @@ function wplite_init()
 {
   new SetupController();
   new AuthController();
-  new NavMenuController();
   new TemplateController();
 
   if (class_exists('WPCF7')) {

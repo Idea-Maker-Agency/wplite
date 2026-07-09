@@ -224,7 +224,7 @@ class CustomFields
     $fields = array_reduce(
       array_reverse($extends),
       function (array $carry, string $extend) {
-        $extend_file = locate_template("lib/custom-field-groups/{$extend}.json");
+        $extend_file = locate_template("inc/custom-field-groups/{$extend}.json");
 
         if ($extend_file) {
           $extend_contents = file_get_contents($extend_file ?: '');

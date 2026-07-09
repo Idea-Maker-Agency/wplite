@@ -230,27 +230,13 @@ Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.
 
 ### Organized components
 
-Custom components can be organized into folders. We need to register our component in order to use it. Use the `after_setup_theme` hook to register custom components.
+Custom components can be organized into folders.
+
+To use the component, use the `wplite_get_component()` function in your template:
 
 ```php
 <?php
-use WPLite\Utils\Component;
-
-add_action('after_setup_theme', 'wplite_child_register_components');
-function wplite_child_register_components() {
-	Component::register([
-		'my-component',
-	], 'Misc');
-}
-```
-
-To use the component, use the `Component::render()` static method in your template:
-
-```php
-<?php
-use WPLite\Utils\Component;
-
-Component::render('my-component', 'Misc', [
+wplite_get_component('my-component', '', [
 	'arg_1' => '',
 ]);
 ```

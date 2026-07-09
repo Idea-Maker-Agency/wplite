@@ -89,3 +89,21 @@ function wplite_get_webp_asset_url(string $name, array $size = []): string
 
     return get_theme_file_uri("/assets/img/{$filename}");
 }
+
+/**
+ * Get the component.
+ *
+ * @param  string $name
+ * @param  string $namespace
+ * @param  array  $args
+ */
+function wplite_get_component(string $name, string $namespace = '', array $args = []): void
+{
+    $folder = '';
+
+    if ($namespace) {
+        $folder = "{$namespace}/";
+    }
+
+    get_template_part("components/{$folder}{$name}/{$name}", null, $args);
+}

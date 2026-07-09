@@ -2,7 +2,6 @@
 
 use WPLite\Controllers\{
   SetupController,
-  TemplateController,
   ContactForm7Controller
 };
 use WPLite\Controllers\Admin\{
@@ -19,6 +18,8 @@ require_once THEME_DIR_PATH . '/inc/functions-templates.php';
 require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
 
 require_once THEME_DIR_PATH . '/inc/hooks-auth.php';
+require_once THEME_DIR_PATH . '/inc/hooks-general-template.php';
+require_once THEME_DIR_PATH . '/inc/hooks-templates.php';
 require_once THEME_DIR_PATH . '/inc/hooks-comment-template.php';
 require_once THEME_DIR_PATH . '/inc/hooks-nav-menu.php';
 require_once THEME_DIR_PATH . '/inc/hooks-page-templates.php';
@@ -35,7 +36,6 @@ add_action('after_setup_theme', 'wplite_init');
 function wplite_init()
 {
   new SetupController();
-  new TemplateController();
 
   if (class_exists('WPCF7')) {
     ContactForm7Controller::init();

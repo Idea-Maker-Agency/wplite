@@ -25,26 +25,6 @@ function wplite_allow_svg_uploads(array $data, string $file, string $filename, m
 add_filter('wp_check_filetype_and_ext', 'wplite_allow_svg_uploads', 10, 4);
 
 /**
- * Filter data for the current svg file to upload.
- *
- * @param  array $file
- * @return array
- */
-function wplite_sanitize_uploaded_svg(array $file): array {
-	if ($file['type'] === 'image/svg+xml') {
-		$sanitizer = new enshrined\svgSanitize\Sanitizer();
-
-		$dirty_svg = file_get_contents($file['tmp_name']);
-		$clean_svg = $sanitizer->sanitize($dirty_svg);
-
-		file_put_contents($file['tmp_name'], $clean_svg);
-	}
-
-	return $file;
-}
-add_filter('wp_handle_upload_prefilter', 'wplite_sanitize_uploaded_svg');
-
-/**
  * Include 'image/svg+xml' to upload mimes.
  *
  * @param  array $mimes

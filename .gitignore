@@ -13,9 +13,6 @@ theme/assets/css
 theme/pages/**/*.css
 theme/pages/**/*.css.map
 
-theme/page-templates/**/*.css
-theme/page-templates/**/*.css.map
-
 theme/components/**/*.css
 theme/components/**/*.css.map
 

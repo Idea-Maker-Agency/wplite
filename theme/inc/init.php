@@ -3,7 +3,6 @@
 use WPLite\Controllers\ContactForm7Controller;
 use WPLite\Controllers\Admin\{
   ThemeCustomizerController,
-  CustomFieldsRepeaterAJAXController,
   UploadsController
 };
 use WPLite\Controllers\Form\{
@@ -13,6 +12,8 @@ use WPLite\Controllers\Form\{
 
 require_once THEME_DIR_PATH . '/inc/functions-templates.php';
 require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
+
+require_once THEME_DIR_PATH . '/inc/ajax/ajax-custom-fields-repeater.php';
 
 require_once THEME_DIR_PATH . '/inc/hooks-setup.php';
 require_once THEME_DIR_PATH . '/inc/hooks-formatting.php';
@@ -39,7 +40,6 @@ function wplite_init()
   }
 
   new ThemeCustomizerController();
-  new CustomFieldsRepeaterAJAXController();
   new UploadsController();
 
   // Initialize front-end form controllers

@@ -3,7 +3,6 @@
 namespace WPLite\Controllers;
 
 use WPLite\Utils\Form;
-use WPLite\Utils\Router;
 
 defined('ABSPATH') || exit;
 
@@ -22,10 +21,9 @@ class AuthController
    */
   public function on_logout()
   {
-    $router = new Router();
     $form   = new Form('login');
 
     $form->add_message('You have successfully logged out.', 'non_field');
-    $router->redirect('login');
+    wplite_redirect('login');
   }
 }

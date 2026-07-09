@@ -2,10 +2,7 @@
 
 namespace WPLite\Controllers\Form;
 
-use WPLite\Utils\{
-  Form,
-  Router
-};
+use WPLite\Utils\Form;
 
 if (! defined('ABSPATH')) {
   die;
@@ -75,21 +72,19 @@ abstract class BaseFormController extends Form
   {
     $this->set_values($_POST);
 
-    $router = new Router();
-
     $nonce    = $_POST['_wpnonce']         ?? '';
     $referrer = $_POST['_wp_http_referer'] ?? '';
 
     if (! wp_verify_nonce($nonce, 'wplite')) {
       $this->add_error('Security check failed.', 'non_field');
 
-      $router->redirect($referrer);
+      wplite_redirect($referrer);
     }
 
     $this->validate();
 
     if ($this->has_errors()) {
-      $router->redirect($referrer);
+      wplite_redirect($referrer);
     }
 
     $this->process();

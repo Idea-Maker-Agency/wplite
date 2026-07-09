@@ -1,10 +1,5 @@
 <?php
-use WPLite\Utils\{
-  FormBuilder,
-  Router
-};
-
-$router = new Router();
+use WPLite\Utils\FormBuilder;
 
 if (is_user_logged_in()) {
   ?>
@@ -45,10 +40,13 @@ if (is_user_logged_in()) {
     )
     ->render();
   ?>
+
+  <?php if ($login_url = wplite_get_url('login')) { ?>
   <a
-    href="<?= $router->url('login') ?>"
+    href="<?php echo $login_url ?>"
     class="mt-3 d-inline-block">
     <?= __('Already have an account?', THEME_TEXT_DOMAIN) ?>
   </a>
 <?php
+  }
 }

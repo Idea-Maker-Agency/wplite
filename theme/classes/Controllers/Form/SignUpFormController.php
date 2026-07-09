@@ -6,10 +6,7 @@ if (! defined('ABSPATH')) {
   die;
 }
 
-use WPLite\Utils\{
-  FormBuilder,
-  Router
-};
+use WPLite\Utils\FormBuilder;
 
 class SignUpFormController extends BaseFormController
 {
@@ -68,8 +65,6 @@ class SignUpFormController extends BaseFormController
    */
   protected function process(): void
   {
-    $router = new Router();
-
     $email_address = $this->get_value('email_address');
     $password      = $this->get_value('password');
 
@@ -78,7 +73,7 @@ class SignUpFormController extends BaseFormController
     if (email_exists($email_address)) {
       $this->add_error('Email address is already taken.', 'non_field');
 
-      $router->redirect('sign-up');
+      wplite_redirect('sign-up');
     }
 
     $user_id = wp_create_user($email_address, $password, $email_address);
@@ -86,7 +81,7 @@ class SignUpFormController extends BaseFormController
     if (is_wp_error($user_id)) {
       $this->add_error('Sign up failed.', 'non_field');
 
-      $router->redirect('sign-up');
+      wplite_redirect('sign-up');
     }
 
     $user = wp_signon([
@@ -98,7 +93,7 @@ class SignUpFormController extends BaseFormController
 
     $this->cleanup();
 
-    $router->redirect($redirect ?: 'home');
+    wplite_redirect($redirect ?: 'home');
   }
 
   /**

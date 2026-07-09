@@ -143,55 +143,55 @@ class CustomFields
 
         <?php
         if ('group' === $type) {
-          get_template_part('classes/Views/CustomFields/group', null, [
+          get_template_part('inc/custom-fields/group', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('repeater' === $type) {
-          get_template_part('classes/Views/CustomFields/repeater', null, [
+          get_template_part('inc/custom-fields/repeater', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('select' === $type) {
-          get_template_part('classes/Views/CustomFields/select', null, [
+          get_template_part('inc/custom-fields/select', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('wpeditor' === $type) {
-          get_template_part('classes/Views/CustomFields/wpeditor', null, [
+          get_template_part('inc/custom-fields/wpeditor', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('image' === $type) {
-          get_template_part('classes/Views/CustomFields/image', null, [
+          get_template_part('inc/custom-fields/image', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('checkbox' === $type) {
-          get_template_part('classes/Views/CustomFields/checkbox', null, [
+          get_template_part('inc/custom-fields/checkbox', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('radio' === $type) {
-          get_template_part('classes/Views/CustomFields/radio', null, [
+          get_template_part('inc/custom-fields/radio', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } elseif ('textarea' === $type) {
-          get_template_part('classes/Views/CustomFields/textarea', null, [
+          get_template_part('inc/custom-fields/textarea', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,
           ]);
         } else {
-          get_template_part('classes/Views/CustomFields/input', null, [
+          get_template_part('inc/custom-fields/input', null, [
             'post_id'     => $post->ID,
             'field'       => $field,
             'parent_name' => $parent_name,

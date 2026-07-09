@@ -31,7 +31,7 @@ class CustomFieldsRepeaterAJAXController
     $key = $keys[count($keys) - 1];
     ?>
     <div id="repeater-fields-<?= $name ?>">
-      <?php get_template_part('classes/Views/CustomFields/repeater', 'item', [
+      <?php get_template_part('inc/custom-fields/repeater', 'item', [
         'post_id' => $post_id,
         'name'    => $name,
         'index'   => $index,

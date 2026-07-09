@@ -1,10 +1,6 @@
 <?php
 
 use WPLite\Controllers\ContactForm7Controller;
-use WPLite\Controllers\Admin\{
-  ThemeCustomizerController,
-  UploadsController
-};
 use WPLite\Controllers\Form\{
   LoginFormController,
   SignUpFormController
@@ -14,6 +10,9 @@ require_once THEME_DIR_PATH . '/inc/functions-templates.php';
 require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
 
 require_once THEME_DIR_PATH . '/inc/ajax/ajax-custom-fields-repeater.php';
+
+require_once THEME_DIR_PATH . '/inc/admin/hooks-customizer.php';
+require_once THEME_DIR_PATH . '/inc/admin/hooks-media-uploader.php';
 
 require_once THEME_DIR_PATH . '/inc/hooks-setup.php';
 require_once THEME_DIR_PATH . '/inc/hooks-formatting.php';
@@ -38,9 +37,6 @@ function wplite_init()
   if (class_exists('WPCF7')) {
     ContactForm7Controller::init();
   }
-
-  new ThemeCustomizerController();
-  new UploadsController();
 
   // Initialize front-end form controllers
   LoginFormController::init();

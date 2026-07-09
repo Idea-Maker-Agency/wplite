@@ -122,7 +122,7 @@ while (have_posts()) {
 		<div class="container">
 			<h2 class="mb-4 fw-bold">Related Posts</h2>
 
-			<?php Component::render('related-posts', 'Misc') ?>
+			<?php Component::render('related-posts') ?>
 		</div>
 	</section>
 <?php

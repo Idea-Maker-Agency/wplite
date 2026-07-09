@@ -6,7 +6,7 @@
  * @param \WP_Customize_Manager $manager
  */
 function wplite_customize_register(\WP_Customize_Manager $manager) {
-    $file     = get_theme_file_path('/config/customizer.json');
+    $file     = get_theme_file_path('/customizer.json');
     $contents = file_get_contents($file);
     $panels   = json_decode($contents, true);
 

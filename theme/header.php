@@ -56,7 +56,7 @@ if (function_exists('wp_body_open')) {
 
     <nav class="header navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <?php Component::render('logo', 'Misc', [
+        <?php Component::render('logo', '', [
   'link_class' => 'navbar-brand',
 ]) ?>
 

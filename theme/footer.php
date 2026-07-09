@@ -18,7 +18,7 @@ use WPLite\Utils\Component;
         <div class="row">
           <div class="col-12 col-lg-4">
             <?php
-            Component::render('logo', 'Misc', [
+            Component::render('logo', '', [
               'width'      => 95,
               'height'     => 45,
               'link_class' => 'footer-logo mb-4 fs-4 d-inline-block',

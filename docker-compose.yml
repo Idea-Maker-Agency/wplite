@@ -21,9 +21,9 @@ services:
       - PMA_HOST=mysql
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
 
-  sass:
+  nodejs:
     image: node:22-alpine
-    container_name: wplite-sass
+    container_name: wplite-nodejs
     volumes:
       - .:/usr/src/app
     working_dir: /usr/src/app

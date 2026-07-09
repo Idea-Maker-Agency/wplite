@@ -48,8 +48,6 @@ namespace WPLite\Controllers\Form;
 
 if (! defined('ABSPATH')) die;
 
-use WPLite\Utils\Router;
-
 class MyFormController extends BaseFormController
 {
   /**

@@ -17,7 +17,6 @@ This guide will help you set up and run a local installation of Wordpress using 
     - [Dynamic theme customizer](#dynamic-theme-customizer)
     - [Organized components](#organized-components)
     - [Organized page templates](#organized-page-templates)
-    - [Organized views](#organized-views)
     - [Built-in custom fields registration](#built-in-custom-fields-registration)
     - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
@@ -47,19 +46,13 @@ Run the development server in detached mode:
 docker-compose up -d
 ```
 
-To watch and compile all theme Sass (main styles, page templates, page-templates, and components) on change:
-
-```bash
-make dev
-```
-
 Build the theme for production:
 
 ```bash
 make build
 ```
 
-The build command compiles Sass, installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
+The build command installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -233,7 +226,7 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 
 ### Dynamic theme customizer
 
-Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight JSON parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.json` configuration file.
+Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight JSON parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `customizer.json` configuration file.
 
 ### Organized components
 
@@ -262,19 +255,9 @@ Component::render('my-component', 'Misc', [
 ]);
 ```
 
-It is suggested that we put scss module in the same folder to organize the modules and then import it into your template's scss, see example:
-
-```scss
-@use "components/Misc/{{component_name}}/{{component_scss}}";
-```
-
 ### Organized page templates
 
 Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a JSON file, using the same filename as the associated page template (e.g., sample.json).
-
-### Organized views
-
-Custom views can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/views/README.md)
 
 ### Built-in custom fields registration
 
@@ -290,7 +273,7 @@ The theme includes built-in custom fields registration system for templates and 
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
 
-You can also create and re-use custom fields by creating a .json file inside `lib/custom-field-groups`. To be able to re-use it, use `extends` in your field. See example usage:
+You can also create and re-use custom fields by creating a .json file inside `inc/custom-field-groups`. To be able to re-use it, use `extends` in your field. See example usage:
 
 ```json
 {
@@ -300,7 +283,7 @@ You can also create and re-use custom fields by creating a .json file inside `li
   "fields": []
 }
 
-# This will include lib/custom-field-groups/header-banner.json if it exists
+# This will include inc/custom-field-groups/header-banner.json if it exists
 ```
 
 ### Form Builder

@@ -1,12 +1,11 @@
 <?php
 
-use WPLite\Controllers\Form\{
-  LoginFormController,
-  SignUpFormController
-};
+use WPLite\Controllers\Form\SignUpFormController;
 
 require_once THEME_DIR_PATH . '/inc/functions-templates.php';
 require_once THEME_DIR_PATH . '/inc/functions-page-templates.php';
+
+require_once THEME_DIR_PATH . '/inc/actions-login-form.php';
 
 require_once THEME_DIR_PATH . '/inc/ajax/ajax-custom-fields-repeater.php';
 
@@ -34,6 +33,5 @@ add_action('after_setup_theme', 'wplite_init');
 function wplite_init()
 {
   // Initialize front-end form controllers
-  LoginFormController::init();
   SignUpFormController::init();
 }

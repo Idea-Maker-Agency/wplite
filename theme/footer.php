@@ -51,8 +51,6 @@ use WPLite\Utils\Component;
                 <?= __($get_in_touch_heading, THEME_TEXT_DOMAIN) ?>
               </h4>
             <?php } ?>
-
-            <?php Component::render('social-links', 'Misc') ?>
           </div>
         </div>
       </div>

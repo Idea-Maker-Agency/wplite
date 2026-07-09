@@ -7,15 +7,5 @@ node_modules
 # Vendor
 theme/vendor
 
-# Compiled assets
-theme/assets/css
-
-theme/pages/**/*.css
-theme/pages/**/*.css.map
-
-theme/components/**/*.css
-theme/components/**/*.css.map
-
 # Theme
 *.zip
-.php-cs-fixer.cache

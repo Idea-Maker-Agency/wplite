@@ -23,8 +23,8 @@ function wplite_cf_init_template_custom_fields()
     $page_template = get_post_meta($id, '_wp_page_template', true);
 
     if ($front_page_id == $id) {
-        $json_file = locate_template("pages/front-page/front-page.json")
-            ?: locate_template("pages/front-page.json");
+        $json_file = locate_template("templates/front-page/front-page.json")
+            ?: locate_template("templates/front-page.json");
 
         remove_post_type_support('page', 'editor');
     } else {
@@ -45,14 +45,14 @@ function wplite_cf_init_template_custom_fields()
                     $post_name
                 );
 
-                $page_template = locate_template("pages/{$nested_path}/{$post_name}.php");
+                $page_template = locate_template("templates/{$nested_path}/{$post_name}.php");
 
                 if (! $page_template) {
-                    $page_template = locate_template("pages/{$post_name}/{$post_name}.php");
+                    $page_template = locate_template("templates/{$post_name}/{$post_name}.php");
                 }
 
                 if (! $page_template) {
-                    $page_template = locate_template("pages/{$post_name}.php");
+                    $page_template = locate_template("templates/{$post_name}.php");
                 }
             } else {
                 $page_template = locate_template("templates/single/{$post_type}/single-{$post_type}.php")

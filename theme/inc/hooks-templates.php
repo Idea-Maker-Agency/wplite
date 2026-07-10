@@ -24,13 +24,13 @@ function wplite_page_template(string $template, string $type, array $templates):
     global $post;
 
     if (is_front_page()) {
-        $custom_template = locate_template("pages/front-page/front-page.php") ?: locate_template("pages/front-page.php");
+        $custom_template = locate_template("templates/front-page/front-page.php") ?: locate_template("templates/front-page.php");
     } elseif (is_home()) {
         $custom_template = locate_template("templates/archive/post/archive-post.php") ?: locate_template("templates/archive/archive-post.php");
     } elseif (is_search()) {
-        $custom_template = locate_template("pages/search/search.php") ?: locate_template("pages/search.php");
+        $custom_template = locate_template("templates/search/search.php") ?: locate_template("templates/search.php");
     } elseif (is_404()) {
-        $custom_template = locate_template("pages/404/404.php") ?: locate_template("pages/404.php");
+        $custom_template = locate_template("templates/404/404.php") ?: locate_template("templates/404.php");
     } else {
         $custom_template = get_post_meta($post->ID, '_wplite_resolved_template', true);
 
@@ -45,10 +45,10 @@ function wplite_page_template(string $template, string $type, array $templates):
                 $post->post_name
             );
 
-            // E.g. `pages/<slug>/<slug>.php` or, if it has no CSS/JS, flat as `pages/<slug>.php`
-            $custom_template = locate_template("pages/{$nested_path}/{$post->post_name}.php")
-              ?: locate_template("pages/{$post->post_name}/{$post->post_name}.php")
-              ?: locate_template("pages/{$post->post_name}.php");
+            // E.g. `templates/<slug>/<slug>.php` or, if it has no CSS/JS, flat as `templates/<slug>.php`
+            $custom_template = locate_template("templates/{$nested_path}/{$post->post_name}.php")
+              ?: locate_template("templates/{$post->post_name}/{$post->post_name}.php")
+              ?: locate_template("templates/{$post->post_name}.php");
 
             update_post_meta($post->ID, '_wplite_resolved_template', $custom_template ?: '__none__');
         }
@@ -113,9 +113,10 @@ add_filter('archive_template', 'wplite_archive_template', 10, 1);
 function wplite_category_template(string $template): string
 {
     $current_obj = get_queried_object();
+    $slug = $current_obj->taxonomy;
 
-    $custom_template = locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}/taxonomy-{$current_obj->taxonomy}.php")
-      ?: locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}.php");
+    $custom_template = locate_template("templates/taxonomy/{$slug}/taxonomy-{$slug}.php")
+      ?: locate_template("templates/taxonomy/taxonomy-{$slug}.php");
 
     return $custom_template ?: $template;
 }
@@ -131,9 +132,10 @@ add_filter('taxonomy_template', 'wplite_category_template', 10, 3);
 function wplite_tag_template(string $template): string
 {
     $current_obj = get_queried_object();
+    $slug = $current_obj->taxonomy;
 
-    $custom_template = locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}/taxonomy-{$current_obj->taxonomy}.php")
-      ?: locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}.php");
+    $custom_template = locate_template("templates/taxonomy/{$slug}/taxonomy-{$slug}.php")
+      ?: locate_template("templates/taxonomy/taxonomy-{$slug}.php");
 
     return $custom_template ?: $template;
 }

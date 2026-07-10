@@ -73,7 +73,7 @@ add_filter('404_template', 'wplite_page_template', 10, 3);
  * @param  string $template
  * @return string
  */
-function wplite_load_single_template(string $template): string
+function wplite_single_template(string $template): string
 {
     global $post;
 

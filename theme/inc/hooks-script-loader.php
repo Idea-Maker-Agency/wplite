@@ -285,7 +285,7 @@ function wplite_page_template_styles()
     }
 
     $css_uri    = get_theme_file_uri(str_replace('.php', '.css', $page_template));
-    $css_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+    $css_handle = 'wplite-' . strtolower(str_replace(' ', '-', $page_template));
 
     wp_enqueue_style(
         $css_handle,
@@ -321,7 +321,7 @@ function wplite_page_template_scripts()
     }
 
     $js_uri    = get_theme_file_uri(str_replace('.php', '.js', $page_template));
-    $js_handle = 'wplite-' . strtolower(str_replace(' ', '-', $name));
+    $js_handle = 'wplite-' . strtolower(str_replace(' ', '-', $page_template));
 
     wp_enqueue_script(
         $js_handle,

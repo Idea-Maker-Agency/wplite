@@ -4,8 +4,5 @@
 # Nodejs
 node_modules
 
-# Vendor
-theme/vendor
-
 # Theme
 *.zip

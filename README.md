@@ -18,7 +18,6 @@ This guide will help you set up and run a local installation of Wordpress using 
     - [Organized components](#organized-components)
     - [Organized page templates](#organized-page-templates)
     - [Built-in custom fields registration](#built-in-custom-fields-registration)
-    - [Form Builder](#form-builder)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -52,7 +51,7 @@ Build the theme for production:
 make build
 ```
 
-The build command installs Composer dependencies without dev-only packages, and generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
+The build command generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -66,7 +65,6 @@ project
 |   ├── components
 |   ├── template-parts
 |   ├── templates
-|   ├── vendor
 |   ├── 404.php
 |   ├── archive.php
 |   ├── category.php
@@ -99,7 +97,6 @@ project
     - `components/`: Custom components.
     - `template-parts/`: Custom template parts.
     - `templates/`: Custom page templates.
-    - `vendor/`: Vendor php modules.
     - `404.php`: The template for displaying 404 page.
     - `archive.php`: The template for displaying archive pages.
     - `category.php`: The template for displaying category pages.
@@ -271,10 +268,6 @@ You can also create and re-use custom fields by creating a .json file inside `in
 
 # This will include inc/custom-field-groups/header-banner.json if it exists
 ```
-
-### Form Builder
-
-This theme includes lightweight and extensible utility for building and handling front-end forms, [read docs](/docs/form-builder/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

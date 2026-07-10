@@ -48,13 +48,5 @@ services:
     ports:
       - ${WORDPRESS_PORT:-8080}:80
 
-  composer:
-    image: composer:latest
-    container_name: wplite-composer
-    volumes:
-      - ./theme:/theme
-    working_dir: /theme
-    command: install
-
 volumes:
   mysql_data: {}

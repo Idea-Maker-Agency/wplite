@@ -112,14 +112,15 @@ add_filter('archive_template', 'wplite_archive_template', 10, 1);
  */
 function wplite_category_template(string $template): string
 {
-    $slug = get_queried_object()->slug ?? '';
+    $current_obj = get_queried_object();
 
-    $custom_template = locate_template("templates/taxonomy/category/taxonomy-category.php")
-      ?: locate_template("templates/taxonomy/taxonomy-category.php");
+    $custom_template = locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}/taxonomy-{$current_obj->taxonomy}.php")
+      ?: locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}.php");
 
     return $custom_template ?: $template;
 }
 add_filter('category_template', 'wplite_category_template', 10, 3);
+add_filter('taxonomy_template', 'wplite_category_template', 10, 3);
 
 /**
  * Loads custom tag templates file.
@@ -129,10 +130,10 @@ add_filter('category_template', 'wplite_category_template', 10, 3);
  */
 function wplite_tag_template(string $template): string
 {
-    $slug = get_queried_object()->slug ?? '';
+    $current_obj = get_queried_object();
 
-    $custom_template = locate_template("templates/taxonomy/post_tag/taxonomy-post_tag.php")
-      ?: locate_template("templates/taxonomy/taxonomy-post_tag.php");
+    $custom_template = locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}/taxonomy-{$current_obj->taxonomy}.php")
+      ?: locate_template("templates/taxonomy/taxonomy-{$current_obj->taxonomy}.php");
 
     return $custom_template ?: $template;
 }

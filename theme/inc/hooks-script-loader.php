@@ -149,6 +149,11 @@ function wplite_template_styles()
             $path = get_theme_file_path("templates/{$slug}/{$slug}.css");
             $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
         }
+
+        if (! file_exists($path)) {
+            $path = get_theme_file_path("templates/page/page.css");
+            $uri  = get_theme_file_uri("templates/page/page.css");
+        }
     } elseif (is_category() || is_tag() || is_tax()) {
         $current_obj = get_queried_object();
         $slug = $current_obj->taxonomy;
@@ -229,6 +234,11 @@ function wplite_template_scripts()
         if (! file_exists($path)) {
             $path = get_theme_file_path("templates/{$slug}/{$slug}.js");
             $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.js");
+        }
+
+        if (! file_exists($path)) {
+            $path = get_theme_file_path("templates/page/page.js");
+            $uri  = get_theme_file_uri("templates/page/page.js");
         }
     } elseif (is_category() || is_tag() || is_tax()) {
         $slug = get_queried_object()->taxonomy ?? '';

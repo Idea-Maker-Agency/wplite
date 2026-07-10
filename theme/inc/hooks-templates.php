@@ -48,7 +48,9 @@ function wplite_page_template(string $template, string $type, array $templates):
             // E.g. `templates/<slug>/<slug>.php` or, if it has no CSS/JS, flat as `templates/<slug>.php`
             $custom_template = locate_template("templates/{$nested_path}/{$post->post_name}.php")
               ?: locate_template("templates/{$post->post_name}/{$post->post_name}.php")
-              ?: locate_template("templates/{$post->post_name}.php");
+              ?: locate_template("templates/{$post->post_name}.php")
+              ?: locate_template("templates/page/page.php")
+              ?: locate_template("templates/page.php");
 
             update_post_meta($post->ID, '_wplite_resolved_template', $custom_template ?: '__none__');
         }

@@ -30,12 +30,9 @@ if (! empty($args['parent_name'])) {
 }
 
 $post = get_post($post_id);
-
-if (! empty($custom_fields)) { ?>
-	<div class="postbox" style="margin-bottom: 0;">
-		<div class="inside" style="margin: 0 -12px; display: flex; flex-wrap: wrap;">
-			<?php wplite_cf_render($post, $fields, $name) ?>
-		</div>
+?>
+<div class="postbox" style="margin-bottom: 0;">
+	<div class="inside" style="margin: 0 -12px; display: flex; flex-wrap: wrap;">
+		<?php wplite_cf_render($post, $fields, $name) ?>
 	</div>
-<?php
-}
+</div>

@@ -1,6 +1,4 @@
 <?php
-use WPLite\Utils\CustomFields;
-
 $index   = (int) $args['index']      ?? 0;
 $post_id = (int) $args['post_id']    ?? 0;
 $name    = $args['name']             ?? '';
@@ -13,8 +11,6 @@ if ($extends) {
 }
 
 $post = get_post($post_id);
-
-$custom_fields = new CustomFields();
 ?>
 
 <div
@@ -32,7 +28,7 @@ $custom_fields = new CustomFields();
 
 	<div style="clear: both;">
 		<div style="padding: 0 12px 12px; margin: 0 -12px; display: flex; flex-wrap: wrap;">
-			<?php $custom_fields->render_fields($post, $fields, $key) ?>
+			<?php wplite_cf_render($post, $fields, $key) ?>
 		</div>
 	</div>
 

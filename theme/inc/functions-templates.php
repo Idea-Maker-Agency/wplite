@@ -49,28 +49,6 @@ function wplite_redirect(string $path = '', array $params = [])
 }
 
 /**
- * Get current template part.
- *
- * @param  string $name
- * @param  array  $args
- */
-function wplite_get_template_part(string $name, array $args = []): void
-{
-    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
-    $caller    = $backtrace[0]['file'] ?? null;
-
-    if (0 === strpos(dirname($caller), get_stylesheet_directory())) {
-        $path = str_replace(get_stylesheet_directory() . '/', '', dirname($caller));
-
-        get_template_part("{$path}/template-parts/{$name}", null, $args);
-    } elseif (0 === strpos(dirname($caller), THEME_DIR_PATH)) {
-        $path = str_replace(THEME_DIR_PATH . '/', '', dirname($caller));
-
-        get_template_part("{$path}/template-parts/{$name}", null, $args);
-    }
-}
-
-/**
  * Get webp asset image url.
  *
  * @param  string $name

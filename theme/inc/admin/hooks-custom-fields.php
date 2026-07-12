@@ -7,8 +7,8 @@ $field_groups = [];
  */
 function wplite_cf_init_template_custom_fields()
 {
-    $id     = (int) $_GET['post'] ?? 0;
-    $action = $_POST['action']    ?? null;
+    $id     = isset($_GET['post']) ? $_GET['post'] : 0;
+    $action = isset($_POST['action']) ? $_POST['action'] : null;
 
     $front_page_id = get_option('page_on_front');
 

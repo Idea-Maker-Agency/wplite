@@ -50,7 +50,7 @@ function wplite_customize_register(\WP_Customize_Manager $manager)
                             }
 
                             $manager->add_setting($setting_id, [
-                                'sanitize_callback' => 'wp_filter_no_kses',
+                                'sanitize_callback' => 'wp_kses_post',
                             ]);
 
                             if ('image' === $setting['type']) {

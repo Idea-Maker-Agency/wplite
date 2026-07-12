@@ -77,6 +77,8 @@ function wplite_get_webp_asset_url(string $name, array $size = []): string
  */
 function wplite_get_component(string $name, string $namespace = '', array $args = []): void
 {
+    global $wplite_template_components;
+
     $folder = '';
 
     if ($namespace) {
@@ -84,4 +86,6 @@ function wplite_get_component(string $name, string $namespace = '', array $args 
     }
 
     get_template_part("components/{$folder}{$name}/{$name}", null, $args);
+
+    $wplite_template_components[] = "{$namespace}/{$name}";
 }

@@ -32,6 +32,11 @@ function wplite_page_template(string $template, string $type, array $templates):
     } elseif (is_404()) {
         $custom_template = locate_template("templates/404/404.php") ?: locate_template("templates/404.php");
     } else {
+        $page_template = get_post_meta($post->ID, '_wp_page_template', true);
+        if ($page_template != 'default') {
+            return $template;
+        }
+
         $custom_template = get_post_meta($post->ID, '_wplite_resolved_template', true);
 
         if (! $custom_template) {

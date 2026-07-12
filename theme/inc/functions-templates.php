@@ -87,5 +87,8 @@ function wplite_get_component(string $name, string $namespace = '', array $args 
 
     get_template_part("components/{$folder}{$name}/{$name}", null, $args);
 
-    $wplite_template_components[] = "{$namespace}/{$name}";
+    $wplite_template_components[] = [
+        'name' => "{$namespace}/{$name}",
+        'args' => $args,
+    ];
 }

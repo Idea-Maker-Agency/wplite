@@ -117,9 +117,9 @@ function wplite_template_styles()
         return;
     }
 
-    $slug = $post->post_name;
+    $slug = $post ? $post->post_name : '';
 
-    if (is_front_page() || is_page()) {
+    if (is_front_page() || is_page() || is_404()) {
         if (is_front_page()) {
             $slug = 'front-page';
         } elseif (is_search()) {
@@ -203,9 +203,9 @@ function wplite_template_scripts()
         return;
     }
 
-    $slug = $post->post_name;
+    $slug = $post ? $post->post_name : '';
 
-    if (is_front_page() || is_page()) {
+    if (is_front_page() || is_page() || is_404()) {
         if (is_front_page()) {
             $slug = 'front-page';
         } elseif (is_search()) {

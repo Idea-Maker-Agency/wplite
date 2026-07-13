@@ -29,6 +29,8 @@ function wplite_page_template(string $template, string $type, array $templates):
         $custom_template = locate_template("templates/archive/post/archive-post.php") ?: locate_template("templates/archive/archive-post.php");
     } elseif (is_search()) {
         $custom_template = locate_template("templates/search/search.php") ?: locate_template("templates/search.php");
+    } elseif (is_author()) {
+        $custom_template = locate_template("templates/author/author.php") ?: locate_template("templates/author.php");
     } elseif (is_404()) {
         $custom_template = locate_template("templates/404/404.php") ?: locate_template("templates/404.php");
     } else {
@@ -72,6 +74,7 @@ add_filter('home_template', 'wplite_page_template', 10, 3);
 add_filter('page_template', 'wplite_page_template', 10, 3);
 add_filter('privacypolicy_template', 'wplite_page_template', 10, 3);
 add_filter('search_template', 'wplite_page_template', 10, 3);
+add_filter('author_template', 'wplite_page_template', 10, 3);
 add_filter('404_template', 'wplite_page_template', 10, 3);
 
 /**

@@ -342,3 +342,38 @@ function wplite_page_template_scripts()
     );
 }
 add_action('wp_enqueue_scripts', 'wplite_page_template_scripts', 12);
+
+/**
+ * Enqueue template scripts.
+ */
+function wplite_components_scripts()
+{
+    global $wplite_template_components;
+
+    if (empty($wplite_template_components)) {
+        return;
+    }
+
+    foreach ($wplite_template_components as $wplite_template_component) {
+        $path = $wplite_template_component['name'];
+        $path_parts = explode('/', $wplite_template_component['name']);
+        $name = array_pop($path_parts);
+
+        $js_path = get_theme_file_path("components/{$path}/{$name}.js");
+
+        if (! file_exists($js_path)) {
+            continue;
+        }
+
+        $js_uri    = get_theme_file_uri("components/{$path}/{$name}.js");
+
+        wp_enqueue_script(
+            "wplite-component-{$name}",
+            $js_uri,
+            [],
+            wp_get_theme()->__get('version'),
+            ['strategy' => 'defer', 'in_footer' => true,]
+        );
+    }
+}
+add_action('wp_footer', 'wplite_components_scripts', 15);

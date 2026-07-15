@@ -16,14 +16,14 @@ services:
     container_name: wplite-phpmyadmin
     restart: always
     ports:
-      - 8180:80
+      - ${PHPMYADMIN_PORT:-8180}:80
     environment:
       - PMA_HOST=mysql
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
 
-  sass:
-    image: node:14
-    container_name: wplite-sass
+  nodejs:
+    image: node:22-alpine
+    container_name: wplite-nodejs
     volumes:
       - .:/usr/src/app
     working_dir: /usr/src/app
@@ -46,15 +46,7 @@ services:
       - WORDPRESS_DEBUG=${WP_DEBUG}
     restart: always
     ports:
-      - 8080:80
-
-  composer:
-    image: composer:latest
-    container_name: wplite-composer
-    volumes:
-      - ./theme:/theme
-    working_dir: /theme
-    command: install
+      - ${WORDPRESS_PORT:-8080}:80
 
 volumes:
   mysql_data: {}

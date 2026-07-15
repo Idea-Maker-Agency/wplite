@@ -8,18 +8,16 @@ This guide will help you set up and run a local installation of Wordpress using 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Folder Structure](#folder-structure)
-  - [Key Files and Directories](#key-files-and-directories)
+    - [Key Files and Directories](#key-files-and-directories)
 - [VSCode Components](#vscode-components)
 - [Style Guide](#style-guide) - [HTML](#html) - [PHP](#php)
 - [Templating Guide](#templating-guide)
-  - [Additional Scripts](#additional-scripts)
+    - [Additional Scripts](#additional-scripts)
 - [Features](#features)
-  - [Dynamic theme customizer](#dynamic-theme-customizer)
-  - [Organized components](#organized-components)
-  - [Organized page templates](#organized-page-templates)
-  - [Organized views](#organized-views)
-  - [Built-in custom fields registration](#built-in-custom-fields-registration)
-  - [Form Builder](#form-builder)
+    - [Dynamic theme customizer](#dynamic-theme-customizer)
+    - [Organized components](#organized-components)
+    - [Organized page templates](#organized-page-templates)
+    - [Built-in custom fields registration](#built-in-custom-fields-registration)
 - [Reference Links](#reference-links)
 - [Conclusion](#conclusion)
 
@@ -41,27 +39,19 @@ Copy the `.env-template` file to `.env` and modify it as needed:
 cp .env-template .env
 ```
 
-Run the development server:
+Run the development server in detached mode:
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
-To watch templates or page-templates scss files:
+Build the theme for production:
 
 ```bash
-make dev:templates
-
-make dev:page-templates
+make build
 ```
 
-Compile the theme:
-
-```bash
-make compile # You can pass arg `name=my-theme`. Defaults to `name=wplite`
-```
-
-The compile command will generate a `wplite` folder which we can zip and upload to development, staging or live server.
+The build command generates a ready-to-upload `wplite.zip` at the project root — no intermediate folder to clean up.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -75,7 +65,6 @@ project
 |   ├── components
 |   ├── template-parts
 |   ├── templates
-|   ├── vendor
 |   ├── 404.php
 |   ├── archive.php
 |   ├── category.php
@@ -102,29 +91,28 @@ project
 
 - `docs/`: Contains the docs for the application.
 - `theme/`: Contains the main source code for the application.
-  - `assets/`: Contains static assets like css, js, images and fonts.
-  - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
-    - `custom-field-groups`: Includes re-usable custom field groups .json files.
-  - `components/`: Custom components.
-  - `template-parts/`: Custom template parts.
-  - `templates/`: Custom page templates.
-  - `vendor/`: Vendor php modules.
-  - `404.php`: The template for displaying 404 page.
-  - `archive.php`: The template for displaying archive pages.
-  - `category.php`: The template for displaying category pages.
-  - `comments.php`: The template for displaying comments.
-  - `footer.php`: The template for displaying the footer.
-  - `front-page.php`: The template for displaying front-page.
-  - `functions.php`: The main functions php file.
-  - `header.php`: The template for displaying the header.
-  - `home.php`: The template for display blog posts page.
-  - `index.php`: The main template page.
-  - `page.php`: The template for displaying all pages.
-  - `screenshot.png`: The template for displaying the header.
-  - `search.php`: The template for displaying the header.
-  - `single.php`: The template for displaying all single posts.
-  - `style.css`: The main stylesheet css file.
-  - `tag.php`: The template for displaying tag pages.
+    - `assets/`: Contains static assets like css, js, images and fonts.
+    - `lib/`: Contains php classes, functions, structure related templates, custom components, widgets and re-usable custom fields.
+        - `custom-field-groups`: Includes re-usable custom field groups .json files.
+    - `components/`: Custom components.
+    - `template-parts/`: Custom template parts.
+    - `templates/`: Custom page templates.
+    - `404.php`: The template for displaying 404 page.
+    - `archive.php`: The template for displaying archive pages.
+    - `category.php`: The template for displaying category pages.
+    - `comments.php`: The template for displaying comments.
+    - `footer.php`: The template for displaying the footer.
+    - `front-page.php`: The template for displaying front-page.
+    - `functions.php`: The main functions php file.
+    - `header.php`: The template for displaying the header.
+    - `home.php`: The template for display blog posts page.
+    - `index.php`: The main template page.
+    - `page.php`: The template for displaying all pages.
+    - `screenshot.png`: The template for displaying the header.
+    - `search.php`: The template for displaying the header.
+    - `single.php`: The template for displaying all single posts.
+    - `style.css`: The main stylesheet css file.
+    - `tag.php`: The template for displaying tag pages.
 - `.editorconfig`: Defines coding styles and indentation settings for consistent formatting across different editors and IDEs.
 - `.env-template`: The .env template file.
 - `docker-compose.yml`: The docker-compose.yml file configures and manages all application services, allowing you to build and run your multi-container Docker application with a single command.
@@ -235,48 +223,24 @@ When adding 1st or 3rd party scripts, make sure to enqueue them only for specifi
 
 ### Dynamic theme customizer
 
-Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight JSON parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `lib/config/customizer.json` configuration file.
+Includes a **dynamic, JSON-based Customizer setup** using [Spyc](https://github.com/mustangostang/spyc), a lightweight JSON parser for PHP. It allows you to define WordPress Customizer panels, sections, and settings from a single `customizer.json` configuration file.
 
 ### Organized components
 
-Custom components can be organized into folders. We need to register our component in order to use it. Use the `after_setup_theme` hook to register custom components.
+Custom components can be organized into folders.
+
+To use the component, use the `wplite_get_component()` function in your template:
 
 ```php
 <?php
-use WPLite\Utils\Component;
-
-add_action('after_setup_theme', 'wplite_child_register_components');
-function wplite_child_register_components() {
-	Component::register([
-		'my-component',
-	], 'Misc');
-}
-```
-
-To use the component, use the `Component::render()` static method in your template:
-
-```php
-<?php
-use WPLite\Utils\Component;
-
-Component::render('my-component', 'Misc', [
+wplite_get_component('my-component', '', [
 	'arg_1' => '',
 ]);
-```
-
-It is suggested that we put scss module in the same folder to organize the modules and then import it into your template's scss, see example:
-
-```scss
-@use "components/Misc/{{component_name}}/{{component_scss}}";
 ```
 
 ### Organized page templates
 
 Custom page templates can be organized into folders, and any CSS or JS files named identically to the corresponding page template PHP file will be automatically enqueued. Custom fields can also be defined via a JSON file, using the same filename as the associated page template (e.g., sample.json).
-
-### Organized views
-
-Custom views can be organized into folders, and any CSS or JS files named identically to the corresponding component PHP file will automatically be enqueued, [read docs](/docs/views/README.md)
 
 ### Built-in custom fields registration
 
@@ -292,7 +256,7 @@ The theme includes built-in custom fields registration system for templates and 
 - [`group`](/docs/custom-fields/group/README.md) ( useful for nesting fields )
 - [`repeater`](/docs/custom-fields/repeater/README.md)
 
-You can also create and re-use custom fields by creating a .json file inside `lib/custom-field-groups`. To be able to re-use it, use `extends` in your field. See example usage:
+You can also create and re-use custom fields by creating a .json file inside `inc/custom-field-groups`. To be able to re-use it, use `extends` in your field. See example usage:
 
 ```json
 {
@@ -302,12 +266,8 @@ You can also create and re-use custom fields by creating a .json file inside `li
   "fields": []
 }
 
-# This will include lib/custom-field-groups/header-banner.json if it exists
+# This will include inc/custom-field-groups/header-banner.json if it exists
 ```
-
-### Form Builder
-
-This theme includes lightweight and extensible utility for building and handling front-end forms, [read docs](/docs/form-builder/README.md)
 
 **[⬆ back to top](#table-of-contents)**
 

@@ -6,31 +6,29 @@ Registers a group of custom fields.
 
 ```yaml
 my_page:
-  group: "Section 1"
-  fields:
-    section_1_cta_primary:
-      type: group
-      label: "Primary CTA Button"
-      fields:
-        text:
-          type: text
-          label: "Text"
-          width: 50
+    group: "Section 1"
+    fields:
+        section_1_cta_primary:
+            type: group
+            label: "Primary CTA Button"
+            fields:
+                text:
+                    type: text
+                    label: "Text"
+                    width: 50
 
-        url:
-          type: url
-          label: "URL"
-          width: 50
+                url:
+                    type: url
+                    label: "URL"
+                    width: 50
 ```
 
 ## Usage
 
 ```phtml
 <?php
-use WPLite\Utils\CustomFields;
-
-$cta_primary_text = CustomFields::get_field('section_1_cta_primary_text');
-$cta_primary_url = CustomFields::get_field('section_1_cta_primary_url');
+$cta_primary_text = wplite_cf_value('section_1_cta_primary_text');
+$cta_primary_url = wplite_cf_value('section_1_cta_primary_url');
 
 <?php if ($cta_primary_url) { ?>
   <a

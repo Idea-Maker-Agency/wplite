@@ -1,0 +1,12 @@
+{
+	"name": "wplite",
+	"private": true,
+	"files": [
+		"**/*.php",
+		"**/*.css",
+		"**/*.js",
+		"**/*.json",
+		"**/*.webp",
+		"**/*.png"
+	]
+}

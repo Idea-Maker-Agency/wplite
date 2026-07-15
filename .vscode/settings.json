@@ -1,6 +1,0 @@
-{
-	"php-cs-fixer.onsave": true,
-    "php-cs-fixer.executablePathWindows": "${workspaceFolder}/theme/vendor/bin/php-cs-fixer",
-    "php-cs-fixer.config": ".php-cs-fixer.dist.php",
-    "php-cs-fixer.rules": ""
-}

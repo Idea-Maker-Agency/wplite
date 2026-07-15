@@ -6,22 +6,20 @@ Registers a single image picker custom field.
 
 ```yaml
 my_page:
-  group: "Section 1"
-  fields:
-    section_1_bg:
-      type: image
-      label: "Background image"
-      helper_text: "Lorem ipsum dolor sit amet"
-      width: 100
+    group: "Section 1"
+    fields:
+        section_1_bg:
+            type: image
+            label: "Background image"
+            helper_text: "Lorem ipsum dolor sit amet"
+            width: 100
 ```
 
 ## Usage
 
 ```phtml
 <?php
-use WPLite\Utils\CustomFields;
-
-$bg_image_id = CustomFields::get_field('section_1_bg');
+$bg_image_id = wplite_cf_value('section_1_bg');
 
 <?php if ($bg_image_id) { ?>
   <img

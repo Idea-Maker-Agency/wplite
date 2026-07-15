@@ -118,6 +118,7 @@ function wplite_template_styles()
     }
 
     $slug = $post ? $post->post_name : '';
+    $page_template = $post ? $post->__get('page_template') : null;
 
     if (is_front_page() || is_page() || is_404()) {
         if (is_front_page()) {
@@ -150,7 +151,7 @@ function wplite_template_styles()
             $uri  = get_theme_file_uri("templates/{$slug}/{$slug}.css");
         }
 
-        if (! file_exists($path)) {
+        if (! file_exists($path) && $page_template == 'default') {
             $path = get_theme_file_path("templates/page/page.css");
             $uri  = get_theme_file_uri("templates/page/page.css");
         }

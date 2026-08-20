@@ -299,8 +299,16 @@ class CustomFields
 
       $values = array_map(function ($key) use ($wp_post, $fields) {
         $values = array_map(function ($field) use ($wp_post, $key) {
+          $sub_name = "{$key}_{$field}";
+
+          // A nested repeater keeps its values under its own item keys, so it
+          // has to be read back as a repeater instead of as a single value.
+          $value = $wp_post->__get("{$sub_name}_keys")
+            ? self::get_field($sub_name, null, $wp_post)
+            : $wp_post->__get($sub_name);
+
           return [
-            $field => $wp_post->__get("{$key}_{$field}"),
+            $field => $value,
           ];
         }, $fields);
 
@@ -313,6 +321,46 @@ class CustomFields
     } else {
       return $wp_post->__get($name) ?: $fallback_value;
     }
+  }
+
+  /**
+   * Whether a repeater item was submitted with a non-empty value.
+   *
+   * @param string $key    The repeater item key.
+   * @param array  $fields The array of sub fields.
+   *
+   * @return bool
+   */
+  private static function has_submitted_value(string $key, array $fields): bool
+  {
+    foreach ($fields as $field) {
+      $name = "{$key}_{$field['name']}";
+      $type = $field['type'] ?? 'text';
+
+      if ('repeater' === $type) {
+        // A nested repeater posts its values under its own item keys rather
+        // than under $name, so the check has to follow it one level deeper.
+        $sub_keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true) ?: [];
+
+        foreach ($sub_keys as $sub_key) {
+          if (self::has_submitted_value($sub_key, $field['fields'] ?? [])) {
+            return true;
+          }
+        }
+      } elseif ('group' === $type) {
+        if (self::has_submitted_value($name, $field['fields'] ?? [])) {
+          return true;
+        }
+      } else {
+        $value = $_POST[$name] ?? '';
+
+        if (! empty($value) && 'false' !== $value) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   /**
@@ -347,14 +395,8 @@ class CustomFields
           // Filter keys with non-empty fields
           $keys = json_decode(stripslashes($_POST["{$name}_keys"] ?? ''), true) ?: [];
 
-          $keys = array_filter($keys, function ($key) use ($sub_fields) {
-            $valid_fields = array_filter($sub_fields, function ($sub_field) use ($key) {
-              $value = $_POST["{$key}_{$sub_field}"];
-
-              return ! empty($value) && "false" !== $value;
-            });
-
-            return ! empty($valid_fields);
+          $keys = array_filter($keys, function ($key) use ($field) {
+            return self::has_submitted_value($key, $field['fields'] ?? []);
           });
 
           if (! empty($keys)) {
